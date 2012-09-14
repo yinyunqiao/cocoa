@@ -1,0 +1,185 @@
+@charset "UTF-8";
+/*div {border:1px red solid;}*/
+a			{ text-decoration: none;color:#0099CC;}
+a:hover	    { text-decoration: underline;color:red;}
+
+body  {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	background: #666666;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top:0;
+	padding: 0;
+	text-align: center;
+	color: #000000;
+	width:960px;
+}
+.post input 
+{
+	width:95%;
+	overflow-x:visible;
+	overflow-y:visible;
+}
+.post textarea
+{
+	width:95%;
+	height:70px;
+	overflow-x:visible;
+}
+.Attention
+{
+	font-weight:bold;
+	font-size:9pt;
+	color:red;
+}
+.noAttention
+{
+	font-size:9pt;
+	color:green;
+}
+ins {background: #bfb;display:block;}
+del {background: #fcc;display:block;}
+ins,del {text-decoration: none}
+.zmap_point #loginbox
+{
+
+	float:right;
+
+}
+.zmap_point #loginbox a
+
+{
+
+	color: #ffffff;	
+
+}
+
+.zmap_point #container { 
+	width: 99%;
+	background: #FFFFFF;
+	margin: 0 auto;
+	border: 1px solid #000000;
+	text-align: left;
+	padding:0;
+} 
+.zmap_point #header { 
+	background: #336699; 
+	padding-top:3px;
+	color: #ffffff;
+	height:75px;
+	margin:0px;
+} 
+
+.zmap_point #header a {
+
+}
+.zmap_point #logo
+{
+	float:left;
+	width:500px;
+}
+.zmap_point #header a
+{
+	color: #ffffff;
+}
+
+.zmap_point #logo a
+{
+	color: #ffffff;
+	font-size:48px;
+	
+}
+.zmap_point #headerads
+{
+	margin-left:200px;
+	text-align:center;
+	padding-top:2px;
+}
+.zmap_point #sidebar1 {
+	float:left; 
+	width:160px;
+	padding:0;
+	z-index:0;
+	border-right:1px dotted #999999;
+	font-size:11pt;
+}
+.zmap_point #sidebar2 {
+	font-size:11pt;
+	float: right; 
+	width: 220px;
+	padding:0;
+	z-index:0;
+	border-left:1px dotted #999999;
+}
+.zmap_point #sidebar1 h3, .zmap_point #sidebar2 h3 {
+	margin:0;
+	padding-left:5px;
+	background-color: #ffd595;
+}
+.zmap_point #sidebar1 ul,.zmap_point #sidebar2 ul
+{
+	list-style-type:none;
+	margin-left:7px;
+	padding-left:0px;
+}
+
+.zmap_point #mainContent {
+	margin: 0 10px 0 165px;
+	z-index:1;
+} 
+.zmap_point #mainTopAd {
+	text-align:center;
+}
+.zmap_point #mainRectAd
+{
+	float:right;
+	padding:3px;
+}
+.zmap_point #footer { 
+	padding: 0 10px;
+	background:#DDDDDD;
+	text-align:center;
+} 
+.zmap_point #footer p {
+	margin: 0;
+	padding: 10px 0;
+}
+
+.zmap_point #map { 
+	width:210px;
+	height:120px;
+	margin-left:4px;
+}
+#tiebatitle
+{
+	background:#0000cc;
+	text-align:right;
+}
+#tiebatitle a
+{
+	color:#ffffff;
+}
+#nopost
+{
+	background:#dddddd;
+	padding:3px;
+}
+.fltrt {
+	float: right;
+	margin-left: 8px;
+}
+.fltlft {
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat {
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+.odd
+{background-color:#eeeeee;}
+.even
+{background-color:#ffffff;}
+

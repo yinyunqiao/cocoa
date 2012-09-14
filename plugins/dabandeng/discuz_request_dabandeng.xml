@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Request]]></item>
+	<item id="Version"><![CDATA[7.2]]></item>
+	<item id="Time"><![CDATA[2010-06-28 17:47]]></item>
+	<item id="Data">
+		<item id="__dabandeng_latest_topic">
+			<item id="url"><![CDATA[function=threads&sidestatus=0&maxlength=0&fnamelength=0&messagelength=0&startrow=0&picpre=&items=10&tag=&tids=&special=0&rewardstatus=&digest=0&stick=0&recommend=0&newwindow=1&threadtype=0&threadsort=0&highlight=0&orderby=dateline&hours=0&jscharset=0&cachelife=900&jstemplate=%7Bforum%7D%7C%3A%7C%3A%7C%7Bsubject_full%7D%7C%3A%7C%3A%7C%7Bauthor_nolink%7D%7C%3A%7C%3A%7C%7Bdateline%7D%7C%3A%7C%3A%7C%7Bmessage%7D%7C%3A%7C%3A%7C%7Blastposter_nolink%7D%7C%3A%7C%3A%7C%7Blastpost%7D%7C%3A%7C%3A%7C%7Btid%7D%7C%3A%7C%3A%7C%7Breplies%7D%7C%3A%7C%3A%7C%7Bviews%7D%3Cbr%3E]]></item>
+			<item id="parameter">
+				<item id="jstemplate"><![CDATA[{forum}|:|:|{subject_full}|:|:|{author_nolink}|:|:|{dateline}|:|:|{message}|:|:|{lastposter_nolink}|:|:|{lastpost}|:|:|{tid}|:|:|{replies}|:|:|{views}<br>]]></item>
+				<item id="cachelife"><![CDATA[900]]></item>
+				<item id="sidestatus"><![CDATA[0]]></item>
+				<item id="startrow"><![CDATA[0]]></item>
+				<item id="items"><![CDATA[10]]></item>
+				<item id="maxlength"><![CDATA[0]]></item>
+				<item id="fnamelength"><![CDATA[0]]></item>
+				<item id="messagelength"><![CDATA[0]]></item>
+				<item id="picpre"><![CDATA[]]></item>
+				<item id="keyword"><![CDATA[]]></item>
+				<item id="tag"><![CDATA[]]></item>
+				<item id="threadtype"><![CDATA[0]]></item>
+				<item id="threadsort"><![CDATA[0]]></item>
+				<item id="highlight"><![CDATA[0]]></item>
+				<item id="recommend"><![CDATA[0]]></item>
+				<item id="newwindow"><![CDATA[1]]></item>
+				<item id="orderby"><![CDATA[dateline]]></item>
+				<item id="hours"><![CDATA[]]></item>
+				<item id="jscharset"><![CDATA[0]]></item>
+				<item id="boardurl"><![CDATA[]]></item>
+			</item>
+			<item id="comment"><![CDATA[Latest topic list]]></item>
+			<item id="type"><![CDATA[0]]></item>
+		</item>
+		<item id="__dabandeng_latest_reply">
+			<item id="url"><![CDATA[function=threads&sidestatus=0&maxlength=0&fnamelength=0&messagelength=&startrow=0&picpre=&items=10&tag=&tids=&special=0&rewardstatus=&digest=0&stick=0&recommend=0&newwindow=1&threadtype=0&threadsort=0&highlight=0&orderby=lastpost&hours=0&jscharset=0&cachelife=900&jstemplate=%7Bforum%7D%7C%3A%7C%3A%7C%7Bsubject_full%7D%7C%3A%7C%3A%7C%7Bauthor_nolink%7D%7C%3A%7C%3A%7C%7Bdateline%7D%7C%3A%7C%3A%7C%7Bmessage%7D%7C%3A%7C%3A%7C%7Blastposter_nolink%7D%7C%3A%7C%3A%7C%7Blastpost%7D%7C%3A%7C%3A%7C%7Btid%7D%7C%3A%7C%3A%7C%7Breplies%7D%7C%3A%7C%3A%7C%7Bviews%7D%3Cbr%3E]]></item>
+			<item id="parameter">
+				<item id="jstemplate"><![CDATA[{forum}|:|:|{subject_full}|:|:|{author_nolink}|:|:|{dateline}|:|:|{message}|:|:|{lastposter_nolink}|:|:|{lastpost}|:|:|{tid}|:|:|{replies}|:|:|{views}<br>]]></item>
+				<item id="cachelife"><![CDATA[900]]></item>
+				<item id="sidestatus"><![CDATA[0]]></item>
+				<item id="startrow"><![CDATA[0]]></item>
+				<item id="items"><![CDATA[10]]></item>
+				<item id="maxlength"><![CDATA[0]]></item>
+				<item id="fnamelength"><![CDATA[0]]></item>
+				<item id="messagelength"><![CDATA[]]></item>
+				<item id="picpre"><![CDATA[]]></item>
+				<item id="keyword"><![CDATA[]]></item>
+				<item id="tag"><![CDATA[]]></item>
+				<item id="threadtype"><![CDATA[0]]></item>
+				<item id="threadsort"><![CDATA[0]]></item>
+				<item id="highlight"><![CDATA[0]]></item>
+				<item id="recommend"><![CDATA[0]]></item>
+				<item id="newwindow"><![CDATA[1]]></item>
+				<item id="orderby"><![CDATA[lastpost]]></item>
+				<item id="hours"><![CDATA[]]></item>
+				<item id="jscharset"><![CDATA[0]]></item>
+				<item id="boardurl"><![CDATA[]]></item>
+			</item>
+			<item id="comment"><![CDATA[Latest reply list]]></item>
+			<item id="type"><![CDATA[0]]></item>
+		</item>
+		<item id="__dabandeng_latest_digest">
+			<item id="url"><![CDATA[function=threads&sidestatus=0&maxlength=0&fnamelength=0&messagelength=&startrow=0&picpre=&items=10&tag=&tids=&special=0&rewardstatus=&digest=14&stick=0&recommend=0&newwindow=1&threadtype=0&threadsort=0&highlight=0&orderby=dateline&hours=0&jscharset=0&cachelife=900&jstemplate=%7Bforum%7D%7C%3A%7C%3A%7C%7Bsubject_full%7D%7C%3A%7C%3A%7C%7Bauthor_nolink%7D%7C%3A%7C%3A%7C%7Bdateline%7D%7C%3A%7C%3A%7C%7Bmessage%7D%7C%3A%7C%3A%7C%7Blastposter_nolink%7D%7C%3A%7C%3A%7C%7Blastpost%7D%7C%3A%7C%3A%7C%7Btid%7D%7C%3A%7C%3A%7C%7Breplies%7D%7C%3A%7C%3A%7C%7Bviews%7D%3Cbr%3E]]></item>
+			<item id="parameter">
+				<item id="jstemplate"><![CDATA[{forum}|:|:|{subject_full}|:|:|{author_nolink}|:|:|{dateline}|:|:|{message}|:|:|{lastposter_nolink}|:|:|{lastpost}|:|:|{tid}|:|:|{replies}|:|:|{views}<br>]]></item>
+				<item id="cachelife"><![CDATA[900]]></item>
+				<item id="sidestatus"><![CDATA[0]]></item>
+				<item id="startrow"><![CDATA[0]]></item>
+				<item id="items"><![CDATA[10]]></item>
+				<item id="maxlength"><![CDATA[0]]></item>
+				<item id="fnamelength"><![CDATA[0]]></item>
+				<item id="messagelength"><![CDATA[]]></item>
+				<item id="picpre"><![CDATA[]]></item>
+				<item id="keyword"><![CDATA[]]></item>
+				<item id="tag"><![CDATA[]]></item>
+				<item id="threadtype"><![CDATA[0]]></item>
+				<item id="threadsort"><![CDATA[0]]></item>
+				<item id="highlight"><![CDATA[0]]></item>
+				<item id="digest">
+					<item id="1"><![CDATA[1]]></item>
+					<item id="2"><![CDATA[1]]></item>
+					<item id="3"><![CDATA[1]]></item>
+				</item>
+				<item id="recommend"><![CDATA[0]]></item>
+				<item id="newwindow"><![CDATA[1]]></item>
+				<item id="orderby"><![CDATA[dateline]]></item>
+				<item id="hours"><![CDATA[]]></item>
+				<item id="jscharset"><![CDATA[0]]></item>
+				<item id="boardurl"><![CDATA[]]></item>
+			</item>
+			<item id="comment"><![CDATA[Latest digest list]]></item>
+			<item id="type"><![CDATA[0]]></item>
+		</item>
+		<item id="__dabandeng_latest_recommend">
+			<item id="url"><![CDATA[function=threads&sidestatus=0&maxlength=0&fnamelength=0&messagelength=&startrow=0&picpre=&items=10&tag=&tids=&special=0&rewardstatus=&digest=0&stick=0&recommend=1&newwindow=1&threadtype=0&threadsort=0&highlight=0&orderby=dateline&hours=0&jscharset=0&cachelife=900&jstemplate=%7Bforum%7D%7C%3A%7C%3A%7C%7Bsubject_full%7D%7C%3A%7C%3A%7C%7Bauthor_nolink%7D%7C%3A%7C%3A%7C%7Bdateline%7D%7C%3A%7C%3A%7C%7Bmessage%7D%7C%3A%7C%3A%7C%7Blastposter_nolink%7D%7C%3A%7C%3A%7C%7Blastpost%7D%7C%3A%7C%3A%7C%7Btid%7D%7C%3A%7C%3A%7C%7Breplies%7D%7C%3A%7C%3A%7C%7Bviews%7D%3Cbr%3E]]></item>
+			<item id="parameter">
+				<item id="jstemplate"><![CDATA[{forum}|:|:|{subject_full}|:|:|{author_nolink}|:|:|{dateline}|:|:|{message}|:|:|{lastposter_nolink}|:|:|{lastpost}|:|:|{tid}|:|:|{replies}|:|:|{views}<br>]]></item>
+				<item id="cachelife"><![CDATA[900]]></item>
+				<item id="sidestatus"><![CDATA[0]]></item>
+				<item id="startrow"><![CDATA[0]]></item>
+				<item id="items"><![CDATA[10]]></item>
+				<item id="maxlength"><![CDATA[0]]></item>
+				<item id="fnamelength"><![CDATA[0]]></item>
+				<item id="messagelength"><![CDATA[]]></item>
+				<item id="picpre"><![CDATA[]]></item>
+				<item id="keyword"><![CDATA[]]></item>
+				<item id="tag"><![CDATA[]]></item>
+				<item id="threadtype"><![CDATA[0]]></item>
+				<item id="threadsort"><![CDATA[0]]></item>
+				<item id="highlight"><![CDATA[0]]></item>
+				<item id="recommend"><![CDATA[1]]></item>
+				<item id="newwindow"><![CDATA[1]]></item>
+				<item id="orderby"><![CDATA[dateline]]></item>
+				<item id="hours"><![CDATA[]]></item>
+				<item id="jscharset"><![CDATA[0]]></item>
+				<item id="boardurl"><![CDATA[]]></item>
+			</item>
+			<item id="comment"><![CDATA[Latest recommend list]]></item>
+			<item id="type"><![CDATA[0]]></item>
+		</item>
+		<item id="__dabandeng_latest_stick">
+			<item id="url"><![CDATA[function=threads&sidestatus=0&maxlength=0&fnamelength=0&messagelength=&startrow=0&picpre=&items=10&tag=&tids=&special=0&rewardstatus=&digest=0&stick=14&recommend=0&newwindow=1&threadtype=0&threadsort=0&highlight=0&orderby=lastpost&hours=0&jscharset=0&cachelife=900&jstemplate=%7Bforum%7D%7C%3A%7C%3A%7C%7Bsubject_full%7D%7C%3A%7C%3A%7C%7Bauthor_nolink%7D%7C%3A%7C%3A%7C%7Bdateline%7D%7C%3A%7C%3A%7C%7Bmessage%7D%7C%3A%7C%3A%7C%7Blastposter_nolink%7D%7C%3A%7C%3A%7C%7Blastpost%7D%7C%3A%7C%3A%7C%7Btid%7D%7C%3A%7C%3A%7C%7Breplies%7D%7C%3A%7C%3A%7C%7Bviews%7D%3Cbr%3E]]></item>
+			<item id="parameter">
+				<item id="jstemplate"><![CDATA[{forum}|:|:|{subject_full}|:|:|{author_nolink}|:|:|{dateline}|:|:|{message}|:|:|{lastposter_nolink}|:|:|{lastpost}|:|:|{tid}|:|:|{replies}|:|:|{views}<br>]]></item>
+				<item id="cachelife"><![CDATA[900]]></item>
+				<item id="sidestatus"><![CDATA[0]]></item>
+				<item id="startrow"><![CDATA[0]]></item>
+				<item id="items"><![CDATA[10]]></item>
+				<item id="maxlength"><![CDATA[0]]></item>
+				<item id="fnamelength"><![CDATA[0]]></item>
+				<item id="messagelength"><![CDATA[]]></item>
+				<item id="picpre"><![CDATA[]]></item>
+				<item id="keyword"><![CDATA[]]></item>
+				<item id="tag"><![CDATA[]]></item>
+				<item id="threadtype"><![CDATA[0]]></item>
+				<item id="threadsort"><![CDATA[0]]></item>
+				<item id="highlight"><![CDATA[0]]></item>
+				<item id="stick">
+					<item id="1"><![CDATA[1]]></item>
+					<item id="2"><![CDATA[1]]></item>
+					<item id="3"><![CDATA[1]]></item>
+				</item>
+				<item id="recommend"><![CDATA[0]]></item>
+				<item id="newwindow"><![CDATA[1]]></item>
+				<item id="orderby"><![CDATA[lastpost]]></item>
+				<item id="hours"><![CDATA[]]></item>
+				<item id="jscharset"><![CDATA[0]]></item>
+				<item id="boardurl"><![CDATA[]]></item>
+			</item>
+			<item id="comment"><![CDATA[Latest stick list]]></item>
+			<item id="type"><![CDATA[0]]></item>
+		</item>
+		<item id="__dabandeng_hot">
+			<item id="url"><![CDATA[function=threads&sidestatus=0&maxlength=0&fnamelength=0&messagelength=&startrow=0&picpre=&items=10&tag=&tids=&special=0&rewardstatus=&digest=0&stick=0&recommend=0&newwindow=1&threadtype=0&threadsort=0&highlight=0&orderby=heats&hours=0&jscharset=0&cachelife=900&jstemplate=%7Bforum%7D%7C%3A%7C%3A%7C%7Bsubject_full%7D%7C%3A%7C%3A%7C%7Bauthor_nolink%7D%7C%3A%7C%3A%7C%7Bdateline%7D%7C%3A%7C%3A%7C%7Bmessage%7D%7C%3A%7C%3A%7C%7Blastposter_nolink%7D%7C%3A%7C%3A%7C%7Blastpost%7D%7C%3A%7C%3A%7C%7Btid%7D%7C%3A%7C%3A%7C%7Breplies%7D%7C%3A%7C%3A%7C%7Bviews%7D%3Cbr%3E]]></item>
+			<item id="parameter">
+				<item id="jstemplate"><![CDATA[{forum}|:|:|{subject_full}|:|:|{author_nolink}|:|:|{dateline}|:|:|{message}|:|:|{lastposter_nolink}|:|:|{lastpost}|:|:|{tid}|:|:|{replies}|:|:|{views}<br>]]></item>
+				<item id="cachelife"><![CDATA[900]]></item>
+				<item id="sidestatus"><![CDATA[0]]></item>
+				<item id="startrow"><![CDATA[0]]></item>
+				<item id="items"><![CDATA[10]]></item>
+				<item id="maxlength"><![CDATA[0]]></item>
+				<item id="fnamelength"><![CDATA[0]]></item>
+				<item id="messagelength"><![CDATA[]]></item>
+				<item id="picpre"><![CDATA[]]></item>
+				<item id="keyword"><![CDATA[]]></item>
+				<item id="tag"><![CDATA[]]></item>
+				<item id="threadtype"><![CDATA[0]]></item>
+				<item id="threadsort"><![CDATA[0]]></item>
+				<item id="highlight"><![CDATA[0]]></item>
+				<item id="recommend"><![CDATA[0]]></item>
+				<item id="newwindow"><![CDATA[1]]></item>
+				<item id="orderby"><![CDATA[heats]]></item>
+				<item id="hours"><![CDATA[]]></item>
+				<item id="jscharset"><![CDATA[0]]></item>
+				<item id="boardurl"><![CDATA[]]></item>
+			</item>
+			<item id="comment"><![CDATA[Hot topic list]]></item>
+			<item id="type"><![CDATA[0]]></item>
+		</item>
+		<item id="__dabandeng_most_reply">
+			<item id="url"><![CDATA[function=threads&sidestatus=0&maxlength=0&fnamelength=0&messagelength=&startrow=0&picpre=&items=10&tag=&tids=&special=0&rewardstatus=&digest=0&stick=0&recommend=0&newwindow=1&threadtype=0&threadsort=0&highlight=0&orderby=replies&hours=0&jscharset=0&cachelife=900&jstemplate=%7Bforum%7D%7C%3A%7C%3A%7C%7Bsubject_full%7D%7C%3A%7C%3A%7C%7Bauthor_nolink%7D%7C%3A%7C%3A%7C%7Bdateline%7D%7C%3A%7C%3A%7C%7Bmessage%7D%7C%3A%7C%3A%7C%7Blastposter_nolink%7D%7C%3A%7C%3A%7C%7Blastpost%7D%7C%3A%7C%3A%7C%7Btid%7D%7C%3A%7C%3A%7C%7Breplies%7D%7C%3A%7C%3A%7C%7Bviews%7D%3Cbr%3E]]></item>
+			<item id="parameter">
+				<item id="jstemplate"><![CDATA[{forum}|:|:|{subject_full}|:|:|{author_nolink}|:|:|{dateline}|:|:|{message}|:|:|{lastposter_nolink}|:|:|{lastpost}|:|:|{tid}|:|:|{replies}|:|:|{views}<br>]]></item>
+				<item id="cachelife"><![CDATA[900]]></item>
+				<item id="sidestatus"><![CDATA[0]]></item>
+				<item id="startrow"><![CDATA[0]]></item>
+				<item id="items"><![CDATA[10]]></item>
+				<item id="maxlength"><![CDATA[0]]></item>
+				<item id="fnamelength"><![CDATA[0]]></item>
+				<item id="messagelength"><![CDATA[]]></item>
+				<item id="picpre"><![CDATA[]]></item>
+				<item id="keyword"><![CDATA[]]></item>
+				<item id="tag"><![CDATA[]]></item>
+				<item id="threadtype"><![CDATA[0]]></item>
+				<item id="threadsort"><![CDATA[0]]></item>
+				<item id="highlight"><![CDATA[0]]></item>
+				<item id="recommend"><![CDATA[0]]></item>
+				<item id="newwindow"><![CDATA[1]]></item>
+				<item id="orderby"><![CDATA[replies]]></item>
+				<item id="hours"><![CDATA[]]></item>
+				<item id="jscharset"><![CDATA[0]]></item>
+				<item id="boardurl"><![CDATA[]]></item>
+			</item>
+			<item id="comment"><![CDATA[Most reply topic]]></item>
+			<item id="type"><![CDATA[0]]></item>
+		</item>
+		<item id="__dabandeng_most_view">
+			<item id="url"><![CDATA[function=threads&sidestatus=0&maxlength=0&fnamelength=0&messagelength=&startrow=0&picpre=&items=10&tag=&tids=&special=0&rewardstatus=&digest=0&stick=0&recommend=0&newwindow=1&threadtype=0&threadsort=0&highlight=0&orderby=views&hours=0&jscharset=0&cachelife=900&jstemplate=%7Bforum%7D%7C%3A%7C%3A%7C%7Bsubject_full%7D%7C%3A%7C%3A%7C%7Bauthor_nolink%7D%7C%3A%7C%3A%7C%7Bdateline%7D%7C%3A%7C%3A%7C%7Bmessage%7D%7C%3A%7C%3A%7C%7Blastposter_nolink%7D%7C%3A%7C%3A%7C%7Blastpost%7D%7C%3A%7C%3A%7C%7Btid%7D%7C%3A%7C%3A%7C%7Breplies%7D%7C%3A%7C%3A%7C%7Bviews%7D%3Cbr%3E]]></item>
+			<item id="parameter">
+				<item id="jstemplate"><![CDATA[{forum}|:|:|{subject_full}|:|:|{author_nolink}|:|:|{dateline}|:|:|{message}|:|:|{lastposter_nolink}|:|:|{lastpost}|:|:|{tid}|:|:|{replies}|:|:|{views}<br>]]></item>
+				<item id="cachelife"><![CDATA[900]]></item>
+				<item id="sidestatus"><![CDATA[0]]></item>
+				<item id="startrow"><![CDATA[0]]></item>
+				<item id="items"><![CDATA[10]]></item>
+				<item id="maxlength"><![CDATA[0]]></item>
+				<item id="fnamelength"><![CDATA[0]]></item>
+				<item id="messagelength"><![CDATA[]]></item>
+				<item id="picpre"><![CDATA[]]></item>
+				<item id="keyword"><![CDATA[]]></item>
+				<item id="tag"><![CDATA[]]></item>
+				<item id="threadtype"><![CDATA[0]]></item>
+				<item id="threadsort"><![CDATA[0]]></item>
+				<item id="highlight"><![CDATA[0]]></item>
+				<item id="recommend"><![CDATA[0]]></item>
+				<item id="newwindow"><![CDATA[1]]></item>
+				<item id="orderby"><![CDATA[views]]></item>
+				<item id="hours"><![CDATA[]]></item>
+				<item id="jscharset"><![CDATA[0]]></item>
+				<item id="boardurl"><![CDATA[]]></item>
+			</item>
+			<item id="comment"><![CDATA[Most view topic]]></item>
+			<item id="type"><![CDATA[0]]></item>
+		</item>
+		<item id="__dabandeng_most_view_today">
+			<item id="url"><![CDATA[function=threads&sidestatus=0&maxlength=0&fnamelength=0&messagelength=&startrow=0&picpre=&items=10&tag=&tids=&special=0&rewardstatus=&digest=0&stick=0&recommend=0&newwindow=1&threadtype=0&threadsort=0&highlight=0&orderby=todayviews&hours=0&jscharset=0&cachelife=900&jstemplate=%7Bforum%7D%7C%3A%7C%3A%7C%7Bsubject_full%7D%7C%3A%7C%3A%7C%7Bauthor_nolink%7D%7C%3A%7C%3A%7C%7Bdateline%7D%7C%3A%7C%3A%7C%7Bmessage%7D%7C%3A%7C%3A%7C%7Blastposter_nolink%7D%7C%3A%7C%3A%7C%7Blastpost%7D%7C%3A%7C%3A%7C%7Btid%7D%7C%3A%7C%3A%7C%7Breplies%7D%7C%3A%7C%3A%7C%7Bviews%7D%3Cbr%3E]]></item>
+			<item id="parameter">
+				<item id="jstemplate"><![CDATA[{forum}|:|:|{subject_full}|:|:|{author_nolink}|:|:|{dateline}|:|:|{message}|:|:|{lastposter_nolink}|:|:|{lastpost}|:|:|{tid}|:|:|{replies}|:|:|{views}<br>]]></item>
+				<item id="cachelife"><![CDATA[900]]></item>
+				<item id="sidestatus"><![CDATA[0]]></item>
+				<item id="startrow"><![CDATA[0]]></item>
+				<item id="items"><![CDATA[10]]></item>
+				<item id="maxlength"><![CDATA[0]]></item>
+				<item id="fnamelength"><![CDATA[0]]></item>
+				<item id="messagelength"><![CDATA[]]></item>
+				<item id="picpre"><![CDATA[]]></item>
+				<item id="keyword"><![CDATA[]]></item>
+				<item id="tag"><![CDATA[]]></item>
+				<item id="threadtype"><![CDATA[0]]></item>
+				<item id="threadsort"><![CDATA[0]]></item>
+				<item id="highlight"><![CDATA[0]]></item>
+				<item id="recommend"><![CDATA[0]]></item>
+				<item id="newwindow"><![CDATA[1]]></item>
+				<item id="hours"><![CDATA[]]></item>
+				<item id="orderby"><![CDATA[todayviews]]></item>
+				<item id="jscharset"><![CDATA[0]]></item>
+				<item id="boardurl"><![CDATA[]]></item>
+			</item>
+			<item id="comment"><![CDATA[Most view topic today]]></item>
+			<item id="type"><![CDATA[0]]></item>
+		</item>
+		<item id="__dabandeng_most_view_week">
+			<item id="url"><![CDATA[function=threads&sidestatus=0&maxlength=0&fnamelength=0&messagelength=&startrow=0&picpre=&items=10&tag=&tids=&special=0&rewardstatus=&digest=0&stick=0&recommend=0&newwindow=1&threadtype=0&threadsort=0&highlight=0&orderby=weekviews&hours=0&jscharset=0&cachelife=900&jstemplate=%7Bforum%7D%7C%3A%7C%3A%7C%7Bsubject_full%7D%7C%3A%7C%3A%7C%7Bauthor_nolink%7D%7C%3A%7C%3A%7C%7Bdateline%7D%7C%3A%7C%3A%7C%7Bmessage%7D%7C%3A%7C%3A%7C%7Blastposter_nolink%7D%7C%3A%7C%3A%7C%7Blastpost%7D%7C%3A%7C%3A%7C%7Btid%7D%7C%3A%7C%3A%7C%7Breplies%7D%7C%3A%7C%3A%7C%7Bviews%7D%3Cbr%3E]]></item>
+			<item id="parameter">
+				<item id="jstemplate"><![CDATA[{forum}|:|:|{subject_full}|:|:|{author_nolink}|:|:|{dateline}|:|:|{message}|:|:|{lastposter_nolink}|:|:|{lastpost}|:|:|{tid}|:|:|{replies}|:|:|{views}<br>]]></item>
+				<item id="cachelife"><![CDATA[900]]></item>
+				<item id="sidestatus"><![CDATA[0]]></item>
+				<item id="startrow"><![CDATA[0]]></item>
+				<item id="items"><![CDATA[10]]></item>
+				<item id="maxlength"><![CDATA[0]]></item>
+				<item id="fnamelength"><![CDATA[0]]></item>
+				<item id="messagelength"><![CDATA[]]></item>
+				<item id="picpre"><![CDATA[]]></item>
+				<item id="keyword"><![CDATA[]]></item>
+				<item id="tag"><![CDATA[]]></item>
+				<item id="threadtype"><![CDATA[0]]></item>
+				<item id="threadsort"><![CDATA[0]]></item>
+				<item id="highlight"><![CDATA[0]]></item>
+				<item id="recommend"><![CDATA[0]]></item>
+				<item id="newwindow"><![CDATA[1]]></item>
+				<item id="hours"><![CDATA[]]></item>
+				<item id="orderby"><![CDATA[weekviews]]></item>
+				<item id="jscharset"><![CDATA[0]]></item>
+				<item id="boardurl"><![CDATA[]]></item>
+			</item>
+			<item id="comment"><![CDATA[Most view topic this week]]></item>
+			<item id="type"><![CDATA[0]]></item>
+		</item>
+		<item id="__dabandeng_most_view_month">
+			<item id="url"><![CDATA[function=threads&sidestatus=0&maxlength=0&fnamelength=0&messagelength=&startrow=0&picpre=&items=10&tag=&tids=&special=0&rewardstatus=&digest=0&stick=0&recommend=0&newwindow=1&threadtype=0&threadsort=0&highlight=0&orderby=monthviews&hours=0&jscharset=0&cachelife=900&jstemplate=%7Bforum%7D%7C%3A%7C%3A%7C%7Bsubject_full%7D%7C%3A%7C%3A%7C%7Bauthor_nolink%7D%7C%3A%7C%3A%7C%7Bdateline%7D%7C%3A%7C%3A%7C%7Bmessage%7D%7C%3A%7C%3A%7C%7Blastposter_nolink%7D%7C%3A%7C%3A%7C%7Blastpost%7D%7C%3A%7C%3A%7C%7Btid%7D%7C%3A%7C%3A%7C%7Breplies%7D%7C%3A%7C%3A%7C%7Bviews%7D%3Cbr%3E]]></item>
+			<item id="parameter">
+				<item id="jstemplate"><![CDATA[{forum}|:|:|{subject_full}|:|:|{author_nolink}|:|:|{dateline}|:|:|{message}|:|:|{lastposter_nolink}|:|:|{lastpost}|:|:|{tid}|:|:|{replies}|:|:|{views}<br>]]></item>
+				<item id="cachelife"><![CDATA[900]]></item>
+				<item id="sidestatus"><![CDATA[0]]></item>
+				<item id="startrow"><![CDATA[0]]></item>
+				<item id="items"><![CDATA[10]]></item>
+				<item id="maxlength"><![CDATA[0]]></item>
+				<item id="fnamelength"><![CDATA[0]]></item>
+				<item id="messagelength"><![CDATA[]]></item>
+				<item id="picpre"><![CDATA[]]></item>
+				<item id="keyword"><![CDATA[]]></item>
+				<item id="tag"><![CDATA[]]></item>
+				<item id="threadtype"><![CDATA[0]]></item>
+				<item id="threadsort"><![CDATA[0]]></item>
+				<item id="highlight"><![CDATA[0]]></item>
+				<item id="recommend"><![CDATA[0]]></item>
+				<item id="newwindow"><![CDATA[1]]></item>
+				<item id="hours"><![CDATA[]]></item>
+				<item id="orderby"><![CDATA[monthviews]]></item>
+				<item id="jscharset"><![CDATA[0]]></item>
+				<item id="boardurl"><![CDATA[]]></item>
+			</item>
+			<item id="comment"><![CDATA[Most view topic this month]]></item>
+			<item id="type"><![CDATA[0]]></item>
+		</item>
+		<item id="__dabandeng_latest_picture">
+			<item id="url"><![CDATA[function=images&sidestatus=0&isimage=1&threadmethod=1&maxwidth=200&maxheight=200&startrow=0&items=10&orderby=dateline&hours=0&digest=0&newwindow=1&jscharset=0&cachelife=900&jstemplate=%7Bimgfile%7D%7C%3A%7C%3A%7C%7Bfiledesc%7D%7C%3A%7C%3A%7C%7Bsubject%7D%7C%3A%7C%3A%7C%7Blink%7D%3Cbr%20%2F%3E]]></item>
+			<item id="parameter">
+				<item id="jstemplate"><![CDATA[{imgfile}|:|:|{filedesc}|:|:|{subject}|:|:|{link}<br>]]></item>
+				<item id="cachelife"><![CDATA[900]]></item>
+				<item id="sidestatus"><![CDATA[0]]></item>
+				<item id="startrow"><![CDATA[0]]></item>
+				<item id="items"><![CDATA[10]]></item>
+				<item id="isimage"><![CDATA[1]]></item>
+				<item id="maxwidth"><![CDATA[200]]></item>
+				<item id="maxheight"><![CDATA[200]]></item>
+				<item id="threadmethod"><![CDATA[1]]></item>
+				<item id="newwindow"><![CDATA[1]]></item>
+				<item id="orderby"><![CDATA[dateline]]></item>
+				<item id="hours"><![CDATA[]]></item>
+				<item id="jscharset"><![CDATA[0]]></item>
+				<item id="boardurl"><![CDATA[]]></item>
+			</item>
+			<item id="comment"><![CDATA[Latest picture]]></item>
+			<item id="type"><![CDATA[4]]></item>
+		</item>
+		<item id="__dabandeng_forum_statistics">
+			<item id="url"><![CDATA[function=stats&jscharset=0&info[forums]=jswizard_stats_forums%3A&info[threads]=jswizard_stats_threads%3A&info[posts]=jswizard_stats_posts%3A&info[members]=jswizard_stats_members%3A&info[online]=jswizard_stats_online%3A&info[onlinemembers]=jswizard_stats_onlinemembers%3A&cachelife=900&jstemplate=%7Bname%7D%7Bvalue%7D%3Cbr%20%2F%3E]]></item>
+			<item id="parameter">
+				<item id="jstemplate"><![CDATA[{name}{value}<br>]]></item>
+				<item id="cachelife"><![CDATA[900]]></item>
+				<item id="jscharset"><![CDATA[0]]></item>
+				<item id="boardurl"><![CDATA[]]></item>
+				<item id="forums">
+					<item id="display"><![CDATA[1]]></item>
+					<item id="title"><![CDATA[jswizard_stats_forums:]]></item>
+				</item>
+				<item id="threads">
+					<item id="display"><![CDATA[1]]></item>
+					<item id="title"><![CDATA[jswizard_stats_threads:]]></item>
+				</item>
+				<item id="posts">
+					<item id="display"><![CDATA[1]]></item>
+					<item id="title"><![CDATA[jswizard_stats_posts:]]></item>
+				</item>
+				<item id="members">
+					<item id="display"><![CDATA[1]]></item>
+					<item id="title"><![CDATA[jswizard_stats_members:]]></item>
+				</item>
+				<item id="online">
+					<item id="display"><![CDATA[1]]></item>
+					<item id="title"><![CDATA[jswizard_stats_online:]]></item>
+				</item>
+				<item id="onlinemembers">
+					<item id="display"><![CDATA[1]]></item>
+					<item id="title"><![CDATA[jswizard_stats_onlinemembers:]]></item>
+				</item>
+			</item>
+			<item id="comment"><![CDATA[Forum statistics]]></item>
+			<item id="type"><![CDATA[3]]></item>
+		</item>
+	</item>
+</root>

@@ -1,0 +1,96 @@
+<div id="mainbar">
+         
+<div class="subheader">
+    <h1 id="h-top-questions">Top Questions</h1>
+    <div id="tabs">
+		<a {if $activetab=="active"}class="youarehere"{/if} href="/questions/tab/active" title="">最新活动</a>
+		<a {if $activetab=="new"}class="youarehere"{/if} href="/questions/tab/new" title="">最新提问</a>
+		<a {if $activetab=="hot"}class="youarehere"{/if} href="/questions/tab/hot" title="">热</a>
+		<a {if $activetab=="week"}class="youarehere"{/if} href="/questions/tab/week" title="">本周</a>
+		<a {if $activetab=="month"}class="youarehere"{/if} href="/questions/tab/month" title="">本月</a>
+    </div>
+</div>
+
+{foreach from=$questions item=question}
+<div id="question-mini-list">
+
+	<div class="question-summary narrow" id="question-summary-1827">
+    <div onclick="window.location.href='/questions/{$question.tid}/{$question.subject}'" class="cp">
+        <div class="votes">
+            <div class="mini-counts">0</div>
+            <div>票</div>
+        </div>
+        <div class="status unanswered">
+            <div class="mini-counts">{$question.replies}</div>
+            <div>回答</div>
+        </div>
+        <div class="views">
+            <div class="mini-counts">{$question.viewcount}</div>
+            <div>浏览</div>
+        </div>
+    </div>
+    <div class="summary">
+        <h3><a href="/questions/{$question.tid}/{$question.subject}" class="question-hyperlink" title="">{$question.subject}</a></h3>
+        <div class="tags t-app t-javascript t-php t-cakephp">
+            <a href="http://stackapps.com/questions/tagged/app" class="post-tag required-tag" title="show questions tagged 'app'" rel="tag">app</a> <a href="http://stackapps.com/questions/tagged/javascript" class="post-tag" title="show questions tagged 'javascript'" rel="tag">javascript</a> <a href="http://stackapps.com/questions/tagged/php" class="post-tag" title="show questions tagged 'php'" rel="tag">php</a> <a href="http://stackapps.com/questions/tagged/cakephp" class="post-tag" title="show questions tagged 'cakephp'" rel="tag">cakephp</a> 
+        </div>
+        <div class="started">
+            <span title="2010-12-04 00:55:36Z" class="relativetime">{$question.updatetime}</span>
+            <a href="/users/{$question.authorid}/{$question.author}">{$question.author}</a> <span class="reputation-score" title="reputation score">0</span>
+        </div>
+    </div>
+</div>
+
+</div>
+{/foreach}
+
+<h2 class="bottom-notice">寻找更多的？浏览<a href="/questions">问题全列表</a>, or <a href="/tags">流行tag</a>。请帮助我们回答<a href="/unanswered">还没回答的问题</a>。</h2>
+
+    </div>
+    
+    <div id="sidebar">
+        
+<div class="module newuser" style="">
+    <h4>你好!</h4>
+    <div>
+        <p>Tiny4Cocoa是一个服务于Cocoa开发者的站点。模式上我们模仿了StackOverflow.com，但是代码只是自己写的。</p>
+        <p class="ar"><a href="http://stackapps.com/about">about »</a>&nbsp;&nbsp;&nbsp;<a href="http://stackapps.com/faq">faq »</a></p>
+    </div>
+</div><div class="module">
+<h4>Get Started</h4>
+    <div class="linked">
+
+        <div class="spacer">
+           <a href="http://stackapps.com/questions/1/api-documentation-and-help" class="question-hyperlink"><b>API documentation and help</b></a>
+        </div>
+
+    </div>
+    <div class="spacer ar">
+        more <a href="http://stackapps.com/questions/tagged/faq" class="post-tag moderator-tag" title="show questions tagged 'faq'" rel="tag">faq</a>&nbsp;»
+    </div>
+</div>      
+        
+<div class="module" id="recent-tags">
+    <h4 id="h-recent-tags">Recent Tags</h4>
+    <div id="recent-tags-list">
+    <a href="http://stackapps.com/questions/tagged/app" class="post-tag required-tag" title="show questions tagged 'app'" rel="tag">app</a><span class="item-multiplier">×&nbsp;107</span><br>
+    </div>
+    <p class="ar"><a href="http://stackapps.com/tags">all tags »</a></p>
+</div>  
+        
+<div class="module" id="recent-badges">
+    <h4 id="h-recent-badges">Recent Badges</h4>
+    <table>
+    
+    <tbody><tr><td><a href="http://stackapps.com/badges/9/autobiographer?userid=4288" title="bronze badge: Completed all user profile fields" class="badge"><span class="badge3"></span>&nbsp;Autobiographer</a>
+ <a href="http://stackapps.com/users/4288/jason">Jason</a></td></tr>    
+    </tbody></table>
+    <p class="ar"><a href="http://stackapps.com/badges">all badges »</a></p>
+</div>  
+              
+    </div>
+        
+<div id="feed-link">
+    <div id="feed-link-text"><a href="http://stackapps.com/feeds" title="the 30 most recent questions"><span class="feed-icon"></span>recent questions feed</a></div>
+</div>
+

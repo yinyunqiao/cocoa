@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+    <item id="Title"><![CDATA[Discuz! Plugin]]></item>
+    <item id="Version"><![CDATA[7.2]]></item>
+    <item id="Data">
+        <item id="plugin">
+            <item id="available"><![CDATA[1]]></item>
+            <item id="adminid"><![CDATA[1]]></item>
+            <item id="name"><![CDATA[无觅相关文章插件]]></item>
+            <item id="identifier"><![CDATA[wumii_related_posts]]></item>
+            <item id="description"><![CDATA[]]></item>
+            <item id="datatables"><![CDATA[]]></item>
+            <item id="directory"><![CDATA[wumii_related_posts/]]></item>
+            <item id="copyright"><![CDATA[2010 wumii.com]]></item>
+            <item id="version"><![CDATA[1.0.0.3]]></item>
+            <item id="__modules">
+                <item id="0">
+                    <item id="name"><![CDATA[wumii_related_posts]]></item>
+                    <item id="type"><![CDATA[11]]></item>
+                    <item id="adminid"><![CDATA[0]]></item>
+                    <item id="displayorder"><![CDATA[0]]></item>
+                </item>
+                <item id="1">
+                    <item id="name"><![CDATA[wumii_updates]]></item>
+                    <item id="menu"><![CDATA[无觅更新]]></item>
+                    <item id="type"><![CDATA[3]]></item>
+                    <item id="adminid"><![CDATA[1]]></item>
+                    <item id="displayorder"><![CDATA[1]]></item>
+                </item>
+                <item id="2">
+                    <item id="name"><![CDATA[faq]]></item>
+                    <item id="menu"><![CDATA[FAQ]]></item>
+                    <item id="type"><![CDATA[3]]></item>
+                    <item id="adminid"><![CDATA[1]]></item>
+                    <item id="displayorder"><![CDATA[2]]></item>
+                </item>
+            </item>
+        </item>
+        <item id="version"><![CDATA[7.2]]></item>
+        <item id="vars">
+            <item id="0">
+                <item id="displayorder"><![CDATA[1]]></item>
+                <item id="title"><![CDATA[启用自定义显示位置]]></item>
+                <item id="description"><![CDATA[启用后，需要在/templates/模板目录/viewthread_node.htm文件中把&lt;div id=&quot;wumiiDisplayDiv&quot;&gt;&lt;/div&gt;拷贝到你想要显示的地方
+如果在自定义模板中没有此文件，则添加在default模板目录下对应的文件中
+注: 启动此选项可能会使相关文章的显示速度变慢。]]></item>
+                <item id="variable"><![CDATA[enableCustomPos]]></item>
+                <item id="type"><![CDATA[radio]]></item>
+                <item id="value"><![CDATA[0]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+            <item id="1">
+                <item id="displayorder"><![CDATA[2]]></item>
+                <item id="title"><![CDATA[加载脚本置于文档末尾]]></item>
+                <item id="description"><![CDATA[在极少情况下，如果你认为无觅脚本减慢了页面上某些元素的加载，你可以开启此选项。但与此同时，开启后会减慢相关文章的加载。]]></item>
+                <item id="variable"><![CDATA[scriptInFooter]]></item>
+                <item id="type"><![CDATA[radio]]></item>
+                <item id="value"><![CDATA[1]]></item>
+                <item id="extra"><![CDATA[]]></item>
+            </item>
+            <item id="2">
+                <item id="displayorder"><![CDATA[0]]></item>
+                <item id="title"><![CDATA[最多显示推荐条目]]></item>
+                <item id="description"><![CDATA[]]></item>
+                <item id="variable"><![CDATA[numPosts]]></item>
+                <item id="type"><![CDATA[select]]></item>
+                <item id="value"><![CDATA[4]]></item>
+                <item id="extra"><![CDATA[1 = 1
+2 = 2
+3 = 3
+4 = 4
+5 = 5
+6 = 6
+7 = 7
+8 = 8
+9 = 9
+10 = 10
+11 = 11
+12 = 12]]></item>
+            </item>
+        </item>
+        <item id="intro"><![CDATA[“无觅相关贴子插件”是国内第一款智能相关贴子插件。它依托无觅精准的内容分析和推荐算法，系统分析文章内容、标签、用户行为、时间等相关参数，生成关联推荐结果，并在当前贴子底部进行图文展示。通过图文并茂、关联精准的相关贴子推荐，满足读者的潜在阅读需求和兴趣爱好，增加网站的浏览量、点击率和用户停留时间。
+安装无觅相关贴子插件后，网站主可以登录[url=http://www.wumii.com/site/index.htm]无觅网站管理中心[/url]对相关贴子的展示样式进行详细的自定义设置，查看网站的收录情况，还能申请加入无觅网络。]]></item>
+        <item id="language">
+            <item id="scriptlang">
+                <item id="plugin_name"><![CDATA[无觅相关文章插件]]></item>
+            </item>
+        </item>
+    </item>
+</root>

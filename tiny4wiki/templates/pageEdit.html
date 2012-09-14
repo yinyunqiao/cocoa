@@ -1,0 +1,13 @@
+<form action="/tiny4wiki/index.php?act=save" method="post">
+	<input type="hidden" name="url" value="{$page.url}" /> 
+	<h3>标题 <input type="text" name="title" value="{$page.title}" size="50"/></h3>
+	<h3>描述</h3>
+	 <div style="text-align:center;">
+        <textarea style="magrin-left:3px;height:500px;width:95%;" id="content" name="content">
+        {$page.content}
+        </textarea>
+       	<br/>
+        <input name="" type="submit" value="保存" /> 
+        <a href="/doc/{$page.url}"><input name="" type="button" value="取消"/></a>
+     </div>
+</form>

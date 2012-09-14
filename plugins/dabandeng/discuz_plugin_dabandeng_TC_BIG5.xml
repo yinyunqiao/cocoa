@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[7.2]]></item>
+	<item id="Time"><![CDATA[2010-10-25 14:34]]></item>
+	<item id="From"><![CDATA[Discuz! Board (http://localhost/DZ_72_tc_big5/)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[¤jªO¹¹]]></item>
+			<item id="identifier"><![CDATA[dabandeng]]></item>
+			<item id="description"><![CDATA[¤jªO¹¹¬O¤@´Ú¥Î¤_iPhone©MAndroid¤â¾÷¤Wªº½×¾Â³X°ÝÀ³¥Î¡C]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[dabandeng/]]></item>
+			<item id="copyright"><![CDATA[´x¶³¬ì§Þ]]></item>
+			<item id="version"><![CDATA[1.5.2]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[dabandeng]]></item>
+					<item id="type"><![CDATA[11]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[7.2]]></item>
+		<item id="vars">
+			<item id="0">
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="title"><![CDATA[´å«È¥i¨£]]></item>
+				<item id="description"><![CDATA[¥Î¤_±±¨î´å«È¬O§_¥i¥H³q¹L¤jªO¹¹À³¥Î³X°Ý½×¾Â¡A·í½×¾Â¥»¨­¤£¤¹³\´å«È³X°Ý®É¡A¦¹¿ï¶µµL®Ä¡C]]></item>
+				<item id="variable"><![CDATA[guest_okay]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="1">
+				<item id="displayorder"><![CDATA[1]]></item>
+				<item id="title"><![CDATA[ÁôÂÃªO¶ô]]></item>
+				<item id="description"><![CDATA[¥Î¤_ÁôÂÃ¤£§Æ±æ¦b¤jªO¹¹À³¥Î¤WÅã¥ÜªºªO¶ô¡C½×¾Â¥»¨­ÁôÂÃªºªO¶ô¤£»Ý­n¦A¦¸¦b³o¨½³]¸m¡C]]></item>
+				<item id="variable"><![CDATA[hide_forum_id]]></item>
+				<item id="type"><![CDATA[forums]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="2">
+				<item id="displayorder"><![CDATA[2]]></item>
+				<item id="title"><![CDATA[¤Þ¥Î¤º®e³Ì¤jªø«×³]¸m]]></item>
+				<item id="description"><![CDATA[±±¨î¤jªO¹¹À³¥Î¤¤¤Þ¥Î¤º®eªºÅã¥Üªø«×¡C]]></item>
+				<item id="variable"><![CDATA[shorten_quote]]></item>
+				<item id="type"><![CDATA[number]]></item>
+				<item id="value"><![CDATA[200]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="3">
+				<item id="displayorder"><![CDATA[3]]></item>
+				<item id="title"><![CDATA[­º­¶®i¥Ü]]></item>
+				<item id="description"><![CDATA[³]¸mÀ³¥Î­º­¶«H®§¡G
+1 = ³Ì·s¹Ï¤ù
+2 = ½×¾Â²Î­p
+3 = ³Ì·s¥DÃD
+4 = ³Ì·s¦^ÂÐ
+5 = ±ÀÂË¥DÃD     
+6 = ³Ì·sºëµØ     
+7 = ³Ì·s¸m³»     
+8 = ³Ì¦h¦^ÂÐ     
+9 = ³Ì¦hÂsÄý    
+10 = ¤µ¤é³Ì¦hÂsÄý  
+11 = ¥»©P³Ì¦hÂsÄý  
+12 = ¥»¤ë³Ì¦hÂsÄý  
+13 = ¼öªù¥DÃD
+
+¥i¦h¿ï¡A¥H­^¤å³r¸¹',' ¤À¹j¡C]]></item>
+				<item id="variable"><![CDATA[home_data]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[1,3,4,5,6,13,2]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="4">
+				<item id="displayorder"><![CDATA[4]]></item>
+				<item id="title"><![CDATA[¤é§Ó¿ï¶µ]]></item>
+				<item id="description"><![CDATA[±±¨î¤jªO¹¹¬O§_°O¿ýlog«H®§¡A¤@¯ë¥Î¤_debug]]></item>
+				<item id="variable"><![CDATA[keep_log]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[1]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+		</item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+		<item id="importfile">
+			<item id="request"><![CDATA[discuz_request_dabandeng.xml]]></item>
+		</item>
+	</item>
+</root>

@@ -1,0 +1,10 @@
+<form action="saveuser.php" method="post">
+<table width="95%">
+	<tr><td width="60">用户名</td><td><input type="text" size="25" name="username" /></td><td></td></tr>
+	<tr><td width="60">密　码</td><td><input type="password" size="25" name="password" /></td><td></td></tr>
+	<tr><td width="60">邮　箱</td><td><input type="text" size="25" name="email" /></td><td></td></tr>
+	<tr><td colspan="3" align="center"><input type="submit" value="确定" />　<a href="{$retUrl}"><input type="button" value="返回"/></a></td>
+</table>
+<input type="hidden" name="action" value="reg" />
+<input type="hidden" name="retUrl" value="{$retUrl}" />
+</form>

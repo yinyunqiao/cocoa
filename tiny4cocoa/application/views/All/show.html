@@ -1,0 +1,168 @@
+{if $userid}
+<script type="text/javascript">
+var itemid = 0;
+var listid = {$list.id};
+{literal}
+$(document).ready(function(){
+  
+	$(".appvote").iappvote()
+		.bind("votechange",function(vote,stat){
+			var myitemid = $(vote.target).attr("itemid");
+			$.post('/list/vote/',
+			  {listid:listid,itemid:myitemid,vote:stat},
+				function(data) {
+					var html = data.likecount+"人支持。";
+					if(data.people)
+						if(data.people.length>0){
+							// for(var i = 0 ; i < data.people.length ; i++) {
+							// 	
+							// }
+						}
+					$("#votestattext-"+myitemid).text(html);
+          // var votecell = $(vote.target).parent();
+          // votecell.before($("#votecontainer:first-child"));
+				},"json");
+		});
+		
+	$("#appNameDiv").show("slow");
+	
+	$("#appName").autocomplete("/search/app/", {
+    width: 350,
+		minChars:1,
+		triggerType:"NottriggerWord",
+    formatItem: function(data, i, n, value) {
+      var flag = value.substring(0,1);
+      if(flag=="@")
+        return value;
+      var app = value.split(",");
+      var itemid = app[0];
+      var icon = app[1];
+      var name = app[2];
+			return "<img width='30' height='30' src='" + icon + "'/>  " + name ;
+		},
+		formatResult: function(data, value) {
+		  var flag = value.substring(0,1);
+      if(flag=="@")
+        return value;
+			return "#(" + value.split(",")[0] + "|"+value.split(",")[2]+")";
+		},
+	}).result(function(event, item) {
+		var ret = item[0].split(",");
+		$("#suggestApp").show();
+		itemid = ret[0];
+		$("#itemidinput").val(itemid);
+		$("#suggestAppImage").attr("src",ret[1]);
+		$("#suggestAppTitle").html(ret["2"]);
+		$("#appName").val("");
+	});
+});
+
+function add() {
+
+	if($("#suggestAppMemo").val().length==0) {
+		var bln = window.confirm("没有输入推荐语。没有推荐语一样可以提交，但是详尽的推荐语有利于大家理解这个app。\r\n确定，现在输入推荐语，取消，强制继续。");   
+	  if(bln)
+			return false;
+	}
+	$("#suggestform").submit();
+}
+</script>
+{/literal}
+{/if}
+{include file="Sub/AppMenu.html"}
+<link rel="canonical" href="http://iapp4me.com/list/show/{$list.id}/{$list.title}/"/>
+<div class="row">
+	<div class="span10">
+	  	<div class="bblock">
+				<div class="bblock_title">{$list.title}</div>
+				<div class="bblock_content">
+					<div style="float:left;">
+						<img src="/list/image/{$list.id}/" class="appicons" style="padding:1px;-webkit-border-radius:6px;border-radius:6px;border:2px solid #aaa;background-color:#e0e0e0;" title="iBooks"/>
+					</div>
+					<div style="float:right;padding:3px;">
+					</div>
+					<div class="listnamediv">
+					  <h2></h2>
+						<p class="listdescp">{$list.appcount}个App</p>
+						<div id="votecontainer">
+						{foreach from=$listapps item=app}
+						<div class= "listappblock">
+						  <a href="/user/show/{$app.userid}/{$app.username}/" target="_blank" title="{$app.username}"><img src="http://www.gravatar.com/avatar/{$app.hash}?s=57&d=http%3A%2F%2Fwww.gravatar.com%2Favatar%2F00000000000000000000000000000000" class="icon25 floatright"/></a>
+							{if $userid}
+								{if $userid!=$app.userid}
+									<div class="appvote" style="float:left;" itemid="{$app.itemid}" vote="{$app.vote}">
+									</div>
+								{else}
+									<div class="appvoteNone" style="float:left;">
+									</div>
+								{/if}
+							{/if}
+							<div style="float:left;">
+								<a href="/app/show/{$app.itemid}/{$app.itemname}/" target="_blank"><img src="{$app.icon57}" class="appicons"/></a>
+							</div>
+							<div class="listappdesc">
+								<h3><a href="/app/show/{$app.itemid}/{$app.itemname}/" target="_blank">{$app.itemname}</a></h3>
+								<span id="votestattext-{$app.itemid}" class="grayfont">{$app.likecount}人支持《{$app.itemname}》。</span>
+								{if $app.comment}
+								  <p>{$app.comment}</p>
+								{else}
+								  <p class="grayfont">没有推荐语。</p>
+								{/if}
+								<!-- <span class="grayfont"><a href="">添加评论</a></span> -->
+							</div>
+							<div class="clear"></div> 
+						</div>
+						{/foreach}
+						</div>
+						<div id="appNameDiv" style="display:none;margin-top:20px;">
+							<h2>为此列表推荐App</h2>
+							<label for="appName">输入App名进行搜索</label>
+							<input type="text" name="appName" value="" id="appName" style="width:220px;"/>
+							<div id="suggestApp" style="overflow:hidden;margin-left:30px;width:400px;display:none;border:1px solid #ccc;-webkit-border-radius:6px;border-radius:6px;padding:8px;margin-top:5px;">
+								<div style="float:left;">
+									<img src="" class="appicons" id="suggestAppImage"/>
+								</div>
+								<div style="margin-left:70px;width:500px;">
+									<h3 id="suggestAppTitle"></h3>
+									<form id="suggestform" method="POST" action="/list/add/">
+										<input name="listid" type="hidden" value="{$list.id}"/>
+										<input id="itemidinput" name="itemid" type="hidden"/>
+										<textarea placeholder="请输入推荐词。" id="suggestAppMemo" name="memo" rows="5" cols="40"></textarea>
+									</form>
+								</div>
+								<div class="clear"></div>
+								<div style="text-align:right;">
+									<span class="linkbutton"><a href="javascript:" onclick="add();">推荐</a></span> 
+									<span class="linkbutton"><a href="javascript:" onclick="$('#suggestApp').hide('slow');">取消</a></span></div>
+							</div>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div> 
+		  </div>
+	</div>
+	<div class="span6">
+		<div class="bblock">
+			<div class="bblock_title">返回</div>
+			<div class="bblock_content">
+				<p>&gt;&gt;<a href="/list/">回到列表首页</a></p>
+			</div>
+		</div>
+		<div class="bblock">
+			<div class="bblock_title">分享</div>
+			<div class="bblock_content" style="height:30px;">
+			  {literal}
+			  <!-- JiaThis Button BEGIN -->
+        <div id="ckepop">
+        	<a href="http://www.jiathis.com/share?uid=1552063" class="jiathis jiathis_txt" target="_blank"><img src="http://v2.jiathis.com/code_mini/images/btn/v1/jiathis1.gif" border="0" /></a>
+        	<a class="jiathis_counter_style_margin:3px 0 0 2px"></a>
+        </div>
+        <script type="text/javascript">var jiathis_config = {data_track_clickback:true};</script>
+        <script type="text/javascript" src="http://v2.jiathis.com/code_mini/jia.js?uid=1552063" charset="utf-8"></script>
+        <!-- JiaThis Button END -->
+        {/literal}
+			</div>
+		</div>
+	</div>
+	
+</div>

@@ -1,0 +1,18 @@
+RewriteEngine On
+
+#for new UI
+RewriteRule ^all$ tiny4cocoa/public/index.php
+RewriteRule ^all/$ tiny4cocoa/public/index.php
+
+#for discuz
+RewriteRule ^archiver/((fid|tid)-[\w\-]+\.html)$ archiver/index.php?$1
+RewriteRule ^forum-([0-9]+)-([0-9]+)\.html$ forumdisplay.php?fid=$1&page=$2
+RewriteRule ^thread-([0-9]+)-([0-9]+)-([0-9]+)\.html$ viewthread.php?tid=$1&extra=page\%3D$3&page=$2
+RewriteRule ^space-(username|uid)-(.+)\.html$ space.php?$1=$2
+RewriteRule ^tag-(.+)\.html$ tag.php?name=$1
+
+#for doc
+RewriteRule ^doc/$ tiny4wiki/index.php
+RewriteRule ^doc$ tiny4wiki/index.php
+RewriteRule ^doc/(.+)/$ tiny4wiki/index.php?act=show&wiki=$1
+RewriteRule ^doc/(.+)$ tiny4wiki/index.php?act=show&wiki=$1

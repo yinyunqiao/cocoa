@@ -1,0 +1,156 @@
+@charset "UTF-8";
+/*div {border:1px red solid;}*/
+a			{ text-decoration: none;}
+a:hover	    { text-decoration: underline;}
+
+body  {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	background: #666666;
+	margin: 0; 
+	padding: 0;
+	text-align: center;
+	color: #000000;
+}
+
+.zmap-msgbox #container { 
+	width: 99%;
+	background: #FFFFFF;
+	margin: 0 auto;
+	border: 1px solid #000000;
+	text-align: left;
+	padding:0;
+} 
+.zmap-msgbox #header { 
+	background: #336699; 
+	padding-top:3px;
+	color: #ffffff;
+	height:75px;
+	margin:0px;
+} 
+
+.zmap-msgbox #header a {
+
+}
+.zmap-msgbox #logo
+{
+	float:left;
+	width:500px;
+}
+.zmap-msgbox #logo a
+{
+	color: #ffffff;
+	font-size:48px;
+	
+}
+.zmap-msgbox #headerads
+{
+	margin-left:200px;
+	text-align:center;
+	padding-top:2px;
+}
+.zmap-msgbox #sidebar1 {
+	float:left; 
+	width:180px;
+	padding:0;
+	z-index:0;
+	border-right:1px dotted #999999;
+}
+.zmap-msgbox #sidebar2 {
+	float: right; 
+	width: 220px;
+	padding:0;
+	z-index:0;
+	border-left:1px dotted #999999;
+}
+.zmap-msgbox #sidebar1 h3, .zmap-msgbox #sidebar2 h3 {
+	margin:0;
+	padding-left:5px;
+	background-color: #ffd595;
+}
+.zmap-msgbox #sidebar1 ul,.zmap-msgbox #sidebar2 ul
+{
+	list-style-type:none;
+	margin-left:7px;
+	padding-left:0px;
+}
+
+.zmap-msgbox #mainContent {
+	margin: 0 225px 0 185px;
+	padding-top:20px;
+	z-index:1;
+	text-align:center;
+}
+.zmap-msgbox #msgbox
+{
+	margin-left:auto;
+	margin-right:auto;
+	width:500px;
+	border: 1px solid #000000;
+	text-align:left;
+}
+.zmap-msgbox #msgbox h3
+{	
+	margin:0;
+	padding-left:5px;
+	background-color: #ffd595;
+}
+.zmap-msgbox #boxContent
+{	
+	
+}
+.zmap-msgbox #mainTopAd {
+	text-align:center;
+}
+.zmap-msgbox #mainRectAd
+{
+	float:left;
+	padding:3px;
+}
+.zmap-msgbox #footer { 
+	padding: 0 10px;
+	background:#DDDDDD;
+	text-align:center;
+} 
+.zmap-msgbox #footer p {
+	margin: 0;
+	padding: 10px 0;
+}
+
+.zmap-msgbox #map { 
+	width:210px;
+	height:120px;
+	margin-left:4px;
+}
+#tiebatitle
+{
+	background:#0000cc;
+	text-align:right;
+}
+#tiebatitle a
+{
+	color:#ffffff;
+}
+#nopost
+{
+	background:#dddddd;
+	padding:3px;
+}
+.fltrt {
+	float: right;
+	margin-left: 8px;
+}
+.fltlft {
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat {
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+.odd
+{background-color:#eeeeee;}
+.even
+{background-color:#ffffff;}
+

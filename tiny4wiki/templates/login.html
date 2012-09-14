@@ -1,0 +1,11 @@
+<form action="index.php?act=login" method="post">
+<table align="center">
+	<tr><td width="60">用户名</td><td><input type="text" size="25" name="username" /></td></tr>
+	<tr><td width="60">密　码</td><td><input type="password" size="25" name="password" /></td></tr>
+	<tr><td colspan="2" align="center"><input type="submit" value="确定" />　
+	<a href="{$retUrl}"><input type="button" value="返回"/></a>
+	</td>
+</table>
+<input type="hidden" name="action" value="login" />
+<input type="hidden" name="retUrl" value="{$retUrl}" />
+</form>

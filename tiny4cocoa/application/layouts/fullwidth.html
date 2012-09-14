@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/> 
+		<title>{$title}</title>
+		<meta content='true' name='MSSmartTagsPreventParsing'/> 
+		<link rel="stylesheet" href="/static/css/" type="text/css" media="screen" charset="utf-8">
+		<script type="text/javascript" src="/static/js/"></script>
+		<script type="text/javascript">
+		window.google_analytics_uacct = "UA-53077-23";
+		</script>
+	<head>
+<body>
+	<div id="header-wrapper"> 
+	  <div class="header section" id="header"> 
+	   <div class="siteNav"> 
+		   {if $username}
+		    	您好，{$username} | <a href="/user/signout/?returl={$retUrl}">登出</a>
+		   {else}
+				<a href="/user/signin/?returl={$retUrl}">登录</a> | <a href="/user/reg">注册</a>
+		   {/if}
+	   </div><!-- class=siteNav -->
+	   <div class="titlewrapper"> 
+	    <h1 class="title"><a href="/" style="color: #ffffff;">iApp4Me</a></h1> 
+	   </div><!-- class=titlewrapper --> 
+	   <div class="descriptionwrapper">
+	   	<p class="description"></p>
+		<ul class="main-menu">
+			<li><a href="/">首页</a></li>
+			<li><a href="/user/">用户</a></li>
+			<li><a href="/group/">群组</a></li>
+		</ul>
+	   </div><!-- class=descriptionwrapper --> 
+	 </div><!-- class=header section -->
+	<div style="clear:both;"></div> 
+	</div><!-- id=header-wrapper -->
+	
+<div id="content-wrapper">
+{$mainContent}
+</div>
+
+<div id='footer-wrapper'> 
+	<div class='footer section' id='footer'> 
+ 		<div style="text-align:center;margin-top:10px;padding:3px;">
+			<script type="text/javascript"><!--
+			google_ad_client = "pub-7732761529337293";
+			/* 728x90, 创建于 10-1-6 */
+			google_ad_slot = "8256161067";
+			google_ad_width = 728;
+			google_ad_height = 90;
+			//-->
+			</script>
+			<script type="text/javascript"			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+			</script>
+			<p>页面生成时间{$pagetime}毫秒（要想学习<a href="http://tiny4cocoa.com">iPhone开发</a>，请前往<a href="http://tiny4cocoa.com">Tiny4Cocoa</a>）</p>
+		</div>
+	</div> 
+</div>
+{literal}
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-53077-23']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+{/literal}
+</body>
+</html>

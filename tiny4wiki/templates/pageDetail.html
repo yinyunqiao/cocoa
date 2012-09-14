@@ -1,0 +1,28 @@
+	<!-- google_ad_section_start -->
+   	<h1>
+		<a href="/doc/{$page.url}">{$page.title}</a>
+   	</h1>
+   	<hr>
+	
+  	<div id="mainTopAd">
+	</div>
+   	<!-- #mainTopAd -->
+   	<!--
+ 	<div id="mainRectAd">
+		{$mainrectad}
+	</div>
+	-->
+	<!-- #mainRectAd -->
+   	{$page.content}
+   	<p>
+		{if $havechangeright==1}
+		<a href="/tiny4wiki/index.php?act=edit&wiki={$page.url}">编辑</a>
+		{/if}
+	</p>
+   	<div id="lastEditUserDiv">
+   	 {if $lastedituser!=""}
+   		最近一次修改于{$lastmodified}<br/>由<a href="/user/{$lastedituserid}">{$lastedituser}</a>做出
+	 {/if}
+	</div>
+	<!-- #lastEditUserDiv -->
+	<!-- google_ad_section_end -->

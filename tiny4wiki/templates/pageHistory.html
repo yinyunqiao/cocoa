@@ -1,0 +1,19 @@
+<h2>{$title} 的修订历史</h2>
+<table>
+<tr><th align="center">全局版本号</th><th align="center">修订时间</th><th> 修订版尺寸 </th><th align="center">用户名</th><th align="center">注释</th></tr>
+{foreach from=$historys item=history}
+<tr>
+<td align="center"><a href="/version.php?verid={$history.id}">{$history.id}</a></td>
+<td><a href="/version.php?verid={$history.id}">{$history.modifytime|date_format:"%Y年%m月%d日 %H:%M:%S"}</a></td>
+<td align="center">{$history.size}</td>
+<td><a href="/user/{$history.username}">{$history.username}</a></td>
+<td>
+	{if $history.comment}
+		：{$history.comment}
+	{else}
+		：无注释
+	{/if}
+</td>
+</tr>
+{/foreach}
+</table>

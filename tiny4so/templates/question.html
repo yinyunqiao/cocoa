@@ -1,0 +1,295 @@
+<div id="question-header">
+    <h1><a href="/questions/{$question.tid}/{$question.subject}" class="question-hyperlink">{$question.subject}</a></h1>
+</div>
+
+<div id="mainbar">
+<div id="question">
+	<script type="text/javascript"><!--
+	google_ad_client = "ca-pub-7732761529337293";
+	/* Tiny4Cocoa横幅图片 */
+	google_ad_slot = "4466663028";
+	google_ad_width = 728;
+	google_ad_height = 90;
+	//-->
+	</script>
+	<script type="text/javascript"
+	src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+	</script>
+	<br/><br/>
+	<table>
+    <tbody><tr>
+    <td class="votecell">
+        
+<div class="vote">
+    <input type="hidden" value="198">
+    <a class="vote-up-off" title="This question is useful and clear (click again to undo)">赞成票</a>
+    <span class="vote-count-post">0</span>
+    <a class="vote-down-off" title="This question is unclear or not useful (click again to undo)">反对票</a>
+
+    <a class="star-off" title="This is a favorite question (click again to undo)">收藏</a>
+    <div class="favoritecount"><b>0</b></div>    
+
+</div>
+
+    </td>
+    <td class="postcell">
+        <div>          
+            <div class="post-text">
+					<p>
+					{$question.question.message}			
+            		</p>
+			</div>            
+            <div class="post-taglist">
+                <a href="/questions/tagged/library" class="post-tag required-tag" title="show questions tagged 'library'" rel="tag">library</a> 
+            </div>
+            <table class="fw">
+            <tbody><tr>
+            <td class="vt">
+                <div class="post-menu">
+	<a href="/q/{$question.tid}" title="short permalink to this question">短链接</a><span class="lsep">|</span><a id="flag-post-198" title="flag this post for serious problems or moderator attention">举报</a>
+	</div>
+                
+            </td>
+        
+            <td align="right" class="post-signature">
+            <div class="user-info"><div class="user-action-time">最后编辑：<a href="/posts/198/revisions" title="show all edits to this post"><span title="{$question.lastpost|date_format:"%Y年%m月%d日 %H:%M:%S"}" class="relativetime">{$question.updatetime}</span></a></div>
+
+<div class="user-gravatar32"></div><div class="user-details"><br></div></div>
+            </td>
+            <td class="post-signature owner">
+            <div class="user-info"><div class="user-action-time">提问时间：<span title="{$question.dateline|date_format:"%Y年%m月%d日 %H:%M:%S"}" class="relativetime">{$question.asktime}</span></div>
+<div class="user-gravatar32"><a href="/users/{$question.authorid}/{$question.author}"><img src="{$question.avatar}" height="32" width="32" alt=""></a></div>
+<div class="user-details">	
+	<a href="/users/{$question.authorid}/{$question.author}">{$question.author}</a><br>
+	<!--
+	<span class="reputation-score" title="reputation score">551</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="8 bronze badges"><span class="badge3"></span><span class="badgecount">8</span></span>
+	-->
+	</div>
+	
+	</div>
+            </td>
+            </tr>
+            </tbody></table>
+        </div>
+    </td>
+    </tr>
+
+<tr>
+<td class="votecell"></td>
+<!--
+<td>
+    <div id="comments-198" class="comments">
+        <table>
+        <tbody>
+                    
+    <tr id="comment-327" class="comment">
+        <td class="comment-actions">
+	
+	<table><tbody><tr>
+<td class="comment-score">
+<span title="number of 'great comment' votes received" class="cool">1</span>
+</td>
+<td>
+&nbsp;
+</td></tr>
+
+</tbody></table></td>
+        <td class="comment-text"><div><span class="comment-copy">Awesome. I'm looking forward to the final version!</span> –&nbsp;<a href="/users/18/george-edison" title="9313 reputation" class="comment-user">George Edison</a> <span class="comment-date"><span title="2010-05-23 02:55:36Z">May 23 at 2:55</span></span></div></td>
+    </tr>
+        </tbody>
+    
+        </table>
+    </div>
+</td>
+-->
+</tr>
+    
+    </tbody></table>
+    
+</div>
+
+
+
+
+<div id="answers">
+
+    <a name="tab-top"></a>
+    <div id="answers-header">
+        <div class="subheader answers-subheader">
+            <h2>{$question.replies}个回答</h2>
+<!--
+            <div id="tabs">
+                <a href="/questions/198?tab=oldest#tab-top" title="Answers in the order they were given">oldest</a>
+<a href="/questions/198?tab=newest#tab-top" title="Most recent answers first">newest</a>
+<a class="youarehere" href="/questions/198?tab=votes#tab-top" title="Answers with the most votes first">votes</a>
+            </div>
+-->
+        </div>
+    </div>
+
+
+
+{foreach from=$question.answers item=answer}
+    <a name="746"></a>
+    
+    <div id="answer-746" class="answer">
+        
+        <table>
+        <tbody><tr>
+        <td class="votecell">
+            
+<div class="vote">
+    <input type="hidden" value="746">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post">0</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+
+</div>
+
+        </td>
+        <td>
+            <div class="post-text">
+				{$answer.message}
+			</div>
+            <table class="fw">
+            <tbody><tr>
+            <td class="vt">
+			
+                <div class="post-menu">
+	<!--
+	<a href="/questions/198/py-stackexchange-an-api-wrapper-for-python/746#746" title="permalink to this answer">link</a><span class="lsep">|</span><a id="flag-post-746" title="flag this post for serious problems or moderator attention">flag</a>
+	-->
+	</div>
+               
+            </td>
+            
+            <td align="right" class="post-signature">
+            <div class="user-info"><div class="user-action-time">回答时间：<span title="{$answer.dateline|date_format:"%Y年%m月%d日 %H:%M:%S"}" class="relativetime">{$answer.posttime}</span></div><div class="user-gravatar32"><a href="/users/{$answer.authorid}/{$answer.author}"><img src="{$answer.avatar}" height="32" width="32" alt=""></a></div><div class="user-details"><a href="/users/{$answer.authorid}/{$answer.author}">{$answer.author}</a><br>
+	<!--
+	<span class="reputation-score" title="reputation score">681</span><span title="2 silver badges"><span class="badge2"></span><span class="badgecount">2</span></span><span title="8 bronze badges"><span class="badge3"></span><span class="badgecount">8</span></span>
+	-->
+	
+	</div></div>
+            </td>
+            </tr>
+            </tbody></table>
+        </td>
+        </tr>
+        
+
+<tr>
+<td class="votecell"></td>
+<td>
+ <div id="comments-746" class="comments" style="border:solid red 1px;display:none;">
+		<table>
+        <tbody>
+    		<tr id="comment-1479" class="comment">
+        		<td></td>
+        		<td class="comment-text"><div><span class="comment-copy">D'oh. Fixing...</span> –&nbsp;<a href="/users/570/lucas-jones" title="551 reputation" class="comment-user owner">Lucas Jones</a> <span class="comment-date"><span title="2010-06-16 15:04:51Z">Jun 16 at 15:04</span></span></div></td>
+    		</tr>
+            
+    		<tr id="comment-1480" class="comment">
+        		<td class="comment-actions">
+					<table><tbody><tr>
+					<td class="comment-score">
+							<span title="number of 'great comment' votes received" class="cool">1</span>
+							</td>
+							<td>
+							&nbsp;
+							</td></tr>
+							</tbody></table>
+				</td>
+        		<td class="comment-text"><div><span class="comment-copy">Done in latest revision.</span> –&nbsp;<a href="/users/570/lucas-jones" title="551 reputation" class="comment-user owner">Lucas Jones</a> <span class="comment-date"><span title="2010-06-16 15:05:38Z">Jun 16 at 15:05</span></span></div></td>
+    		</tr>
+        </tbody>
+ </table>
+</div>
+    
+</td>
+</tr>
+        </tbody></table>
+</div>
+{/foreach}
+
+<h2 class="bottom-notice">You must <a href="/users/login?returnurl=%2fquestions%2f198">log in</a> to answer this question.</h2>
+
+    <h2 class="bottom-notice">
+        
+        Not the answer you're looking for? 
+        
+        Browse other questions tagged <a href="/questions/tagged/library" class="post-tag required-tag" title="show questions tagged 'library'" rel="tag">library</a> <a href="/questions/tagged/python" class="post-tag" title="show questions tagged 'python'" rel="tag">python</a> 
+        
+    </h2>
+</div>
+</div>
+
+
+<div id="sidebar">
+
+
+<div class="module newuser" style="display:none">
+    <h4>Hi there!</h4>
+    <div>
+        <p>Stack Apps is <b>a support site for the Stack Exchange API</b>. If you want to find (or create) apps that work with any Stack Overflow engine website, you're in the right place!</p>
+        <p class="ar"><a href="/about">about »</a>&nbsp;&nbsp;&nbsp;<a href="/faq">faq »</a></p>
+</div>
+</div>
+    <div class="module">
+        <p class="label-key">tagged</p>
+        <div class="tagged">
+            <a href="/questions/tagged/library" class="post-tag required-tag" title="show questions tagged 'library'" rel="tag">library</a>&nbsp;<span class="item-multiplier">×&nbsp;28</span><br>
+        </div> 
+        <p class="label-key">提问时间：</p>
+        <p class="label-value" title="2010-05-23 02:21:30Z">6 months ago</p>
+        <p class="label-key">浏览次数</p>
+        <p class="label-value">1,387 times</p>
+        <p class="label-key">最近活动</p>
+        <p class="label-value"><a href="?lastactivity" class="lastactivity-link" title="2010-11-13 17:00:54Z">21 days ago</a></p>
+    </div>
+    
+    <div class="module">
+<h4>入门文档</h4>
+    <div class="linked">
+
+        <div class="spacer">
+           <a href="/questions/1/api-documentation-and-help" class="question-hyperlink"><b>API documentation and help</b></a>
+        </div>
+    </div>
+    <div class="spacer ar">
+        more <a href="/questions/tagged/faq" class="post-tag moderator-tag" title="show questions tagged 'faq'" rel="tag">faq</a>&nbsp;»
+    </div>
+</div> 
+         
+
+
+    <div class="module">
+    <h4 id="h-linked">Linked</h4>
+    <div class="linked">
+    <div class="spacer">
+<a href="/questions/611/stack2blog-turning-your-answers-into-blogs-for-sale" class="question-hyperlink">Stack2Blog - Turning your answers into blogs (For “sale”)</a>
+</div>
+
+    </div>
+    </div>
+
+    <div class="module">
+    <h4 id="h-related">Related</h4>
+    <div class="related">
+    <div class="spacer">
+<a href="/questions/236/stackoverflow-java-sdk-java-wrapper-for-stackexchange-api" class="question-hyperlink">stackoverflow-java-sdk: Java wrapper for StackExchange API</a>
+</div>
+    </div>
+    </div>
+ 
+</div>
+
+
+<div id="feed-link">
+    <div id="feed-link-text"><a href="/feeds/question/198" title="feed of this question and its answers"><span class="feed-icon"></span>question feed</a></div>
+</div>
+
+
+<script type="text/javascript" src="/posts/198/ivc/ede8"></script>
+<noscript></noscript>
+
+
