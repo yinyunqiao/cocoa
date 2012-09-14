@@ -615,6 +615,11 @@ if($operation == 'threads') {
 				}
 			}
 
+
+			if($post['authorid'] && $post['author']) {
+				$post['author'] = "<a href=\"space.php?uid=$post[authorid]\" target=\"_blank\">$post[author]</a>";
+			} 
+
 			showtablerow("id=\"mod_$post[pid]_row1\"", array('rowspan="3" class="rowform threadopt" style="width:80px;"', 'class="threadtitle"'), array(
 				"<ul class=\"nofloat\"><li><input class=\"radio\" type=\"radio\" name=\"mod[$post[pid]]\" id=\"mod_$post[pid]_1\" value=\"validate\" checked=\"checked\" onclick=\"mod_setbg($post[pid], 'validate');\"><label for=\"mod_$post[pid]_1\">$lang[validate]</label></li><li><input class=\"radio\" type=\"radio\" name=\"mod[$post[pid]]\" id=\"mod_$post[pid]_2\" value=\"delete\" onclick=\"mod_setbg($post[pid], 'delete');\"><label for=\"mod_$post[pid]_2\">$lang[delete]</label></li><li><input class=\"radio\" type=\"radio\" name=\"mod[$post[pid]]\" id=\"mod_$post[pid]_3\" value=\"ignore\" onclick=\"mod_setbg($post[pid], 'ignore');\"><label for=\"mod_$post[pid]_3\">$lang[ignore]</label></li></ul>",
 				"<h3><a href=\"forumdisplay.php?fid=$post[fid]\" target=\"_blank\">$post[forumname]</a> &raquo; <a href=\"viewthread.php?tid=$post[tid]&modthreadkey=$post[modthreadkey]\" target=\"_blank\">$post[tsubject]</a> &raquo; <b>$post[subject]</b></h3><p><span class=\"bold\">$lang[author]:</span> $post[author] ($post[useip]) &nbsp;&nbsp; <span class=\"bold\">$lang[time]:</span> $post[dateline]</p>"
