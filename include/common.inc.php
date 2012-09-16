@@ -33,10 +33,13 @@ if (isset($_REQUEST['GLOBALS']) OR isset($_FILES['GLOBALS'])) {
 require_once DISCUZ_ROOT.'./include/global.func.php';
 
 getrobot();
+
 if(defined('NOROBOT') && IS_ROBOT) {
 	exit(header("HTTP/1.1 403 Forbidden"));
 }
 
+if(is_iPhone())
+	$is_iPhone = 1;
 foreach(array('_COOKIE', '_POST', '_GET') as $_request) {
 	foreach($$_request as $_key => $_value) {
 		$_key{0} != '_' && $$_key = daddslashes($_value);

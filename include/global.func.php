@@ -632,6 +632,17 @@ function getgroupid($uid, $group, &$member) {
 	return $member['groupid'];
 }
 
+function is_iPhone() {
+
+  $iPhone = strpos($_SERVER['HTTP_USER_AGENT'],"iPhone");
+  $iPod = strpos($_SERVER['HTTP_USER_AGENT'],"iPod");
+  $AppleWebKit = strpos($_SERVER['HTTP_USER_AGENT'],"AppleWebKit");
+  if($AppleWebKit && ($iPod||$iPhone))
+    return 1;
+  else
+    return 0;
+}
+
 function getrobot() {
 	if(!defined('IS_ROBOT')) {
 		$kw_spiders = 'Bot|Crawl|Spider|slurp|sohu-search|lycos|robozilla';

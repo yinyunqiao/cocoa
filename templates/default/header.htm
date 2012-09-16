@@ -20,13 +20,16 @@ window.google_analytics_uacct = "UA-53077-22";
 $rsshead
 $extrahead
 {csstemplate}
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /> -->
-<!-- <link media="only screen and (max-device-width: 480px)" href="/templates/default/ios.css" type= "text/css" rel="stylesheet"> -->
 
+<!--{if $is_iPhone}-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /> -->
+<link media="only screen and (max-device-width: 480px)" href="/templates/default/ios.css" type= "text/css" rel="stylesheet"> 
+<!--{/if}-->
 <script type="text/javascript">var STYLEID = '{STYLEID}', IMGDIR = '{IMGDIR}', VERHASH = '{VERHASH}', charset = '$charset', discuz_uid = $discuz_uid, cookiedomain = '$cookiedomain', cookiepath = '$cookiepath', attackevasive = '$attackevasive', disallowfloat = '$disallowfloat', creditnotice = '{if $creditnotice}$creditnames{/if}', {if in_array(CURSCRIPT, array('viewthread', 'forumdisplay'))}gid = parseInt('$thisgid'){elseif CURSCRIPT == 'index'}gid = parseInt('$gid'){else}gid = 0{/if}, fid = parseInt('$fid'), tid = parseInt('$tid')</script>
 <script type="text/javascript" src="{$jspath}common.js?{VERHASH}"></script>
 </head>
-
+<!--{if $is_iPhone}-->
+<!--{else}-->
 <body id="{CURSCRIPT}" onkeydown="if(event.keyCode==27) return false;">
 
 	<div id="append_parent"></div><div id="ajaxwaitid"></div>
@@ -153,4 +156,5 @@ $extrahead
     <div id="queries"></div>
     <script src="http://www.google.com/cse/api/partner-pub-7732761529337293/cse/1920628778/queries/js?oe=UTF-8&amp;callback=(new+PopularQueryRenderer(document.getElementById(%22queries%22))).render"></script>
   </div>
-	
+<!--{/if}-->
+

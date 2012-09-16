@@ -615,7 +615,6 @@ if($operation == 'threads') {
 				}
 			}
 
-
 			if($post['authorid'] && $post['author']) {
 				$post['author'] = "<a href=\"space.php?uid=$post[authorid]\" target=\"_blank\">$post[author]</a>";
 			} 
