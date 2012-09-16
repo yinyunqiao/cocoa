@@ -1,3 +1,44 @@
-body {background-color:black; }
+a {text-decoration:none;}
+a:link    {color:green;}
+a:visited {color:green;}
+a:hover   {color:red;}
+a:active  {color:yellow;}
 
+body {
+	text-align:center;
+	margin:0;
+	
+}
+div {
 
+	text-align:left;margin-left:auto;margin-right:auto;
+	font-size:24px;
+}
+
+#nav {
+
+	width:100%;
+	padding:4px;
+	background-color:#eaeaea;
+}
+
+#wrap {
+	
+	width:100%;
+}
+
+.right {
+	
+	text-align:right;
+
+}
+
+.forumcount {
+	margin-right:4px;
+	font-size:16px;
+	color:#777;
+}
+.list h3 {
+
+	background-color:#DFECBF;
+}

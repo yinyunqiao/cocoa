@@ -1,6 +1,15 @@
+
 {subtemplate header}
 
-<div id="nav"><a href="$indexname">$bbname</a> &raquo; {lang home}</div>
+<div id="nav"><a href="$indexname">
+	<!--{if $is_iPhone}-->
+	Tiny4Cocoa
+	<!--{else}-->
+	$bbname
+	<!--{/if}-->
+</a> &raquo; {lang home}</div>
+<!--{if $is_iPhone}-->
+<!--{else}-->
 <!--{if $admode && !empty($advlist['text'])}--><div class="ad_text" id="ad_text"><table summary="Text Ad" cellpadding="0" cellspacing="1">$advlist[text]</table></div><!--{else}--><div id="ad_text"></div><!--{/if}-->
 <div id="wrap"{if $infosidestatus['allow'] < 2} class="wrap s_clear"{else} class="wrap with_side s_clear"{/if}>
 <!--{if $infosidestatus[allow] == 2}-->
@@ -18,14 +27,20 @@ $pluginhooks[index_header]
 <!--{/if}-->
 
 $pluginhooks[index_hot]
+<!--{/if}-->
 
 <div class="itemtitle s_clear">
 	<p class="right forumcount">
 		{lang index_today}: <em>$todayposts</em>, {lang index_yesterday}: <em>$postdata[0]</em>, {lang index_members}: <em>$totalmembers</em>
 	</p>
+	<!--{if $is_iPhone}-->
+	<!--{else}-->
+	
 	<!--{if $indextype}-->
 		{subtemplate index_navbar}
 	<!--{/if}-->
+	<!--{/if}-->
+	
 </div>
 
 <!--{eval $rkey=array_rand($catlist);}-->
@@ -33,11 +48,16 @@ $pluginhooks[index_top]
 <!--{loop $catlist $key $cat}-->
 	<!--{if $cat['forumscount']}-->
 		<div class="mainbox list">
+			<!--{if $is_iPhone}-->
+			<!--{else}-->
+			
 			<span class="headactions">
 				<!--{if $cat['moderators']}-->{lang forum_category_modedby}: $cat[moderators]<!--{/if}-->
 				<img id="category_$cat[fid]_img" src="{IMGDIR}/$cat[collapseimg]" title="{lang spread}" alt="{lang spread}" onclick="toggle_collapse('category_$cat[fid]');" />
 			</span>
+			<!--{/if}-->
 			<h3><a href="$indexname?gid=$cat[fid]" style="{if $cat[extra][namecolor]}color: {$cat[extra][namecolor]};{/if}">$cat[name]</a></h3>
+
 			<table id="category_$cat[fid]" summary="category$cat[fid]" cellspacing="0" cellpadding="0" style="$collapse['category_'.$cat[fid]]">
 			<!--{if !$cat['forumcolumns']}-->
 				<!--{loop $cat[forums] $forumid}-->
