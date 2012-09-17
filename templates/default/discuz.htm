@@ -56,12 +56,25 @@ $pluginhooks[index_top]
 				<img id="category_$cat[fid]_img" src="{IMGDIR}/$cat[collapseimg]" title="{lang spread}" alt="{lang spread}" onclick="toggle_collapse('category_$cat[fid]');" />
 			</span>
 			<!--{/if}-->
-			<h3><a href="$indexname?gid=$cat[fid]" style="{if $cat[extra][namecolor]}color: {$cat[extra][namecolor]};{/if}">$cat[name]</a></h3>
-
+			<h3><a href="$indexname?gid=$cat[fid]" style="{if $cat[extra][namecolor]}color: {$cat[extra][namecolor]};{/if}">$cat[name]</a></h3>	
+			<!--{if $is_iPhone}-->
+			<!--{else}-->
 			<table id="category_$cat[fid]" summary="category$cat[fid]" cellspacing="0" cellpadding="0" style="$collapse['category_'.$cat[fid]]">
+			<!--{/if}-->
+				
 			<!--{if !$cat['forumcolumns']}-->
 				<!--{loop $cat[forums] $forumid}-->
 					<!--{eval $forum=$forumlist[$forumid];}-->
+					
+					<!--{if $is_iPhone}-->
+					<a href="forumdisplay.php?fid=$forum[fid]" {if $forum[redirect]}target="_blank"{/if}>
+					<div class="forumcell">	
+						$forum[name]
+					</div>
+					</a>
+					<hr/>
+					<!--{else}-->
+					
 					<tbody id="forum$forum[fid]">
 						<tr>
 							<th$forum[folder]>
@@ -92,6 +105,7 @@ $pluginhooks[index_top]
 							</td>
 						</tr>
 					</tbody>
+					<!--{/if}-->
 				<!--{/loop}-->
 			<!--{else}-->
 				<tr class="narrowlist">
@@ -126,10 +140,14 @@ $pluginhooks[index_top]
 				$cat['endrows']
 			<!--{/if}-->
 			</table>
+			
 		</div>
 		<!--{if $admode && !empty($advlist['intercat']) && ($advlist['intercat'][$key] = array_merge(($advlist['intercat'][0] ? $advlist['intercat'][0] : array()), ($advlist['intercat'][$key] ? $advlist['intercat'][$key] : array())))}--><div class="ad_column" id="ad_intercat_$key"><!--{echo $advitems[$advlist['intercat'][$key][array_rand($advlist['intercat'][$key])]]}--></div><!--{else}--><div id="ad_intercat_$key"></div><!--{/if}-->
 	<!--{/if}-->
 <!--{/loop}-->
+
+<!--{if $is_iPhone}-->
+<!--{else}-->
 
 $pluginhooks[index_middle]
 
@@ -157,6 +175,7 @@ $pluginhooks[index_middle]
 		<!--{/if}-->
 		</div>
 	</div>
+<!--{/if}-->
 <!--{/if}-->
 
 <!--{if empty($gid) && $maxbdays &&$_DCACHE['birthdays_index']['todaysbdays']}-->

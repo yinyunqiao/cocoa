@@ -1,24 +1,24 @@
-a {text-decoration:none;}
+a 		  {text-decoration:none;}
 a:link    {color:green;}
 a:visited {color:green;}
 a:hover   {color:red;}
-a:active  {color:yellow;}
 
 body {
 	text-align:center;
 	margin:0;
-	
+	padding:0;
 }
 div {
 
-	text-align:left;margin-left:auto;margin-right:auto;
+	text-align:left;
 	font-size:24px;
+	padding:0px;
+	margin:0px;
 }
 
 #nav {
 
 	width:100%;
-	padding:4px;
 	background-color:#eaeaea;
 }
 
@@ -41,4 +41,20 @@ div {
 .list h3 {
 
 	background-color:#DFECBF;
+	color:#000;
+	font-size:24px;
+	padding-left:5px;
+}
+.list h3 a{
+	color:#000;
+}
+
+.forumcell {
+	font-size:26px;
+	margin-left:14px;
+}
+
+.online h3{
+	
+	font-size:12px;
 }

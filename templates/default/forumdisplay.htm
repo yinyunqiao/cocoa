@@ -1,13 +1,18 @@
-<!--{if $is_iPhone}-->
-<!--{else}-->
-
 {subtemplate header}
+
+
 
 <!--{if $forum['ismoderator']}-->
 	<script type="text/javascript" src="{$jspath}moderate.js?{VERHASH}"></script>
 <!--{/if}-->
 
-<div id="nav"><a id="fjump" href="$indexname"{if $forumjump == 1} class="dropmenu" onmouseover="showMenu({'ctrlid':this.id})"{/if}>$bbname</a> $navigation</div>
+<div id="nav"><a id="fjump" href="$indexname"{if $forumjump == 1} class="dropmenu" onmouseover="showMenu({'ctrlid':this.id})"{/if}>
+	<!--{if $is_iPhone}-->
+	Home
+	<!--{else}-->
+	$bbname
+	<!--{/if}-->
+</a> $navigation</div>
 
 <!--{if $admode && !empty($advlist['text'])}-->
 <div id="ad_text" class="ad_text" >
