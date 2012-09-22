@@ -76,7 +76,7 @@ $pluginhooks[viewthread_top]
 <div class="forumcontrol">
 
 <!--{if $is_iPhone}-->
-<div style="text-align:right;">
+<div style="text-align:right;margin-top:10px;">
 $multipage
 </div>
 <!--{else}-->
@@ -151,7 +151,11 @@ $multipage
 </form>
 
 $tagscript
-
+<!--{if $is_iPhone}-->
+<div style="text-align:right;margin-top:10px;">
+$multipage
+</div>
+<!--{else}-->
 <div class="forumcontrol s_clear">
 	<table cellspacing="0" cellpadding="0" <!--{if $fastpost}-->class="narrow"<!--{/if}-->>
 		<tr>
@@ -171,7 +175,7 @@ $tagscript
 		</tr>
 	</table>
 </div>
-
+<!--{/if}-->
 $pluginhooks[viewthread_middle]
 
 <!--{if $fastpost && $allowpostreply}-->

@@ -690,6 +690,7 @@ function viewthread_procpost($post, $special = 0) {
 		}
 		if($showavatars) {
 			$post['avatar'] = discuz_uc_avatar($post['authorid']);
+			$post['avatarsmall'] = discuz_uc_avatar($post['authorid'],"small");
 			if($_DCACHE['usergroups'][$post['groupid']]['groupavatar']) {
 				$post['avatar'] .= '<br /><img src="'.$_DCACHE['usergroups'][$post['groupid']]['groupavatar'].'" border="0" alt="" />';
 			}
