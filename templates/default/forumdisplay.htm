@@ -14,6 +14,7 @@
 	<!--{/if}-->
 </a> $navigation</div>
 
+
 <!--{if $admode && !empty($advlist['text'])}-->
 <div id="ad_text" class="ad_text" >
 	<table summary="Text Ad" cellpadding="0" cellspacing="0">$advlist[text]</table>
@@ -24,7 +25,7 @@
 
 <div id="wrap"{if $infosidestatus['allow'] < 2} class="wrap s_clear"{else} class="wrap with_side s_clear"{/if}>
 <!--{if $infosidestatus[allow] == 2}-->
-	<a id="sidebar_img" href="javascript:;" onclick="sidebar_collapse(['{lang sidebar_collapsed_yes}', '{lang sidebar_collapsed_no}']);" class="$collapseimg[sidebar]"><!--{if $collapseimg[sidebar] == 'collapsed_yes'}-->{lang sidebar_collapsed_yes}<!--{else}-->{lang sidebar_collapsed_no}<!--{/if}--></a>
+<a id="sidebar_img" href="javascript:;" onclick="sidebar_collapse(['{lang sidebar_collapsed_yes}', '{lang sidebar_collapsed_no}']);" class="$collapseimg[sidebar]"><!--{if $collapseimg[sidebar] == 'collapsed_yes'}-->{lang sidebar_collapsed_yes}<!--{else}-->{lang sidebar_collapsed_no}<!--{/if}--></a>
 <!--{elseif $infosidestatus[allow] == 1}-->
 	<a id="sidebar_img" href="javascript:;" onclick="sidebar_collapse(['', '{lang sidebar_collapsed_no}']);" class="collapsed_yes">{lang sidebar_collapsed_yes}</a>
 <!--{/if}-->
@@ -34,6 +35,10 @@
 		<div id="forumheader" class="s_clear">
 			<h1 style="{if $forum[extra][namecolor]}color: {$forum[extra][namecolor]};{/if}">$forum[name]</h1>
 			<p class="forumstats">[ <strong>$forum[threads]</strong> {lang thread} / {echo $forum[posts]-$forum[threads]} {lang reply} ]</p>
+			
+			<!--{if $is_iPhone}-->
+			<!--{else}-->
+			
 			<div class="forumaction">
 				<div class="right">
 				$pluginhooks[forumdisplay_forumaction]
@@ -47,6 +52,8 @@
 					<a href="{if $adminid == 1}admincp.php?action=recyclebin&amp;frames=yes{elseif $forum['ismoderator']}modcp.php?action=recyclebins&amp;fid=$fid{/if}" class="recyclebin" target="_blank">{lang forum_recyclebin}</a>
 				<!--{/if}-->
 			</div>
+			
+			
 			<!--{if $forum[description]}--><p class="channelinfo">{lang forum_description}: $forum[description]</p><!--{/if}-->
 			<p id="modedby">
 				<!--{if $forum['ismoderator']}-->
@@ -62,6 +69,9 @@
 				<!--{/if}-->
 				{lang forum_modedby}: <!--{if $moderatedby}-->$moderatedby<!--{else}-->{lang forum_opening}<!--{/if}-->
 			</p>
+			
+			<!--{/if}-->
+			
 		</div>
 		$pluginhooks[forumdisplay_top]
 

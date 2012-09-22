@@ -12,7 +12,20 @@
 <script type="text/javascript">zoomstatus = parseInt($zoomstatus);var imagemaxwidth = '{IMAGEMAXWIDTH}';var aimgcount = new Array();</script>
 
 <div id="nav">
-	<!--{if $forumjump == 1}--><a href="$indexname" id="fjump" onmouseover="showMenu({'ctrlid':this.id})" class="dropmenu">$bbname</a><!--{else}--><a href="$indexname">$bbname</a><!--{/if}-->$navigation
+	<!--{if $is_iPhone}-->
+	<!--{if $forumjump == 1}-->
+		<a href="$indexname" id="fjump" onmouseover="showMenu({'ctrlid':this.id})" class="dropmenu">首页</a>
+	<!--{else}-->
+		<a href="$indexname">首页</a>
+	<!--{/if}-->
+	<!--{else}-->
+	<!--{if $forumjump == 1}-->
+		<a href="$indexname" id="fjump" onmouseover="showMenu({'ctrlid':this.id})" class="dropmenu">$bbname</a>
+	<!--{else}-->
+		<a href="$indexname">$bbname</a>
+	<!--{/if}-->
+	<!--{/if}-->
+	$navigation
 </div>
 
 $pluginhooks[viewthread_top]
@@ -59,7 +72,14 @@ $pluginhooks[viewthread_top]
 <!--{/if}-->
 
 <div id="wrap" class="wrap s_clear threadfix">
+	
 <div class="forumcontrol">
+
+<!--{if $is_iPhone}-->
+<div style="text-align:right;">
+$multipage
+</div>
+<!--{else}-->
 	<table cellspacing="0" cellpadding="0">
 		<tr>
 			<td class="modaction">
@@ -77,6 +97,7 @@ $pluginhooks[viewthread_top]
 			</td>
 		</tr>
 	</table>
+<!--{/if}-->
 </div>
 
 <!--{if $allowpost && ($allowposttrade || $allowpostpoll || $allowpostreward || $allowpostactivity || $allowpostdebate || $threadplugins || $forum['threadsorts'])}-->
@@ -111,7 +132,11 @@ $pluginhooks[viewthread_top]
 {eval $postcount = 0;}
 <!--{loop $postlist $post}-->
 	<div id="post_$post[pid]">
+		<!--{if $is_iPhone}-->
+		{subtemplate viewthread_node_iPhone}
+		<!--{else}-->
 		{subtemplate viewthread_node}
+		<!--{/if}-->
 	</div>
 <!--{/loop}-->
 </div>
