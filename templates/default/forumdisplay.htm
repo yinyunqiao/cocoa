@@ -103,15 +103,19 @@
 		<div id="subforum" class="mainbox list">{template forumdisplay_subforum}</div>
 		<!--{/if}-->
 		$pluginhooks[forumdisplay_middle]
-
+		
 		<div class="pages_btns s_clear">
 			$multipage
+			<!--{if $is_iPhone}-->
+			<!--{else}-->
 			<span <!--{if $visitedforums}-->id="visitedforums" onmouseover="$('visitedforums').id = 'visitedforumstmp';this.id = 'visitedforums';showMenu({'ctrlid':this.id})"<!--{/if}--> class="pageback"><a href="$indexname">{lang return_index}</a></span>
 			<span class="postbtn" id="newspecial" prompt="post_newthread" onmouseover="$('newspecial').id = 'newspecialtmp';this.id = 'newspecial';showMenu({'ctrlid':this.id})"><a href="post.php?action=newthread&fid=$fid"{if !$forum['allowspecialonly']} onclick="showWindow('newthread', this.href);return false;"{/if}>{lang send_posts}</a></span>
+			<!--{/if}-->
 		</div>
 
 		<!--{if $forum['threadtypes'] && $forum['threadtypes']['listable'] || $forum['threadsorts']}-->
 		<div class="threadtype">
+			
 			<!--{if $forum['threadtypes'] && $forum['threadtypes']['listable']}-->
 			<p>
 				<!--{if $typeid || $sortid}--><a href="forumdisplay.php?fid=$fid">{lang forum_viewall}</a><!--{else}--><strong>{lang forum_viewall}</strong><!--{/if}-->
@@ -159,12 +163,16 @@
 			<!--{/if}-->
 		</div>
 		<!--{/if}-->
-
+		<hr/>
+		
 		<div id="threadlist" class="threadlist datalist" style="position: relative;">
 		<form method="post" name="moderate" id="moderate" action="topicadmin.php?action=moderate&fid=$fid&infloat=yes&nopost=yes">
 			<input type="hidden" name="formhash" value="{FORMHASH}" />
 			<input type="hidden" name="listextra" value="$extra" />
+			
 			<table summary="forum_$fid" {if !$separatepos}id="forum_$fid"{/if} cellspacing="0" cellpadding="0" class="datatable">
+				<!--{if $is_iPhone}-->
+				<!--{else}-->
 				<thead class="colplural">
 					<tr>
 						<td colspan="2">&nbsp;<a href="javascript:;" id="filtertype" class="dropmenu" onclick="showMenu({'ctrlid':this.id});"><!--{if $filter == poll}-->{lang thread_poll}
@@ -196,7 +204,7 @@
 						<td class="lastpost"><cite><a href="forumdisplay.php?fid={$fid}&filter=$filter&orderby=lastpost$typeadd$sortadd" class="order {if $orderby == 'lastpost'}order_active{/if}">{lang lastpost}</a></cite></td>
 					</tr>
 				</thead>
-
+				<!--{/if}-->
 				<!--{if $page == 1 && !empty($announcement)}-->
 				<tbody>
 					<tr>
@@ -216,7 +224,21 @@
 
 				<!--{if $threadcount}-->
 				<!--{loop $threadlist $key $thread}-->
-
+				<!--{if $is_iPhone}-->
+				<!-- <tbody>
+					<tr>
+						<td>
+						</td>
+					</tr>
+				</tbody> -->
+				<div>
+					<a href="viewthread.php?tid=$thread[tid]">
+					<div>$thread[subject]</div>
+					<div style="text-align:right;color:#aaa;"><a href="{if $thread[digest] != -2}redirect.php?tid=$thread[tid]&amp;goto=lastpost$highlight#lastpost{else}viewthread.php?tid=$thread[tid]&amp;page={echo max(1, $thread[pages]);}{/if}" style="color:#ccc;">$thread[lastpost]</a></div>
+					</a>
+					<hr/>
+				</div>
+				<!--{else}-->
 				<!--{if $forumseparator == 1 && $separatepos == $key + 1}-->
 				<tbody>
 					<tr>
@@ -331,6 +353,8 @@
 						</td>
 					</tr>
 				</tbody>
+				<!--{/if}-->
+				
 				<!--{/loop}-->
 			<!--{else}-->
 				<tbody><tr><th colspan="6"><p class="nodata">{lang forum_nothreads}</p></th></tr></tbody>
