@@ -10,7 +10,7 @@
 		
 		public function __construct($pathinfo,$controller) {
 			
-			$this->sitename = "iApp4Me";
+			$this->sitename = "Tiny4Cocoa";
 			parent::__construct($pathinfo,$controller);
 			$this->begintime = microtime(true);
 			$this->_layout="index";
@@ -21,7 +21,11 @@
 			
 			$mainMenu = $this->createMainMenu();
 			$title= $this->findTitle();
-			$this->title = "$title - $this->sitename";
+      if($title)
+        $this->title = "$title - $this->sitename";
+      else
+        $this->title = $this->sitename;
+        
 			$controller=$this->_controller['name'];
 			
 			if($controller=='index')
@@ -170,5 +174,9 @@
 			return $ret;
 		}
 	
+    public function setTitle($title) {
+      
+      $this->_view->assign("title","$title - $this->sitename");
+    }
 	}
 	

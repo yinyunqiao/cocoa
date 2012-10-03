@@ -35,6 +35,7 @@ class HomeController extends baseController
     $news = $newsModel->oneNews($index);
     $this->_mainContent->assign("threads",$threads);
     $this->_mainContent->assign("news",$news);
+    $this->setTitle($news["title"]);
     $this->display();
   }
 }
