@@ -18,8 +18,12 @@ class HomeController extends baseController
     $allModel = new AllModel();
     $threads = $allModel->allThreads(1,10);
 	$newThreads = $allModel->newThreads(1,10);
+    $newsModel = new NewsModel();
+	
+	$news = $newsModel->news(1,10);
     $this->_mainContent->assign("threads",$threads);
     $this->_mainContent->assign("newThreads",$newThreads);
+    $this->_mainContent->assign("news",$news);
     $this->display();
   }
 }

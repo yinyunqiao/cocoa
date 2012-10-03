@@ -4,10 +4,11 @@
 	width:305px;
 	float:left;
 	padding-left:8px;
+	
 }
 .homeright {
 	float:right;
-	width:600px;
+	width:630px;
 }
 .block_title {
 	
@@ -103,18 +104,13 @@
 </style>
 
 <div class="homeright">
-	{foreach from=$threads item=thread}
+	{foreach from=$news item=item}
 	<div class="newsblock">
-		<img class="pic" src="http://g1.cn.nytimes.com/images/2012/09/23/technology/23bits-disrupt/23bits-disrupt-articleLarge.jpg">
+		<img class="pic" src="{$item.pic1}">
 		<div class="content">
-			<h3>苹果市值能否突破1万亿美元？</h3>
-			<div class="authinfo">tinyfool 发表于 <span class="timestamp">2012-10-03 12:33</span></div>
-			<div>
-				如果苹果公司(Apple)沿着现有轨迹发展，2015年4月9日上午11:00左右，可能会发生一件了不起的事情。
-
-				与我交流过的统计学家和投资者认为，保守估计届时苹果将成为有史以来第一家市值达到1万亿美元的公司。（是的，你没看错，数字1后面跟着12个0。）
-
-				
+			<h3><a href="/news/{$item.id}/">{$item.title}</a></h3>
+			<div class="authinfo">{$item.poster} 发表于 <span class="timestamp">{$item.createtime}</span></div>
+			<div>{$item.desc}
 			</div>
 		</div>
 		<div style="clear:both"></div>
@@ -129,7 +125,7 @@
 <a href="/thread-{$thread.tid}-1-1.html" target="_blank">
 <li class="newstitle">
 		{$thread.subject}
-		<p class="threadfootnote">{$thread.lastposter} [{$thread.replies}/{$thread.views}]<p>
+		<p class="threadfootnote">{$thread.lastposter}回复  [{$thread.replies}/{$thread.views}]<p>
 </li>
 </a>
 {/foreach}
@@ -154,7 +150,7 @@
 <a href="/thread-{$thread.tid}-1-1.html" target="_blank">
 <li class="newstitle">
 		{$thread.subject}
-		<p class="threadfootnote">{$thread.author} [{$thread.replies}/{$thread.views}]<p>
+		<p class="threadfootnote">{$thread.author}发布  [{$thread.replies}/{$thread.views}]<p>
 </li>
 </a>
 {/foreach}

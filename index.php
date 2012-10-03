@@ -1,13 +1,14 @@
 <?php
 
+header('location: /home/');
 /*
 	[Discuz!] (C)2001-2009 Comsenz Inc.
 	This is NOT a freeware, use is subject to license terms
 
 	$Id: index.php 21048 2009-11-09 05:59:18Z monkey $
-*/
 
-define('BINDDOMAIN', 'index');
+
+ define('BINDDOMAIN', 'index');
 
 require_once './include/common.inc.php';
 if(!$loadforum) {
@@ -28,4 +29,4 @@ if(!$loadforum) {
 	require_once './forumdisplay.php';
 }
 
-?>
+*/
