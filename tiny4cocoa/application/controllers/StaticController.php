@@ -19,28 +19,7 @@ class StaticController extends tinyApp_Controller
 		
 		
     // include("$path/jquery/jquery-1.6.js");
-    // include("$path/jquery/jquery.slides.js");
-    // include("$path/jquery/jquery.validate.js");
-    // include("$path/jquery_raty/jquery.raty.js");
-    // include("$path/jquery/jquery.tipsy.js");
-    // include("$path/jquery/jquery.masonry.js");
-    // include("$path/jquery/jquery.masonry.stamp.js");
-    // 
-    // include("$path/bootstrap/bootstrap-alerts.js");
-    // include("$path/bootstrap/bootstrap-dropdown.js");
-    // include("$path/bootstrap/bootstrap-modal.js");
-    // include("$path/bootstrap/bootstrap-scrollspy.js");
-    // include("$path/bootstrap/bootstrap-tabs.js");
-    // include("$path/bootstrap/bootstrap-twipsy.js");
-    // include("$path/bootstrap/bootstrap-popover.js");
-    // 
-    // include("$path/tiny_suggest.js");
-    // include("$path/guest.js");
-    // include("$path/iappvote.js");
-    // include("$path/load_more.js");
-    // include("$path/iapp/iappbase.js");
-    // include("$path/iapp/loadlistreply.js");
-    // include("$path/main.js");
+
   }
 	
   public function cssAction() {
@@ -54,6 +33,7 @@ class StaticController extends tinyApp_Controller
     $path=$this->_pathinfo['base'].'/public/css';
     $home = "$path/home";
     include("$home/home.css");
+    include("$home/news.css");
   }
 }
 

@@ -1,0 +1,41 @@
+	
+.news_content {
+    
+  width:640px;
+  float:left;
+  padding:20px;
+  border-right:1px solid #666;
+}
+  
+.news_sidebar {
+    
+  float:right;
+  width:265px;
+}
+
+.news_content .title {
+	
+  font-size:32px;
+  padding-top:10px;
+  padding-bottom:10px;
+}
+.news_content .desc {
+  margin-top:10px;
+  padding-left:5px;
+  border-bottom:1px dashed #666;
+}
+.news_content .content {
+    
+  font-size:14px;
+  padding:0px;
+  margin-top:10px;
+}
+  
+.news_content .pic {
+	
+  width:220px;
+  height:146px;
+  float:left;
+  padding-right:10px;
+  padding-bottom:7px;
+}
