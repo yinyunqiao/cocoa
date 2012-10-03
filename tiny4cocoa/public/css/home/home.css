@@ -1,0 +1,81 @@
+.home_sidebar {
+  width:305px;
+  float:left;
+  padding-left:8px;
+}
+.home_main {
+  float:right;
+  width:630px;
+}
+.block_title {
+	
+  border-bottom:1px solid #aaa;
+  font-size:22px;
+  padding-left:5px;
+  padding-top:10px;
+  padding-bottom:10px;
+	
+}
+.ioscell {
+  padding:5px;
+  border: 1px solid 
+  #CCCCCC;
+  margin: 10px 0 0;
+  padding: 10px;
+  font-size: 14px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  text-shadow: 0px 1px 0px 
+  #fff;
+  background: 
+  #f6f6f6;
+  background: -moz-linear-gradient(top, #f9f9f9 0%, #f6f6f6 47%, #ededed 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f9f9f9),color-stop(47%,#f6f6f6), color-stop(100%,#ededed));
+  background: -webkit-linear-gradient(top,#f9f9f9 0%,#f6f6f6 47%,#ededed 100%);
+  background: -o-linear-gradient(top,  #f9f9f9 0%,#f6f6f6 47%,#ededed 100%);
+  background: -ms-linear-gradient(top, #f9f9f9 0%,#f6f6f6 47%,#ededed 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#ededed',GradientType=0 );
+  background: linear-gradient(top, #f9f9f9 0%,#f6f6f6 47%,#ededed 100%);
+}
+.newstitle {
+  border-bottom:#D0D0D0 dashed 1px;
+  padding-left:5px;
+  padding-top:7px;
+  padding-bottom:7px;
+  color:black;
+  font-size:14px;
+}
+.threadfootnote {
+  margin-top:3px;
+  text-align:right;
+  color:#aaa;
+}
+.newsblock {
+
+  padding-top:20px;
+  padding-bottom:20px;
+  border-bottom:#D0D0D0 dashed 1px;
+}
+.newsblock .pic {
+	
+  width:220px;
+  height:146px;
+  float:left;
+}
+.newsblock .content {
+  padding:0px;
+  padding-left:10px;
+  margin-left:220px;
+  padding-right:20px;
+}
+.newsblock .content h3{
+	
+  font-size:20px;
+}
+.newsblock .authinfo {
+  margin-top:10px;
+}
+.newsblock .timestamp {
+  color:#666;
+}
