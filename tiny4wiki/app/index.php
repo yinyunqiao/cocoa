@@ -3,7 +3,6 @@ require_once 'functions.php';
 $wiki = strtolower($_GET['wiki']);
 
 switch($_GET['act']) {
-	var_dump($_GET['act']);
 	
 	case 'showlogin':
 		die(createLoginBox('登录',$_GET['retUrl']));

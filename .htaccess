@@ -7,6 +7,7 @@ RewriteRule ^home/s/(.+)$ tiny4cocoa/public/index.php
 RewriteRule ^home/s/(.+)/$ tiny4cocoa/public/index.php
 RewriteRule ^static/(.*)/$ tiny4cocoa/public/index.php
 RewriteRule ^static/(.*)$ tiny4cocoa/public/index.php
+RewriteRule ^homeadmin/(.*) tiny4cocoa/public/index.php
 
 #for discuz
 RewriteRule ^archiver/((fid|tid)-[\w\-]+\.html)$ archiver/index.php?$1

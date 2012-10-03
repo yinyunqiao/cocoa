@@ -1,5 +1,5 @@
 <?php
-class HomeController extends baseController
+class HomeadminController extends baseController
 {
  
   public function indexAction() {
@@ -10,7 +10,9 @@ class HomeController extends baseController
         $_DCOOKIE[(substr($key, $prelength))] = MAGIC_QUOTES_GPC ? $val : daddslashes($val);
       }
     }
+    
     $discuz_auth_key = md5($_DCACHE['settings']['authkey'].$_SERVER['HTTP_USER_AGENT']);
+      
     $xxx  =  daddslashes(explode("\t", authcode($_DCOOKIE['auth'], 'DECODE')), 1);
     
     $allModel = new AllModel();

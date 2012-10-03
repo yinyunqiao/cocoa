@@ -28,7 +28,7 @@ function createLoginBox($title,$retUrl,$reg=0,$noindex=0)
 }
 
 function showpage($pagename) {
-	var_dump($pagename);
+
 	$smarty = new Smarty;
 	$page = getPageContent($pagename);
 	if(!$page)
