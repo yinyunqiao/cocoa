@@ -106,9 +106,9 @@
 <div class="homeright">
 	{foreach from=$news item=item}
 	<div class="newsblock">
-		<img class="pic" src="{$item.pic1}">
+		<a href="/home/s/{$item.id}/"><img class="pic" src="{$item.pic1}"></a>
 		<div class="content">
-			<h3><a href="/news/{$item.id}/">{$item.title}</a></h3>
+			<h3><a href="/home/s/{$item.id}/">{$item.title}</a></h3>
 			<div class="authinfo">{$item.poster} 发表于 <span class="timestamp">{$item.createtime}</span></div>
 			<div>{$item.desc}
 			</div>
