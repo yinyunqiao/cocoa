@@ -7,7 +7,7 @@ class HomeadminController extends baseController
     parent::__construct($pathinfo,$controller);
     $discuz = new DiscuzModel();
     $userid = $discuz->checklogin();
-    if($userid==0) {
+    if($userid!=2) {
       header ('HTTP/1.1 301 Moved Permanently');
       header('location: /home/');
     }
