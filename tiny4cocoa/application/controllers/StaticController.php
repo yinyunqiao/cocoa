@@ -17,7 +17,6 @@ class StaticController extends tinyApp_Controller
     header ($expire);
     $path=$this->_pathinfo['base'].'/public/js';
 		
-		
     // include("$path/jquery/jquery-1.6.js");
 
   }
@@ -34,6 +33,7 @@ class StaticController extends tinyApp_Controller
     $home = "$path/home";
     include("$home/home.css");
     include("$home/news.css");
+    include("$home/homeadmin.css");
   }
 }
 

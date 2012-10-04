@@ -18,5 +18,13 @@ class HomeadminController extends baseController
     $this->display();
   }
   
-
+  public function newarticleAction() {
+    
+    $this->display();
+  }
+  
+  public function articlesAction() {
+    
+    $this->display();
+  }  
 }
