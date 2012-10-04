@@ -21,7 +21,7 @@ class DiscuzModel extends baseDbModel {
     $cachelost = (@include $this->path.'/forumdata/cache/cache_settings.php') ? '' : 'settings';
     @extract($_DCACHE['settings']);
     $this->cache = $_DCACHE['settings'];
-    $this->discuz_auth_key = md5($this->cache['authkey'].$_SERVER['HTTP_USER_AGENT']);
+    $this->auth_key = md5($this->cache['authkey'].$_SERVER['HTTP_USER_AGENT']);
   }
   
   function checklogin() {
