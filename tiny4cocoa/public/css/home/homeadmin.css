@@ -1,21 +1,47 @@
 .homeadmin_sidebar {
-  width:200px;
+  width:150px;
   float:left;
 }
 
 .homeadmin_main {
   float:right;
-  width:730px;
+  width:780px;
+  padding:10px;
+  font-size:16px;
 }
 
 .homeadmin_main h1 {
 
   font-size:28px;
-  padding:10px;
+  padding-top:10px;
+  padding-bottom:10px;
 }
 .homeadmin_sidebar .menu  li {
   
   padding:5px;
   margin-left:10px;
   font-size:20px;
+}
+
+.homeadmin_main #article_title {
+  
+  width:500px;
+}
+
+.homeadmin_main #article_desc {
+
+  width:500px;
+  height:160px;
+}
+
+.homeadmin_main #article_content {
+
+  width:500px;
+  height:400px;
+}
+
+label {
+  display:block;
+  padding-top:5px;
+  padding-bottom:5px;
 }

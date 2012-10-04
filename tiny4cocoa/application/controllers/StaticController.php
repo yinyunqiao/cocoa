@@ -17,8 +17,10 @@ class StaticController extends tinyApp_Controller
     header ($expire);
     $path=$this->_pathinfo['base'].'/public/js';
 		
-    // include("$path/jquery/jquery-1.6.js");
-
+    include("$path/jquery/jquery.min.js");
+    include("$path/jquery/jquery.form.js");
+    
+    include("$path/upload/upload.js");
   }
 	
   public function cssAction() {

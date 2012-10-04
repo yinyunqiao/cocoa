@@ -1,5 +1,16 @@
 <div class="homeadmin_main">
   <h1>新文章</h1>
+  <form>
+    <label for="article_title">标题</label><input type="text" name="title" value="" id="article_title">
+    <label for="article_desc">摘要</label><textarea id="article_desc" name="content" rows="8" cols="40"></textarea>
+    
+    <label for="article_content">内容</label><textarea id="article_content" name="content" rows="8" cols="40"></textarea>
+  </form>
+  <form action="/homeadmin/newimageupload" method="post" enctype="multipart/form-data" id="UploadForm">
+  <input name="ImageFile" type="file" />
+  <input type="submit"  id="SubmitButton" value="Upload" />
+  </form>
+  <div id="output"></div>
 </div>
 <div class="homeadmin_sidebar">
   <ul class="menu">

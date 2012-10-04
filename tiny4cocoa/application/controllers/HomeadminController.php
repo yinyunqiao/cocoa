@@ -26,5 +26,36 @@ class HomeadminController extends baseController
   public function articlesAction() {
     
     $this->display();
-  }  
+  } 
+  
+  public function newimageuploadAction() {
+    
+    if(!isset($_POST))
+      die();
+  	if(!isset($_FILES['ImageFile']) || !is_uploaded_file($_FILES['ImageFile']['tmp_name']))
+  	{
+  			die('Something went wrong with Upload!');
+  	}
+  	$ImageName 		= str_replace(' ','-',strtolower($_FILES['ImageFile']['name']));
+  	$ImageSize 		= $_FILES['ImageFile']['size'];
+  	$TempSrc	 	= $_FILES['ImageFile']['tmp_name']; 
+  	$ImageType	 	= $_FILES['ImageFile']['type'];
+  	switch(strtolower($ImageType))
+  	{
+  		case 'image/png':
+  			$CreatedImage =  imagecreatefrompng($_FILES['ImageFile']['tmp_name']);
+  			break;
+  		case 'image/gif':
+  			$CreatedImage =  imagecreatefromgif($_FILES['ImageFile']['tmp_name']);
+  			break;			
+  		case 'image/jpeg':
+  		case 'image/pjpeg':
+  			$CreatedImage = imagecreatefromjpeg($_FILES['ImageFile']['tmp_name']);
+  			break;
+  		default:
+  			die('Unsupported File!'); //output error and exit
+  	}
+    
+    var_dump($CreatedImage);
+  }
 }
