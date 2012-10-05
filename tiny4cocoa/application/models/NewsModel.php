@@ -32,6 +32,12 @@ class NewsModel extends baseDbModel {
     return $news;
   }
   
+  public function usernameById($id) {
+    
+    $user = $this->fetchArray("SELECT `username` FROM `cocoabbs_members` WHERE `uid`=$id");
+    return $user[0]["username"];
+  } 
+  
   public function toHtml($content) {
 
     $content = str_replace("\r\n","<br/>",$content);

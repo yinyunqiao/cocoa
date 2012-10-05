@@ -1,16 +1,50 @@
+<script type="text/javascript">
+{literal}
+$(document).ready(function() { 
+  $('#UploadForm').on('submit', function(e) {
+    e.preventDefault();
+    $('#SubmitButton').attr('disabled', '');
+    $("#output_ret").html('<div style="padding:10px"><span>Uploading...</span></div>');
+    $(this).ajaxSubmit({
+    });
+  });
+}); 
+
+function afterSuccess(responseText, statusText, xhr, $form)  {
+  
+  $('#UploadForm').resetForm();
+  $('#SubmitButton').removeAttr('disabled');
+  var retObject = JSON.parse(responseText);
+  var smallfilename = retObject.filename + "_s." + retObject.ext;
+  $("#input_filename").val(retObject.filename);
+  $("#input_ext").val(retObject.ext);
+  $("#output_ret").html('<p><p><img src="/newsupload/' + smallfilename + '"/>');
+} 
+{/literal}
+</script>
 <div class="homeadmin_main">
+  <div id="titlephotomanager">
+    <h1>标题照片选择器</h1>
+    <div>
+      <form action="/homeadmin/newsimageupload/" method="post" enctype="multipart/form-data" id="UploadForm">
+        <input name="ImageFile" type="file" />
+        <input type="submit"  id="SubmitButton" value="Upload" />
+      </form>
+      <div id="output" style="display:none;"></div>
+      <div id="output_ret"></div>
+    </div>
+  </div>
   <h1>新文章</h1>
-  <form>
+  <form action="/homeadmin/savearticle/" method="post">
+    <input type="hidden" name="filename" id="input_filename">
+    <input type="hidden" name="ext" id="input_ext">
     <label for="article_title">标题</label><input type="text" name="title" value="" id="article_title">
     <label for="article_desc">摘要</label><textarea id="article_desc" name="content" rows="8" cols="40"></textarea>
-    
     <label for="article_content">内容</label><textarea id="article_content" name="content" rows="8" cols="40"></textarea>
+    <div>
+      <input type="submit" value="发 布">
+    </div>
   </form>
-  <form action="/homeadmin/newimageupload" method="post" enctype="multipart/form-data" id="UploadForm">
-  <input name="ImageFile" type="file" />
-  <input type="submit"  id="SubmitButton" value="Upload" />
-  </form>
-  <div id="output"></div>
 </div>
 <div class="homeadmin_sidebar">
   <ul class="menu">

@@ -1,5 +1,5 @@
 <?php
-class DiscuzModel extends baseDbModel {
+class DiscuzModel {
   
   protected $path;
   protected $cookie;
@@ -30,7 +30,8 @@ class DiscuzModel extends baseDbModel {
     list($discuz_pw, $discuz_secques, $discuz_uid) = empty($this->cookie['auth']) ? array('', '', 0) : $this->daddslashes(explode("\t", $this->authcode($this->cookie['auth'], 'DECODE')), 1);
     return $discuz_uid;
   }
-    
+  
+  
   function authcode($string, $operation = 'DECODE', $key = '', $expiry = 0) {
 
     $ckey_length = 4;
@@ -93,5 +94,6 @@ class DiscuzModel extends baseDbModel {
       }
     }
     return $string;
-  }    
+  }
+  
 }

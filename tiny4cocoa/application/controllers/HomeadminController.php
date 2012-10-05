@@ -1,13 +1,13 @@
 <?php
 class HomeadminController extends baseController
 {
- 
-	public function __construct($pathinfo,$controller) {
+  public $userid;
+  public function __construct($pathinfo,$controller) {
 		
     parent::__construct($pathinfo,$controller);
     $discuz = new DiscuzModel();
-    $userid = $discuz->checklogin();
-    if($userid!=2) {
+    $this->userid = $discuz->checklogin();
+    if($this->userid!=2) {
       header ('HTTP/1.1 301 Moved Permanently');
       header('location: /home/');
     }
@@ -28,34 +28,43 @@ class HomeadminController extends baseController
     $this->display();
   } 
   
-  public function newimageuploadAction() {
+  public function savearticleAction() {
     
-    if(!isset($_POST))
-      die();
-  	if(!isset($_FILES['ImageFile']) || !is_uploaded_file($_FILES['ImageFile']['tmp_name']))
-  	{
-  			die('Something went wrong with Upload!');
-  	}
-  	$ImageName 		= str_replace(' ','-',strtolower($_FILES['ImageFile']['name']));
-  	$ImageSize 		= $_FILES['ImageFile']['size'];
-  	$TempSrc	 	= $_FILES['ImageFile']['tmp_name']; 
-  	$ImageType	 	= $_FILES['ImageFile']['type'];
-  	switch(strtolower($ImageType))
-  	{
-  		case 'image/png':
-  			$CreatedImage =  imagecreatefrompng($_FILES['ImageFile']['tmp_name']);
-  			break;
-  		case 'image/gif':
-  			$CreatedImage =  imagecreatefromgif($_FILES['ImageFile']['tmp_name']);
-  			break;			
-  		case 'image/jpeg':
-  		case 'image/pjpeg':
-  			$CreatedImage = imagecreatefromjpeg($_FILES['ImageFile']['tmp_name']);
-  			break;
-  		default:
-  			die('Unsupported File!'); //output error and exit
-  	}
+    if(empty($_POST))
+      header("location:/homeadmin/");
     
-    var_dump($CreatedImage);
+    $news = new NewsModel();
+    
+    $data = $_POST;
+    $data["createdate"] = time();
+    $data["updatedate"] = time();
+    $username = $news->usernameById($this->userid);
+    $data["posterid"] = $this->userid;
+    $data["poster"] = $username;
+    $news->select("cocoacms_news")->insert($data);
+    header("location:/homeadmin/");
+  }
+  
+  public function newsimageuploadAction() {
+    
+    /**
+      给图片起名字
+      把图片转换成合适的尺寸/保存
+      给出预览图片
+    */
+    $discuzPath = dirname(dirname(dirname(dirname(__FILE__))));
+    $savepath = "$discuzPath/newsupload/";
+    $upload = new UploadModel();
+    $filename = $upload->filename;
+    if(!$filename)
+      die('上传失败，请稍后重试！');
+    $sizes = array(
+      array("s",220,146),
+      array("m",300,-1)
+    );
+    $upload->cropAndSave($sizes,$savepath);
+    $ret["filename"] = $filename;
+    $ret["ext"] = $upload->ext;
+    echo json_encode($ret);
   }
 }

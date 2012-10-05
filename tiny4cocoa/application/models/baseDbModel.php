@@ -90,7 +90,10 @@ class baseDbModel extends dbConnModel {
 	public function fetchOne() {
 
 		$sql=$this->genSelectSQL();
+    var_dump($sql);
 		$result=mysql_query($sql);
+    var_dump($result);
+    var_dump(mysql_error());
 		if(!$result)
 			return null;
 		if ($row = mysql_fetch_assoc($result)) {
