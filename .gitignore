@@ -7,3 +7,4 @@ yc_templates_c
 .DS_Store
 sitemap.xml.gz
 uc_server/data
+newsupload/*

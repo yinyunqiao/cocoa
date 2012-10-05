@@ -2,7 +2,9 @@
   <h1 class="title">{$news.title}</h1>
   <p class="desc">by {$news.poster} {$news.createtime}</p>
   <div class="content">
-    <img class="pic" src="{$news.pic1}">
+    <a href="/newsupload/{$news.filename}.{$news.ext}" target="_blank">
+      <img class="pic" src="/newsupload/{$news.filename}_m.{$news.ext}" width="300">
+    </a>
     {$news.content}
   </div>
 </div>
