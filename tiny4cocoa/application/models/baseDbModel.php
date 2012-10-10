@@ -90,10 +90,7 @@ class baseDbModel extends dbConnModel {
 	public function fetchOne() {
 
 		$sql=$this->genSelectSQL();
-    var_dump($sql);
 		$result=mysql_query($sql);
-    var_dump($result);
-    var_dump(mysql_error());
 		if(!$result)
 			return null;
 		if ($row = mysql_fetch_assoc($result)) {
@@ -131,7 +128,6 @@ class baseDbModel extends dbConnModel {
 	public function insert($data) {
 		
 		$table=$this->_table;
-	  var_dump($table);
 		if($table=="")
 			return 0;
 
@@ -147,7 +143,6 @@ class baseDbModel extends dbConnModel {
 		$sql="INSERT INTO $table ($keys)VALUES($vals);";
 		
 		$result = mysql_query($sql);
-    var_dump($sql);
 		if(!$result)
 		  return mysql_error();
 		return mysql_insert_id();
