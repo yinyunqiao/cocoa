@@ -19,7 +19,15 @@ class HomeController extends baseController
   
   public function sAction() {
   	
+    
     $index = $this->intVal(3);
+    $other = $this->strVal(4);
+    if(count($this->__uriparts)>5 || !empty($other)) {
+      
+      header ('HTTP/1.1 301 Moved Permanently');
+      header("location: /home/s/$index/");
+    }
+      
     $allModel = new AllModel();
     $threads = $allModel->allThreads(1,10);
     
