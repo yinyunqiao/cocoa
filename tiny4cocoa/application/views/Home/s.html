@@ -2,6 +2,7 @@
 {literal}
 $(document).ready(function() {
   
+  $("#commentform").validate();
   $("#nonamecheck").change(function(){
     if($(this).attr('checked')) {
       $(".nonamename").show();
@@ -50,9 +51,9 @@ $(document).ready(function() {
       <h4 class="commentscount">{$comments|@count}条评论</h4>
     {/if}
     <div class="commentformdiv">
-      <form action="/home/savecomment/" method="post">
+      <form action="/home/savecomment/" method="post" id="commentform">
         <input type="hidden" name="newsid" value="{$news.id}">
-        <input type="hidden" name="userid" value="{$userid}">
+        <input type="hidden" name="posterid" value="{$userid}">
         {if $userid == 0}        
           <img class="postericon" src="/uc_server/images/noavatar_small.gif">
         {else}
@@ -62,13 +63,13 @@ $(document).ready(function() {
           <p>
             <span class="namename">{$username}</span>
             <span class="nonamename" {if $userid != 0}style="display:none;"{/if}>
-              <input name="poster" value="{$nonamename}">
+              <input name="poster" value="{$nonamename}" required>
             </span>:
             <span class="nonamename" style="color:green;{if $userid != 0}display:none;{/if}">
               *你可以换成你喜欢的昵称
             </span>
           </p>
-          <textarea class="commenttextarea"></textarea>
+          <textarea class="commenttextarea" required minlength="5" name="content"></textarea>
           <div style="padding:10px;text-align:right;">
             {if $userid != 0}
               <lable for="nonamecheck">匿名发布</label><input type="checkbox" name="nonamecheck" id="nonamecheck">
@@ -87,11 +88,11 @@ $(document).ready(function() {
         {if $comment.posterid==0 || $comment.hidename == 1}             
           <img class="postericon" src="/uc_server/images/noavatar_small.gif">
         {else}
-          <img class="postericon" src="/uc_server/avatar.php?uid={$comment.posterid}&size=small"/>
+          <img class="postericon" src="http://tiny4cocoa.com/uc_server/avatar.php?uid={$comment.posterid}&size=small"/>
         {/if}
         <div class="comment_content">
           <p>
-            {if $comment.hidename == 1}
+            {if $comment.hidename == 1 || $comment.posterid == 0}
               <span class="hidename">{$comment.poster} (游客)</span>
             {else}
               <a href="">

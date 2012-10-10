@@ -18,6 +18,8 @@ class StaticController extends tinyApp_Controller
     $path=$this->_pathinfo['base'].'/public/js';
 		
     include("$path/jquery/jquery.min.js");
+    include("$path/jquery/jquery.validate.min.js");
+    
     include("$path/jquery/jquery.form.js");
     
     include("$path/upload/upload.js");

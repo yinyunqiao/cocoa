@@ -54,10 +54,15 @@ class HomeController extends baseController
     $this->setTitle($news["title"]);
     $this->display();
   }
-  
+
   public function savecommentAction() {
     
-    var_dump($_POST);
+    if(empty($_POST["content"])) {
+      header ('HTTP/1.1 301 Moved Permanently');
+      header("location: /home/");
+    }
+    $newsModel = new NewsModel();
+    $newsModel->saveComment();
   }
 }
 

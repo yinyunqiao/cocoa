@@ -49,7 +49,39 @@ class NewsModel extends baseDbModel {
     }
     return $comments;
   }
+  /*
+  array(5) {
+    ["newsid"]=>
+    string(1) "3"
+    ["userid"]=>
+    string(1) "2"
+    ["poster"]=>
+    string(16) "匿名用户9842"
+    ["content"]=>
+    string(33) "写的太好了，真是太少了"
+    ["nonamecheck"]=>
+    string(2) "on"
+  }
+  */
   
+  public function saveComment() {
+    
+    
+    $data["newsid"] = $_POST["newsid"];
+    if(empty($_POST["nonamecheck"]))
+      $data["hidename"] = 0;
+    else
+      $data["hidename"] = 1;
+    $data["content"] = $_POST["content"];
+    $data["posterid"] = $_POST["posterid"];
+    $data["poster"] = $_POST["poster"];
+    if($data["posterid"]>0 && $data["hidename"]==0) {
+      $data["poster"] = $this->usernameById($data["posterid"]);
+    }
+    $data["createtime"] = time();
+    $this->select("cocoacms_comments")->insert($data);
+    header("location:/home/s/$data[newsid]/");
+  }
   public function usernameById($id) {
     
     $user = $this->fetchArray("SELECT `username` FROM `cocoabbs_members` WHERE `uid`=$id");
