@@ -15,6 +15,9 @@ class HomeadminController extends baseController
   
   public function indexAction() {
     
+    $newsModel = new NewsModel();
+    $news = $newsModel->news(1,10);
+    $this->_mainContent->assign("news",$news);
     $this->display();
   }
   
@@ -23,6 +26,17 @@ class HomeadminController extends baseController
     $this->display();
   }
   
+  public function editarticleAction() {
+    
+    $index = $this->intVal(3);
+    $newsModel = new NewsModel();
+    $news = $newsModel->oneNews($index);
+    $this->_mainContent->assign("threads",$threads);
+    $this->_mainContent->assign("news",$news);
+    
+    $this->viewFile = "Homeadmin/newarticle.html";
+    $this->display();
+  }
   public function articlesAction() {
     
     $this->display();

@@ -18,7 +18,6 @@ class HomeController extends baseController
   }
   
   public function sAction() {
-  	
     
     $index = $this->intVal(3);
     $other = $this->strVal(4);
@@ -28,15 +27,37 @@ class HomeController extends baseController
       header("location: /home/s/$index/");
     }
       
+    $discuz = new DiscuzModel();
     $allModel = new AllModel();
-    $threads = $allModel->allThreads(1,10);
-    
     $newsModel = new NewsModel();
+    
+    $threads = $allModel->allThreads(1,10);
+    $userid = $discuz->checklogin();
+    $username = $newsModel->usernameById($userid);
     $news = $newsModel->oneNews($index);
+    $comments = $newsModel->commentsByNewsId($index);
+    
+    $nonamename = $_COOKIE["nonamename"];
+    if(empty($nonamename)) {
+      
+      $nonamename = "匿名用户" . rand(0,10000);
+      setcookie("nonamename", $nonamename, time()+3600*24*7*2);
+    }
+    
     $this->_mainContent->assign("threads",$threads);
     $this->_mainContent->assign("news",$news);
+    $this->_mainContent->assign("comments",$comments);
+    $this->_mainContent->assign("userid",$userid);
+    $this->_mainContent->assign("username",$username);
+    $this->_mainContent->assign("nonamename",$nonamename);
+    
     $this->setTitle($news["title"]);
     $this->display();
+  }
+  
+  public function savecommentAction() {
+    
+    var_dump($_POST);
   }
 }
 

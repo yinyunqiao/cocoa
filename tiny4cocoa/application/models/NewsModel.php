@@ -32,6 +32,24 @@ class NewsModel extends baseDbModel {
     return $news;
   }
   
+  public function commentsByNewsId($id) {
+    
+    $sql =
+      "SELECT * FROM `cocoacms_comments`
+      WHERE `newsid` = $id 
+      ORDER BY `id`;";
+    $ret = $this->fetchArray($sql);
+    if(count($ret)==0)
+      return $ret;
+    $comments = array();
+    foreach($ret as $comment) {
+      
+      $comment["createtime"] = $this->countTime($comment["createtime"]);
+      $comments[] = $comment;
+    }
+    return $comments;
+  }
+  
   public function usernameById($id) {
     
     $user = $this->fetchArray("SELECT `username` FROM `cocoabbs_members` WHERE `uid`=$id");

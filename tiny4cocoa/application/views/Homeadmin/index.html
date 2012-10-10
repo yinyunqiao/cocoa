@@ -1,12 +1,29 @@
 <div class="homeadmin_main">
+	{foreach from=$news item=item}
+	<div class="newsblock">
+		<a href="/home/s/{$item.id}/" target="_blank"><img class="pic" src="/newsupload/{$item.filename}_s.{$item.ext}"></a>
+		<div class="content">
+			<h3><a href="/home/s/{$item.id}/" target="_blank">{$item.title}</a></h3>
+			<div class="authinfo">
+        {$item.poster} 
+        发表于 <span class="timestamp">{$item.createtime}</span>
+        <a href="/homeadmin/editarticle/{$item.id}/">编辑</a>
+      </div>
+			<div>
+        {$item.desc}
+			</div>
+		</div>
+		<div style="clear:both"></div>
+	</div>
+	{/foreach}
 </div>
 <div class="homeadmin_sidebar">
   <ul class="menu">
     <li>文章管理</li>
     <li>
       <ul class="menu">
+        <li><a href="/homeadmin/">文章列表</a></li>
         <li><a href="/homeadmin/newarticle">新建文章</a></li>
-        <li><a href="/homeadmin/articles">文章列表</a></li>
       </li>
     </ul>
   </ul>

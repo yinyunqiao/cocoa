@@ -1,3 +1,24 @@
+<script type="text/javascript">
+{literal}
+$(document).ready(function() {
+  
+  $("#nonamecheck").change(function(){
+    if($(this).attr('checked')) {
+      $(".nonamename").show();
+      $(".namename").css("text-decoration","line-through");
+      $(".namename").css("color","red");
+    }
+    else {
+      
+      $(".nonamename").hide();
+      $(".namename").css("text-decoration","none");
+      $(".namename").css("color","black");
+    }
+  });
+});
+{/literal}
+</script>
+
 <div class="news_content">
   <h1 class="title">{$news.title}</h1>
   <p class="desc">by {$news.poster} {$news.createtime}</p>
@@ -21,6 +42,69 @@
     src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
     </script>
     </p>
+  </div>
+  <div>
+    {if $comments|@count == 0}
+      <h4 class="commentscount">暂无评论</h4>
+    {else}
+      <h4 class="commentscount">{$comments|@count}条评论</h4>
+    {/if}
+    <div class="commentformdiv">
+      <form action="/home/savecomment/" method="post">
+        <input type="hidden" name="newsid" value="{$news.id}">
+        <input type="hidden" name="userid" value="{$userid}">
+        {if $userid == 0}        
+          <img class="postericon" src="/uc_server/images/noavatar_small.gif">
+        {else}
+          <img class="postericon" src="/uc_server/avatar.php?uid={$userid}&size=small"/>
+        {/if}
+        <div class="commentformcontent">
+          <p>
+            <span class="namename">{$username}</span>
+            <span class="nonamename" {if $userid != 0}style="display:none;"{/if}>
+              <input name="poster" value="{$nonamename}">
+            </span>:
+            <span class="nonamename" style="color:green;{if $userid != 0}display:none;{/if}">
+              *你可以换成你喜欢的昵称
+            </span>
+          </p>
+          <textarea class="commenttextarea"></textarea>
+          <div style="padding:10px;text-align:right;">
+            {if $userid != 0}
+              <lable for="nonamecheck">匿名发布</label><input type="checkbox" name="nonamecheck" id="nonamecheck">
+            {/if}
+            <input type="submit" value="回 复" style="font-size:25px;">
+            {if $userid == 0}
+            或者 <a href="/logging.php?action=login">先登录</a>
+            {/if}
+          </div>
+        </div>
+        <div style="clear:both;"></div>
+      </form>
+    </div>
+    {foreach from=$comments item=comment}
+      <div class="comment">
+        {if $comment.posterid==0 || $comment.hidename == 1}             
+          <img class="postericon" src="/uc_server/images/noavatar_small.gif">
+        {else}
+          <img class="postericon" src="/uc_server/avatar.php?uid={$comment.posterid}&size=small"/>
+        {/if}
+        <div class="comment_content">
+          <p>
+            {if $comment.hidename == 1}
+              <span class="hidename">{$comment.poster} (游客)</span>
+            {else}
+              <a href="">
+                {$comment.poster}
+              </a>
+            {/if}
+             @ {$comment.createtime}
+          </p>
+          {$comment.content}
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+    {/foreach}
   </div>
 </div>
 
