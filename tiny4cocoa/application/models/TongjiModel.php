@@ -1,14 +1,13 @@
 <?php
-
 require_once  dirname(dirname(dirname(__FILE__))) . '/lib/gapc/src/Google_Client.php';
 require_once dirname(dirname(dirname(__FILE__))) . '/lib/gapc/src/contrib/Google_AnalyticsService.php';
-
 
 class TongjiModel extends baseDbModel {
   
   public $callbackurl;
   public function __construct() {
     
+    parent::__construct();
     $this->callbackurl = 'http://tiny4cocoa.com/homeadmin/settongji/';
   }
   public function check($code) {
