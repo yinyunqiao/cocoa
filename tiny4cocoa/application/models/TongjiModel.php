@@ -42,7 +42,8 @@ class TongjiModel extends baseDbModel {
     if ($token) {
       try {
         $client->setAccessToken($token);
-      }catch (Exception $e) {      
+      }catch (Exception $e) {
+        var_dump($e);    
         $this->kv_clear($k);
       }
     }
