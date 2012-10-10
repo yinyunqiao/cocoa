@@ -151,6 +151,7 @@ class TongjiModel extends baseDbModel {
     $time = time();
     $sql = "INSERT INTO `cocoacoms_kv` (`k`,`v`,`updatetime`) 
       VALUES ('$key','$value','$time');";
+    var_dump($sql);
     $this->run($sql);
   }
   
