@@ -44,7 +44,6 @@ class TongjiModel extends baseDbModel {
       try {
         $client->setAccessToken($token);
       }catch (Exception $e) {
-        var_dump($e);    
         $this->kv_clear($k);
       }
     }
@@ -152,7 +151,6 @@ class TongjiModel extends baseDbModel {
     $time = time();
     $sql = "INSERT INTO `cocoacoms_kv` (`k`,`v`,`updatetime`) 
       VALUES ('$key','$value','$time');";
-    var_dump($sql);
     $this->run($sql);
   }
   
