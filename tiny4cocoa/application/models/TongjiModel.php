@@ -3,16 +3,20 @@
 require_once  dirname(dirname(dirname(__FILE__))) . '/lib/gapc/src/Google_Client.php';
 require_once dirname(dirname(dirname(__FILE__))) . '/lib/gapc/src/contrib/Google_AnalyticsService.php';
 
-$tongjimodel_callback_url = 'http://tiny4cocoa.com/homeadmin/settongji/';
 
 class TongjiModel extends baseDbModel {
   
+  public $callbackurl;
+  public function __construct() {
+    
+    $this->callbackurl = 'http://tiny4cocoa.com/homeadmin/settongji/';
+  }
   public function check($code) {
     
     $client = new Google_Client();
     $client->setClientId('70232315343-0nikjc44hcpfk5qt93pe0e21sc2u3ntm.apps.googleusercontent.com');
     $client->setClientSecret('8I4c4toq6hYE6i3BhHhjRrIc');
-    $client->setRedirectUri($tongjimodel_callback_url);
+    $client->setRedirectUri($this->callbackurl);
     $client->setDeveloperKey('AIzaSyBE9EKeqtgJntWuNbDekaPSNvu9ZalXFpE');
     $client->setScopes(array('https://www.googleapis.com/auth/analytics.readonly'));
     $client->setUseObjects(true);
@@ -76,7 +80,7 @@ class TongjiModel extends baseDbModel {
     $client = new Google_Client();
     $client->setClientId('70232315343-0nikjc44hcpfk5qt93pe0e21sc2u3ntm.apps.googleusercontent.com');
     $client->setClientSecret('8I4c4toq6hYE6i3BhHhjRrIc');
-    $client->setRedirectUri($tongjimodel_callback_url);
+    $client->setRedirectUri($this->callbackurl);
     $client->setDeveloperKey('AIzaSyBE9EKeqtgJntWuNbDekaPSNvu9ZalXFpE');
     $client->setScopes(array('https://www.googleapis.com/auth/analytics.readonly'));
     $client->setUseObjects(true);
