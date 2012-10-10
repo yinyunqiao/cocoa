@@ -150,7 +150,6 @@ class TongjiModel extends baseDbModel {
     $sql = "INSERT INTO `cocoacoms_kv` (`k`,`v`,`updatetime`) 
       VALUES ('$key','$value','$time');";
     $this->run($sql);
-    var_dump(mysql_error());
   }
   
   public function kv_clear($key) {

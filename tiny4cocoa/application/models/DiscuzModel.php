@@ -7,6 +7,8 @@ class DiscuzModel {
   protected $auth_key;
   
 	public function __construct() {
+    
+    parent::__construct();
     define('MAGIC_QUOTES_GPC', get_magic_quotes_gpc());
     
     $this->path = dirname(dirname(dirname(dirname(__FILE__))));

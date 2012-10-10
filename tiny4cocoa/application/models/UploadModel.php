@@ -9,8 +9,10 @@ class UploadModel extends baseDbModel {
   public $width;
   public $height;
 	public $quality;
+  
   public function __construct() {
     
+    parent::__construct();
   	if(!isset($_FILES['ImageFile']) || !is_uploaded_file($_FILES['ImageFile']['tmp_name']))
   			return;
     $filename = NULL;
