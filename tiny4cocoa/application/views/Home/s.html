@@ -72,10 +72,9 @@ $(document).ready(function() {
           <textarea class="commenttextarea" required minlength="5" name="content"></textarea>
           <div style="padding:10px;text-align:right;">
             {if $userid != 0}
-              <lable for="nonamecheck">匿名发布</label><input type="checkbox" name="nonamecheck" id="nonamecheck">
-            {/if}
-            <input type="submit" value="回 复" style="font-size:25px;">
-            {if $userid == 0}
+              <lable for="nonamecheck">装游客</label><input type="checkbox" name="nonamecheck" id="nonamecheck"> <input type="submit" value="回 复" style="font-size:25px;">
+            {else}
+            <input type="submit" value="游客回复" style="font-size:25px;">
             或者 <a href="/logging.php?action=login">先登录</a>
             {/if}
           </div>
