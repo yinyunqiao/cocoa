@@ -10,7 +10,7 @@
         {if $item.commentscount>0}
           <a href="/home/s/{$item.id}/">{$item.commentscount}个回复</a>
         {else}
-          暂无回复    
+          <a href="/home/s/{$item.id}/">暂无回复</a>
         {/if}
       </div>
 			<div>{$item.desc}
