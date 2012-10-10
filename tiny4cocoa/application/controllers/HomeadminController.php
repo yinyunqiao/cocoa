@@ -37,6 +37,7 @@ class HomeadminController extends baseController
     $this->viewFile = "Homeadmin/newarticle.html";
     $this->display();
   }
+  
   public function articlesAction() {
     
     $this->display();
@@ -80,5 +81,11 @@ class HomeadminController extends baseController
     $ret["filename"] = $filename;
     $ret["ext"] = $upload->ext;
     echo json_encode($ret);
+  }
+  
+  public function settongjiAction() {
+    
+    $tongji = new TongjiModel();
+    $tongji->check($_GET["code"]);
   }
 }

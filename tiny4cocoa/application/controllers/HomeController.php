@@ -26,10 +26,12 @@ class HomeController extends baseController
       header ('HTTP/1.1 301 Moved Permanently');
       header("location: /home/s/$index/");
     }
-      
+    
     $discuz = new DiscuzModel();
     $allModel = new AllModel();
     $newsModel = new NewsModel();
+    $tongji = new TongjiModel();
+    $data = $tongji->data();
     
     $threads = $allModel->allThreads(1,10);
     $userid = $discuz->checklogin();
@@ -50,6 +52,7 @@ class HomeController extends baseController
     $this->_mainContent->assign("userid",$userid);
     $this->_mainContent->assign("username",$username);
     $this->_mainContent->assign("nonamename",$nonamename);
+    $this->_mainContent->assign("pageview",$data[$index]);
     
     $this->setTitle($news["title"]);
     $this->display();

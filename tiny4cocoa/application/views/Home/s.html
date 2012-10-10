@@ -22,7 +22,7 @@ $(document).ready(function() {
 
 <div class="news_content">
   <h1 class="title">{$news.title}</h1>
-  <p class="desc">by {$news.poster} {$news.createtime}</p>
+  <p class="desc">by {$news.poster} {$news.createtime} {$pageview}次浏览</p>
   <div class="content">
     <a href="/newsupload/{$news.filename}.{$news.ext}" target="_blank">
       <img class="pic" src="/newsupload/{$news.filename}_m.{$news.ext}" width="300">
