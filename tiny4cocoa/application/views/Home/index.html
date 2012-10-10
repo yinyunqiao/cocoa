@@ -4,7 +4,15 @@
 		<a href="/home/s/{$item.id}/"><img class="pic" src="/newsupload/{$item.filename}_s.{$item.ext}"></a>
 		<div class="content">
 			<h3><a href="/home/s/{$item.id}/">{$item.title}</a></h3>
-			<div class="authinfo">{$item.poster} 发表于 <span class="timestamp">{$item.createtime}</span></div>
+			<div class="authinfo">
+        {$item.poster} 发表于 
+        <span class="timestamp">{$item.createtime}</span>
+        {if $item.commentscount>0}
+          <a href="/home/s/{$item.id}/">{$item.commentscount}个回复</a>
+        {else}
+          暂无回复    
+        {/if}
+      </div>
 			<div>{$item.desc}
 			</div>
 		</div>

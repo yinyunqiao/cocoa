@@ -49,24 +49,9 @@ class NewsModel extends baseDbModel {
     }
     return $comments;
   }
-  /*
-  array(5) {
-    ["newsid"]=>
-    string(1) "3"
-    ["userid"]=>
-    string(1) "2"
-    ["poster"]=>
-    string(16) "匿名用户9842"
-    ["content"]=>
-    string(33) "写的太好了，真是太少了"
-    ["nonamecheck"]=>
-    string(2) "on"
-  }
-  */
   
   public function saveComment() {
-    
-    
+
     $data["newsid"] = $_POST["newsid"];
     if(empty($_POST["nonamecheck"]))
       $data["hidename"] = 0;
@@ -80,7 +65,15 @@ class NewsModel extends baseDbModel {
     }
     $data["createtime"] = time();
     $this->select("cocoacms_comments")->insert($data);
+    $this->updateCommentsCount($data["newsid"]);
     header("location:/home/s/$data[newsid]/");
+  }
+  
+  public function updateCommentsCount($newsid) {
+    
+    $sql = "UPDATE `cocoacms_news` set `commentscount` =(
+SELECT count(*) FROM `cocoacms_comments` WHERE `newsid` = $newsid) WHERE `id` = $newsid;";
+    $this->run($sql);
   }
   public function usernameById($id) {
     
