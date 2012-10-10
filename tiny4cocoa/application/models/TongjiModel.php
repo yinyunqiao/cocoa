@@ -35,7 +35,6 @@ class TongjiModel extends baseDbModel {
     if (isset($code)) {
       $client->authenticate();
       $token = $client->getAccessToken();
-      var_dump($token);
       $this->kv_set($k,$token);
       header('Location: /homeadmin/settongji' );
     }
