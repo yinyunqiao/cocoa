@@ -4,14 +4,14 @@ require_once dirname(dirname(dirname(__FILE__))) . '/lib/gapc/src/contrib/Google
 
 class TongjiModel extends baseDbModel {
   
-  public $callbackurl;
+  private $callbackurl;
+  private $client;
+  private $service;
+  
   public function __construct() {
     
     parent::__construct();
     $this->callbackurl = 'http://tiny4cocoa.com/homeadmin/settongji/';
-  }
-  public function check($code) {
-    
     $client = new Google_Client();
     $client->setClientId('70232315343-0nikjc44hcpfk5qt93pe0e21sc2u3ntm.apps.googleusercontent.com');
     $client->setClientSecret('8I4c4toq6hYE6i3BhHhjRrIc');
@@ -20,6 +20,13 @@ class TongjiModel extends baseDbModel {
     $client->setScopes(array('https://www.googleapis.com/auth/analytics.readonly'));
     $client->setUseObjects(true);
     $service = new Google_AnalyticsService($client);
+    $this->client = $client;
+    $this->service = $service;
+  }
+  public function check($code) {
+    
+    $client = $this->client;
+    $service = $this->service;
     
     $k = "googletoken";
     $ret = $this->kv_get($k);
@@ -57,9 +64,9 @@ class TongjiModel extends baseDbModel {
     }
   }
   
-  public function data() {
+  public function data($range) {
 
-    $key = "pageviews";
+    $key = "pageviews_".$range;
     $ret = $this->kv_get($key);
     if($ret) {
       $time = $ret["updatetime"];
@@ -68,23 +75,43 @@ class TongjiModel extends baseDbModel {
     if(!$data || time() - $time>5*60) {
       
       $this->kv_clear($key);
-      $data = $this->rawdata();
+      $data = $this->rawdata($range);
       $this->kv_set($key,serialize($data));
     }
     return $data;
   }
   
-  public function rawdata() {
+  public function hotnews($size) {
     
-    $client = new Google_Client();
-    $client->setClientId('70232315343-0nikjc44hcpfk5qt93pe0e21sc2u3ntm.apps.googleusercontent.com');
-    $client->setClientSecret('8I4c4toq6hYE6i3BhHhjRrIc');
-    $client->setRedirectUri($this->callbackurl);
-    $client->setDeveloperKey('AIzaSyBE9EKeqtgJntWuNbDekaPSNvu9ZalXFpE');
-    $client->setScopes(array('https://www.googleapis.com/auth/analytics.readonly'));
-    $client->setUseObjects(true);
-    $service = new Google_AnalyticsService($client);
+    $data7day = $this->data("7day");
+    arsort($data7day);
+    $ids = array_keys($data7day);
+    $idsStr = join(",",$ids);
+    $sql = "SELECT `id`,`title` FROM `cocoacms_news` WHERE `id` in ($idsStr);";
+    $ret = $this->select("cocoacms_news")->fields("`id`,`title`")->where("`id` in ($idsStr)")->fetchAll();
+    $hotnews = array();
+    $news = array();
+    foreach($ret as $line) {
+        
+      $id = $line["id"];
+      $news[$id]= $line["title"];
+    }
+    foreach($ids as $id) {
+      if($news[$id]) {
+        
+        $line["id"] = $id;
+        $line["title"] = $news[$id];
+        $hotnews[] = $line;
+      }
+    }
+    return $hotnews;
+  }
+  
+  public function rawdata($range) {
     
+    $client = $this->client;
+    $service = $this->service;
+
     $k = "googletoken";
     $ret = $this->kv_get($k);
     if($ret)
@@ -107,10 +134,16 @@ class TongjiModel extends baseDbModel {
       $token = $client->getAccessToken();
       $this->kv_set($k,$token);
       
-      $date = date("Y-m-d",time()+60*60*24+2);
+      if($range == "all")
+        $bdate = "2012-01-01";
+      else if($range == "7day")
+        $bdate = date("Y-m-d",time()-60*60*24*7);
+      else
+        $bdate = "2012-01-01";
+      $date = date("Y-m-d",time()+60*60*24*2);
   	  $results = $service->data_ga->get(
           'ga:' . "39124819",
-          '2012-01-01',
+          $bdate,
           $date,
           'ga:pageviews',
           array(

@@ -31,8 +31,11 @@ class HomeController extends baseController
     $allModel = new AllModel();
     $newsModel = new NewsModel();
     $tongji = new TongjiModel();
-    $data = $tongji->data();
     
+    
+    $dataall = $tongji->data("all");
+    $hotnews = $tongji->hotnews(10);
+      
     $threads = $allModel->allThreads(1,10);
     $userid = $discuz->checklogin();
     $username = $newsModel->usernameById($userid);
@@ -52,7 +55,8 @@ class HomeController extends baseController
     $this->_mainContent->assign("userid",$userid);
     $this->_mainContent->assign("username",$username);
     $this->_mainContent->assign("nonamename",$nonamename);
-    $this->_mainContent->assign("pageview",$data[$index]);
+    $this->_mainContent->assign("pageview",$dataall[$index]);
+    $this->_mainContent->assign("hotnews",$hotnews);
     
     $this->setTitle($news["title"]);
     $this->display();

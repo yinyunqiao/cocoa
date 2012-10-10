@@ -129,12 +129,12 @@ $(document).ready(function() {
 </div>
 
 <div class="news_sidebar">
-  <div class="block_title">论坛最新更新</div>
+  <div class="block_title">热门文章</div>
   <ul>
-    {foreach from=$threads item=thread}
-    <a href="/thread-{$thread.tid}-1-1.html" target="_blank">
+    {foreach from=$hotnews item=news}
+    <a href="/home/s/{$news.id}/" target="_blank">
       <li class="newstitle">
-        {$thread.subject}
+        {$news.title}
         </li>
       </a>
       {/foreach}
@@ -151,5 +151,16 @@ $(document).ready(function() {
     <script type="text/javascript"
     src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
   </script>
+  
+  <div class="block_title">论坛最新更新</div>
+  <ul>
+    {foreach from=$threads item=thread}
+    <a href="/thread-{$thread.tid}-1-1.html" target="_blank">
+      <li class="newstitle">
+        {$thread.subject}
+        </li>
+      </a>
+      {/foreach}
+    </ul>
 </div>
 
