@@ -68,7 +68,7 @@ $(document).ready(function() {
     {if $comments|@count == 0}
       <h4 class="commentscount">暂无评论</h4>
     {else}
-      <h4 class="commentscount">{$comments|@count}条评论</h4>
+      <h4 class="commentscount">{$comments|@count}个评论</h4>
     {/if}
     <div class="commentformdiv">
       <form action="/home/savecomment/" method="post" id="commentform">
@@ -92,9 +92,9 @@ $(document).ready(function() {
           <textarea class="commenttextarea" required minlength="5" name="content"></textarea>
           <div style="padding:10px;text-align:right;">
             {if $userid != 0}
-              <lable for="nonamecheck">装游客</label><input type="checkbox" name="nonamecheck" id="nonamecheck"> <input type="submit" value="回 复" style="font-size:25px;">
+              <lable for="nonamecheck">装游客</label><input type="checkbox" name="nonamecheck" id="nonamecheck"> <input type="submit" value="评 论" style="font-size:25px;">
             {else}
-            <input type="submit" value="游客回复" style="font-size:25px;">
+            <input type="submit" value="游客评论" style="font-size:25px;">
             或者 <a href="/logging.php?action=login">先登录</a>
             {/if}
           </div>

@@ -8,9 +8,9 @@
         {$item.poster} 发表于 
         <span class="timestamp">{$item.createtime}</span>
         {if $item.commentscount>0}
-          <a href="/home/s/{$item.id}/">{$item.commentscount}个回复</a>
+          <a href="/home/s/{$item.id}/">{$item.commentscount}个评论</a>
         {else}
-          <a href="/home/s/{$item.id}/">暂无回复</a>
+          <a href="/home/s/{$item.id}/">暂无评论</a>
         {/if}
       </div>
 			<div>{$item.desc}
@@ -28,7 +28,7 @@
 <a href="/thread-{$thread.tid}-1-1.html" target="_blank">
 <li class="newstitle">
 		{$thread.subject}
-		<p class="threadfootnote">{$thread.lastposter}回复  [{$thread.replies}/{$thread.views}]<p>
+		<p class="threadfootnote">{$thread.lastposter}评论  [{$thread.replies}/{$thread.views}]<p>
 </li>
 </a>
 {/foreach}
