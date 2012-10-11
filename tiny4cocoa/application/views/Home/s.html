@@ -21,7 +21,7 @@ $(document).ready(function() {
 </script>
 
 <div class="news_content" itemscope itemtype="http://schema.org/Article">
-  <meta itemprop="thumbnailUrl" content="/newsupload/{$news.filename}_s.{$news.ext}"/>
+  <meta itemprop="thumbnailUrl" content="http://tiny4cocoa.com/newsupload/{$news.filename}_s.{$news.ext}"/>
   <h1 class="title" itemprop="name">{$news.title}</h1>
   <p class="desc">by <span itemprop="author">{$news.poster}</span> {$news.createtime} {$pageview}次浏览</p>
   <div class="content">
