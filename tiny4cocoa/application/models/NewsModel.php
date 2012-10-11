@@ -45,6 +45,7 @@ class NewsModel extends baseDbModel {
     foreach($ret as $comment) {
       
       $comment["createtime"] = $this->countTime($comment["createtime"]);
+      $comments["content"] = $this->toHtml($comments["content"]);
       $comments[] = $comment;
     }
     return $comments;
@@ -88,6 +89,7 @@ SELECT count(*) FROM `cocoacms_comments` WHERE `newsid` = $newsid) WHERE `id` = 
     $content = str_replace("\r","<br/>",$content);
     return $content;
   }
+  
   public function countTime($time)
   {
     $diff = time() - $time;
