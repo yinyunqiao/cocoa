@@ -20,6 +20,10 @@
   padding-top:10px;
   padding-bottom:10px;
 }
+.news_content a {
+  
+  color:blue;
+}
 .news_content .desc {
   margin-top:10px;
   padding-left:5px;
