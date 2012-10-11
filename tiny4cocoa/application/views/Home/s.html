@@ -66,7 +66,7 @@ $(document).ready(function() {
   </div>
   <div>
     {if $comments|@count == 0}
-      <h4 class="commentscount">暂无评论</h4>
+      <h4 class="commentscount">暂无评论（马上评论可以成为楼长）</h4>
     {else}
       <h4 class="commentscount">{$comments|@count}个评论</h4>
     {/if}
@@ -102,8 +102,15 @@ $(document).ready(function() {
         <div style="clear:both;"></div>
       </form>
     </div>
-    {foreach from=$comments item=comment}
+    {foreach from=$comments item=comment name=comments}
       <div class="comment">
+        <div class="floornumber">
+          {if $smarty.foreach.comments.index == 0}
+            楼长
+          {else}
+            {$smarty.foreach.comments.index+1}楼
+          {/if}
+        </div>
         {if $comment.posterid==0 || $comment.hidename == 1}             
           <img class="postericon" src="/uc_server/images/noavatar_small.gif">
         {else}

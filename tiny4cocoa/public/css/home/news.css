@@ -51,6 +51,13 @@
   border-bottom:1px solid #ccc;
   font-size:14px;
 }
+
+.floornumber {
+
+  float:right;
+  color:green;
+  font-size:20px;
+}
 .commentscount{
   
   font-size:20px;
