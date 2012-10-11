@@ -8,6 +8,8 @@ class TongjiModel extends baseDbModel {
   private $client;
   private $service;
   
+  //http://ga-dev-tools.appspot.com/explorer/
+  
   public function __construct() {
     
     parent::__construct();
@@ -23,6 +25,7 @@ class TongjiModel extends baseDbModel {
     $this->client = $client;
     $this->service = $service;
   }
+  
   public function check($code) {
     
     $client = $this->client;
