@@ -45,7 +45,7 @@ class NewsModel extends baseDbModel {
     foreach($ret as $comment) {
       
       $comment["createtime"] = $this->countTime($comment["createtime"]);
-      $comments["content"] = $this->toHtml($comments["content"]);
+      $comment["content"] = $this->toHtml($comment["content"]);
       $comments[] = $comment;
     }
     return $comments;
