@@ -16,6 +16,14 @@ class HomeController extends baseController
     $this->_mainContent->assign("news",$news);
     $this->display();
   }
+  public function sitemapAction() {
+    
+    $newsModel = new NewsModel();
+    $news = $newsModel->news(1,10);
+    $this->_mainContent->assign("news",$news);
+    $this->_layout = "empty";
+    $this->display();
+  }
   
   public function sAction() {
     
