@@ -82,7 +82,7 @@ class HomeController extends baseController
   
   public function logAction() {
     
-    $log = join(",",$_GET);
+    $log = join(",",$_POST);
     $fp = fopen('/root/log/footprint.log', 'a');
     fwrite($fp,$log."\r\n");
     fclose($fp);
