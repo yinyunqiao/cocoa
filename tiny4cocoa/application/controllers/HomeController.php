@@ -82,7 +82,7 @@ class HomeController extends baseController
   
   public function logAction() {
     
-    $data = $_POST;
+    $data = $HTTP_RAW_POST_DATA;
     $data["ip"] = $this->getRealIpAddr();
     $log = join(",",$_POST);
     $fp = fopen('/root/log/footprint.log', 'a');
