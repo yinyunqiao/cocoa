@@ -80,7 +80,7 @@ class HomeController extends baseController
     $newsModel->saveComment();
   }
   
-  public function savecommentAction() {
+  public function logAction() {
     
     $log = join(",",$_GET);
     $fp = fopen('/root/log/footprint.log', 'a');
