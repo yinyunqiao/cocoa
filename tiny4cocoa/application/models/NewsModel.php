@@ -28,7 +28,6 @@ class NewsModel extends baseDbModel {
     $ret = $this->fetchArray($sql);
     $news = $ret[0];
     $news["createtime"] = $this->countTime($news["createdate"]);
-    $news["content"] = stripslashes($news["content"]);
     $news["content"] = $this->toHtml($news["content"]);
     return $news;
   }
@@ -84,7 +83,8 @@ SELECT count(*) FROM `cocoacms_comments` WHERE `newsid` = $newsid) WHERE `id` = 
   } 
   
   public function toHtml($content) {
-
+    
+    $content = stripslashes($content);
     $content = str_replace("\r\n","<br/>",$content);
     $content = str_replace("\n","<br/>",$content);
     $content = str_replace("\r","<br/>",$content);
