@@ -20,8 +20,13 @@ $pluginhooks[global_footer]
 	
   <div class="wrap s_clear">
     <div style="text-align:left;">
-    <h1>近期热门新闻</h1>
+    <h1>最新新闻</h1>
     <ul>
+    <!--{loop $cms_recentnews $index $news}-->
+      <li><a href="/home/s/$news[id]/">$news["title"]</a></li>
+    <!--{/loop}-->
+    </ul>
+            <!-- <ul>
             <a href="/home/s/3/" target="_blank">
           <li class="newstitle">
             iPad会危害儿童么？当然不会！
@@ -52,7 +57,7 @@ $pluginhooks[global_footer]
             Eric Schmidt说Apple和Google之间的冲突是定义行业未来之战，同时表示如果有选择，更想当Apple的CEO
             </li>
           </a>
-              </ul>
+              </ul> -->
         </div>
   </div>
 	<div class="wrap s_clear">

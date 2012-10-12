@@ -450,4 +450,13 @@ if($discuz_uid && $newbietaskupdate && $lastactivity < $newbietaskupdate) {
 	task_newfunction_autoapply();
 }
 
+//获取最新文章列表
+$query = $db->query("SELECT `id`,`title` FROM `cocoacms_news` ORDER BY `id` DESC limit 0,10;");
+$cms_recentnews = array();
+while($news = $db->fetch_array($query)) {
+  $cms_recentnews[] = $news;
+}
+
+
+
 ?>
