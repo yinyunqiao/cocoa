@@ -79,6 +79,14 @@ class HomeController extends baseController
     $newsModel = new NewsModel();
     $newsModel->saveComment();
   }
+  
+  public function savecommentAction() {
+    
+    $log = join(",",$_GET);
+    $fp = fopen('/root/log/footprint.log', 'a');
+    fwrite($log."\r\n");
+    fclose($fp);
+  }
 }
 
 
