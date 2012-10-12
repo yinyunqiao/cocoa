@@ -84,7 +84,7 @@ class HomeController extends baseController
     
     $log = join(",",$_GET);
     $fp = fopen('/root/log/footprint.log', 'a');
-    fwrite($log."\r\n");
+    fwrite($fp,$log."\r\n");
     fclose($fp);
   }
 }
