@@ -16,14 +16,6 @@ class HomeController extends baseController
     $this->_mainContent->assign("news",$news);
     $this->display();
   }
-  public function sitemapAction() {
-    
-    $newsModel = new NewsModel();
-    $news = $newsModel->news(1,10);
-    $this->_mainContent->assign("news",$news);
-    $this->_layout = "empty";
-    $this->display();
-  }
   
   public function sAction() {
     
@@ -70,6 +62,24 @@ class HomeController extends baseController
     $this->display();
   }
 
+  public function sitemapAction() {
+    
+    $newsModel = new NewsModel();
+    $news = $newsModel->news(1,10000);
+    $this->_mainContent->assign("news",$news);
+    $this->_layout = "empty";
+    $this->display();
+  }
+
+  public function rssAction() {
+    
+    $newsModel = new NewsModel();
+    $news = $newsModel->news(1,30);
+    $this->_mainContent->assign("allnews",$news);
+    $this->_layout = "empty";
+    $this->display();
+  }
+
   public function savecommentAction() {
     
     if(empty($_POST["content"])) {
@@ -88,6 +98,7 @@ class HomeController extends baseController
     fwrite($fp,$data."\r\n");
     fclose($fp);
   }
+  
   
   
   function getRealIpAddr()
