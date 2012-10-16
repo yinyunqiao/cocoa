@@ -18,9 +18,9 @@ class PlaygroundController extends baseController
   
   public function saverequestAction() {
     
-    $db = new PlaygroundModel();
-    $db->save($_POST);
-    header("location:/playground/joinok/");
+    // $db = new PlaygroundModel();
+    // $db->save($_POST);
+    //header("location:/playground/joinok/");
   }
   
   public function joinokAction() {
