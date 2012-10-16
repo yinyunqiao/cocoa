@@ -75,7 +75,7 @@ class TongjiModel extends baseDbModel {
       $time = $ret["updatetime"];
       $data = unserialize($ret["v"]);
     }
-    if(!$data || time() - $time>1*60) {
+    if(!$data || time() - $time>5*60) {
       
       $this->kv_clear($key);
       $data = $this->rawdata($range);
