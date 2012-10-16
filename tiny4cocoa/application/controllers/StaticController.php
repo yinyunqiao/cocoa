@@ -38,6 +38,10 @@ class StaticController extends tinyApp_Controller
     include("$home/home.css");
     include("$home/news.css");
     include("$home/homeadmin.css");
+    
+    $playground = "$path/playground";
+    include("$playground/playground.css");
+    
   }
 }
 
