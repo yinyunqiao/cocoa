@@ -23,4 +23,14 @@ class ToolModel {
       return $ip;
   }
   
+  public static function toHtml($content) {
+    
+    $content = stripslashes($content);
+    $content = str_replace("\r\n","<br/>",$content);
+    $content = str_replace("\n","<br/>",$content);
+    $content = str_replace("\r","<br/>",$content);
+    return $content;
+  }
+  
+  
 }

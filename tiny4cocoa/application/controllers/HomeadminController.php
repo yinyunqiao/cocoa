@@ -7,7 +7,7 @@ class HomeadminController extends baseController
     parent::__construct($pathinfo,$controller);
     $discuz = new DiscuzModel();
     $this->userid = $discuz->checklogin();
-    if($this->userid!=2) {
+    if($this->userid!=2 && $this->userid!=46) {
       header ('HTTP/1.1 301 Moved Permanently');
       header('location: /home/');
     }
@@ -87,5 +87,21 @@ class HomeadminController extends baseController
     
     $tongji = new TongjiModel();
     $tongji->check($_GET["code"]);
+  }
+  
+  public function feedbackAction() {
+    
+    $db = new PlaygroundModel();
+    $sql = "SELECT * FROM `playground_feedback`;";
+    $ret = $db->fetchArray($sql);
+    $feedbacks = array();
+    foreach($ret as $line) {
+      
+      $line["feedback"] = urldecode($line["feedback"]);
+      $line["feedback"] = ToolModel::toHtml($line["feedback"]);
+      $feedbacks[] = $line;
+    }
+    $this->_mainContent->assign("feedbacks",$feedbacks);
+    $this->display();
   }
 }

@@ -1,0 +1,24 @@
+<div class="homeadmin_main">
+	{foreach from=$feedbacks item=feedback}
+	<div class="newsblock">
+		<div>
+			<p>{$feedback.ip}|{$feedback.foursquare}|{$feedback.instagram}</p>
+			<div>
+        {$feedback.feedback}
+			</div>
+		</div>
+		<div style="clear:both"></div>
+	</div>
+	{/foreach}
+</div>
+<div class="homeadmin_sidebar">
+  <ul class="menu">
+    <li>文章管理</li>
+    <li>
+      <ul class="menu">
+        <li><a href="/homeadmin/">文章列表</a></li>
+        <li><a href="/homeadmin/newarticle">新建文章</a></li>
+      </li>
+    </ul>
+  </ul>
+</div>
