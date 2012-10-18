@@ -31,13 +31,13 @@ class PlaygroundController extends baseController
   public function feedbackAction() {
     
     $data = $_POST["feedback"];
-    $data = ToolModel::getRealIpAddr() . "/" . $data;
+    $data = ToolModel::getRealIpAddr() . "/" . $data . "/". time();
     $feedback = explode("/",$data);
     // $fp = fopen('/root/log/feedback.log', 'a');
     // fwrite($fp,$data."\r\n");
     // fclose($fp);
     $db = new PlaygroundModel();
-    $sql = "INSERT INTO `playground_feedback` (`ip`,`uuid`,`foursquare`,`instagram`,`feedback`) VALUES('$feedback[0]','$feedback[1]','$feedback[2]','$feedback[3]','$feedback[4]');";
+    $sql = "INSERT INTO `playground_feedback` (`ip`,`uuid`,`foursquare`,`instagram`,`feedback`,`createtime`) VALUES('$feedback[0]','$feedback[1]','$feedback[2]','$feedback[3]','$feedback[4]','$feedback[5]');";
     $db->run($sql);
     echo "done";
   }
