@@ -98,10 +98,6 @@ class HomeController extends baseController
     fwrite($fp,$data."\r\n");
     fclose($fp);
   }
-  
-  
-  
-  
 }
 
 
