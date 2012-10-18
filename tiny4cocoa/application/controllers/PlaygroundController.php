@@ -31,7 +31,7 @@ class PlaygroundController extends baseController
   public function feedbackAction() {
     
     $data = $_POST["feedback"];
-    $data = $this->getRealIpAddr() . "|" . $data;
+    $data = ToolModel::getRealIpAddr() . "|" . $data;
     $fp = fopen('/root/log/feedback.log', 'a');
     fwrite($fp,$data."\r\n");
     fclose($fp);
