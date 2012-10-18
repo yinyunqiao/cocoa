@@ -92,13 +92,17 @@ class HomeadminController extends baseController
   public function feedbackAction() {
     
     $db = new PlaygroundModel();
-    $sql = "SELECT * FROM `playground_feedback`;";
+    $sql = "SELECT * FROM `playground_feedback` order by `id` DESC;";
     $ret = $db->fetchArray($sql);
     $feedbacks = array();
     foreach($ret as $line) {
       
       $line["feedback"] = urldecode($line["feedback"]);
       $line["feedback"] = ToolModel::toHtml($line["feedback"]);
+      if($line["createtime"]!=0)
+        $line["createtime"] = ToolModel::countTime($line["createtime"]);
+      else
+        $line["createtime"] = "";
       $feedbacks[] = $line;
     }
     $this->_mainContent->assign("feedbacks",$feedbacks);
