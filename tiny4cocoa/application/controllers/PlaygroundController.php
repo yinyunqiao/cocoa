@@ -37,7 +37,7 @@ class PlaygroundController extends baseController
     // fwrite($fp,$data."\r\n");
     // fclose($fp);
     $db = new PlaygroundModel();
-    $sql = "INSERT INTO `playground_feedback` (`ip`,`uuid`,`foursquare`,`instagram`,`feedback`) VALUES('$feedback[0]','$feedback[0]','$feedback[0]','$feedback[0]','$feedback[0]');";
+    $sql = "INSERT INTO `playground_feedback` (`ip`,`uuid`,`foursquare`,`instagram`,`feedback`) VALUES('$feedback[0]','$feedback[1]','$feedback[2]','$feedback[3]','$feedback[4]');";
     $db->run($sql);
     echo "done";
   }
