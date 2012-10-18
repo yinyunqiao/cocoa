@@ -27,6 +27,15 @@ class PlaygroundController extends baseController
     
     $this->display();
   }
+  
+  public function feedbackAction() {
+    
+    $data = $_POST["feedback"];
+    $data = $this->getRealIpAddr() . "|" . $data;
+    $fp = fopen('/root/log/feedback.log', 'a');
+    fwrite($fp,$data."\r\n");
+    fclose($fp);
+  }
 }
 
 
