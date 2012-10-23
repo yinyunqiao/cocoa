@@ -97,7 +97,7 @@ class HomeController extends baseController
     $logarray[0] = date("Y-m-d H:i:s");
     $line = join(",",$logarray);
     $line = ToolModel::getRealIpAddr() . "," . $line;
-    $fp = fopen('/root/log/footprint' .date("Y-m-d") . '.log', 'a');
+    $fp = fopen('/root/log/footprint-' .date("Y-m-d") . '.log', 'a');
     fwrite($fp,$line."\r\n");
     fclose($fp);
   }
