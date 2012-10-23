@@ -93,9 +93,12 @@ class HomeController extends baseController
   public function logAction() {
     
     $data = $_POST["log"];
-    $data = ToolModel::getRealIpAddr() . "|" . $data;
+    $logarray = explode($data);
+    $logarray[0] = date("Y-m-d H:i:s");
+    $line = join(",",$logarray);
+    $line = ToolModel::getRealIpAddr() . "," . $line;
     $fp = fopen('/root/log/footprint.log', 'a');
-    fwrite($fp,$data."\r\n");
+    fwrite($fp,$line."\r\n");
     fclose($fp);
   }
 }
