@@ -108,4 +108,62 @@ class HomeadminController extends baseController
     $this->_mainContent->assign("feedbacks",$feedbacks);
     $this->display();
   }
+  
+  public function statAction(){
+    
+    $index = $this->strVal(3);
+    $stat = new StatModel();
+    $days = $stat->days();
+    if(strlen($index)==0)
+      $index = $days[0]["datename"];
+    $data = $stat->data($index);
+    $time = explode(",",$data["time"]["content"]);
+    
+    $ipdata = $data["ip"]["content"];
+    $iparray = explode("\n",$ipdata);
+    $ips = array();
+    foreach($iparray as $ip) {
+      $v = explode(" ",trim($ip));
+      if(isset($v[0])&&isset($v[1])) {
+        $ipline = array();
+        $ipline["count"] = $v[0];
+        $ipline["ip"] = $v[1];
+        $ips[] = $ipline;
+      }
+    }
+    
+    $actiondata = $data["action"]["content"];
+    $actionarray = explode("\n",$actiondata);
+    $actions = array();
+    foreach($actionarray as $action) {
+      $v = explode(" ",trim($action));
+      if(isset($v[0])&&isset($v[1])) {
+        $ipline = array();
+        $ipline["count"] = $v[0];
+        $ipline["action"] = $v[1];
+        $actions[] = $ipline;
+      }
+    }
+    
+    $userdata = $data["user"]["content"];
+    $userarray = explode("\n",$userdata);
+    $users = array();
+    foreach($userarray as $user) {
+      $v = explode(" ",trim($user));
+      if(isset($v[0])&&isset($v[1])) {
+        $ipline = array();
+        $ipline["count"] = $v[0];
+        $ipline["user"] = $v[1];
+        $users[] = $ipline;
+      }
+    }
+    
+    $this->_mainContent->assign("time",$time);
+    $this->_mainContent->assign("ips",$ips);
+    $this->_mainContent->assign("actions",$actions);
+    $this->_mainContent->assign("users",$users);
+    $this->_mainContent->assign("index",$index);
+    $this->_mainContent->assign("days",$days);
+    $this->display();
+  }
 }

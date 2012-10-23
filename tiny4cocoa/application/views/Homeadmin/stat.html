@@ -1,0 +1,89 @@
+{literal}
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load('visualization', '1', {packages: ['corechart']});
+function drawVisualization() {
+  // Create and populate the data table.
+  var data = google.visualization.arrayToDataTable([
+    ['x', 'count'],
+    {/literal}
+    {foreach from=$time item=line name=time}
+      [{$smarty.foreach.time.index},   {$line}],
+    {/foreach}
+    {literal}
+  ]);
+  new google.visualization.LineChart(document.getElementById('visualization')).
+      draw(data, {curveType: "function",
+                  width: 760, height: 400}
+          );
+}
+
+google.setOnLoadCallback(drawVisualization);
+</script>
+<style>
+  .datablock {
+  
+    float:left;
+    width:375px;
+    /*border:1px solid red;*/
+  }
+</style>
+{/literal}
+
+<div class="homeadmin_main">
+  <h1>{$index}</h1>
+  <div id="visualization">
+  </div>
+  <div class="datablock">
+    <h2>热门用户</h2>
+    <table border="1" width="360">
+      <tr><th>IP</th><th>次数</th></tr>
+      {foreach from=$users item=user}
+      <tr>
+        <td>{$user.user}</td>
+        <td>{$user.count}</td>
+      </tr>
+      {/foreach}
+    </table>
+  </div>
+  <div class="datablock">
+    <h2>热门Ip</h2>
+    <table border="1" width="360">
+      <tr><th>IP</th><th>次数</th></tr>
+      {foreach from=$ips item=ip}
+      <tr>
+        <td>{$ip.ip}</td>
+        <td>{$ip.count}</td>
+      </tr>
+      {/foreach}
+    </table>
+  </div>
+  <div class="datablock">
+    <h2>热门动作</h2>
+    <table border="1" width="360">
+      <tr><th>IP</th><th>次数</th></tr>
+      {foreach from=$actions item=ip}
+      <tr>
+        <td>{$ip.action}</td>
+        <td>{$ip.count}</td>
+      </tr>
+      {/foreach}
+    </table>
+  </div>
+  <div class="datablock">
+  </div>
+  <div style="clear:both;">
+  </div>
+</div>
+<div class="homeadmin_sidebar">
+  <ul class="menu">
+    <li>日期</li>
+    <li>
+      <ul class="menu">
+        {foreach from=$days item=day}
+          <li style="font-size:16px;"><a href="/homeadmin/stat/{$day.datename}/">{$day.datename}</a></li>
+        {/foreach}
+      </li>
+    </ul>
+  </ul>
+</div>
