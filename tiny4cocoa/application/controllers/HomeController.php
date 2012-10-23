@@ -93,7 +93,7 @@ class HomeController extends baseController
   public function logAction() {
     
     $data = $_POST["log"];
-    $logarray = explode($data);
+    $logarray = explode("|",$data);
     $logarray[0] = date("Y-m-d H:i:s");
     $line = join(",",$logarray);
     $line = ToolModel::getRealIpAddr() . "," . $line;
