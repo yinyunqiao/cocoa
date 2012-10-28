@@ -23,6 +23,14 @@ class ToolModel {
       return $ip;
   }
   
+  public static function MosaicIp($ip) {
+    
+    if($ip=="unknown")
+      return "游客";
+    $numbers = explode(".",$ip);
+    $ip = "$numbers[0].$numbers[1].$numbers[2].*";
+    return $ip;
+  }
   public static function toHtml($content) {
     
     $content = stripslashes($content);

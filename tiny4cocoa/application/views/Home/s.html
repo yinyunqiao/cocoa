@@ -125,7 +125,7 @@ $(document).ready(function() {
         <div class="comment_content">
           <p>
             {if $comment.hidename == 1 || $comment.posterid == 0}
-              <span class="hidename">{$comment.poster} (游客)</span>
+              <span class="hidename">{$comment.poster} ({$comment.ip})</span>
             {else}
               <a href="">
                 {$comment.poster}

@@ -46,6 +46,7 @@ class NewsModel extends baseDbModel {
       
       $comment["createtime"] = $this->countTime($comment["createtime"]);
       $comment["content"] = $this->toHtml($comment["content"]);
+      $comment["ip"] = ToolModel::MosaicIp($comment["ip"]);
       $comments[] = $comment;
     }
     return $comments;
@@ -65,6 +66,7 @@ class NewsModel extends baseDbModel {
       $data["poster"] = $this->usernameById($data["posterid"]);
     }
     $data["createtime"] = time();
+    $data["ip"] = ToolModel::getRealIpAddr();
     $this->select("cocoacms_comments")->insert($data);
     $this->updateCommentsCount($data["newsid"]);
     header("location:/home/s/$data[newsid]/");
