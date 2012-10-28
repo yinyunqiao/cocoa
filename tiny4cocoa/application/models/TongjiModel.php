@@ -86,7 +86,7 @@ class TongjiModel extends baseDbModel {
   
   public function hotnews($size) {
     
-    $data7day = $this->data("7day");
+    $data7day = $this->data("30day");
     arsort($data7day);
     $ids = array_keys($data7day);
     $idsStr = join(",",$ids);
@@ -141,6 +141,8 @@ class TongjiModel extends baseDbModel {
         $bdate = "2012-01-01";
       else if($range == "7day")
         $bdate = date("Y-m-d",time()-60*60*24*7);
+      else if($range == "30day")
+        $bdate = date("Y-m-d",time()-60*60*24*30);
       else
         $bdate = "2012-01-01";
       $date = date("Y-m-d",time()+60*60*24*2);
