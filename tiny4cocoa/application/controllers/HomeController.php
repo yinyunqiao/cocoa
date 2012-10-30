@@ -92,7 +92,6 @@ class HomeController extends baseController
   
   public function logAction() {
     
-    date_default_timezone_set('ASIA/Shanghai');
 		putenv("TZ=Asia/Shanghai");
     $data = $_POST["log"];
     $logarray = explode("|",$data);
