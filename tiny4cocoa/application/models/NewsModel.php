@@ -32,6 +32,19 @@ class NewsModel extends baseDbModel {
     return $news;
   }
   
+  public function commentToCheck() {
+    
+    $sql = "SELECT * FROM `cocoacms_comments` WHERE `checked`=0 limit 0,3";
+    $ret = $this->fetchArray($sql);
+    return $ret;
+  }
+  
+  public function markSpam($id,$spam) {
+    
+    $sql = "UPDATE `cocoacms_comments` set `checked`=1,`spam`=$spam WHERE `id` = $id";
+    $ret = $this->run($sql);
+  }
+  
   public function commentsByNewsId($id) {
     
     $sql =
@@ -67,6 +80,8 @@ class NewsModel extends baseDbModel {
     }
     $data["createtime"] = time();
     $data["ip"] = ToolModel::getRealIpAddr();
+    $data["useragent"] = $_SERVER['HTTP_USER_AGENT'];
+    $data["referrer"] = $_SERVER['HTTP_REFERER'];
     $this->select("cocoacms_comments")->insert($data);
     $this->updateCommentsCount($data["newsid"]);
     header("location:/home/s/$data[newsid]/");

@@ -102,6 +102,42 @@ class HomeController extends baseController
     fwrite($fp,$line."\r\n");
     fclose($fp);
   }
+  
+  public function checkSpamAction() {
+    
+    $newModel = new NewsModel();
+    $comments = $newModel->commentToCheck();
+    if(count($comments)==0)
+      die("no comments");
+    $akismet = new Akismet();
+    $akismet->key = "5a3c4dc9f909";
+    $akismet->blog = "http://tiny4cocoa.org/home/";
+    if(!$akismet->verifyKey())
+      die("akismet verify error");
+    foreach($comments as $comment) {
+      
+      $data = array('blog' => 'http://tiny4cocoa.org/home/',
+                    'user_ip' => $comment["ip"],
+                    'user_agent' => $comment["useragent"],
+                    'referrer' => $comment["referrer"],
+                    'permalink' => "http://tiny4cocoa.org/home/s/$comment[newsid]",
+                    'comment_type' => 'comment',
+                    'comment_author' => $comment["poster"],
+                    'comment_author_email' => '',
+                    'comment_author_url' => '',
+                    'comment_content' => $comment["content"]);
+      //var_dump($data);
+      $ret = $akismet->commentCheck($data);
+      if($ret) {
+        $newModel->markSpam($comment["id"],1);
+        echo "comment # $comment[id] is spam!\r\n";
+      }
+      else {
+        $newModel->markSpam($comment["id"],0);
+        echo "comment # $comment[id] is not spam.\r\n";
+      }
+    }
+  }
 }
 
 

@@ -18,6 +18,8 @@
 	require_once $TA_PathInfo['tinyAppLib'] . "/tinyApp/View.php";
 	require_once $TA_PathInfo['tinyAppLib'] . "/Smarty/Smarty.class.php";
 	require_once $TA_PathInfo['tinyAppLib'] . "/PHPMailer/class.phpmailer.php";
+	require_once $TA_PathInfo['tinyAppLib'] . "/Akismet/Akismet.php";
+  
 	$dblog = "/var/www/iapp/log/db.log";
 	$application = new tinyApp_Application($TA_PathInfo);
 	$application->dispatch();
