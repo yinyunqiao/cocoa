@@ -43,6 +43,111 @@ class HomeadminController extends baseController
     $this->display();
   } 
   
+  public function commentsAction() {
+    
+    $newModel = new NewsModel();
+    $comments = $newModel->comments(1,20);
+    $this->_mainContent->assign("comments",$comments);
+    $this->display();
+  } 
+  
+  public function markspamAction(){
+    
+    $id = $this->intVal(3);
+    if($id==0)
+      header("location:/homeadmin/comments/");
+    $newsModel = new NewsModel();
+    $newsModel->markSpam($id,1);
+    
+    $akismet = new Akismet();
+    $akismet->key = "5a3c4dc9f909";
+    $akismet->blog = "http://tiny4cocoa.org/home/";
+    if(!$akismet->verifyKey())
+      die("akismet verify error");
+    $comment = $newsModel->commentById($id);
+    if(!$comment)
+      die("can not find comment");
+    $data = array('blog' => 'http://tiny4cocoa.org/home/',
+                  'user_ip' => $comment["ip"],
+                  'user_agent' => $comment["useragent"],
+                  'referrer' => $comment["referrer"],
+                  'permalink' => "http://tiny4cocoa.org/home/s/$comment[newsid]",
+                  'comment_type' => 'comment',
+                  'comment_author' => $comment["poster"],
+                  'comment_author_email' => '',
+                  'comment_author_url' => '',
+                  'comment_content' => $comment["content"]);
+    $ret = $akismet->submitSpam($data);
+    header("location:/homeadmin/comments/");
+  }
+  
+  public function unmarkspamAction(){
+    
+    $id = $this->intVal(3);
+    if($id==0)
+      header("location:/homeadmin/comments/");
+    $newsModel = new NewsModel();
+    $newsModel->markSpam($id,0);
+    
+    $akismet = new Akismet();
+    $akismet->key = "5a3c4dc9f909";
+    $akismet->blog = "http://tiny4cocoa.org/home/";
+    if(!$akismet->verifyKey())
+      die("akismet verify error");
+    $comment = $newsModel->commentById($id);
+    if(!$comment)
+      die("can not find comment");
+    $data = array('blog' => 'http://tiny4cocoa.org/home/',
+                  'user_ip' => $comment["ip"],
+                  'user_agent' => $comment["useragent"],
+                  'referrer' => $comment["referrer"],
+                  'permalink' => "http://tiny4cocoa.org/home/s/$comment[newsid]",
+                  'comment_type' => 'comment',
+                  'comment_author' => $comment["poster"],
+                  'comment_author_email' => '',
+                  'comment_author_url' => '',
+                  'comment_content' => $comment["content"]);
+    $ret = $akismet->submitHam($data);
+    header("location:/homeadmin/comments/");
+  }
+  
+  
+  public function recheckSpamAction(){
+    
+    $id = $this->intVal(3);
+    if($id==0)
+      header("location:/homeadmin/comments/");
+    $newsModel = new NewsModel();
+    
+    $akismet = new Akismet();
+    $akismet->key = "5a3c4dc9f909";
+    $akismet->blog = "http://tiny4cocoa.org/home/";
+    if(!$akismet->verifyKey())
+      die("akismet verify error");
+    $comment = $newsModel->commentById($id);
+    if(!$comment)
+      die("can not find comment");
+    $data = array('blog' => 'http://tiny4cocoa.org/home/',
+                  'user_ip' => $comment["ip"],
+                  'user_agent' => $comment["useragent"],
+                  'referrer' => $comment["referrer"],
+                  'permalink' => "http://tiny4cocoa.org/home/s/$comment[newsid]",
+                  'comment_type' => 'comment',
+                  'comment_author' => $comment["poster"],
+                  'comment_author_email' => '',
+                  'comment_author_url' => '',
+                  'comment_content' => $comment["content"]);
+    $ret = $akismet->commentCheck($data);
+    if($ret) {
+      $newsModel->markSpam($comment["id"],1);
+      //echo "comment # $comment[id] is spam!\r\n";
+    }
+    else {
+      $newsModel->markSpam($comment["id"],0);
+      //echo "comment # $comment[id] is not spam.\r\n";
+    }
+    header("location:/homeadmin/comments/");
+  }
   public function savearticleAction() {
     
     if(empty($_POST))

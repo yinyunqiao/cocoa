@@ -1,0 +1,44 @@
+<div class="homeadmin_main">
+  <h1>回复列表</h1>
+	{foreach from=$comments item=item}
+	<div class="newsblock">
+		<div class="comment_content" 
+    {if $item.spam==1}
+    style="background:yellow;"
+    {/if}
+    >
+      <div style="float:right;color:blue;">
+        {if $item.spam==0}
+          <a href="/homeadmin/markspam/{$item.id}/" style="color:blue;">标记Spam</a> 
+        {else}
+          <a href="/homeadmin/unmarkspam/{$item.id}/" style="color:blue;">标记正常</a> 
+        {/if}
+        <a href="/homeadmin/recheckspam/{$item.id}/" style="color:blue;"> ｜ 重新检查</a> 
+      </div>
+			<p><b>
+        {$item.poster} 
+        <!-- 发表于 <span class="timestamp">{$item.createtime}</span> -->
+      </b>
+      </p>
+			<p>
+        {$item.content}
+      </p>
+		</div>
+		<div style="clear:both"></div>
+	</div>
+	{/foreach}
+  
+</div>
+<div class="homeadmin_sidebar">
+  <ul class="menu">
+    <li>文章管理</li>
+    <li>
+      <ul class="menu">
+        <li><a href="/homeadmin/newarticle">新建文章</a></li>
+        <li><a href="/homeadmin/articles">文章列表</a></li>
+        <li><a href="/homeadmin/comments">回复</a></li>
+    
+      </li>
+    </ul>
+  </ul>
+</div>

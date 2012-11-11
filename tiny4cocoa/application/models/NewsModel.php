@@ -45,6 +45,28 @@ class NewsModel extends baseDbModel {
     $ret = $this->run($sql);
   }
   
+  public function commentById($id){
+    
+    $sql =
+      "SELECT * FROM `cocoacms_comments` WHERE `id` =$id;";
+    $ret = $this->fetchArray($sql);
+    if(count($ret)>0)
+      return $ret[0];
+    return NULL;
+  }
+  
+  public function comments($page,$size){
+    
+    if($page < 1)
+      $page = 1;
+    $start = ($page-1)*$size;
+    $sql =
+      "SELECT * FROM `cocoacms_comments` ORDER BY `id` DESC limit $start,$size;";
+    $ret = $this->fetchArray($sql);
+    return $ret;
+  }
+  
+  
   public function commentsByNewsId($id) {
     
     $sql =
@@ -93,6 +115,7 @@ class NewsModel extends baseDbModel {
 SELECT count(*) FROM `cocoacms_comments` WHERE `newsid` = $newsid) WHERE `id` = $newsid;";
     $this->run($sql);
   }
+  
   public function usernameById($id) {
     
     $user = $this->fetchArray("SELECT `username` FROM `cocoabbs_members` WHERE `uid`=$id");
