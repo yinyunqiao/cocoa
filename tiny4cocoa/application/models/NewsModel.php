@@ -49,7 +49,7 @@ class NewsModel extends baseDbModel {
     
     $sql =
       "SELECT * FROM `cocoacms_comments`
-      WHERE `newsid` = $id 
+      WHERE `newsid` = $id AND `spam` = 0
       ORDER BY `id`;";
     $ret = $this->fetchArray($sql);
     if(count($ret)==0)
