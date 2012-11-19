@@ -49,7 +49,14 @@ class HomeadminController extends baseController
     $comments = $newModel->comments(1,20);
     $this->_mainContent->assign("comments",$comments);
     $this->display();
-  } 
+  }
+   
+  public function emptyspamAction() {
+    
+    $newsModel = new NewsModel();
+    $newsModel->emptySpam();
+    header("location:/homeadmin/comments/");
+  }
   
   public function markspamAction(){
     

@@ -45,6 +45,11 @@ class NewsModel extends baseDbModel {
     $ret = $this->run($sql);
   }
   
+  public function emptySpam() {
+    
+    $sql = "DELETE * FROM `cocoacms_comments` WHERE `spam`=1;";
+    $this->run($sql);
+  }
   public function commentById($id){
     
     $sql =
