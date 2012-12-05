@@ -127,9 +127,6 @@ class NewsModel extends baseDbModel {
     if($ret) {
       $this->markSpam($comment["id"],1);
     }
-    else {
-      $this->markSpam($comment["id"],0);
-    }
     $this->updateCommentsCount($comment["newsid"]);
     header("location:/home/s/$comment[newsid]/");
   }
