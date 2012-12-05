@@ -110,8 +110,27 @@ class NewsModel extends baseDbModel {
     $data["useragent"] = $_SERVER['HTTP_USER_AGENT'];
     $data["referrer"] = $_SERVER['HTTP_REFERER'];
     $this->select("cocoacms_comments")->insert($data);
-    $this->updateCommentsCount($data["newsid"]);
-    header("location:/home/s/$data[newsid]/");
+    $akismet = new Akismet();
+    $comment = $data;    
+    $data = array('blog' => 'http://tiny4cocoa.org/home/',
+                  'user_ip' => $comment["ip"],
+                  'user_agent' => $comment["useragent"],
+                  'referrer' => $comment["referrer"],
+                  'permalink' => "http://tiny4cocoa.org/home/s/$comment[newsid]",
+                  'comment_type' => 'comment',
+                  'comment_author' => $comment["poster"],
+                  'comment_author_email' => '',
+                  'comment_author_url' => '',
+                  'comment_content' => $comment["content"]);
+    $ret = $akismet->commentCheck($data);
+    if($ret) {
+      $this->markSpam($comment["id"],1);
+    }
+    else {
+      $this->markSpam($comment["id"],0);
+    }
+    $this->updateCommentsCount($comment["newsid"]);
+    header("location:/home/s/$comment[newsid]/");
   }
   
   public function updateCommentsCount($newsid) {
