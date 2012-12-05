@@ -109,9 +109,10 @@ class NewsModel extends baseDbModel {
     $data["ip"] = ToolModel::getRealIpAddr();
     $data["useragent"] = $_SERVER['HTTP_USER_AGENT'];
     $data["referrer"] = $_SERVER['HTTP_REFERER'];
-    $this->select("cocoacms_comments")->insert($data);
+    $id = $this->select("cocoacms_comments")->insert($data);
     $akismet = new Akismet();
-    $comment = $data;    
+    $comment = $data;
+    $comment["id"] = $id;
     $data = array('blog' => 'http://tiny4cocoa.org/home/',
                   'user_ip' => $comment["ip"],
                   'user_agent' => $comment["useragent"],
