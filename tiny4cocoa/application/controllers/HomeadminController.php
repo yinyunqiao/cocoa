@@ -43,6 +43,56 @@ class HomeadminController extends baseController
     $this->display();
   } 
   
+  public function applenewsAction(){
+    
+    $filter = $this->strVal(3);
+    $page = $this->intVal(4);
+    if($filter=="")
+      $filter = "all";
+    if($page<1)
+      $page=1;
+    $size = 10;
+    $newscenter = new NewscenterModel();
+    $count = $newscenter->count($filter);
+    $news = $newscenter->news($page,$size,$filter);
+    $nnews = array();
+    if(count($news)>0)
+    foreach($news as $item){
+      
+      $item["content"] = mb_substr(strip_tags($item["content"]),0,250);
+      $nnews[] = $item;
+    }
+    $news = $nnews;
+    
+		$pageControl = ToolModel::pageControl($page,$count,$size,"<a href='/homeadmin/applenews/$filter/#page#/'>");
+    
+    $this->_mainContent->assign("filter",$filter);
+    $this->_mainContent->assign("page",$page);
+    $this->_mainContent->assign("count",$count);
+    $this->_mainContent->assign("news",$news);
+    $this->_mainContent->assign("pageControl",$pageControl);
+    
+    $this->display();
+  }
+  
+  
+  public function markapplenewsAction() {
+    
+    $page = $_GET["page"];
+    $filter = $_GET["filter"];
+    $newscenter = new NewscenterModel();
+    
+    if($_POST) {
+      
+      $ids = $_POST["ids"];
+      $newscenter->checked($ids);
+      header("location:/homeadmin/applenews/$filter/$page/");
+    }
+    $id = $_GET["newsid"];
+    $apple = $_GET["apple"];
+    $newscenter->markApple($id,$apple);
+    header("location:/homeadmin/applenews/$filter/$page/");
+  }
   public function commentsAction() {
     
     $newModel = new NewsModel();

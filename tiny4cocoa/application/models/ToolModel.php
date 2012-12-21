@@ -5,6 +5,24 @@ class ToolModel {
     
   }
   
+	public static function post($url,$datas) {
+    
+    $dataArray = array();
+    foreach($datas as $key=>$value) { 
+      $dataArray[] = $key."=".urlencode($value);
+    }
+    $fields_string = join("&",$dataArray);
+    
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_URL, $url);
+    // curl_setopt($curl, CURLOPT_HEADER, 1);
+    curl_setopt($curl, CURLOPT_POST, count($datas));
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		$data = curl_exec($curl);
+		curl_close($curl);
+		return $data;
+	}
   
   public static function getRealIpAddr()
   {
@@ -62,5 +80,43 @@ class ToolModel {
     }
     return $ret;
   }
-  
+	public static function pageControl($page,$count,$pagesize,$link)
+	{
+		$out = "";
+		$linemax = 10;
+		if($pagesize==0)
+			$pagesize = 1;
+		$totalpage = ceil($count/$pagesize);
+		$begin = floor(($page-1) / $linemax);
+
+		if ($totalpage <= 1) {
+			return "";
+		}
+
+		if($page>1) {
+			$thelink = str_replace("#page#",$page-1,$link);
+			$out .= $thelink . "&lt;" . "</a> ";
+		} else {
+			$out .= "&lt; ";
+		}
+
+		for ($i=($begin*$linemax)+1; $i<=($begin+1)*$linemax && $i<=$totalpage; $i++) {
+			if($page == $i ) {
+	        	$out .= $i . " ";
+			} else {
+			    $thelink = str_replace("#page#",$i,$link);
+			    $out .= $thelink . ($i) . "</a> ";
+	    	}
+		}
+
+		if($page<$totalpage) {
+		    $thelink = str_replace("#page#",$page+1,$link);
+		    $out .= $thelink . "&gt;" . "</a> ";
+	    } else {
+	    	$out .= " &gt;";
+	    }
+
+		return $out;
+
+	}
 }

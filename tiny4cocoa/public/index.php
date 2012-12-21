@@ -20,6 +20,11 @@
 	require_once $TA_PathInfo['tinyAppLib'] . "/PHPMailer/class.phpmailer.php";
 	require_once $TA_PathInfo['tinyAppLib'] . "/Akismet/Akismet.php";
   
+  define('MAGPIE_CACHE_AGE',60*33);
+  define('MAGPIE_CACHE_DIR',"../rsscache");
+	require_once $TA_PathInfo['tinyAppLib'] . "/magpierss/rss_fetch.php";
+  mb_internal_encoding("UTF-8");
+  
 	$dblog = "/var/www/iapp/log/db.log";
 	$application = new tinyApp_Application($TA_PathInfo);
 	$application->dispatch();

@@ -103,6 +103,60 @@ class HomeController extends baseController
     fclose($fp);
   }
   
+  public function updateFeedsAction() {
+  	echo "<html>
+  			<head>
+  				<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+  			</head>
+  			<body>";
+    $newsCenter = new NewscenterModel();
+    $newsCenter->update();
+  }
+  
+  public function anindexAction() {
+    
+    
+    $newscenter = new NewscenterModel();
+    $ids = $newscenter->newsids();
+    $idStr = join(",",$ids);
+    echo $idStr;
+  }
+  public function testallAction() {
+    
+    $newscenter = new NewscenterModel();
+    $ids = $newscenter->uncheckedIds();
+    $apples = array();
+    foreach($ids as $id) {
+      $news = $newscenter->data($id);
+      $news["channel"] = $news["sid"];
+      $ret = ToolModel::post("http://127.0.0.1:37210/isApple",$news);
+      $newscenter->markApple($id,$ret);
+      echo "$id = $ret<br/>";
+    }
+  }
+  
+  public function testNewsAction() {
+    
+    $id = $this->intVal(3);
+    $newscenter = new NewscenterModel();
+    $news = $newscenter->data($id);
+    $news["channel"] = $news["sid"];
+    $ret = ToolModel::post("http://127.0.0.1:37210/isApple",$news);
+    var_dump($ret);
+  }
+  public function newsdataAction() {
+    
+    $id = $this->intVal(3);
+    $newscenter = new NewscenterModel();
+    $news = $newscenter->data($id);
+    $news["content"] = strip_tags($news["content"]);
+    //$news["content"] = str_replace("\n","",$news["content"]);
+    $news["content"] = str_replace("\\n"," ",$news["content"]);
+    $this->_mainContent->assign("news",$news);
+    $this->_layout = "empty";
+    $this->display();
+  }
+  
   public function checkSpamAction() {
     
     $newModel = new NewsModel();
