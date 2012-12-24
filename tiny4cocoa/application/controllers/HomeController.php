@@ -19,6 +19,8 @@ class HomeController extends baseController
     foreach($applenews as $item) {
       
       $item["time"] = ToolModel::countTime($item["pubdate"]);
+      $item["elink"] = urlencode($item["link"]);
+      
       $napplenews[] = $item;
     }
     $applenews = $napplenews;
