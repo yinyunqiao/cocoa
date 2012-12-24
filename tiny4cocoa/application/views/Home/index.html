@@ -22,18 +22,24 @@
 </div>
 
 <div class="home_sidebar">
-<div class="block_title">论坛最新更新</div>
-<ul>
-{foreach from=$threads item=thread}
-<a href="/thread-{$thread.tid}-1-1.html" target="_blank">
-<li class="newstitle">
-		{$thread.subject}
-		<p class="threadfootnote">{$thread.lastposter}评论  [{$thread.replies}/{$thread.views}]<p>
-</li>
-</a>
-{/foreach}
-</ul>
-<div class="padding:4px;margin:4px;">
+  <div class="block_title">最新苹果新闻</div>
+  <ul>
+    {foreach from=$applenews item=item}
+    <a href="{$item.link}" target="_blank">
+      <li class="newstitle">
+        {if $item.image}
+          <img src="{$item.image}" width="40" style="float:left;">
+        {/if}
+        <div style="margin-left:50px;">
+		      {$item.title}［{$item.name}］
+		      <p class="threadfootnote">发布于{$item.time}<p>
+        </div>
+        </li>
+      </a>
+      {/foreach}
+  </ul>
+    
+  <div class="padding:4px;margin:4px;">
 	<hr/>
 	<script type="text/javascript"><!--
 	google_ad_client = "ca-pub-7732761529337293";
@@ -46,17 +52,17 @@
 	<script type="text/javascript"
 	src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 	</script>
-</div>
-<div class="block_title">论坛最新发布</div>
-<ul>
-{foreach from=$newThreads item=thread}
-<a href="/thread-{$thread.tid}-1-1.html" target="_blank">
-<li class="newstitle">
-		{$thread.subject}
-		<p class="threadfootnote">{$thread.author}发布  [{$thread.replies}/{$thread.views}]<p>
-</li>
-</a>
-{/foreach}
-</ul>
+  </div>
+  <div class="block_title">论坛最新更新</div>
+  <ul>
+    {foreach from=$threads item=thread}
+    <a href="/thread-{$thread.tid}-1-1.html" target="_blank">
+      <li class="newstitle">
+		    {$thread.subject}
+		    <p class="threadfootnote">{$thread.lastposter}评论        [{$thread.replies}/{$thread.views}]<p>
+        </li>
+      </a>
+      {/foreach}
+    </ul>
 </div>
 

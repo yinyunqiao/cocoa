@@ -8,12 +8,26 @@ class HomeController extends baseController
     $newsModel = new NewsModel();
     
     $threads = $allModel->allThreads(1,10);
-    $newThreads = $allModel->newThreads(1,10);
+    //$newThreads = $allModel->newThreads(1,10);
     
+    $page = 1;
+    $size = 20;
+    $newscenter = new NewscenterModel();
+    $count = $newscenter->count("apple");
+    $applenews = $newscenter->news($page,$size,"apple");
+    $napplenews = array();
+    foreach($applenews as $item) {
+      
+      $item["time"] = ToolModel::countTime($item["pubdate"]);
+      $napplenews[] = $item;
+    }
+    $applenews = $napplenews;
     $news = $newsModel->news(1,10);
     $this->_mainContent->assign("threads",$threads);
-    $this->_mainContent->assign("newThreads",$newThreads);
+    //$this->_mainContent->assign("newThreads",$newThreads);
     $this->_mainContent->assign("news",$news);
+    $this->_mainContent->assign("applenews",$applenews);
+    
     $this->display();
   }
   
