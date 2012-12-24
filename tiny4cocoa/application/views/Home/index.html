@@ -25,7 +25,7 @@
   <div class="block_title">最新苹果新闻</div>
   <ul>
     {foreach from=$applenews item=item}
-    <a href="/home/go?url={$item.link}" target="_blank">
+    <a href="{$item.link}" target="_blank">
       <li class="newstitle">
         {if $item.image}
           <img src="{$item.image}" width="40" style="float:left;">
