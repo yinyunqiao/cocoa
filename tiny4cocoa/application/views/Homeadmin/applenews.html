@@ -1,0 +1,65 @@
+<div class="homeadmin_main">
+  <h1>Apple News</h1>
+  <form method="post" action="/homeadmin/markapplenews?page={$page}&filter={$filter}">
+  <div style="text-align:right;">
+    共{$count}篇 
+    <a href="/homeadmin/applenews/all/">全部</a> | 
+    <a href="/homeadmin/applenews/marked/">标记</a> |
+    <a href="/homeadmin/applenews/unmarked/">未标记</a> |
+    <a href="/homeadmin/applenews/apple/">Apple</a>
+     <input type="submit" value="标记全部检查过">
+  </div>
+	{foreach from=$news item=item}
+    <input type="hidden" name="ids[]" value="{$item.id}"/>
+    <div style="margin-top:10px;margin-bottom:10px;height:140px;border:solid black 1px;overflow:hidden;padding:15px;
+    {if $item.apple}
+      background-color:#FFC;
+    {else}
+      {if $item.checked}
+        background-color:#B0E4EF;
+        {/if}
+    {/if}
+    ">
+      {if $item.image}
+        <img src="{$item.image}" width="100" style="float:left;"/>
+      {/if}
+      <div style="margin-left:120px;">
+        <div style="float:right;">
+          {if $item.apple}
+            <b>
+              <a href="/homeadmin/markapplenews?newsid={$item.id}&apple=0&page={$page}&filter={$filter}">
+              不是苹果
+              </a>
+            </b>
+          {else}
+            <b>
+              <a href="/homeadmin/markapplenews?newsid={$item.id}&apple=1&page={$page}&filter={$filter}">
+                标记苹果
+              </a>
+            </b>
+          {/if}
+        </div>
+        <h4>［{$item.id}］<a href="{$item.link}" target="_blank">{$item.title}</a></h4>
+        <p style="margin-top:5px;">
+          {$item.content}
+        </p>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  {/foreach}
+  </form>
+  <div>
+    {$pageControl}
+  </div>
+</div>
+<div class="homeadmin_sidebar">
+  <ul class="menu">
+    <li>文章管理</li>
+    <li>
+      <ul class="menu">
+        <li><a href="/homeadmin/newarticle">新建文章</a></li>
+        <li><a href="/homeadmin/articles">文章列表</a></li>
+      </li>
+    </ul>
+  </ul>
+</div>

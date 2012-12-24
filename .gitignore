@@ -8,3 +8,5 @@ yc_templates_c
 sitemap.xml.gz
 uc_server/data
 newsupload/*
+rsscache/*
+tiny4cocoa/rsscache/*
