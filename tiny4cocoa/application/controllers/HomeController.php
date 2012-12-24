@@ -31,6 +31,26 @@ class HomeController extends baseController
     $this->display();
   }
   
+  
+  public function goAction() {
+    
+    $url = $_GET["url"];
+    $data = array();
+    $data[] = ToolModel::getRealIpAddr(); //ip
+    $data[] = date("Y-m-d H:i:s"); //时间
+    $data[] = $url;
+    $ua = $_SERVER['HTTP_USER_AGENT']; //user agent
+    $ua = str_replace(",",";",$ua);
+    $data[] = $ua;
+    $data[] = $_SERVER['HTTP_REFERER'];
+    $line = join(",",$data);
+    $fp = fopen('/root/log/cocoa_go.log', 'a');
+    fwrite($fp,$line."\r\n");
+    fclose($fp);
+    header("location:$url");
+  }
+  
+  
   public function sAction() {
     
     $index = $this->intVal(3);
