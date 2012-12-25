@@ -6,7 +6,8 @@ class HomeController extends baseController
     
     $allModel = new AllModel();
     $newsModel = new NewsModel();
-    
+    $discuz = new DiscuzModel();
+    $this->userid = $discuz->checklogin();
     $threads = $allModel->allThreads(1,10);
     //$newThreads = $allModel->newThreads(1,10);
     
@@ -14,6 +15,8 @@ class HomeController extends baseController
     $size = 20;
     $newscenter = new NewscenterModel();
     $count = $newscenter->count("apple");
+    $newscount = $newscenter->count("unmarked");
+    $spamcount = $newsModel->spamCount();
     $applenews = $newscenter->news($page,$size,"apple");
     $napplenews = array();
     foreach($applenews as $item) {
@@ -29,6 +32,9 @@ class HomeController extends baseController
     //$this->_mainContent->assign("newThreads",$newThreads);
     $this->_mainContent->assign("news",$news);
     $this->_mainContent->assign("applenews",$applenews);
+    $this->_mainContent->assign("userid",$this->userid);
+    $this->_mainContent->assign("spamcount",$spamcount);
+    $this->_mainContent->assign("newscount",$newscount);
     
     $this->display();
   }

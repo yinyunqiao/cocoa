@@ -20,6 +20,12 @@ class NewsModel extends baseDbModel {
     return $ret;
   }
   
+  public function spamCount() {
+    
+    $sql = "SELECT count(*) as `spamcount` FROM `cocoacms_comments` WHERE `spam`=1;";
+    $ret = $this->fetchArray($sql);
+    return $ret[0]["spamcount"];
+  }
   public function oneNews($index) {
     
     $sql =

@@ -1,4 +1,10 @@
 <div class="home_main">
+  {if $userid==2}
+    <h1 style="text-align:right;">
+      <a href="/homeadmin/comments">Spam回复{$spamcount}个</a>, 
+      <a href="/homeadmin/applenews/unmarked/">未检查新闻{$newscount}条</a>。
+    </h1>
+  {/if}
 	{foreach from=$news item=item}
 	<div class="newsblock">
 		<a href="/home/s/{$item.id}/"><img class="pic" src="/newsupload/{$item.filename}_s.{$item.ext}"></a>
