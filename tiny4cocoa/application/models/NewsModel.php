@@ -21,7 +21,7 @@ class NewsModel extends baseDbModel {
   }
   function hotTags() {
     
-    $sql = "SELECT * FROM `cocoabbs_tags` ORDER BY `total` LIMIT 0,20;";
+    $sql = "SELECT * FROM `cocoabbs_tags` ORDER BY `total` DESC LIMIT 0,20;";
     $ret = $this->fetchArray($sql);
     return $ret;
   }
