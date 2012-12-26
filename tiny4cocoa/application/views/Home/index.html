@@ -25,6 +25,11 @@
 		<div style="clear:both"></div>
 	</div>
 	{/foreach}
+  <p>热门Tag: 
+    {foreach from=$tags item=tag}
+      <a href="/tag.php?name={$tag.tagname}">{$tag.tagname}</a>
+    {/foreach}
+  </p>
 </div>
 
 <div class="home_sidebar">

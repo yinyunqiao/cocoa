@@ -13,6 +13,8 @@ class HomeController extends baseController
     
     $page = 1;
     $size = 20;
+    
+    $tags = $newsModel->hotTags();
     $newscenter = new NewscenterModel();
     $count = $newscenter->count("apple");
     $newscount = $newscenter->count("unmarked");
@@ -35,6 +37,7 @@ class HomeController extends baseController
     $this->_mainContent->assign("userid",$this->userid);
     $this->_mainContent->assign("spamcount",$spamcount);
     $this->_mainContent->assign("newscount",$newscount);
+    $this->_mainContent->assign("tags",$tags);
     
     $this->display();
   }

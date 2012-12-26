@@ -19,6 +19,12 @@ class NewsModel extends baseDbModel {
     } 
     return $ret;
   }
+  function hotTags() {
+    
+    $sql = "SELECT * FROM `cocoabbs_tags` ORDER BY `total` LIMIT 0,20;";
+    $ret = $this->fetchArray($sql);
+    return $ret;
+  }
   
   public function spamCount() {
     
