@@ -9,9 +9,10 @@ class HomeController extends baseController
     $discuz = new DiscuzModel();
     $this->userid = $discuz->checklogin();
     $threads = $allModel->allThreads(1,10);
-    //$newThreads = $allModel->newThreads(1,10);
     
-    $page = 1;
+    $page = $this->intVal(3);
+    if($page==0)
+      $page=1;
     $size = 20;
     
     $tags = $newsModel->hotTags();
@@ -28,21 +29,29 @@ class HomeController extends baseController
       
       $napplenews[] = $item;
     }
+    
     $applenews = $napplenews;
-    $news = $newsModel->news(1,13);
+    $size = 13;
+    $count = $newsModel->newsCount();
+    $news = $newsModel->news($page,$size);
+		$pageControl = ToolModel::pageControl($page,$count,$size,"<a href='/home/news/#page#/'>");
+    
     $this->_mainContent->assign("threads",$threads);
-    //$this->_mainContent->assign("newThreads",$newThreads);
     $this->_mainContent->assign("news",$news);
     $this->_mainContent->assign("applenews",$applenews);
     $this->_mainContent->assign("userid",$this->userid);
     $this->_mainContent->assign("spamcount",$spamcount);
     $this->_mainContent->assign("newscount",$newscount);
     $this->_mainContent->assign("tags",$tags);
-    
+    $this->_mainContent->assign("pageControl",$pageControl);
+    $this->viewFile="Home/index.html";
     $this->display();
   }
   
-  
+  public function newsAction() {
+    
+    $this->indexAction();
+  }
   public function goAction() {
     
     $url = $_GET["url"];

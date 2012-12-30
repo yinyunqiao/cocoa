@@ -84,7 +84,7 @@ class ToolModel {
   
 	public static function pageControl($page,$count,$pagesize,$link)
 	{
-		$out = "";
+		$out = "<div class=\"pagination\"><ul>";
 		$linemax = 10;
 		if($pagesize==0)
 			$pagesize = 1;
@@ -94,30 +94,29 @@ class ToolModel {
 		if ($totalpage <= 1) {
 			return "";
 		}
-
 		if($page>1) {
 			$thelink = str_replace("#page#",$page-1,$link);
-			$out .= $thelink . "&lt;" . "</a> ";
+			$out .= "<li>".$thelink . "«" . "</a></li>";
 		} else {
-			$out .= "&lt; ";
+			$out .= "<li><a href='#'>«</a></li>";
 		}
 
 		for ($i=($begin*$linemax)+1; $i<=($begin+1)*$linemax && $i<=$totalpage; $i++) {
 			if($page == $i ) {
-	        	$out .= $i . " ";
+	        	$out .= "<li><a href='#'>".$i . "</a></li>";
 			} else {
 			    $thelink = str_replace("#page#",$i,$link);
-			    $out .= $thelink . ($i) . "</a> ";
+			    $out .= "<li>".$thelink . ($i) . "</a></li>";
 	    	}
 		}
-
 		if($page<$totalpage) {
 		    $thelink = str_replace("#page#",$page+1,$link);
-		    $out .= $thelink . "&gt;" . "</a> ";
+		    $out .= "<li>".$thelink . "»" . "</a></li>";
 	    } else {
-	    	$out .= " &gt;";
+	    	$out .= "<li><a href='#'>»</a></li>";
 	    }
-
+      
+    $out .= "</ul></div>";
 		return $out;
 
 	}

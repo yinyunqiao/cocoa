@@ -1,6 +1,13 @@
 <?php
 class NewsModel extends baseDbModel {
   
+  public function newsCount() {
+    
+    $sql = 
+    "SELECT count(*) as `c` FROM `cocoacms_news`;";
+    $result =  $this->fetchArray($sql);
+    return $result[0]["c"];
+  }
   public function news($page,$pageSize) {
     
     $start = ($page-1)*$pageSize;
