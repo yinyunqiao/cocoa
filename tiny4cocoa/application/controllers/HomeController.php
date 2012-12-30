@@ -49,7 +49,14 @@ class HomeController extends baseController
   }
   
   public function newsAction() {
-    
+    $page = $this->intVal(3);
+    if($page<=1){
+      
+      header("HTTP/1.1 301 Moved Permanently");
+      header("Location: /home/");
+      header("Connection: close");
+      die();
+    }
     $this->indexAction();
   }
   public function goAction() {
