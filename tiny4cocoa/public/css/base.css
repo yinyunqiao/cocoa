@@ -16,6 +16,12 @@ body {
   padding-bottom:20px;
   border-bottom:#D0D0D0 dashed 1px;
 }
+.newsblock .content {
+  padding:0px;
+  padding-left:10px;
+  margin-left:220px;
+  padding-right:20px;
+}
 
 .newsblock .pic {
 	

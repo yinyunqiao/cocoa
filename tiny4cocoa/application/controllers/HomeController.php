@@ -29,7 +29,7 @@ class HomeController extends baseController
       $napplenews[] = $item;
     }
     $applenews = $napplenews;
-    $news = $newsModel->news(1,10);
+    $news = $newsModel->news(1,13);
     $this->_mainContent->assign("threads",$threads);
     //$this->_mainContent->assign("newThreads",$newThreads);
     $this->_mainContent->assign("news",$news);

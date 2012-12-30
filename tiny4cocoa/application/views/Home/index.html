@@ -1,5 +1,5 @@
 <div class="row">
-<div class="span7 pull-right">
+<div class="span8 pull-right">
   {if $userid==2}
     <p class="pull-right">
       <a href="/homeadmin/comments">Spam回复{$spamcount}个</a>, 
@@ -10,7 +10,7 @@
 	{foreach from=$news item=item}
 	<div class="newsblock">
 		<a href="/home/s/{$item.id}/"><img class="pic" src="/newsupload/{$item.filename}_s.{$item.ext}"></a>
-		<div>
+		<div class="content">
 			<h3><a href="/home/s/{$item.id}/">{$item.title}</a></h3>
 			<div class="authinfo">
         {$item.poster} 发表于 
@@ -36,7 +36,7 @@
   </div>
 </div>
 
-<div class="span5">
+<div class="span4">
   <div class="hero-unit" style="padding:10px;">
   <h3>最新苹果新闻</h3>
   <ul>
