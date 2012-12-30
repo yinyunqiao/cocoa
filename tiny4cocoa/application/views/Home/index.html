@@ -27,13 +27,6 @@
 		<div style="clear:both"></div>
 	</div>
 	{/foreach}
-  <div style="margin-top:20px;">
-    <p>热门Tag: 
-    {foreach from=$tags item=tag}
-      <a href="/tag.php?name={$tag.tagname}" target="_blank">{$tag.tagname}</a>
-    {/foreach}
-    </p>
-  </div>
 </div>
 
 <div class="span4">
@@ -79,5 +72,14 @@
       {/foreach}
     </ul>
   </div>
+  
+  <div style="padding:10px" class="hero-unit">
+    <p>热门Tag: 
+    {foreach from=$tags item=tag}
+      <a href="/tag.php?name={$tag.tagname}" target="_blank">{$tag.tagname}</a>
+    {/foreach}
+    </p>
+  </div>
+  
   </div>
 </div>
