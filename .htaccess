@@ -3,6 +3,9 @@ RewriteEngine On
 #for new UI
 RewriteRule ^home$ tiny4cocoa/public/index.php
 RewriteRule ^home/(.*)$ tiny4cocoa/public/index.php
+RewriteRule ^apple$ tiny4cocoa/public/index.php
+RewriteRule ^apple/(.*)$ tiny4cocoa/public/index.php
+
 RewriteRule ^static/(.*)/$ tiny4cocoa/public/index.php
 RewriteRule ^static/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^homeadmin/(.*) tiny4cocoa/public/index.php

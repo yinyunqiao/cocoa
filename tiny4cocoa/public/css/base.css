@@ -1,0 +1,27 @@
+body {
+  padding-top: 60px;
+}
+
+.footer {
+	text-align: center;
+	padding: 30px 0;
+	border-top: 1px solid 
+	#e5e5e5;
+	background-color: 
+	#f5f5f5;
+}
+.newsblock {
+
+  padding-top:20px;
+  padding-bottom:20px;
+  border-bottom:#D0D0D0 dashed 1px;
+}
+
+.newsblock .pic {
+	
+  width:220px;
+  height:146px;
+  float:left;
+  padding-top:20px;
+  padding-right:10px;
+}

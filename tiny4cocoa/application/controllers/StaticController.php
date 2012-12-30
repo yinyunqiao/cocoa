@@ -34,13 +34,18 @@ class StaticController extends tinyApp_Controller
     $expire = "expires: " . gmdate ("D, d M Y H:i:s", time() + $offset) . " GMT";
     header ($expire);
     $path=$this->_pathinfo['base'].'/public/css';
+    $bootstrap = $this->_pathinfo['base']."/public/bootstrap/css";
     $home = "$path/home";
-    include("$home/home.css");
-    include("$home/news.css");
-    include("$home/homeadmin.css");
+    include("$bootstrap/bootstrap.min.css");
+    include("$bootstrap/bootstrap-responsive.min.css");
+    include("$path/base.css");
     
-    $playground = "$path/playground";
-    include("$playground/playground.css");
+    // include("$home/home.css");
+    // include("$home/news.css");
+    // include("$home/homeadmin.css");
+    // 
+    // $playground = "$path/playground";
+    // include("$playground/playground.css");
     
   }
 }

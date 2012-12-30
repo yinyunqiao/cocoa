@@ -1,15 +1,14 @@
-<div class="row">
-<div class="span7 pull-right">
+<div class="home_main">
   {if $userid==2}
-    <p class="pull-right">
+    <h1 style="text-align:right;">
       <a href="/homeadmin/comments">Spam回复{$spamcount}个</a>, 
       <a href="/homeadmin/applenews/unmarked/">未检查新闻{$newscount}条</a>。
-    </p>
+    </h1>
   {/if}
 	{foreach from=$news item=item}
 	<div class="newsblock">
 		<a href="/home/s/{$item.id}/"><img class="pic" src="/newsupload/{$item.filename}_s.{$item.ext}"></a>
-		<div>
+		<div class="content">
 			<h3><a href="/home/s/{$item.id}/">{$item.title}</a></h3>
 			<div class="authinfo">
         {$item.poster} 发表于 
@@ -26,17 +25,14 @@
 		<div style="clear:both"></div>
 	</div>
 	{/foreach}
-  <div style="margin-top:20px;">
-    <p>热门Tag: 
+  <p>热门Tag: 
     {foreach from=$tags item=tag}
       <a href="/tag.php?name={$tag.tagname}" target="_blank">{$tag.tagname}</a>
     {/foreach}
-    </p>
-  </div>
+  </p>
 </div>
 
-<div class="span5">
-  <div class="hero-unit" style="padding:10px;">
+<div class="home_sidebar">
   <div class="block_title">最新苹果新闻</div>
   <ul>
     {foreach from=$applenews item=item}
@@ -53,8 +49,9 @@
       </a>
       {/foreach}
   </ul>
-  </div>
-  <div>
+    
+  <div class="padding:4px;margin:4px;">
+	<hr/>
 	<script type="text/javascript"><!--
 	google_ad_client = "ca-pub-7732761529337293";
 	/* Tiny4Cocoa中矩形 */
@@ -67,7 +64,6 @@
 	src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 	</script>
   </div>
-  <div class="hero-unit" style="padding:10px;">
   <div class="block_title">论坛最新更新</div>
   <ul>
     {foreach from=$threads item=thread}
@@ -79,6 +75,5 @@
       </a>
       {/foreach}
     </ul>
-  </div>
-  </div>
 </div>
+
