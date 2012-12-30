@@ -6,6 +6,7 @@
       <a href="/homeadmin/applenews/unmarked/">未检查新闻{$newscount}条</a>。
     </p>
   {/if}
+  <h3>本站新闻</h3>
 	{foreach from=$news item=item}
 	<div class="newsblock">
 		<a href="/home/s/{$item.id}/"><img class="pic" src="/newsupload/{$item.filename}_s.{$item.ext}"></a>
@@ -37,7 +38,7 @@
 
 <div class="span5">
   <div class="hero-unit" style="padding:10px;">
-  <div class="block_title">最新苹果新闻</div>
+  <h3>最新苹果新闻</h3>
   <ul>
     {foreach from=$applenews item=item}
     <a href="/home/go/?url={$item.elink}" target="_blank">
@@ -68,7 +69,7 @@
 	</script>
   </div>
   <div class="hero-unit" style="padding:10px;">
-  <div class="block_title">论坛最新更新</div>
+  <h3>论坛最新更新</h3>
   <ul>
     {foreach from=$threads item=thread}
     <a href="/thread-{$thread.tid}-1-1.html" target="_blank">
