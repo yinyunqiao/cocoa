@@ -1,3 +1,13 @@
+<style>{literal}
+
+body {
+  
+  background-color: 
+  #ccc;
+}{/literal}
+
+</style>
+<div class="row">
 <script type="text/javascript">
 {literal}
 $(document).ready(function() {
@@ -19,8 +29,10 @@ $(document).ready(function() {
 });
 {/literal}
 </script>
-
-<div class="news_content" itemscope itemtype="http://schema.org/Article">
+<div class="span9 news_content" itemscope itemtype="http://schema.org/Article"
+style="background-color:#fff;"
+ >
+  <div style="padding: 20px;">
   <meta itemprop="thumbnailUrl" content="http://tiny4cocoa.com/newsupload/{$news.filename}_s.{$news.ext}"/>
   <h1 class="title" itemprop="name">{$news.title}</h1>
   <p class="desc">by <span itemprop="author">{$news.poster}</span> {$news.createtime} {$pageview}次浏览</p>
@@ -131,16 +143,16 @@ $(document).ready(function() {
     {/foreach}
   </div>
 </div>
-
-<div class="news_sidebar">
-  
+</div>
+<div class="span3">
+  <div class="hero-unit" style="padding:10px;">
   <div class="wumii-hook">
       <input type="hidden" name="wurl" value="http://tiny4cocoa.com/home/s/{$news.id}/" />
       <input type="hidden" name="wtitle" value="{$news.title}" />
       <input type="hidden" name="wpic" value="" />
   </div>
   <div id="post_rate_div_27561"></div>
-  
+  </div>
   <script type="text/javascript"><!--
     google_ad_client = "ca-pub-7732761529337293";
     /* tiny4cocoa正方形250&#42;250 */
@@ -151,9 +163,10 @@ $(document).ready(function() {
   </script>
   <script type="text/javascript"
   src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
-  
-  <div class="block_title">热门文章</div>
+  </script>
+
+  <div class="hero-unit" style="padding:10px;">
+  <h3>热门文章</h3>
   <ul>
     {foreach from=$hotnews item=news}
     <a href="/home/s/{$news.id}/" target="_blank">
@@ -163,8 +176,9 @@ $(document).ready(function() {
       </a>
       {/foreach}
     </ul>
-  
-  <div class="block_title">论坛最新更新</div>
+  </div>
+  <div class="hero-unit" style="padding:10px;">
+  <h3>论坛最新更新</h3>
   <ul>
     {foreach from=$threads item=thread}
     <a href="/thread-{$thread.tid}-1-1.html" target="_blank">
@@ -174,7 +188,7 @@ $(document).ready(function() {
       </a>
       {/foreach}
     </ul>
-    
+  </div>
     
 </div>
 
@@ -186,3 +200,5 @@ $(document).ready(function() {
 <a href="http://www.wumii.com/widget/relatedItems.htm" style="border:0;">
     <img src="http://static.wumii.com/images/pixel.png" alt="" style="border:0;padding:0;margin:0;" />
 </a>
+
+</div>

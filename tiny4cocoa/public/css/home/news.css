@@ -1,25 +1,6 @@
 	
-.news_content {
-    
-  width:640px;
-  float:left;
-  padding:20px;
-  border-right:1px solid #666;
-}
-  
-.news_sidebar {
-    
-  float:right;
-  width:265px;
-}
 
-.news_content .title {
-	
-  font-size:32px;
-  line-height:35px;
-  padding-top:10px;
-  padding-bottom:10px;
-}
+
 .news_content a {
   
   color:blue;
