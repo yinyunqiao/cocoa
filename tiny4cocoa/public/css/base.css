@@ -21,6 +21,7 @@ body {
   padding-left:10px;
   margin-left:220px;
   padding-right:20px;
+  overflow:hidden;
 }
 .news_content .desc {
 margin-top: 10px;
@@ -40,7 +41,8 @@ border-bottom: 1px dashed
 .newsblock .pic {
 	
   width:220px;
-  height:146px;
+  max-height:250px;
+  
   float:left;
   padding-top:20px;
   padding-right:10px;

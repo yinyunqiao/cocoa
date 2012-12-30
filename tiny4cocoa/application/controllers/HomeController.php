@@ -1,7 +1,12 @@
 <?php
 class HomeController extends baseController
 {
- 
+  public function __construct($pathinfo,$controller) {
+		
+    parent::__construct($pathinfo,$controller);
+    $this->_view->assign("active","home");
+    
+  }
   public function indexAction() {
     
     $allModel = new AllModel();
@@ -35,6 +40,7 @@ class HomeController extends baseController
     $count = $newsModel->newsCount();
     $news = $newsModel->news($page,$size);
 		$pageControl = ToolModel::pageControl($page,$count,$size,"<a href='/home/news/#page#/'>");
+    $this->_mainContent->assign("pageControl",$pageControl);
     
     $this->_mainContent->assign("threads",$threads);
     $this->_mainContent->assign("news",$news);
@@ -43,7 +49,6 @@ class HomeController extends baseController
     $this->_mainContent->assign("spamcount",$spamcount);
     $this->_mainContent->assign("newscount",$newscount);
     $this->_mainContent->assign("tags",$tags);
-    $this->_mainContent->assign("pageControl",$pageControl);
     $this->viewFile="Home/index.html";
     $this->display();
   }

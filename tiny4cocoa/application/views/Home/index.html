@@ -34,7 +34,7 @@
 
 <div class="span4">
   <div class="hero-unit" style="padding:10px;">
-  <h3>最新苹果新闻</h3>
+  <h3>最新苹果新闻(<a href="/apple/">全部</a>)</h3>
     {foreach from=$applenews item=item}
     <a href="/home/go/?url={$item.elink}" target="_blank">
       <p class="newstitle">
@@ -48,6 +48,7 @@
         </p>
       </a>
       {/foreach}
+      <p class="threadfootnote"><a href="/apple/">查看更多</a></p>
   </div>
   <div style="text-align:center;margin-bottom:20px;">
   	<script type="text/javascript"><!--

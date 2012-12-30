@@ -27,9 +27,23 @@ window.google_analytics_uacct = "UA-53077-22";
         <a class="brand" href="/">Tiny4Cocoa</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li class="active"><a href="/">首页</a></li>
-            <!-- <li><a href="/apple/">苹果新闻</a></li> -->
-            <li><a href="/bbs.php">论坛</a></li>
+            <li 
+            {if $active=="home"}
+            class="active"
+            {/if}
+            ><a href="/">首页</a></li>
+            <li
+            {if $active=="apple"}
+            class="active"
+            {/if}
+            
+            ><a href="/apple/">苹果新闻</a></li>
+            <li
+            {if $active=="bbs"}
+            class="active"
+            {/if}
+            
+            ><a href="/bbs.php">论坛</a></li>
           </ul>
         </div>
       </div>

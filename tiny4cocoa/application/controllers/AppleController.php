@@ -1,6 +1,11 @@
 <?php
 class AppleController extends baseController
 {
+  public function __construct($pathinfo,$controller) {
+		
+    parent::__construct($pathinfo,$controller);
+    $this->_view->assign("active","apple");
+  }
  
   public function indexAction() {
     
@@ -9,10 +14,10 @@ class AppleController extends baseController
     $discuz = new DiscuzModel();
     $this->userid = $discuz->checklogin();
     $threads = $allModel->allThreads(1,10);
-    //$newThreads = $allModel->newThreads(1,10);
-    
-    $page = 1;
-    $size = 20;
+    $page = $this->intVal(3);
+    if($page==0)
+      $page=1;
+    $size = 15;
     
     $tags = $newsModel->hotTags();
     $newscenter = new NewscenterModel();
@@ -25,13 +30,15 @@ class AppleController extends baseController
       
       $item["time"] = ToolModel::countTime($item["pubdate"]);
       $item["elink"] = urlencode($item["link"]);
-      
+      $item["desc"] = ToolModel::summary($item["content"],300);
       $napplenews[] = $item;
     }
+		$pageControl = ToolModel::pageControl($page,$count,$size,"<a href='/apple/index/#page#/'>");
+    $this->_mainContent->assign("pageControl",$pageControl);
+    
     $applenews = $napplenews;
     $news = $newsModel->news(1,10);
     $this->_mainContent->assign("threads",$threads);
-    //$this->_mainContent->assign("newThreads",$newThreads);
     $this->_mainContent->assign("news",$news);
     $this->_mainContent->assign("applenews",$applenews);
     $this->_mainContent->assign("userid",$this->userid);

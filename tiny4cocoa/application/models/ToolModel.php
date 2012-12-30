@@ -5,6 +5,18 @@ class ToolModel {
     
   }
   
+  public static function summary($text,$length) {
+    
+    $ret = mb_substr(strip_tags($text),0,$length);
+    $ret = str_replace("\\n","",$ret);
+    $retarray = explode("。",$ret);
+    $count = count($retarray);
+    if($count>1){
+      $ret = str_replace($retarray[$count-1],"",$ret);
+    }
+    return $ret;
+  }
+  
 	public static function post($url,$datas) {
     
     $dataArray = array();

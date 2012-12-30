@@ -14,7 +14,7 @@ class NewscenterModel extends baseDbModel {
     elseif($filter=="apple")
       $where = " WHERE `apple` = 1 ";
     
-    $sql = "SELECT `newscenter_items`.*,`newscenter_sources`.`name` FROM `newscenter_items`
+    $sql = "SELECT `newscenter_items`.*,`newscenter_sources`.`name`,`newscenter_sources`.`url` FROM `newscenter_items`
        LEFT JOIN `newscenter_sources`
        ON `newscenter_items`.`sid` = `newscenter_sources`.`id`
        $where ORDER BY `pubdate` DESC limit $start,$size;";
