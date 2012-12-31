@@ -15,6 +15,13 @@ class AppleController extends baseController
     $this->userid = $discuz->checklogin();
     $threads = $allModel->allThreads(1,10);
     $page = $this->intVal(3);
+    if($page==1) {
+      
+      header("HTTP/1.1 301 Moved Permanently");
+      header("Location: /apple/");
+      header("Connection: close");
+      die();
+    }
     if($page==0)
       $page=1;
     $size = 15;
