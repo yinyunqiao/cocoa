@@ -5,8 +5,8 @@ class HomeController extends baseController
 		
     parent::__construct($pathinfo,$controller);
     $this->_view->assign("active","home");
-    
   }
+  
   public function indexAction() {
     
     $allModel = new AllModel();
@@ -53,7 +53,11 @@ class HomeController extends baseController
       $this->setTitle("本站新闻 第".$page."页");
     $this->display();
   }
-  
+  public function linkAction() {
+    
+    $this->_view->assign("active","link");
+    $this->display();
+  }
   public function newsAction() {
     $page = $this->intVal(3);
     if($page<=1){
