@@ -9,7 +9,7 @@
   <h3>本站新闻</h3>
 	{foreach from=$news item=item}
 	<div class="newsblock">
-		<a href="/home/s/{$item.id}/"><img class="pic" src="/newsupload/{$item.filename}_s.{$item.ext}"></a>
+		<a href="/home/s/{$item.id}/"><img class="pic hidden-phone" src="/newsupload/{$item.filename}_s.{$item.ext}"></a>
 		<div class="content">
 			<h3><a href="/home/s/{$item.id}/">{$item.title}</a></h3>
 			<div class="authinfo">

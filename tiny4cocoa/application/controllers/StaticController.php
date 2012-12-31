@@ -16,13 +16,13 @@ class StaticController extends tinyApp_Controller
     $expire = "expires: " . gmdate ("D, d M Y H:i:s", time() + $offset) . " GMT";
     header ($expire);
     $path=$this->_pathinfo['base'].'/public/js';
-		
+    $bootstrap = $this->_pathinfo['base']."/public/bootstrap/js/";
+    
     include("$path/jquery/jquery.min.js");
     include("$path/jquery/jquery.validate.min.js");
-    
     include("$path/jquery/jquery.form.js");
-    
     include("$path/upload/upload.js");
+    include("$bootstrap/bootstrap.min.js");
   }
 	
   public function cssAction() {
@@ -39,13 +39,6 @@ class StaticController extends tinyApp_Controller
     include("$bootstrap/bootstrap.min.css");
     include("$bootstrap/bootstrap-responsive.min.css");
     include("$path/base.css");
-    
-    // include("$home/home.css");
-    // include("$home/news.css");
-    // include("$home/homeadmin.css");
-    // 
-    // $playground = "$path/playground";
-    // include("$playground/playground.css");
     
   }
 }
