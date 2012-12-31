@@ -45,7 +45,7 @@ class AppleController extends baseController
     $this->_mainContent->assign("spamcount",$spamcount);
     $this->_mainContent->assign("newscount",$newscount);
     $this->_mainContent->assign("tags",$tags);
-    
+    $this->setTitle("苹果新闻 第".$page."页");
     $this->display();
   }
   

@@ -41,7 +41,6 @@ class HomeController extends baseController
     $news = $newsModel->news($page,$size);
 		$pageControl = ToolModel::pageControl($page,$count,$size,"<a href='/home/news/#page#/'>");
     $this->_mainContent->assign("pageControl",$pageControl);
-    
     $this->_mainContent->assign("threads",$threads);
     $this->_mainContent->assign("news",$news);
     $this->_mainContent->assign("applenews",$applenews);
@@ -50,6 +49,8 @@ class HomeController extends baseController
     $this->_mainContent->assign("newscount",$newscount);
     $this->_mainContent->assign("tags",$tags);
     $this->viewFile="Home/index.html";
+    if($page>1)
+      $this->setTitle("本站新闻 第".$page."页");
     $this->display();
   }
   
