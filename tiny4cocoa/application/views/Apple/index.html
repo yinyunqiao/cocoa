@@ -1,7 +1,7 @@
 <div class="row">
   <div class="span8">
     <h3>最新苹果新闻</h3>
-  	{foreach from=$applenews item=item}
+  	{foreach from=$applenews item=item name=applenews}
   	<div class="newsblock">
       {if $item.image}
         <a href="/home/go/?url={$item.elink}" target="_blank">
@@ -21,6 +21,21 @@
   			<div style="overflow:hidden;">{$item.desc}</div>
   		</div>
   		<div style="clear:both"></div>
+      {if $smarty.foreach.applenews.index == 2}
+        <div style="text-align:center;margin-top:10px;" class="hidden-phone">
+          <script type="text/javascript"><!--
+          google_ad_client = "ca-pub-7732761529337293";
+          /* 468&#42;15 */
+          google_ad_slot = "5228913806";
+          google_ad_width = 468;
+          google_ad_height = 60;
+          //-->
+          </script>
+          <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+          </script>
+        </div>
+      {/if}
   	</div>
   	{/foreach}
     <div style="text-align:center;">

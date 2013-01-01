@@ -7,7 +7,7 @@
     </p>
   {/if}
   <h3>本站新闻</h3>
-	{foreach from=$news item=item}
+	{foreach from=$news item=item name=sitenews}
 	<div class="newsblock">
 		<a href="/home/s/{$item.id}/"><img class="pic hidden-phone" src="/newsupload/{$item.filename}_s.{$item.ext}"></a>
 		<div class="content">
@@ -25,6 +25,21 @@
 			</div>
 		</div>
 		<div style="clear:both"></div>
+    {if $smarty.foreach.sitenews.index == 2}
+      <div style="text-align:center;margin-top:10px;" class="hidden-phone">
+        <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-7732761529337293";
+        /* 468&#42;15 */
+        google_ad_slot = "5228913806";
+        google_ad_width = 468;
+        google_ad_height = 60;
+        //-->
+        </script>
+        <script type="text/javascript"
+        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+      </div>
+    {/if}
 	</div>
 	{/foreach}
   <div style="text-align:center;">
