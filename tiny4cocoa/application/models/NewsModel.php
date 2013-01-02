@@ -111,6 +111,32 @@ class NewsModel extends baseDbModel {
     return $comments;
   }
   
+  //算法来自 http://stackoverflow.com/questions/5037592/how-to-add-rel-nofollow-to-links-with-preg-replace
+  function linkAddNofollow($content) {
+      $content =
+      preg_replace_callback('~<(a\s[^>]+)>~isU', "NewsModel::cb2", $content);
+      return $content;
+  }
+
+  function cb2($match) { 
+      list($original, $tag) = $match;   // regex match groups
+
+      // $my_folder =  "/hostgator";       // re-add quirky config here
+      $blog_url = "http://tiny4cocoa.com";
+
+      if (strpos($tag, "nofollow")) {
+          return $original;
+      }
+      elseif (strpos($tag, $blog_url) 
+//      && (!$my_folder || !strpos($tag, $my_folder))
+      ) {
+          return $original;
+      }
+      else {
+          return "<$tag rel='nofollow'>";
+      }
+  }
+  
   public function saveComment() {
 
     $data["newsid"] = $_POST["newsid"];
@@ -169,6 +195,7 @@ SELECT count(*) FROM `cocoacms_comments` WHERE `newsid` = $newsid) WHERE `id` = 
     $content = str_replace("\r\n","<br/>",$content);
     $content = str_replace("\n","<br/>",$content);
     $content = str_replace("\r","<br/>",$content);
+    $content = $this->linkAddNofollow($content);
     return $content;
   }
   
