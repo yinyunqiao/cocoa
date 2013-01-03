@@ -174,6 +174,28 @@ class HomeController extends baseController
     fclose($fp);
   }
   
+  public function tagsAction() {
+    
+    $size = 15;
+    $page = $this->intVal(3);
+    if($page==0)
+      $page=1;
+    
+    $newsModel = new NewsModel();
+    $tags = $newsModel->hotTags();
+    $alltags = $newsModel->tags($page,$size);
+    $count = $newsModel->tagsCount();
+    
+		$pageControl = ToolModel::pageControl($page,$count,$size,"<a href='/home/tags/#page#/'>");
+    $this->_mainContent->assign("pageControl",$pageControl);
+    
+    $this->_mainContent->assign("tags",$tags);
+    $this->_mainContent->assign("alltags",$alltags);
+    $this->setTitle("Tags 第 $page 页");
+    $this->_view->assign("active","tags");
+    $this->display();
+  }
+  
   public function updateFeedsAction() {
   	echo "<html>
   			<head>

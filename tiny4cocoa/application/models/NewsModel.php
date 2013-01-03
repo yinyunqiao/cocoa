@@ -33,6 +33,44 @@ class NewsModel extends baseDbModel {
     return $ret;
   }
   
+  function tagThreads($tagname,$size) {
+    
+    $sql = "SELECT `cocoabbs_threadtags`.*,`cocoabbs_threads`.`subject` 
+      FROM `cocoabbs_threadtags`
+      LEFT JOIN `cocoabbs_threads`
+      ON `cocoabbs_threadtags`.`tid` = `cocoabbs_threads`.`tid`
+      WHERE `tagname` = '$tagname' 
+      ORDER BY `dateline` DESC
+      LIMIT 0,5;";
+    $ret = $this->fetchArray($sql);
+    return $ret;
+  }
+  
+  function tags($page,$size) {
+    
+    $start = ($page-1)*$size;
+    $sql = "SELECT * FROM `cocoabbs_tags` 
+      ORDER BY `total` 
+      DESC LIMIT $start,$size;";
+    $tags = $this->fetchArray($sql);
+    
+    if(count($tags)==0)
+      return $tags;
+    
+    $newTags = array();
+    foreach($tags as $tag){
+      
+      $tag["threads"] = $this->tagThreads($tag["tagname"],5);
+      $newTags[] = $tag;
+    }
+    return $newTags;
+  }
+  function tagsCount() {
+    
+    $sql = "SELECT count(*) as `c` FROM `cocoabbs_tags`";
+    $ret = $this->fetchArray($sql);
+    return $ret[0]["c"];
+  }
   public function spamCount() {
     
     $sql = "SELECT count(*) as `spamcount` FROM `cocoacms_comments` WHERE `spam`=1;";
