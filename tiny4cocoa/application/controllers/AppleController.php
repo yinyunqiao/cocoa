@@ -32,6 +32,7 @@ class AppleController extends baseController
     $newscount = $newscenter->count("unmarked");
     $spamcount = $newsModel->spamCount();
     $applenews = $newscenter->news($page,$size,"apple");
+    //var_dump($applenews);
     $napplenews = array();
     foreach($applenews as $item) {
       

@@ -14,15 +14,40 @@ class NewscenterModel extends baseDbModel {
     elseif($filter=="apple")
       $where = " WHERE `apple` = 1 ";
     
-    $sql = "SELECT `newscenter_items`.*,`newscenter_sources`.`name`,`newscenter_sources`.`url` FROM `newscenter_items`
+    $sql = "SELECT `newscenter_items`.*,
+      `newscenter_sources`.`name`,
+      `newscenter_sources`.`url`
+       FROM `newscenter_items`
        LEFT JOIN `newscenter_sources`
        ON `newscenter_items`.`sid` = `newscenter_sources`.`id`
        $where ORDER BY `pubdate` DESC limit $start,$size;";
-    //var_dump($sql);
-    $ret = $this->fetchArray($sql);
-    return $ret;
+    $news = $this->fetchArray($sql);
+    $news = $this->makeDateFlag($news);
+    return $news;
   }
   
+  private function makeDateFlag($news){
+    
+    if(count($news)==0)
+      return $news;
+    $nnews = array();
+    $today = date("Y年m月d日");
+    
+    foreach($news as $n) {
+      
+      if($nowdate!=date("Y年m月d日",$n["pubdate"])){
+        
+        $nowdate = date("Y年m月d日",$n["pubdate"]);
+        if($nowdate == $today)
+          $n["dateflag"] = "今天";
+        else
+          $n["dateflag"] = $nowdate;
+      }
+      $nnews[] = $n;
+    }
+    $news = $nnews;
+    return $news;
+  }
   public function data($id) {
     
     $sql = "SELECT * FROM `newscenter_items` WHERE `id` = $id;";

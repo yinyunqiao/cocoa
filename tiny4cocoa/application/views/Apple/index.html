@@ -3,6 +3,9 @@
     <h3>最新苹果新闻</h3>
   	{foreach from=$applenews item=item name=applenews}
   	<div class="newsblock">
+      {if $item.dateflag}
+        <h4>{$item.dateflag}</h4>
+      {/if}
       {if $item.image}
         <a href="/home/go/?url={$item.elink}" target="_blank">
   		  <img class="pic hidden-phone" src="{$item.image}"></a>
