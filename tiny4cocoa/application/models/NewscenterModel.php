@@ -72,7 +72,6 @@ class NewscenterModel extends baseDbModel {
     $now = time();
     $timediff = $now- 60*60*24*$day;
     $sql = "SELECT `id` FROM `newscenter_items` WHERE `checked` = 1 AND `apple` =1 AND `pubdate`> $timediff ;";
-    var_dump($sql);
     $ret = $this->fetchArray($sql);
     $ids = array();
     if(count($ret)>0)
