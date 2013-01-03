@@ -186,12 +186,20 @@ class HomeController extends baseController
   
   public function anindexAction() {
     
-    
     $newscenter = new NewscenterModel();
     $ids = $newscenter->newsids();
     $idStr = join(",",$ids);
     echo $idStr;
   }
+  
+  public function newnewsAction() {
+    
+    $newscenter = new NewscenterModel();
+    $ids = $newscenter->appleNewsIdsDays(3);
+    $idStr = join(",",$ids);
+    echo $idStr;
+  }
+  
   public function testallAction() {
     
     $newscenter = new NewscenterModel();
@@ -215,6 +223,7 @@ class HomeController extends baseController
     $ret = ToolModel::post("http://127.0.0.1:37210/isApple",$news);
     var_dump($ret);
   }
+  
   public function newsdataAction() {
     
     $id = $this->intVal(3);

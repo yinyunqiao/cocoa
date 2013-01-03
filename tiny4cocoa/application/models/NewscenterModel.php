@@ -67,6 +67,21 @@ class NewscenterModel extends baseDbModel {
     return $ids;
   }
   
+  public function appleNewsIdsDays($day){
+    
+    $now = time();
+    $timediff = $now- 60*60*24*$day;
+    $sql = "SELECT `id` FROM `newscenter_items` WHERE `checked` = 1 AND `apple` =1 AND `pubdate`> $timediff ;";
+    var_dump($sql);
+    $ret = $this->fetchArray($sql);
+    $ids = array();
+    if(count($ret)>0)
+      foreach($ret as $line){
+        $ids[] = $line["id"];
+      }
+    return $ids;
+  }
+  
   public function uncheckedIds(){
     
     $sql = "SELECT `id` FROM `newscenter_items` WHERE `checked` = 0;";
