@@ -41,7 +41,7 @@ class NewsModel extends baseDbModel {
       ON `cocoabbs_threadtags`.`tid` = `cocoabbs_threads`.`tid`
       WHERE `tagname` = '$tagname' 
       ORDER BY `dateline` DESC
-      LIMIT 0,5;";
+      LIMIT 0,$size;";
     $ret = $this->fetchArray($sql);
     return $ret;
   }
@@ -60,7 +60,7 @@ class NewsModel extends baseDbModel {
     $newTags = array();
     foreach($tags as $tag){
       
-      $tag["threads"] = $this->tagThreads($tag["tagname"],5);
+      $tag["threads"] = $this->tagThreads($tag["tagname"],8);
       $newTags[] = $tag;
     }
     return $newTags;
