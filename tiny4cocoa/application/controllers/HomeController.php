@@ -244,9 +244,8 @@ class HomeController extends baseController
       $url = "http://tiny4cocoa.com:9090/api/news/?id=$id";
       $ret = ToolModel::getUrl($url);
       if($ret=="1"){
-        echo $id;
+        echo $id."<br/>";
       }
-      echo"<br/>";
     }
   }
   
