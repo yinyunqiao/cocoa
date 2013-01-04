@@ -179,13 +179,16 @@ class HomeController extends baseController
     
     $size = 15;
     $page = $this->intVal(3);
-    if($page<=1){
+    if($page==1){
       
       header("HTTP/1.1 301 Moved Permanently");
-      header("Location: /home/");
+      header("Location: /home/tags/");
       header("Connection: close");
       die();
     }
+    if($page==0)
+      $page=1;
+    
     $newsModel = new NewsModel();
     $tags = $newsModel->hotTags();
     $alltags = $newsModel->tags($page,$size);
