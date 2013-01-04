@@ -59,6 +59,7 @@ class HomeController extends baseController
     $this->display();
   }
   public function newsAction() {
+    
     $page = $this->intVal(3);
     if($page<=1){
       
@@ -178,9 +179,13 @@ class HomeController extends baseController
     
     $size = 15;
     $page = $this->intVal(3);
-    if($page==0)
-      $page=1;
-    
+    if($page<=1){
+      
+      header("HTTP/1.1 301 Moved Permanently");
+      header("Location: /home/");
+      header("Connection: close");
+      die();
+    }
     $newsModel = new NewsModel();
     $tags = $newsModel->hotTags();
     $alltags = $newsModel->tags($page,$size);
