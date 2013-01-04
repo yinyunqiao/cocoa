@@ -26,6 +26,36 @@ class NewscenterModel extends baseDbModel {
     return $news;
   }
   
+  public function appleNews24() {
+    
+    $time = time();
+    $oneday = 86400;
+    $sql = "SELECT `newscenter_items`.*,
+      `newscenter_sources`.`name`,
+      `newscenter_sources`.`url`
+       FROM `newscenter_items`
+       LEFT JOIN `newscenter_sources`
+       ON `newscenter_items`.`sid` = `newscenter_sources`.`id`
+       WHERE `apple` = 1  AND $time <`pubdate`+$oneday ORDER BY `pubdate` DESC";
+    $news = $this->fetchArray($sql);
+    return $news;
+  }
+  
+  public function appleNewsFromDay($day) {
+    
+    $sql = "SELECT `newscenter_items`.*,
+      `newscenter_sources`.`name`,
+      `newscenter_sources`.`url`
+      FROM `newscenter_items`
+      LEFT JOIN `newscenter_sources`
+      ON `newscenter_items`.`sid` = `newscenter_sources`.`id`
+      WHERE `apple` = 1 
+      AND 
+      DATE_FORMAT(FROM_UNIXTIME(`pubdate`),'%Y-%m-%d') = \"$day\"
+      ORDER BY `pubdate` DESC";
+    $news = $this->fetchArray($sql);
+    return $news;
+  }
   private function makeDateFlag($news){
     
     if(count($news)==0)
@@ -48,6 +78,7 @@ class NewscenterModel extends baseDbModel {
     $news = $nnews;
     return $news;
   }
+  
   public function data($id) {
     
     $sql = "SELECT * FROM `newscenter_items` WHERE `id` = $id;";

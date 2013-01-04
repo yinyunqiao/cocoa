@@ -11,41 +11,93 @@ class AppleController extends baseController
     
     $allModel = new AllModel();
     $newsModel = new NewsModel();
+    $newscenter = new NewscenterModel();
     $discuz = new DiscuzModel();
+    
     $this->userid = $discuz->checklogin();
     $threads = $allModel->allThreads(1,10);
-    $page = $this->intVal(3);
-    if($page==1) {
-      
-      header("HTTP/1.1 301 Moved Permanently");
-      header("Location: /apple/");
-      header("Connection: close");
-      die();
-    }
-    if($page==0)
-      $page=1;
-    $size = 15;
     
+    $str = $this->strVal(3);
+    $date = date_parse($str);
+    $endtime = mktime(0,0,0,12,1,2012);
+    
+    if($date["year"] && $date["month"]&&$date["day"]) {
+      
+      $applenews = $newscenter->appleNewsFromDay($str);
+      $title = "$date[year]年$date[month]月$date[day]日 苹果新闻";
+      $time = mktime(0,0,0,$date["month"],$date["day"],$date["year"]);
+      if($time<$endtime || $time>time()) {
+        header("HTTP/1.1 301 Moved Permanently");
+        header("Location: /apple/");
+        header("Connection: close");
+        die();
+      }
+      $today = date("Y-m-d",$time);
+      $todayName = date("Y年m月d日",$time);
+      if($today == date("Y-m-d")){
+        
+      }
+      else {
+        $prevDay = date("Y-m-d",$time+60*60*24);
+        $prevDayName = date("Y年m月d日",$time+60*60*24);
+      }
+      if($endtime!=$time){
+        
+        $nextDay =  date("Y-m-d",$time-60*60*24);
+        $nextDayName =  date("Y年m月d日",$time-60*60*24);  
+      }
+    }
+    else {
+      if($str!="") {
+        header("HTTP/1.1 301 Moved Permanently");
+        header("Location: /apple/");
+        header("Connection: close");
+        die();
+      }
+      $news24 = 1;
+      $applenews = $newscenter->appleNews24();
+      $title = "最新苹果新闻（24小时内）";
+      $nextDay =  date("Y-m-d");
+      $nextDayName =  date("Y年m月d日");
+    }
+    $this->setTitle($title);
     $tags = $newsModel->hotTags();
-    $newscenter = new NewscenterModel();
     $count = $newscenter->count("apple");
     $newscount = $newscenter->count("unmarked");
     $spamcount = $newsModel->spamCount();
-    $applenews = $newscenter->news($page,$size,"apple");
-    //var_dump($applenews);
     $napplenews = array();
-    foreach($applenews as $item) {
+    if(count($applenews)>0) {
+      foreach($applenews as $item) {
       
-      $item["time"] = ToolModel::countTime($item["pubdate"]);
-      $item["elink"] = urlencode($item["link"]);
-      $item["desc"] = ToolModel::summary($item["content"],300);
-      $napplenews[] = $item;
+        $item["time"] = ToolModel::countTime($item["pubdate"]);
+        $item["elink"] = urlencode($item["link"]);
+        $item["desc"] = ToolModel::summary($item["content"],300);
+        $napplenews[] = $item;
+      }
+      $applenews = $napplenews;
     }
-		$pageControl = ToolModel::pageControl($page,$count,$size,"<a href='/apple/index/#page#/'>");
-    $this->_mainContent->assign("pageControl",$pageControl);
     
-    $applenews = $napplenews;
+		$pageControl = "<div class=\"pagination pagination-large\"><ul>";
+    if($news24) {
+      $pageControl .= "<li class=\"disabled\"><a href=\"javascript:\">24小时内</a></li>";
+    }else
+    if($prevDay){
+      $pageControl .= "<li><a href=\"/apple/index/$prevDay/\">« $prevDayName</a></li>";
+    }else {
+      $pageControl .= "<li><a href=\"/apple/\">24小时内</a></li>";
+    }
+    if($today) {
+      $pageControl .= "<li class=\"disabled\"><a href=\"/apple/index/$today/\">$todayName</a></li>";
+    }
+    if($nextDay) {
+      $pageControl .= "<li><a href=\"/apple/index/$nextDay/\">$nextDayName »</a></li>";
+    }else {
+    }
+    $pageControl .= '</ul></div>';
+    // <li class="disabled"><a href="javascript:">«</a></li><li><a href="/apple/index/-9/">-9</a></li><li><a href="/apple/index/-8/">-8</a></li><li><a href="/apple/index/-7/">-7</a></li><li><a href="/apple/index/-6/">-6</a></li><li><a href="/apple/index/-5/">-5</a></li><li><a href="/apple/index/-4/">-4</a></li><li><a href="/apple/index/-3/">-3</a></li><li><a href="/apple/index/-2/">-2</a></li><li><a href="/apple/index/-1/">-1</a></li><li class="disabled"><a href="/apple/index/0/">0</a></li><li><a href="/apple/index/1/">»</a></li></ul></div>
+    $this->_mainContent->assign("pageControl",$pageControl);
     $news = $newsModel->news(1,10);
+    $this->_mainContent->assign("title",$title);
     $this->_mainContent->assign("threads",$threads);
     $this->_mainContent->assign("news",$news);
     $this->_mainContent->assign("applenews",$applenews);
@@ -53,7 +105,6 @@ class AppleController extends baseController
     $this->_mainContent->assign("spamcount",$spamcount);
     $this->_mainContent->assign("newscount",$newscount);
     $this->_mainContent->assign("tags",$tags);
-    $this->setTitle("苹果新闻 第".$page."页");
     $this->display();
   }
   
