@@ -77,7 +77,7 @@ class AppleController extends baseController
       $applenews = $napplenews;
     }
     
-		$pageControl = "<div class=\"pagination pagination-large\"><ul>";
+		$pageControl = "<div class=\"pagination\"><ul>";
     if($news24) {
       $pageControl .= "<li class=\"disabled\"><a href=\"javascript:\">24小时内</a></li>";
     }else
