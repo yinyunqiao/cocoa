@@ -35,6 +35,15 @@ class ToolModel {
 		curl_close($curl);
 		return $data;
 	}
+	public static function getUrl($url) {
+    
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		$data = curl_exec($curl);
+		curl_close($curl);
+		return $data;
+	}
   
   
   public static function MosaicIp($ip) {
@@ -45,6 +54,7 @@ class ToolModel {
     $ip = "$numbers[0].$numbers[1].$numbers[2].*";
     return $ip;
   }
+  
   public static function toHtml($content) {
     
     $content = stripslashes($content);

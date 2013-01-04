@@ -236,11 +236,15 @@ class HomeController extends baseController
     $ids = $newscenter->uncheckedIds();
     $apples = array();
     foreach($ids as $id) {
-      $news = $newscenter->data($id);
-      $news["channel"] = $news["sid"];
-      $ret = ToolModel::post("http://127.0.0.1:37210/isApple",$news);
-      $newscenter->markApple($id,$ret);
-      echo "$id = $ret<br/>";
+      // $news = $newscenter->data($id);
+      // $news["channel"] = $news["sid"];
+      // $ret = ToolModel::post("http://127.0.0.1:37210/isApple",$news);
+      // $newscenter->markApple($id,$ret);
+      // echo "$id = $ret<br/>";
+      $url = "http://tiny4cocoa.com:9090/api/news/?id=$id";
+      $ret = ToolModel::getUrl($url);
+      var_dump($ret);
+      echo"<br/>";
     }
   }
   
