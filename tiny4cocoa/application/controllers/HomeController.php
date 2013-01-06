@@ -13,7 +13,7 @@ class HomeController extends baseController
     $newsModel = new NewsModel();
     $discuz = new DiscuzModel();
     $this->userid = $discuz->checklogin();
-    $threads = $allModel->allThreads(1,10);
+    $threads = $allModel->allThreads(1,25);
     
     $page = $this->intVal(3);
     if($page==0)
@@ -25,7 +25,7 @@ class HomeController extends baseController
     $count = $newscenter->count("apple");
     $newscount = $newscenter->count("unmarked");
     $spamcount = $newsModel->spamCount();
-    $applenews = $newscenter->news(1,$size,"apple");
+    $applenews = $newscenter->news(1,15,"apple");
     $napplenews = array();
     foreach($applenews as $item) {
       

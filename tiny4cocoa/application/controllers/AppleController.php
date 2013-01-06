@@ -94,7 +94,6 @@ class AppleController extends baseController
     }else {
     }
     $pageControl .= '</ul></div>';
-    // <li class="disabled"><a href="javascript:">«</a></li><li><a href="/apple/index/-9/">-9</a></li><li><a href="/apple/index/-8/">-8</a></li><li><a href="/apple/index/-7/">-7</a></li><li><a href="/apple/index/-6/">-6</a></li><li><a href="/apple/index/-5/">-5</a></li><li><a href="/apple/index/-4/">-4</a></li><li><a href="/apple/index/-3/">-3</a></li><li><a href="/apple/index/-2/">-2</a></li><li><a href="/apple/index/-1/">-1</a></li><li class="disabled"><a href="/apple/index/0/">0</a></li><li><a href="/apple/index/1/">»</a></li></ul></div>
     $this->_mainContent->assign("pageControl",$pageControl);
     $news = $newsModel->news(1,10);
     $this->_mainContent->assign("title",$title);
