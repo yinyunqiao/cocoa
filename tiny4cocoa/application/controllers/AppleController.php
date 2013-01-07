@@ -55,8 +55,8 @@ class AppleController extends baseController
         die();
       }
       $news24 = 1;
-      $applenews = $newscenter->appleNews24();
-      $title = "最新苹果新闻（24小时内）";
+      $applenews = $newscenter->news(1,10,"apple");
+      $title = "最新苹果新闻";
       $nextDay =  date("Y-m-d");
       $nextDayName =  date("Y年m月d日");
     }
