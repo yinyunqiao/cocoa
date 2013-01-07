@@ -79,12 +79,12 @@ class AppleController extends baseController
     
 		$pageControl = "<div class=\"pagination\"><ul>";
     if($news24) {
-      $pageControl .= "<li class=\"disabled\"><a href=\"javascript:\">24小时内</a></li>";
+      $pageControl .= "<li class=\"disabled\"><a href=\"javascript:\">最近10条</a></li>";
     }else
     if($prevDay){
       $pageControl .= "<li><a href=\"/apple/index/$prevDay/\">« $prevDayName</a></li>";
     }else {
-      $pageControl .= "<li><a href=\"/apple/\">24小时内</a></li>";
+      $pageControl .= "<li><a href=\"/apple/\">最近10条</a></li>";
     }
     if($today) {
       $pageControl .= "<li class=\"disabled\"><a href=\"/apple/index/$today/\">$todayName</a></li>";
