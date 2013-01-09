@@ -27,7 +27,6 @@ class ToolModel {
     
 		$curl = curl_init();
 		curl_setopt($curl, CURLOPT_URL, $url);
-    // curl_setopt($curl, CURLOPT_HEADER, 1);
     curl_setopt($curl, CURLOPT_POST, count($datas));
     curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -35,6 +34,18 @@ class ToolModel {
 		curl_close($curl);
 		return $data;
 	}
+	public static function postJSON($url,$JSON) {
+    
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_POST, count(1));
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $JSON);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		$data = curl_exec($curl);
+		curl_close($curl);
+		return $data;
+	}
+  
 	public static function getUrl($url) {
     
 		$curl = curl_init();

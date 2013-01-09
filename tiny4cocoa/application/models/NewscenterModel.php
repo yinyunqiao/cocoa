@@ -196,4 +196,64 @@ class NewscenterModel extends baseDbModel {
       }
     }
   }
+  
+  public function newsById($id) {
+    
+    $sql = "SELECT *
+       FROM `newscenter_items`
+       WHERE `id` = $id;";
+    $news = $this->fetchArray($sql);
+    $news[0]["elink"] = urlencode($news[0]["link"]);
+    return $news[0];
+  }
+  
+  public function makeHomeCluster($applenews) {
+    
+    $ret = $this->kv_get("homecluster");
+    $homecluster = unserialize($ret["v"]);
+    $homecluster = json_decode($homecluster,true);
+    if(count($applenews)==0)
+      return $applenews;
+    $napplenews = array();
+    $supportnewsids = array();
+    foreach($applenews as $news) {
+      
+      $id = $news["id"];
+      if(count($homecluster[$id])>0){
+        
+        $snews = array();
+        foreach($homecluster[$id] as $sid) {
+          
+          $supportnewsids[] = $sid;
+          $snews[] = $this->newsById($sid);
+        }
+        $news["snews"] = $snews;
+      }
+      if(!in_array($id,$supportnewsids))
+        $napplenews[] = $news;
+    }
+    return $napplenews;
+  }
+  
+  public function kv_get($key) {
+    
+    $ret = $this->select("cocoacoms_kv")->fields("v,updatetime")->where("k = '$key'")->fetchOne();
+    return $ret;
+  } 
+  
+  public function kv_set($key,$value) {
+    
+    $this->kv_clear($key);
+    $value = mysql_real_escape_string($value);
+    $time = time();
+    $sql = "INSERT INTO `cocoacoms_kv` (`k`,`v`,`updatetime`) 
+      VALUES ('$key','$value','$time');";
+    $this->run($sql);
+  }
+  
+  public function kv_clear($key) {
+    
+    $sql = "DELETE FROM `cocoacoms_kv` WHERE k = '$key';";
+    $this->run($sql);
+  }
 }

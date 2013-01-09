@@ -18,13 +18,22 @@
   			<div class="authinfo">
           {$item.author} 发表于［<a href="{$item.url}" target="_blank">{$item.name}］</a> @ {$item.time}
           <span class="timestamp">{$item.createtime}</span>
-          <!-- {if $item.commentscount>0}
-            <a href="/home/s/{$item.id}/">{$item.commentscount}个评论</a>
-          {else}
-            <a href="/home/s/{$item.id}/">暂无评论</a>
-          {/if} -->
         </div>
-  			<div style="overflow:hidden;">{$item.desc}</div>
+  			<div style="overflow:hidden;margin-top:5px;">{$item.desc}</div>
+        {if $item.snews}
+          <div>
+            <h4>相关资讯</h4>
+            <ul>
+            {foreach from=$item.snews item=snews}
+              <li>
+                <a href="/home/go/?url={$snews.elink}"  target="_blank">
+                  {$snews.title}
+                </a>
+              </li>
+            {/foreach}
+            </ul>
+          </div>
+        {/if}
   		</div>
   		<div style="clear:both"></div>
       {if $smarty.foreach.applenews.index == 2}
@@ -48,7 +57,6 @@
       {$pageControl}
     </div>
   </div>
-  
   <div class="span4">
     <div class="hero-unit" style="padding:10px;">
       <h4>欢迎投稿</h4>
@@ -96,7 +104,4 @@
       </p>
     </div>
   </div>
-
-
-
 </div>
