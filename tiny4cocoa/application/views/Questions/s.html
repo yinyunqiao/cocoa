@@ -1,0 +1,188 @@
+<script type="text/javascript">
+{literal}
+$(document).ready(function() {
+  
+  $("#commentform").validate();
+  $("#nonamecheck").change(function(){
+    if($(this).attr('checked')) {
+      $(".nonamename").show();
+      $(".namename").css("text-decoration","line-through");
+      $(".namename").css("color","red");
+    }
+    else {
+      
+      $(".nonamename").hide();
+      $(".namename").css("text-decoration","none");
+      $(".namename").css("color","black");
+    }
+  });
+});
+{/literal}
+</script>
+
+<div class="news_content" itemscope itemtype="http://schema.org/Article">
+  <meta itemprop="thumbnailUrl" content="http://tiny4cocoa.com/newsupload/{$news.filename}_s.{$news.ext}"/>
+  <h1 class="title" itemprop="name">{$news.title}</h1>
+  <p class="desc">by <span itemprop="author">{$news.poster}</span> {$news.createtime} {$pageview}次浏览</p>
+  <div style="display:none;" itemprop="description">
+    {$news.desc}
+  </div>
+  <div class="content">
+    <a href="/newsupload/{$news.filename}.{$news.ext}" target="_blank">
+      <img class="pic" src="/newsupload/{$news.filename}_m.{$news.ext}" width="300">
+    </a>
+    <p>原文地址：<a href="http://tiny4cocoa.com/home/s/{$news.id}/">http://tiny4cocoa.com/home/s/{$news.id}/</a><br/><br/></p>
+    {$news.content}
+    <p><br/><br/>原文地址：<a href="http://tiny4cocoa.com/home/s/{$news.id}/">http://tiny4cocoa.com/home/s/{$news.id}/</a><br/></p>
+  </div>
+  <div style="clear:both;"></div>
+  <div style="padding-top:20px;padding-bottom:20px;text-align:right;">
+    <div style="margin-left:250px">
+      <!-- JiaThis Button BEGIN -->
+      <div class="jiathis_style_32x32">
+      	<a class="jiathis_button_tsina"></a>
+      	<a class="jiathis_button_tqq"></a>
+      	<a class="jiathis_button_qzone"></a>
+        <a class="jiathis_button_douban"></a>
+      	<a class="jiathis_button_kaixin001"></a>
+      	<a class="jiathis_button_renren"></a>
+      	<a href="http://www.jiathis.com/share?uid=1552063" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank">更多</a>
+      	<a class="jiathis_counter_style"></a>
+      </div>
+      <script type="text/javascript" src="http://v2.jiathis.com/code/jia.js?uid=1552063" charset="utf-8"></script>
+      <!-- JiaThis Button END -->
+    </div>
+    <div style="clear:both;"></div>
+  </div>
+   <div style="text-align:center;padding:10px;">
+     <!-- 广告位：tiny4cocoa贴后 -->
+     <script type="text/javascript">BAIDU_CLB_fillSlot("498926");</script>
+   </div>
+  <div>
+    {if $comments|@count == 0}
+      <h4 class="commentscount">暂无评论（马上评论可以成为楼长）</h4>
+    {else}
+      <h4 class="commentscount">{$comments|@count}个评论</h4>
+    {/if}
+    <div class="commentformdiv">
+      <form action="/home/savecomment/" method="post" id="commentform">
+        <input type="hidden" name="newsid" value="{$news.id}">
+        <input type="hidden" name="posterid" value="{$userid}">
+        {if $userid == 0}        
+          <img class="postericon" src="/uc_server/images/noavatar_small.gif">
+        {else}
+          <img class="postericon" src="/uc_server/avatar.php?uid={$userid}&size=small"/>
+        {/if}
+        <div class="commentformcontent">
+          <p>
+            <span class="namename">{$username}</span>
+            <span class="nonamename" {if $userid != 0}style="display:none;"{/if}>
+              <input name="poster" value="{$nonamename}" required>
+            </span>:
+            <span class="nonamename" style="color:green;{if $userid != 0}display:none;{/if}">
+              *你可以换成你喜欢的昵称
+            </span>
+          </p>
+          <textarea class="commenttextarea" required minlength="5" name="content"></textarea>
+          <div style="padding:10px;text-align:right;">
+            {if $userid != 0}
+              <lable for="nonamecheck">装游客</label><input type="checkbox" name="nonamecheck" id="nonamecheck"> <input type="submit" value="评 论" style="font-size:25px;">
+            {else}
+            <input type="submit" value="游客评论" style="font-size:25px;">
+            或者 <a href="/logging.php?action=login">先登录</a>
+            {/if}
+          </div>
+        </div>
+        <div style="clear:both;"></div>
+      </form>
+    </div>
+    {foreach from=$comments item=comment name=comments}
+      <div class="comment">
+        <div class="floornumber">
+          {if $smarty.foreach.comments.index == 0}
+            楼长
+          {else}
+            {$smarty.foreach.comments.index+1}楼
+          {/if}
+        </div>
+        {if $comment.posterid==0 || $comment.hidename == 1}             
+          <img class="postericon" src="/uc_server/images/noavatar_small.gif">
+        {else}
+          <img class="postericon" src="http://tiny4cocoa.com/uc_server/avatar.php?uid={$comment.posterid}&size=small"/>
+        {/if}
+        <div class="comment_content">
+          <p>
+            {if $comment.hidename == 1 || $comment.posterid == 0}
+              <span class="hidename">{$comment.poster} ({$comment.ip})</span>
+            {else}
+              <a href="">
+                {$comment.poster}
+              </a>
+            {/if}
+             @ {$comment.createtime}
+          </p>
+          <br/>
+          <p>
+          {$comment.content}
+          </p>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+    {/foreach}
+  </div>
+</div>
+
+<div class="news_sidebar">
+  
+  <div class="wumii-hook">
+      <input type="hidden" name="wurl" value="http://tiny4cocoa.com/home/s/{$news.id}/" />
+      <input type="hidden" name="wtitle" value="{$news.title}" />
+      <input type="hidden" name="wpic" value="" />
+  </div>
+  <div id="post_rate_div_27561"></div>
+  
+  <script type="text/javascript"><!--
+    google_ad_client = "ca-pub-7732761529337293";
+    /* tiny4cocoa正方形250&#42;250 */
+    google_ad_slot = "7613412479";
+    google_ad_width = 250;
+    google_ad_height = 250;
+    //-->
+  </script>
+  <script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+  
+  <div class="block_title">热门文章</div>
+  <ul>
+    {foreach from=$hotnews item=news}
+    <a href="/home/s/{$news.id}/" target="_blank">
+      <li class="newstitle">
+        {$news.title}
+        </li>
+      </a>
+      {/foreach}
+    </ul>
+  
+  <div class="block_title">论坛最新更新</div>
+  <ul>
+    {foreach from=$threads item=thread}
+    <a href="/thread-{$thread.tid}-1-1.html" target="_blank">
+      <li class="newstitle">
+        {$thread.subject}
+        </li>
+      </a>
+      {/foreach}
+    </ul>
+    
+    
+</div>
+
+<script type="text/javascript"><!--
+    var wumiiSitePrefix = "http://tiny4cocoa.com/";
+    var wumiiEnableCustomPos = false;
+//--></script>
+<script type="text/javascript" src="http://widget.wumii.com/ext/relatedItemsWidget.htm?type=1&num=6&v=1.0.0.3&pf=Discuz7.2"></script>
+<a href="http://www.wumii.com/widget/relatedItems.htm" style="border:0;">
+    <img src="http://static.wumii.com/images/pixel.png" alt="" style="border:0;padding:0;margin:0;" />
+</a>
