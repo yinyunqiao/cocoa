@@ -6,6 +6,9 @@ RewriteRule ^home/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^apple$ tiny4cocoa/public/index.php
 RewriteRule ^apple/(.*)$ tiny4cocoa/public/index.php
 
+RewriteRule ^questions$ tiny4cocoa/public/index.php
+RewriteRule ^questions/(.*)$ tiny4cocoa/public/index.php
+
 RewriteRule ^static/(.*)/$ tiny4cocoa/public/index.php
 RewriteRule ^static/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^homeadmin/(.*) tiny4cocoa/public/index.php

@@ -7,7 +7,12 @@
     <a href="/homeadmin/applenews/marked/">标记</a> |
     <a href="/homeadmin/applenews/unmarked/">未标记</a> |
     <a href="/homeadmin/applenews/apple/">Apple</a>
-     <input type="submit" value="标记全部检查过">
+     <input type="submit" value="标记全部检查过" class="btn btn-primary">
+     <a href="http://74.207.248.39:9090/api/mlinfo/
+" target="_blank" class="btn btn-success">服务器状态</a>
+     <a href="http://74.207.248.39:9090/api/rebuild/
+" target="_blank" class="btn btn-danger">重新训练</a>
+
   </div>
 	{foreach from=$news item=item}
     <input type="hidden" name="ids[]" value="{$item.id}"/>
