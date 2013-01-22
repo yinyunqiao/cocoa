@@ -217,7 +217,7 @@ class AppleController extends baseController
       $news = $newscenter->data($id);
       $news["channel"] = $news["sid"];
       $ret = ToolModel::post("http://127.0.0.1:37210/isApple",$news);
-      $newscenter->markApple($id,$ret);
+      $newscenter->markApple($id,$ret,0);
       echo "$id = $ret<br/>";
     }
   }

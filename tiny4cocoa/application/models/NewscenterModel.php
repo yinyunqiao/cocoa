@@ -146,11 +146,13 @@ class NewscenterModel extends baseDbModel {
     $this->run($sql);
   }
   
-  public function markApple($id,$apple){
+  public function markApple($id,$apple,$mark=1){
     
-    $host = "http://74.207.248.39:9090";
     $sql = "UPDATE `newscenter_items` set `checked`=1,`apple`=$apple WHERE `id` = $id; ";
     $this->run($sql);
+    if($mark!=1)
+      return;
+    $host = "http://74.207.248.39:9090";
     ToolModel::getUrl(
       "$host/api/amend/?id=$id&isTarget=$apple");
   }
