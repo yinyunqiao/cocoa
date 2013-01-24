@@ -293,6 +293,47 @@ class AppleController extends baseController
     $this->_layout = "flat";
     $this->display();
   }
+
+  public function rssfeedAction(){
+    include ("FeedWriter/FeedTypes.php");
+    // $feedWriter = new FeedWriter(RSS2);
+    $rssFeeder = new RSS1FeedWriter();
+
+  //Setting the channel elements
+  //Use wrapper functions for common elements
+  //For other optional channel elements, use setChannelElement() function
+    $rssFeeder->setTitle('Tiny4Cocoa');
+    $rssFeeder->setLink('http://tiny4cocoa.com/home/');
+    $rssFeeder->setDescription('Tiny4Cocoa 最新苹果新闻');
+
+  //It's important for RSS 1.0 
+    $rssFeeder->setChannelAbout('http://tiny4cocoa.com/apple/rss');
+
+  //Adding a feed. Genarally this protion will be in a loop and add all feeds.
+
+  //Create an empty FeedItem
+    $newItem = $rssFeeder->createNewItem();
+
+  //Add elements to the feed item
+  //Use wrapper functions to add common feed elements
+    $newItem->setTitle('The first feed');
+    $newItem->setLink('http://www.yahoo.com');
+  //The parameter is a timestamp for setDate() function
+    $newItem->setDate(time());
+    $newItem->setDescription('This is test of adding CDATA encoded description by the php <b>Universal Feed Writer</b> class');
+  //Use core addElement() function for other supported optional elements
+    $newItem->addElement('dc:subject', 'Nothing but test');
+
+  //Now add the feed item
+    $rssFeeder->addItem($newItem);
+
+  //Adding multiple elements from array
+  //Elements which have an attribute cannot be added by this way
+    $newItem = $rssFeeder->createNewItem();
+    $newItem->addElementArray(array('title'=>'The 2nd feed', 'link'=>'http://www.google.com', 'description'=>'This is a test of the FeedWriter class'));
+    $rssFeeder->addItem($newItem);
+    $rssFeeder->generateFeed();
+  }
 }
 
 
