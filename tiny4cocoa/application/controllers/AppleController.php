@@ -307,6 +307,5 @@ class AppleController extends baseController
   }
 }
 
-// array(13) { [0]=> string(2) "id" [1]=> string(5) "title" [2]=> string(7) "content" [3]=> string(6) "poster" [4]=> string(8) "posterid" [5]=> string(10) "createdate" [6]=> string(10) "updatedate" [7]=> string(4) "desc" [8]=> string(8) "filename" [9]=> string(3) "ext" [10]=> string(13) "commentscount" [11]=> string(8) "pageview" [12]=> string(10) "createtime" }
 
 
