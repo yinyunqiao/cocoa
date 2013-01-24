@@ -279,6 +279,20 @@ class AppleController extends baseController
       }
     }
   }
+
+  public function snAction(){
+    $id = $this->intVal(3);
+    $newscenter = new NewscenterModel();
+    $news = $newscenter->data($id);
+    // $news["content"] = strip_tags($news["content"]);
+    $news["content"] = str_replace("\\n"," ",$news["content"]);
+    $news["content"] = str_replace("\\r"," ",$news["content"]);
+
+    $news["content"] = stripslashes($news["content"]);
+    $this->_mainContent->assign("content",$news["content"]);
+    $this->_layout = "flat";
+    $this->display();
+  }
 }
 
 
