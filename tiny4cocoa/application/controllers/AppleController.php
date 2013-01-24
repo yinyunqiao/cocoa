@@ -312,28 +312,44 @@ class AppleController extends baseController
   //Adding a feed. Genarally this protion will be in a loop and add all feeds.
 
   //Create an empty FeedItem
-    $newItem = $rssFeeder->createNewItem();
+  //   $newItem = $rssFeeder->createNewItem();
 
-  //Add elements to the feed item
-  //Use wrapper functions to add common feed elements
-    $newItem->setTitle('The first feed');
-    $newItem->setLink('http://www.yahoo.com');
-  //The parameter is a timestamp for setDate() function
-    $newItem->setDate(time());
-    $newItem->setDescription('This is test of adding CDATA encoded description by the php <b>Universal Feed Writer</b> class');
-  //Use core addElement() function for other supported optional elements
-    $newItem->addElement('dc:subject', 'Nothing but test');
+  // //Add elements to the feed item
+  // //Use wrapper functions to add common feed elements
+  //   $newItem->setTitle('The first feed');
+  //   $newItem->setLink('http://www.yahoo.com');
+  // //The parameter is a timestamp for setDate() function
+  //   $newItem->setDate(time());
+  //   $newItem->setDescription('This is test of adding CDATA encoded description by the php <b>Universal Feed Writer</b> class');
+  // //Use core addElement() function for other supported optional elements
+  //   $newItem->addElement('dc:subject', 'Nothing but test');
 
-  //Now add the feed item
-    $rssFeeder->addItem($newItem);
+  // //Now add the feed item
+  //   $rssFeeder->addItem($newItem);
 
-  //Adding multiple elements from array
-  //Elements which have an attribute cannot be added by this way
-    $newItem = $rssFeeder->createNewItem();
-    $newItem->addElementArray(array('title'=>'The 2nd feed', 'link'=>'http://www.google.com', 'description'=>'This is a test of the FeedWriter class'));
-    $rssFeeder->addItem($newItem);
+  // //Adding multiple elements from array
+  // //Elements which have an attribute cannot be added by this way
+  //   $newItem = $rssFeeder->createNewItem();
+  //   $newItem->addElementArray(array('title'=>'The 2nd feed', 'link'=>'http://www.google.com', 'description'=>'This is a test of the FeedWriter class'));
+  //   $rssFeeder->addItem($newItem);
+    // $rssFeeder->generateFeed();
+    $newsModel = new NewsModel();
+    $news = $newsModel->news(1,30);
+    $news_root_url = "http://tiny4cocoa.com/home/s/";
+    foreach ($news as $a_news) {
+      $newItem = $rssFeeder->createNewItem();
+      $newItem->setTitle($a_news["title"]);
+      $a_news_id = $a_news["id"];
+      $a_news_link = $news_root_url.$a_news_id;
+      $newItem->setLink($a_news_link);
+      $newItem->setDate(time());
+      $newItem->setDescription($a_news["content"]);
+      $rssFeeder->addItem($newItem);
+    }
     $rssFeeder->generateFeed();
   }
 }
+
+// array(13) { [0]=> string(2) "id" [1]=> string(5) "title" [2]=> string(7) "content" [3]=> string(6) "poster" [4]=> string(8) "posterid" [5]=> string(10) "createdate" [6]=> string(10) "updatedate" [7]=> string(4) "desc" [8]=> string(8) "filename" [9]=> string(3) "ext" [10]=> string(13) "commentscount" [11]=> string(8) "pageview" [12]=> string(10) "createtime" }
 
 
