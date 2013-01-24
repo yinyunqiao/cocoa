@@ -160,9 +160,21 @@ class AppleController extends baseController
 
   public function rssAction() {
     
-    $newsModel = new NewsModel();
-    $news = $newsModel->news(1,30);
-    $this->_mainContent->assign("allnews",$news);
+    $newsModel = new NewscenterModel();
+    $news = $newsModel->news(1,30,"apple");
+    $napplenews = array();
+    if(count($news)>0) {
+      foreach($news as $item) {
+      
+        $item["time"] = ToolModel::countTime($item["pubdate"]);
+        $item["elink"] = urlencode($item["link"]);
+        $item["desc"] = ToolModel::summary($item["content"],300);
+        $napplenews[] = $item;
+      }
+      $news = $napplenews;
+    }
+    $this->_mainContent->assign("allnews",$news);   
+
     $this->_layout = "empty";
     $this->display();
   }
@@ -279,6 +291,21 @@ class AppleController extends baseController
       }
     }
   }
+
+  public function snAction(){
+    $id = $this->intVal(3);
+    $newscenter = new NewscenterModel();
+    $news = $newscenter->data($id);
+    // $news["content"] = strip_tags($news["content"]);
+    $news["content"] = str_replace("\\n"," ",$news["content"]);
+    $news["content"] = str_replace("\\r"," ",$news["content"]);
+
+    $news["content"] = stripslashes($news["content"]);
+    $this->_mainContent->assign("content",$news["content"]);
+    $this->_layout = "flat";
+    $this->display();
+  }
 }
+
 
 
