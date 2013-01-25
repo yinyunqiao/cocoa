@@ -86,6 +86,20 @@ class NewscenterModel extends baseDbModel {
     return $ret[0];
   }
   
+  public function removeTail($content){
+    
+    $tails = array();
+    $tails[]= "<div id='jiathis_style_24x24'>"; //雷锋网
+    $tails[]= "<a href=\"http://www.ifanr.com\">爱范儿 · Beats"; //爱范儿
+    $tails[]= "<img width='1' height='1' src='http://tech2ipo.feedsportal.com/"; //Tech2iPO
+    
+    foreach($tails as $tail) {
+      $pos = strpos($content,$tail);
+      if($pos!=0)
+        $content = substr($content,0,$pos);
+    }
+    return $content;
+  }
   public function newsids(){
     
     $sql = "SELECT `id` FROM `newscenter_items` WHERE `checked` = 1;";

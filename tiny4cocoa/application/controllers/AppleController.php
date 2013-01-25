@@ -171,6 +171,7 @@ class AppleController extends baseController
         $item["content"] = str_replace("\\n"," ",$item["content"]);
         $item["content"] = str_replace("\\r"," ",$item["content"]);
         $item["content"] = stripslashes($item["content"]);
+        $item["content"] = $newsModel->removeTail($item["content"]);
         $napplenews[] = $item;
       }
       $news = $napplenews;
@@ -283,10 +284,10 @@ class AppleController extends baseController
     $id = $this->intVal(3);
     $newscenter = new NewscenterModel();
     $news = $newscenter->data($id);
-    // $news["content"] = strip_tags($news["content"]);
     $news["content"] = str_replace("\\n"," ",$news["content"]);
     $news["content"] = str_replace("\\r"," ",$news["content"]);
     $news["content"] = stripslashes($news["content"]);
+    $news["content"] = $newscenter->removeTail($news["content"]);
     $this->_mainContent->assign("content",$news["content"]);
     $this->_layout = "flat";
     $this->display();
