@@ -168,13 +168,14 @@ class AppleController extends baseController
       
         $item["time"] = ToolModel::countTime($item["pubdate"]);
         $item["elink"] = urlencode($item["link"]);
-        $item["desc"] = ToolModel::summary($item["content"],300);
+        $item["content"] = str_replace("\\n"," ",$item["content"]);
+        $item["content"] = str_replace("\\r"," ",$item["content"]);
+        $item["content"] = stripslashes($item["content"]);
         $napplenews[] = $item;
       }
       $news = $napplenews;
     }
     $this->_mainContent->assign("allnews",$news);   
-
     $this->_layout = "empty";
     $this->display();
   }
@@ -214,26 +215,12 @@ class AppleController extends baseController
   
   public function anindexAction() {
     
-    
     $newscenter = new NewscenterModel();
     $ids = $newscenter->newsids();
     $idStr = join(",",$ids);
     echo $idStr;
   }
-  public function testallAction() {
     
-    $newscenter = new NewscenterModel();
-    $ids = $newscenter->uncheckedIds();
-    $apples = array();
-    foreach($ids as $id) {
-      $news = $newscenter->data($id);
-      $news["channel"] = $news["sid"];
-      $ret = ToolModel::post("http://127.0.0.1:37210/isApple",$news);
-      $newscenter->markApple($id,$ret,0);
-      echo "$id = $ret<br/>";
-    }
-  }
-  
   public function testNewsAction() {
     
     $id = $this->intVal(3);
@@ -299,7 +286,6 @@ class AppleController extends baseController
     // $news["content"] = strip_tags($news["content"]);
     $news["content"] = str_replace("\\n"," ",$news["content"]);
     $news["content"] = str_replace("\\r"," ",$news["content"]);
-
     $news["content"] = stripslashes($news["content"]);
     $this->_mainContent->assign("content",$news["content"]);
     $this->_layout = "flat";
