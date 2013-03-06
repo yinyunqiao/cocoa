@@ -1,5 +1,6 @@
 RewriteEngine On
-
+#for nextbook auth
+RewriteRule ^nextbook/api/auth$ nextbook/auth.php
 #for new UI
 RewriteRule ^home$ tiny4cocoa/public/index.php
 RewriteRule ^home/(.*)$ tiny4cocoa/public/index.php
