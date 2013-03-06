@@ -2,7 +2,7 @@
 $user["developerID"] = "chyhfj";
 $user["developerKey"] = "f2fe1124af14a9c8592a210eeb287b2a";
 $users[] = $user;
-$user["developerID"] = "yarshure1";
+$user["developerID"] = "yarshure";
 $user["developerKey"] = "07a0914041403c09bcef7b491a49c1f6";
 $users[] = $user;
 
