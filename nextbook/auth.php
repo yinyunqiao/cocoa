@@ -5,6 +5,9 @@ $users[] = $user;
 $user["developerID"] = "yarshure";
 $user["developerKey"] = "07a0914041403c09bcef7b491a49c1f6";
 $users[] = $user;
+$user["developerID"] = "WangLixiong";
+$user["developerKey"] = "2d9f748d0ff34a99297f8876031b12fc";
+$users[] = $user;
 
 $data = file_get_contents('php://input');
 $array = json_decode($data,true);
