@@ -8,6 +8,10 @@ $users[] = $user;
 $user["developerID"] = "WangLixiong";
 $user["developerKey"] = "2d9f748d0ff34a99297f8876031b12fc";
 $users[] = $user;
+$user["developerID"] = "ETCBookInc";
+$user["developerKey"] = "34df4ccae5476528f4c97b82879c48ff";
+$users[] = $user;
+
 
 $data = file_get_contents('php://input');
 $array = json_decode($data,true);
