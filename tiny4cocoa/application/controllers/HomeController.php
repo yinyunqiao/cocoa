@@ -1,4 +1,5 @@
 <?php
+require_once  dirname(dirname(dirname(__FILE__))) . '/lib/recaptcha/recaptchalib.php';
 class HomeController extends baseController
 {
   public function __construct($pathinfo,$controller) {
@@ -88,6 +89,28 @@ class HomeController extends baseController
     header("location:$url");
   }
   
+  public function checkRecaptchaAction(){
+    $privatekey = "6LcGEuMSAAAAAAohpDLjBTKW9WhcoIdrnopcBzgY";
+    
+    if ($_POST["recaptcha_response_field"]) {
+            $resp = recaptcha_check_answer ($privatekey,
+                                            $_SERVER["REMOTE_ADDR"],
+                                            $_POST["recaptcha_challenge_field"],
+                                            $_POST["recaptcha_response_field"]);
+
+            if ($resp->is_valid) {
+                    echo "ok";
+                    $newsModel = new NewsModel();
+                    $newsModel->saveComment();
+            } else {
+                    $error = $resp->error;
+                    echo $error;
+            }
+    }
+    else
+      echo "error";
+    
+  }
   
   public function sAction() {
     
@@ -130,6 +153,11 @@ class HomeController extends baseController
     $this->_mainContent->assign("pageview",$dataall[$index]);
     $this->_mainContent->assign("hotnews",$hotnews);
     
+    
+    $publickey = "6LcGEuMSAAAAAOKJbYerrUqiotwH4wHyYr5E0Y-w";
+    $recaptcha =  recaptcha_get_html($publickey);
+    $this->_mainContent->assign("recaptcha",$recaptcha);
+    
     $this->setTitle($news["title"]);
     $this->display();
   }
@@ -158,8 +186,8 @@ class HomeController extends baseController
       header ('HTTP/1.1 301 Moved Permanently');
       header("location: /home/");
     }
-    $newsModel = new NewsModel();
-    $newsModel->saveComment();
+    // $newsModel = new NewsModel();
+    // $newsModel->saveComment();
   }
   
   public function logAction() {

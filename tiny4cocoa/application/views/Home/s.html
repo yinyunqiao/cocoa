@@ -9,10 +9,31 @@ body {
 </style>
 <div class="row">
 <script type="text/javascript">
+var nid = {$news.id};
 {literal}
 $(document).ready(function() {
   
-  $("#commentform").validate();
+  $("#commentform").validate({
+    submitHandler: function (form) {
+        $.ajax({
+            type: 'POST',
+            data: $('form').serialize(),
+            url: '/home/checkRecaptcha/', 
+            success: function (msg) {
+              
+                if (msg!= "ok") {
+                  alert("请重新输入验证码");
+                  Recaptcha.reload(); 
+                } else {
+                  window.location.href="/home/s/"+nid+"/";    
+                }
+            }
+        });
+        return false; 
+    }
+    
+  });
+  // $("recaptcha_response_field").required();
   $("#nonamecheck").change(function(){
     if($(this).attr('checked')) {
       $(".nonamename").show();
@@ -96,6 +117,10 @@ style="background-color:#fff;"
             </span>
           </p>
           <textarea class="commenttextarea" required minlength="5" name="content"></textarea>
+          
+          
+          {$recaptcha}
+          
           <div style="padding:10px;text-align:right;">
             {if $userid != 0}
               <lable for="nonamecheck">装游客</label><input type="checkbox" name="nonamecheck" id="nonamecheck"> <input type="submit" value="评 论" style="font-size:25px;">
