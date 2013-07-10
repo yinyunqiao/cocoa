@@ -22,9 +22,21 @@ function afterSuccess(responseText, statusText, xhr, $form)  {
 } 
 {/literal}
 </script>
-<div class="homeadmin_main">
-  <div id="titlephotomanager">
-    <h1>标题照片选择器</h1>
+<div class="row">
+<div class="span3">
+  <ul class="menu">
+    <li>文章管理</li>
+    <li>
+      <ul class="menu">
+        <li><a href="/homeadmin/">文章列表</a></li>
+        <li><a href="/homeadmin/newarticle">新建文章</a></li>
+      </li>
+    </ul>
+  </ul>
+</div>
+<div class="span9 pull-left">
+  <div class="pull-right">
+    <h3>标题照片选择器</h3>
     <div>
       <form action="/homeadmin/newsimageupload/" method="post" enctype="multipart/form-data" id="UploadForm">
         <input name="ImageFile" type="file" />
@@ -38,22 +50,12 @@ function afterSuccess(responseText, statusText, xhr, $form)  {
   <form action="/homeadmin/savearticle/" method="post">
     <input type="hidden" name="filename" id="input_filename">
     <input type="hidden" name="ext" id="input_ext">
-    <label for="article_title">标题</label><input type="text" name="title" value="" id="article_title">
-    <label for="article_desc">摘要</label><textarea id="article_desc" name="desc" rows="8" cols="40"></textarea>
-    <label for="article_content">内容</label><textarea id="article_content" name="content" rows="8" cols="40"></textarea>
+    <label for="article_title">标题</label><input type="text" name="title" value="" class="span6">
+    <label for="article_desc">摘要</label><textarea id="article_desc" name="desc" rows="8" cols="40"  class="span6"></textarea>
+    <label for="article_content">内容</label><textarea id="article_content" name="content" rows="8" cols="40"  class="span6"></textarea>
     <div>
       <input type="submit" value="发 布">
     </div>
   </form>
 </div>
-<div class="homeadmin_sidebar">
-  <ul class="menu">
-    <li>文章管理</li>
-    <li>
-      <ul class="menu">
-        <li><a href="/homeadmin/">文章列表</a></li>
-        <li><a href="/homeadmin/newarticle">新建文章</a></li>
-      </li>
-    </ul>
-  </ul>
 </div>

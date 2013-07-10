@@ -4,10 +4,10 @@
 }
 
 .homeadmin_main {
-  float:right;
+  /* float:right;
   width:780px;
   padding:10px;
-  font-size:16px;
+  font-size:16px;*/
 }
 
 #titlephotomanager {
@@ -30,7 +30,7 @@
   font-size:20px;
 }
 
-.homeadmin_main #article_title {
+#article_title {
   
   width:500px;
 }
