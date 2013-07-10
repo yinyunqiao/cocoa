@@ -93,6 +93,7 @@ class NewscenterModel extends baseDbModel {
     $tails[]= "<a href=\"http://www.ifanr.com\">爱范儿 · Beats"; //爱范儿
     $tails[]= "<img width='1' height='1' src='http://tech2ipo.feedsportal.com/"; //Tech2iPO
     $tails[] = "<p class=\"sourcelink\">（若无特别注明"; //雷锋网引用
+    $tails[] = "<p>#欢迎关注";
     
     foreach($tails as $tail) {
       $pos = strpos($content,$tail);
