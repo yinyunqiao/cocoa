@@ -63,6 +63,14 @@
       <p>有什么跟苹果相关的资讯、评论和想法，欢迎投稿本站。</p>
       <p>联系方式： <a href="mailto:tinyfool@gmail.com">tinyfool@gmail.com</a></p>
     </div>
+    
+    <div class="hero-unit" style="padding:10px;">
+      <h4>日期索引</h4>
+    	{foreach from=$daylink item=day}
+    			<a href="/apple/index/{$day}/">{$day}</a>
+    	{/foreach}
+    </div>
+    
     <div class="hero-unit" style="padding:20px;">
       <h4>本站新闻</h4>
       <ul>

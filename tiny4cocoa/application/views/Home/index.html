@@ -78,7 +78,7 @@
   <div class="hero-unit" style="padding:10px;">
   <h3>最新苹果新闻(<a href="/apple/">全部</a>)</h3>
     {foreach from=$applenews item=item}
-    <a href="/home/go/?url={$item.elink}" target="_blank">
+    <a href="/apple/n/{$item.id}/" target="_blank">
       <p class="newstitle">
         {if $item.image}
           <img src="{$item.image}" width="40" style="float:left;">

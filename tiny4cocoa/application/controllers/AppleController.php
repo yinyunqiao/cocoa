@@ -95,11 +95,23 @@ class AppleController extends baseController
     }else {
     }
     $pageControl .= '</ul></div>';
+    
+    
+    $now = time();
+    $daylink = array();
+    for($i=0;$i<30;$i++) {
+      
+      $day = $now - $i*24*60*60;
+      $daystr = date('Y-m-d',$day);
+      $daylink[] = $daystr;
+    }
     $this->_mainContent->assign("pageControl",$pageControl);
     $news = $newsModel->news(1,10);
     $this->_mainContent->assign("title",$title);
     $this->_mainContent->assign("threads",$threads);
     $this->_mainContent->assign("news",$news);
+    $this->_mainContent->assign("daylink",$daylink);
+    
     $this->_mainContent->assign("applenews",$applenews);
     $this->_mainContent->assign("userid",$this->userid);
     $this->_mainContent->assign("spamcount",$spamcount);
