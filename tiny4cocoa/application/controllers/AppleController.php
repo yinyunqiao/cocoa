@@ -73,11 +73,11 @@ class AppleController extends baseController
         $item["time"] = ToolModel::countTime($item["pubdate"]);
         $item["elink"] = urlencode($item["link"]);
         $item["desc"] = ToolModel::summary($item["content"],300);
+        $item["content"] = $item["content"];
         $napplenews[] = $item;
       }
       $applenews = $napplenews;
     }
-    
 		$pageControl = "<div class=\"pagination\"><ul>";
     if($news24) {
       $pageControl .= "<li class=\"disabled\"><a href=\"javascript:\">最近10条</a></li>";
@@ -126,6 +126,18 @@ class AppleController extends baseController
     header("location:$url");
   }
   
+  public function nAction(){
+    
+    $id = $this->intVal(3);
+    $newscenter = new NewscenterModel();
+    $news = $newscenter->data($id);
+    $news["content"] = str_replace("\\n"," ",$news["content"]);
+    $news["content"] = stripslashes($news["content"]);
+    $news["content"] = $newscenter->removeTail($news["content"]);
+    
+    $this->_mainContent->assign("news",$news);
+    $this->display();
+  }
   
   public function homeclusterAction() {
     
