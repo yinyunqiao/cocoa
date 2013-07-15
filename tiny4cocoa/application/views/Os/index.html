@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="span4">
+    <h4>最新添加</h4>
+    <ul>
+    	{foreach from=$libs item=lib}
+      <li><a href="/os/lib/{$lib.id}/">{$lib.name}</a>
+        <br/><small class="muted">{$lib.desc}</small>
+      </li>
+      {/foreach}
+    </ul>
+  </div>
+  <div class="span4">
+    <h4>评分最高</h4>
+  	{foreach from=$libs item=lib}
+    <li><a href="/os/lib/{$lib.id}/">{$lib.name}</a>
+      <br/><small class="muted">{$lib.desc}</small>
+    </li>
+    {/foreach}
+  </div>
+  <div class="span4">
+    <div class="hero-unit">
+    </div>
+  </div>
+  
+</div>
