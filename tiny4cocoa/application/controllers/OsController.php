@@ -12,6 +12,7 @@ class OsController extends baseController
     $os = new OsModel();
     $libs = $os->libs();
     $this->_mainContent->assign("libs",$libs);
+    $this->setTitle("开源库");
     $this->display();
   }
   
@@ -21,6 +22,7 @@ class OsController extends baseController
     $os = new OsModel();
     $lib = $os->lib($id);
     $this->_mainContent->assign("lib",$lib);
+    $this->setTitle($lib["name"]);
     $this->display();
   }
   
