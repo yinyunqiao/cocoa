@@ -67,4 +67,9 @@ class ThreadModel extends baseDbModel {
     
     return $this->select("threads")->insert($data);
   }
+  
+  public function newReply($data) {
+    
+    return $this->select("thread_replys")->insert($data);
+  }
 }

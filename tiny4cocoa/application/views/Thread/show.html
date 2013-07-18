@@ -4,6 +4,11 @@ body {
   #ccc;
 }
 </style>
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#newreplyform").validate();
+});
+</script>
 <div class="row">
   
   <div class="span8">
@@ -14,6 +19,7 @@ body {
       </small>
       <div class="threadblock">{$thread.content}</div>
     </div>
+    
     {if $replysCount==0}
       <div style="text-align:center;padding-bottom:20px;">
         暂无回复
@@ -31,12 +37,32 @@ body {
         {/foreach}
       </div>
     {/if}
+    
+    <div class="content-unit">
+      <form action="/thread/show/{$thread.id}/" 
+        method="post" accept-charset="utf-8" id="newreplyform">
+        <label for="content">内容</label>
+        <textarea name="content" rows="8" cols="40" id="content" style="width:90%;" required minlength="5"></textarea>
+        <div class="threadblock" style="text-align:center;">
+          <input type="submit" name="submit" value="提交回复" id="submit" class="btn btn-primary"> 
+        </div>
+      </form>
+    </div>
   </div>
   
   <div class="span4">
     <div class="siderbar-unit" style="text-align:center;">
       <a href="/thread/new/" class="btn btn-success">发布新帖</a>
     </div>
+    <div class="siderbar-unit">
+      回帖格式
+      <div class="threadblock">
+        <ul>
+          <li>支持 Markdown 格式, **<strong>粗体</strong>**、~~<del>删除线</del>~~、`<code>单行代码</code>`</li>
+        </ul>
+      </div>
+    </div>
+    
   </div>
   
 </div>

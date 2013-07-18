@@ -17,6 +17,27 @@ class ThreadController extends baseController
     
     $id = $this->intVal(3);
     $threadModel = new ThreadModel();
+    if($_POST){
+      
+      $discuz = new DiscuzModel();
+      $userModel = new UserModel();
+      $userid = $discuz->checklogin();
+      if($userid>0)
+        if(strlen($_POST["content"])>0) {
+        
+          $data = array();
+          $time = time();
+          $data["threadid"] = $id;
+          $data["name"] = $userModel->username($userid);
+          $data["userid"] = $userid;
+          $data["content"] = $_POST["content"];
+          $data["createdate"] = $time;
+          $data["updatedate"] = $time;
+          $threadid = $threadModel->newReply($data);
+          header("location: /thread/show/$id/");
+          die();
+        }
+    }
     $thread = $threadModel->threadById($id);
     $replysCount = $threadModel->replysCountById($id);
     $replys = $threadModel->replysById($id);
