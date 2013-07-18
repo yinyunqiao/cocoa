@@ -38,16 +38,23 @@ $(document).ready(function() {
       </div>
     {/if}
     
-    <div class="content-unit">
-      <form action="/thread/show/{$thread.id}/" 
-        method="post" accept-charset="utf-8" id="newreplyform">
-        <label for="content">内容</label>
-        <textarea name="content" rows="8" cols="40" id="content" style="width:90%;" required minlength="5"></textarea>
-        <div class="threadblock" style="text-align:center;">
-          <input type="submit" name="submit" value="提交回复" id="submit" class="btn btn-primary"> 
-        </div>
-      </form>
-    </div>
+    {if $userid==0}
+      <div class="content-unit" style="text-align:center;">
+        回帖需要 <a href="/logging.php?action=login" class="btn btn-primary">登录</a>，
+        如果您没有账号请<a href="/hhhhh.php" class="btn btn-danger">注册</a>。
+      </div>
+    {else}
+      <div class="content-unit">
+        <form action="/thread/show/{$thread.id}/" 
+          method="post" accept-charset="utf-8" id="newreplyform">
+          <label for="content">内容</label>
+          <textarea name="content" rows="8" cols="40" id="content" style="width:90%;" required minlength="5"></textarea>
+          <div class="threadblock" style="text-align:center;">
+            <input type="submit" name="submit" value="提交回复" id="submit" class="btn btn-primary"> 
+          </div>
+        </form>
+      </div>
+    {/if}
   </div>
   
   <div class="span4">

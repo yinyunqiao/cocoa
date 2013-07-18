@@ -17,11 +17,12 @@ class ThreadController extends baseController
     
     $id = $this->intVal(3);
     $threadModel = new ThreadModel();
+    $discuz = new DiscuzModel();
+    $userid = $discuz->checklogin();
+    
     if($_POST){
       
-      $discuz = new DiscuzModel();
       $userModel = new UserModel();
-      $userid = $discuz->checklogin();
       if($userid>0)
         if(strlen($_POST["content"])>0) {
         
@@ -41,9 +42,12 @@ class ThreadController extends baseController
     $thread = $threadModel->threadById($id);
     $replysCount = $threadModel->replysCountById($id);
     $replys = $threadModel->replysById($id);
+    
+    $this->_mainContent->assign("userid",$userid);
     $this->_mainContent->assign("thread",$thread);
     $this->_mainContent->assign("replysCount",$replysCount);
     $this->_mainContent->assign("replys",$replys);
+    
     $this->setTitle($thread["title"]);
     $this->display();
   }
