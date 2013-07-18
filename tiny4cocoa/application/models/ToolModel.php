@@ -157,4 +157,9 @@ class ToolModel {
 		return $out;
 
 	}
+  
+  public static function error_log($str){
+    
+    echo $str."<br/>";
+  }
 }

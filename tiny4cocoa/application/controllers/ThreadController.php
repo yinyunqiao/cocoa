@@ -34,7 +34,14 @@ class ThreadController extends baseController
           $data["content"] = $_POST["content"];
           $data["createdate"] = $time;
           $data["updatedate"] = $time;
-          $threadid = $threadModel->newReply($data);
+          $replys = $threadModel->newReply($data);
+          $thread = array();
+          $thread["id"] = $id;
+          $thread["replys"] = $replys;
+          $thread["updatedate"] = $time;
+          $thread["lastreply"] = $data["name"];
+          $thread["lastreplyid"] = $data["userid"];
+          $threadModel->updateThread($thread);
           header("location: /thread/show/$id/");
           die();
         }
@@ -65,11 +72,13 @@ class ThreadController extends baseController
     if($_POST){
       
       $data = array();
+      $time = time();
       $data["title"] = $_POST["title"];
       $data["content"] = $_POST["content"];
       $data["createby"] = $username;
       $data["createbyid"] = $userid;
-      $data["createdate"] = time();
+      $data["createdate"] = $time;
+      $data["updatedate"] = $time;
       if(strlen($_POST["title"])>0)
         if(strlen($_POST["content"])>0) {
           $threadModel = new ThreadModel();

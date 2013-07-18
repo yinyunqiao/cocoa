@@ -14,7 +14,7 @@ class ThreadModel extends baseDbModel {
     $start = ($page-1)*$pageSize;
     $sql = 
     "SELECT * FROM `threads`
-    ORDER BY `createdate` DESC 
+    ORDER BY `updatedate` DESC 
     limit $start,$pageSize;";
     $result =  $this->fetchArray($sql);
     $ret = array();
@@ -72,6 +72,15 @@ class ThreadModel extends baseDbModel {
   
   public function newReply($data) {
     
-    return $this->select("thread_replys")->insert($data);
+    $this->select("thread_replys")->insert($data);
+    $sql = "SELECT count(`id`) as c FROM `thread_replys` WHERE threadid = $data[threadid];";
+    $result = $this->fetchArray($sql);
+    $c = $result[0]["c"];
+    return $c;
+  }
+  
+  public function updateThread($data) {
+    
+    $this->select("threads")->where("id = $data[id]")->update($data);
   }
 }
