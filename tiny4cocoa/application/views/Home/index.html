@@ -48,15 +48,18 @@
       <a href="/" class="muted" target="_blank">{$item.createby}</a> 
       {if $item.lastreplyid>0}
         | 最后回复 {$item.updatetime} by <a href="/" class="muted" target="_blank">{$item.lastreply}</a> 
-        
       {/if}
     </div>
   </div>
   {/foreach}
-</div>
+  </div>
 </div>
 
 <div class="span3">
+  
+  <div class="siderbar-unit" style="text-align:center;">
+    <a href="/thread/new/" class="btn btn-success">发布新帖</a>
+  </div>
   <div class="siderbar-unit">
     <strong>本站新闻</strong>
 	  {foreach from=$news item=item name=sitenews}

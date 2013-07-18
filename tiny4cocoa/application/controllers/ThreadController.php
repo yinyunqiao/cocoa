@@ -9,6 +9,10 @@ class ThreadController extends baseController
  
   public function indexAction() {
     
+    $thread = new ThreadModel();
+    $threads = $thread->threads(1,20);
+      
+    $this->_mainContent->assign("threads",$threads);
     $this->setTitle("讨论区");
     $this->display();
   }

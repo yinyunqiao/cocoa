@@ -35,11 +35,10 @@ class HomeController extends baseController
     }
     
     $applenews = $napplenews;
-    $size = 10;
+    $size = 5;
     $count = $newsModel->newsCount();
     $news = $newsModel->news($page,$size);
 		$pageControl = ToolModel::pageControl($page,$count,$size,"<a href='/home/news/#page#/'>");
-    
     
     $thread = new ThreadModel();
     $threads = $thread->threads(1,20);
