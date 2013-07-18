@@ -55,6 +55,8 @@ class ThreadModel extends baseDbModel {
     if(count($result)==0)
       return $ret;
     foreach($result as $item) {
+      
+      $item["content"] = Markdown($item["content"]);
       $item["createtime"] = ToolModel::countTime($item["createdate"]);
       $item["updatetime"] = ToolModel::countTime($item["updatedate"]);
       $ret[] = $item;
