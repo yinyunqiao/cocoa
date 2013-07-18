@@ -1,4 +1,6 @@
 <?php
+  putenv("TZ=Asia/Shanghai");
+  date_default_timezone_set("Asia/Shanghai");
 
 	$basePath = realpath(dirname(__FILE__) . '/../');
 	$TA_PathInfo = array (
@@ -19,6 +21,7 @@
 	require_once $TA_PathInfo['tinyAppLib'] . "/Smarty/Smarty.class.php";
 	require_once $TA_PathInfo['tinyAppLib'] . "/PHPMailer/class.phpmailer.php";
 	require_once $TA_PathInfo['tinyAppLib'] . "/Akismet/Akismet.php";
+	require_once $TA_PathInfo['tinyAppLib'] . "/markdown/markdown.php";
   
   define('MAGPIE_CACHE_AGE',60*33);
   define('MAGPIE_CACHE_DIR',"../rsscache");
