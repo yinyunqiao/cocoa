@@ -22,6 +22,7 @@ class ThreadModel extends baseDbModel {
     return $ret;
     foreach($result as $item) {
       $item["createtime"] = ToolModel::countTime($item["createdate"]);
+      $item["updatetime"] = ToolModel::countTime($item["updatedate"]);
       $ret[] = $item;
     } 
     return $ret;
