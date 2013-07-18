@@ -14,8 +14,6 @@ class HomeController extends baseController
     $newsModel = new NewsModel();
     $discuz = new DiscuzModel();
     $this->userid = $discuz->checklogin();
-    $threads = $allModel->allThreads(1,25);
-    
     $page = $this->intVal(3);
     if($page==0)
       $page=1;
@@ -26,7 +24,7 @@ class HomeController extends baseController
     $count = $newscenter->count("apple");
     $newscount = $newscenter->count("unmarked");
     $spamcount = $newsModel->spamCount();
-    $applenews = $newscenter->news(1,15,"apple");
+    $applenews = $newscenter->news(1,10,"apple");
     $napplenews = array();
     foreach($applenews as $item) {
       
@@ -37,10 +35,15 @@ class HomeController extends baseController
     }
     
     $applenews = $napplenews;
-    $size = 13;
+    $size = 10;
     $count = $newsModel->newsCount();
     $news = $newsModel->news($page,$size);
 		$pageControl = ToolModel::pageControl($page,$count,$size,"<a href='/home/news/#page#/'>");
+    
+    
+    $thread = new ThreadModel();
+    $threads = $thread->threads(1,20);
+      
     $this->_mainContent->assign("pageControl",$pageControl);
     $this->_mainContent->assign("threads",$threads);
     $this->_mainContent->assign("news",$news);

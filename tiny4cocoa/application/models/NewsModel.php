@@ -20,7 +20,6 @@ class NewsModel extends baseDbModel {
     if(count($result)==0)
     return $ret;
     foreach($result as $item) {
-		
       $item["createtime"] = $this->countTime($item["createdate"]);
       $ret[] = $item;
     } 

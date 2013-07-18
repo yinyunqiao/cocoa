@@ -1,0 +1,36 @@
+  	<style>
+
+body {
+  
+  background-color: 
+  #ccc;
+}
+
+</style>
+<div class="row">
+  <div class="span8">
+    <div class="content-unit">
+      <h4>{$thread.title}</h4>
+      <small class="muted">
+        由 <a href="" class="muted">{$thread.createby}</a> 发布于 {$thread.createtime}
+      </small>
+      <div class="threadblock">{$thread.content}</div>
+    </div>
+    <div class="content-unit">
+      {$replysCount}条回复
+      {foreach from=$replys item=item}
+        <div class="threadblock">
+          <div class="muted">
+            <a href="" class="muted">{$item.name}</a> 回复于 {$item.createtime}
+          </div>
+          {$item.content}
+        </div>
+      {/foreach}
+    </div>
+  </div>
+  
+  <div class="span4">
+    <div class="hero-unit">
+    </div>
+  </div>
+</div>
