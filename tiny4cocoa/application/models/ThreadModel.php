@@ -32,6 +32,7 @@ class ThreadModel extends baseDbModel {
     $sql = "SELECT * FROM `threads` where id = $id;";
     $ret = $this->fetchArray($sql);
     $thread = $ret[0];
+    $thread["content"] = Markdown($thread["content"]);
     $thread["createtime"] = ToolModel::countTime($thread["createdate"]);
     $thread["updatetime"] = ToolModel::countTime($thread["updatedate"]);
     return $thread;

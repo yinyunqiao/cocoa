@@ -14,17 +14,23 @@ body {
       </small>
       <div class="threadblock">{$thread.content}</div>
     </div>
-    <div class="content-unit">
-      {$replysCount}条回复
-      {foreach from=$replys item=item}
-        <div class="threadblock">
-          <div class="muted">
-            <a href="" class="muted">{$item.name}</a> 回复于 {$item.createtime}
+    {if $replysCount==0}
+      <div style="text-align:center;padding-bottom:20px;">
+        暂无回复
+      </div>
+    {else}
+      <div class="content-unit">
+        {$replysCount}条回复
+        {foreach from=$replys item=item}
+          <div class="threadblock">
+            <div class="muted">
+              <a href="" class="muted">{$item.name}</a> 回复于 {$item.createtime}
+            </div>
+            {$item.content}
           </div>
-          {$item.content}
-        </div>
-      {/foreach}
-    </div>
+        {/foreach}
+      </div>
+    {/if}
   </div>
   
   <div class="span4">
