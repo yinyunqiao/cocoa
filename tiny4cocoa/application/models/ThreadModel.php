@@ -48,7 +48,7 @@ class ThreadModel extends baseDbModel {
   
   public function replysById($id) {
     
-    $sql = "SELECT * FROM `thread_replys` where threadid = $id ORDER BY `id` DESC;";
+    $sql = "SELECT * FROM `thread_replys` where threadid = $id ORDER BY `id`;";
     $result = $this->fetchArray($sql);
     $ret = array();
     if(count($result)==0)
@@ -59,5 +59,11 @@ class ThreadModel extends baseDbModel {
       $ret[] = $item;
     } 
     return $ret;
+  }
+  
+  
+  public function newThread($data) {
+    
+    return $this->select("threads")->insert($data);
   }
 }
