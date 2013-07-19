@@ -35,12 +35,10 @@ class StaticController extends tinyApp_Controller
     header ($expire);
     $path=$this->_pathinfo['base'].'/public/css';
     $bootstrap = $this->_pathinfo['base']."/public/bootstrap/css";
-    include("$bootstrap/bootstrap.min.css");
-    include("$bootstrap/bootstrap-responsive.min.css");
     include("$path/base.css");
     include("$path/thread.css");
-    
-    
+    include("$bootstrap/bootstrap.min.css");
+    include("$bootstrap/bootstrap-responsive.min.css");
   }
 }
 
