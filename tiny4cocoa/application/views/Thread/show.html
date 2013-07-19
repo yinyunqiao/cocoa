@@ -13,6 +13,9 @@ $(document).ready(function() {
   
   <div class="span8">
     <div class="content-unit">
+      {if $thread.image}
+        <img src="{$thread.image}" width="40" style="float:right;padding:5px;">
+      {/if}
       <h4>{$thread.title}</h4>
       <small class="muted">
         由 <a href="" class="muted">{$thread.createby}</a> 发布于 {$thread.createtime}
@@ -29,10 +32,15 @@ $(document).ready(function() {
         {$replysCount}条回复
         {foreach from=$replys item=item}
           <div class="threadblock">
-            <div class="muted">
-              <a href="" class="muted">{$item.name}</a> 回复于 {$item.createtime}
+            {if $thread.image}
+              <img src="{$item.image}" width="48" style="float:left;padding:5px;">
+            {/if}
+            <div style="margin-left:54px;">
+              <div class="muted">
+                <a href="" class="muted">{$item.name}</a> 回复于 {$item.createtime}
+              </div>
+              {$item.content}
             </div>
-            {$item.content}
           </div>
         {/foreach}
       </div>

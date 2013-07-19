@@ -97,4 +97,21 @@ class DiscuzModel {
     return $string;
   }
   
+  public static function get_avatar($uid, $size = 'middle', $type = '') {
+	
+  	$size = in_array($size, array('big', 'middle', 'small')) ? $size : 'middle';
+  	$uid = abs(intval($uid));
+  	$uid = sprintf("%09d", $uid);
+  	$dir1 = substr($uid, 0, 3);
+  	$dir2 = substr($uid, 3, 2);
+  	$dir3 = substr($uid, 5, 2);
+  	$typeadd = $type == 'real' ? '_real' : '';
+  	$avpath = $dir1.'/'.$dir2.'/'.$dir3.'/'.substr($uid, -2).$typeadd."_avatar_$size.jpg";
+  	if(file_exists("/var/www/cocoa/uc_server/data/avatar/" . $avpath))
+  		$ret = "http://tiny4cocoa.com/uc_server/data/avatar/" . $avpath;
+  	else
+  		$ret =  "http://tiny4cocoa.com/uc_server/images/noavatar_$size.gif";
+  	return $ret;
+  }
+  
 }

@@ -23,6 +23,7 @@ class ThreadModel extends baseDbModel {
     foreach($result as $item) {
       $item["createtime"] = ToolModel::countTime($item["createdate"]);
       $item["updatetime"] = ToolModel::countTime($item["updatedate"]);
+      $item["image"] = DiscuzModel::get_avatar($item["createbyid"],"small");
       $ret[] = $item;
     } 
     return $ret;
@@ -36,6 +37,7 @@ class ThreadModel extends baseDbModel {
     $thread["content"] = Markdown($thread["content"]);
     $thread["createtime"] = ToolModel::countTime($thread["createdate"]);
     $thread["updatetime"] = ToolModel::countTime($thread["updatedate"]);
+    $thread["image"] = DiscuzModel::get_avatar($thread["createbyid"],"small");
     return $thread;
   }
   
@@ -60,6 +62,7 @@ class ThreadModel extends baseDbModel {
       $item["content"] = Markdown($item["content"]);
       $item["createtime"] = ToolModel::countTime($item["createdate"]);
       $item["updatetime"] = ToolModel::countTime($item["updatedate"]);
+      $item["image"] = DiscuzModel::get_avatar($item["userid"],"small");
       $ret[] = $item;
     } 
     return $ret;
