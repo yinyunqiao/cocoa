@@ -14,11 +14,13 @@ $(document).ready(function() {
   <div class="span8">
     <div class="content-unit">
       {if $thread.image}
-        <img src="{$thread.image}" width="40" style="float:right;padding:5px;">
+        <a href="/user/show/{$thread.createbyid}/{$thread.createby}/" target="_blank">
+          <img src="{$thread.image}" width="40" style="float:right;padding:5px;">
+        </a>
       {/if}
       <h4>{$thread.title}</h4>
       <small class="muted">
-        由 <a href="" class="muted">{$thread.createby}</a> 发布于 {$thread.createtime}
+        由 <a href="/user/show/{$thread.createbyid}/{$thread.createby}/" class="muted" target="_blank">{$thread.createby}</a> 发布于 {$thread.createtime}
       </small>
       <div class="threadblock">{$thread.content}</div>
     </div>
@@ -40,11 +42,13 @@ $(document).ready(function() {
               {/if}
             </div>
             {if $thread.image}
-              <img src="{$item.image}" width="48" style="float:left;padding:5px;">
+              <a href="/user/show/{$item.userid}/{$item.name}/" target="_blank">
+                <img src="{$item.image}" width="48" style="float:left;padding:5px;">
+              </a>
             {/if}
             <div style="margin-left:54px;">
               <div class="muted">
-                <a href="" class="muted">{$item.name}</a> 回复于 {$item.createtime}
+                <a href="/user/show/{$item.userid}/{$item.name}/" class="muted" target="_blank">{$item.name}</a> 回复于 {$item.createtime}
               </div>
               {$item.content}
             </div>

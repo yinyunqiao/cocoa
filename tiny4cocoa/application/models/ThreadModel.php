@@ -19,7 +19,7 @@ class ThreadModel extends baseDbModel {
     $result =  $this->fetchArray($sql);
     $ret = array();
     if(count($result)==0)
-    return $ret;
+      return $ret;
     foreach($result as $item) {
       $item["createtime"] = ToolModel::countTime($item["createdate"]);
       $item["updatetime"] = ToolModel::countTime($item["updatedate"]);
@@ -41,6 +41,37 @@ class ThreadModel extends baseDbModel {
     return $thread;
   }
   
+  public function threadsByUserid($userid) {
+    
+    $sql = "SELECT * FROM `threads` where `createbyid` = $userid;";
+    $result = $this->fetchArray($sql);
+    $ret = array();
+    if(count($result)==0)
+      return $ret;
+    foreach($result as $item) {
+      $item["createtime"] = ToolModel::countTime($item["createdate"]);
+      $item["updatetime"] = ToolModel::countTime($item["updatedate"]);
+      $item["image"] = DiscuzModel::get_avatar($item["createbyid"],"small");
+      $ret[] = $item;
+    } 
+    return $ret;
+  }
+  
+  public function threadsReplyByUserid($userid) {
+    
+    $sql = "SELECT * FROM `threads` where `createbyid` <> $userid AND `id` in (SELECT `threadid` FROM `thread_replys` WHERE `userid` = $userid GROUP BY `threadid`);";
+    $result = $this->fetchArray($sql);
+    $ret = array();
+    if(count($result)==0)
+      return $ret;
+    foreach($result as $item) {
+      $item["createtime"] = ToolModel::countTime($item["createdate"]);
+      $item["updatetime"] = ToolModel::countTime($item["updatedate"]);
+      $item["image"] = DiscuzModel::get_avatar($item["createbyid"],"small");
+      $ret[] = $item;
+    } 
+    return $ret;
+  }
   
   public function replysCountById($id) {
     

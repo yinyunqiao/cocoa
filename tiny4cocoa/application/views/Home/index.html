@@ -43,15 +43,17 @@
   <div class="threadblock">
     <span class="label label-info pull-right" style="margin-top:5px;">{$item.replys}</span>
     {if $item.image}
-      <img src="{$item.image}" width="48" height="48" style="float:left;">
+      <a href="/user/show/{$item.createbyid}/{$item.createby}/" class="muted" target="_blank">
+        <img src="{$item.image}" width="48" height="48" style="float:left;">
+      </a>
     {/if}
     <div style="margin-left:54px;">
       <a href="/thread/show/{$item.id}/">{$item.title}</a>
       <div class="muted">
         {$item.createtime} by  
-        <a href="/" class="muted" target="_blank">{$item.createby}</a> 
+        <a href="/user/show/{$item.createbyid}/{$item.createby}/" class="muted" target="_blank">{$item.createby}</a> 
         {if $item.lastreplyid>0}
-          | 最后回复 {$item.updatetime} by <a href="/" class="muted" target="_blank">{$item.lastreply}</a> 
+          | 最后回复 {$item.updatetime} by <a href="/user/show/{$item.lastreplyid}/{$item.lastreply}/" class="muted" target="_blank">{$item.lastreply}</a> 
         {/if}
       </div>
     </div>

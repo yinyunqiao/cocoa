@@ -1,0 +1,57 @@
+<style>
+body {
+  background-color: 
+  #ccc;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#newreplyform").validate();
+});
+</script>
+<div class="row">
+  
+  <div class="span8">
+    <div class="content-unit">
+      <strong>用户：{$user.name}</strong>
+      <div class="threadblock" >
+        <img src="{$user.image}" class="pull-right">
+        <div class="pull-left">
+          <div style="width:100px;text-align:right;" class="pull-left">编号 ：</div><div style="width:100px;" class="pull-left">{$user.id}</div><div class="clearfix"></div>
+          
+          <div style="width:100px;text-align:right;" class="pull-left">用户名 ：</div><div style="width:100px;" class="pull-left">{$user.name}</div><div class="clearfix"></div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="content-unit">
+      <strong>发过的帖子</strong>
+      <div class="threadblock">
+        <ul>
+        {foreach from=$user.threadscreate item=item}
+          <li><a href="/thread/show/{$item.id}/">{$item.title} ( {$item.replys} )</a></li>
+        {/foreach}
+        </ul>
+      </div>
+    </div>
+    
+    <div class="content-unit">
+      <strong>回过的他人的帖子</strong>
+      <div class="threadblock">
+        <ul>
+        {foreach from=$user.threadsreply item=item}
+          <li><a href="/thread/show/{$item.id}/">{$item.title} ( {$item.replys} )</a></li>
+        {/foreach}
+        </ul>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="span4">
+    <div class="siderbar-unit" style="text-align:center;">
+    </div>
+  </div>
+  
+</div>
