@@ -29,9 +29,16 @@ $(document).ready(function() {
       </div>
     {else}
       <div class="content-unit">
-        {$replysCount}条回复
-        {foreach from=$replys item=item}
+        共{$replysCount}条回复
+        {foreach from=$replys item=item name=comments}
           <div class="threadblock">
+            <div class="floornumber">
+              {if $smarty.foreach.comments.index == 0}
+                楼长
+              {else}
+                {$smarty.foreach.comments.index+1}楼
+              {/if}
+            </div>
             {if $thread.image}
               <img src="{$item.image}" width="48" style="float:left;padding:5px;">
             {/if}
