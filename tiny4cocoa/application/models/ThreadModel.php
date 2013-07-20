@@ -34,7 +34,7 @@ class ThreadModel extends baseDbModel {
     $sql = "SELECT * FROM `threads` where id = $id;";
     $ret = $this->fetchArray($sql);
     $thread = $ret[0];
-    $thread["content"] = Markdown($thread["content"]);
+    $thread["content"] = Markdown(stripslashes($thread["content"]));
     $thread["createtime"] = ToolModel::countTime($thread["createdate"]);
     $thread["updatetime"] = ToolModel::countTime($thread["updatedate"]);
     $thread["image"] = DiscuzModel::get_avatar($thread["createbyid"],"small");
@@ -90,7 +90,7 @@ class ThreadModel extends baseDbModel {
       return $ret;
     foreach($result as $item) {
       
-      $item["content"] = Markdown($item["content"]);
+      $item["content"] = Markdown(stripslashes($item["content"]));
       $item["createtime"] = ToolModel::countTime($item["createdate"]);
       $item["updatetime"] = ToolModel::countTime($item["updatedate"]);
       $item["image"] = DiscuzModel::get_avatar($item["userid"],"small");
