@@ -79,7 +79,7 @@ class MailModel extends baseDbModel {
                 $errorInfo = $this->getErrorInfo();
             }
 
-            $logger = new LoggerModel("/var/log/mp/mail.log");
+            $logger = new LoggerModel("/var/log/mp/mail-tiny4cocoa.log");
             if(isset($errorInfo)){
                 $sql = "UPDATE mail_queue SET status = 2, errorMessage = '$errorInfo' WHERE id = ". $queueItem['id'];
                 $logger->log($queueItem['id']. ", fail, $errorInfo");

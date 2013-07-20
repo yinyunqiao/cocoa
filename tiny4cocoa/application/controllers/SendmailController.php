@@ -9,7 +9,7 @@ class SendmailController {
                 $mailModel->sendMailItem($item);
             }
         }else{
-            $logger = new LoggerModel("/var/log/mp/mail.log");
+            $logger = new LoggerModel("/var/log/mp/mail-tiny4cocoa.log");
             $logger->log("empty");
         }
     }
