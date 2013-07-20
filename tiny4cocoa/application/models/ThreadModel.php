@@ -111,7 +111,65 @@ class ThreadModel extends baseDbModel {
     $sql = "SELECT count(`id`) as c FROM `thread_replys` WHERE threadid = $data[threadid];";
     $result = $this->fetchArray($sql);
     $c = $result[0]["c"];
+    $this->replyNotify($data);
     return $c;
+  }
+  
+  public function replyNotify($data) {
+    
+    $users = $this->getThreadUsers($data["threadid"]);
+    if(($key = array_search($data["userid"], $users)) !== false) {
+        unset($users[$key]);
+    }
+    if(count($users)==0)
+      return;
+    $usersStr = join(",",$users);
+    $sql = "SELECT `username`,`email` FROM `cocoabbs_members` WHERE `uid` in ($usersStr);";
+    $result = $this->fetchArray($sql);
+    $thread = $this->threadById($data["threadid"]);
+    foreach($result as $user) {
+      
+      $this->replyNotifyMail($user["username"], $user["email"], $data["name"], $data["content"],$thread["title"],$data["threadid"]);
+    }
+  }
+  
+  private function replyNotifyMail($username, $email, $replyuser, $content, $threadname, $threadid) {
+    
+    
+    $subject = "您参与的帖子《".$threadname."》有了新回复";
+    $mailContent = "您参与的帖子《".$threadname."》有了新回复<br/>";
+    $mailContent .= "<p><a href=http://tiny4cocoa.com/thread/show/$threadid/>http://tiny4cocoa.com/thread/show/$threadid/</a></p>";
+    $mailContent .= "<p> $replyuser 刚刚回复说:</p>";
+    $mailContent .= Markdown(stripslashes($content));
+    $mailContent .= "<p><a href=http://tiny4cocoa.com/thread/show/$threadid/>http://tiny4cocoa.com/thread/show/$threadid/</a></p>";
+    $mail = new MailModel();
+    $mail->generateMail(
+            $email,
+             "tinyfool+tiny4cocoa@gmail.com", 
+            $subject, 
+            $mailContent);
+  }
+  
+  
+  public function getThreadUsers($threadid){
+    
+    $sql = "SELECT `userid` FROM `thread_replys` WHERE `threadid` = $threadid GROUP BY `userid`;";
+    $result = $this->fetchArray($sql);
+    $users = array();
+    if(count($result)>0) {
+      
+      foreach($result as $user) {
+        
+        $users[] = $user["userid"];
+      }
+    }
+    $sql = "SELECT `createbyid` FROM `threads` WHERE `id` = $threadid;";
+    $result = $this->fetchArray($sql);
+    if(count($result)>0) {
+        $users[] = $result[0]["createbyid"];
+    }
+    $users = array_unique($users);
+    return $users;
   }
   
   public function updateThread($data) {
