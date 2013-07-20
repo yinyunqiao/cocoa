@@ -67,7 +67,12 @@ $(document).ready(function() {
         <form action="/thread/show/{$thread.id}/" 
           method="post" accept-charset="utf-8" id="newreplyform">
           <label for="content">内容</label>
-          <textarea name="content" rows="8" cols="40" id="content" style="width:90%;" required minlength="5"></textarea>
+      		<div id="wmd-editor" class="wmd-panel" style="width:80%;">
+      			<div id="wmd-button-bar"></div>
+      			<textarea id="wmd-input" name="content" minlength="5" required></textarea>
+      		</div>
+      		<div id="wmd-preview" class="wmd-panel" style="width:80%;">
+      		</div>
           <div class="threadblock" style="text-align:center;">
             <input type="submit" name="submit" value="提交回复" id="submit" class="btn btn-primary"> 
           </div>
