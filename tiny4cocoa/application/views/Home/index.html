@@ -12,29 +12,7 @@
   {/if}
   <div class="clearfix"></div>
 </div>
-<div class="span3">
-  <div class="siderbar-unit">
-    <strong>苹果新闻</strong>
-    {foreach from=$applenews item=item}
-	  <div class="newsblock">
-      {if $item.image}
-        <img src="{$item.image}" width="40" style="float:left;">
-      {/if}
-      <div style="margin-left:50px;">
-      <a href="/apple/n/{$item.id}/">
-        {$item.title}
-      </a>
-      <div style="text-align:right;">
-        <small class="muted">
-          by {$item.name} 发布于{$item.time}
-        </small>
-      </div>
-    </div>
-    </div>
-    {/foreach}
-    <p class="threadfootnote"><a href="/apple/">查看更多</a></p>
-  </div>
-</div>
+
 
 <div class="span6">
   <div style="padding: 10px;margin-bottom: 30px;">
@@ -91,4 +69,30 @@
 	{/foreach}
   </div>
 </div>
+
+<div class="span3">
+  <div class="siderbar-unit">
+    <strong>苹果新闻</strong>
+    {foreach from=$applenews item=item}
+	  <div class="newsblock">
+      {if $item.image}
+        <img src="{$item.image}" width="40" style="float:left;">
+      {/if}
+      <div style="margin-left:50px;">
+      <a href="/apple/n/{$item.id}/">
+        {$item.title}
+      </a>
+      <div style="text-align:right;">
+        <small class="muted">
+          by {$item.name} 发布于{$item.time}
+        </small>
+      </div>
+    </div>
+    </div>
+    {/foreach}
+    <p class="threadfootnote"><a href="/apple/">查看更多</a></p>
+  </div>
+</div>
+
+
 </div>
