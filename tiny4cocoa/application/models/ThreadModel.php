@@ -145,7 +145,7 @@ class ThreadModel extends baseDbModel {
     $mail = new MailModel();
     $mail->generateMail(
             $email,
-             "tinyfool+tiny4cocoa@gmail.com", 
+             "admin@tiny4.org", 
             $subject, 
             $mailContent);
   }
