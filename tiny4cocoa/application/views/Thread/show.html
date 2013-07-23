@@ -94,6 +94,18 @@ $(document).ready(function() {
       </div>
     </div>
     
+    <div class="siderbar-unit">
+      最新帖子
+      <div class="threadblock">
+        <ul>
+          {foreach from=$threads item=item}
+            <li>          
+              <a href="/thread/show/{$item.id}/">{$item.title}</a>
+            </li>
+          {/foreach}   
+        </ul>
+      </div> 
+    </div>
   </div>
   
 </div>

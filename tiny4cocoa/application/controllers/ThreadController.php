@@ -54,10 +54,13 @@ class ThreadController extends baseController
     $replysCount = $threadModel->replysCountById($id);
     $replys = $threadModel->replysById($id);
     
+    $threads = $threadModel->threads(1,20);
+    
     $this->_mainContent->assign("userid",$userid);
     $this->_mainContent->assign("thread",$thread);
     $this->_mainContent->assign("replysCount",$replysCount);
     $this->_mainContent->assign("replys",$replys);
+    $this->_mainContent->assign("threads",$threads);
     
     $this->setTitle($thread["title"]);
     $this->display();
