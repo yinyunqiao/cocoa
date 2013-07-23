@@ -9,11 +9,28 @@ class ThreadController extends baseController
  
   public function indexAction() {
     
+    $page = $this->intVal(3);
+    if($page==1) {
+      
+      header("HTTP/1.1 301 Moved Permanently");
+      header("location: /thread/");
+      die();
+    }
+    if($page==0)
+      $page=1;
+    
     $thread = new ThreadModel();
-    $threads = $thread->threads(1,20);
+    $threadPageSize = 20;
+    $threadCount = $thread->threadCount();
+    $threads = $thread->threads($page,$threadPageSize);
+		$pageControl = ToolModel::pageControl($page,$threadCount,$threadPageSize,"<a href='/thread/index/#page#/'>");
       
     $this->_mainContent->assign("threads",$threads);
-    $this->setTitle("讨论区");
+    $this->_mainContent->assign("pageControl",$pageControl);
+    if($page==1)
+      $this->setTitle("讨论区");
+    else
+      $this->setTitle("讨论区 第 $page 页");
     $this->display();
   }
   
