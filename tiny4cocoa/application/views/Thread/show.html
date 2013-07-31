@@ -21,8 +21,16 @@ $(document).ready(function() {
       <h4>{$thread.title}</h4>
       <small class="muted">
         由 <a href="/user/show/{$thread.createbyid}/{$thread.createby}/" class="muted" target="_blank">{$thread.createby}</a> 发布于 {$thread.createtime}
+        {if $thread.createtime<>$thread.modifydate && $thread.modifydate<>0}
+         ｜ 更新于 {$thread.updatetime}
+        {/if}
       </small>
       <div class="threadblock">{$thread.content}</div>
+      {if $userid==$thread.createbyid}
+        <div style="text-align:right;">
+          <a href="/thread/editthread/{$thread.id}/">编辑</a>
+        </div>
+      {/if}
     </div>
     
     {if $replysCount==0}

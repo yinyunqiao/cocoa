@@ -29,12 +29,15 @@ class ThreadModel extends baseDbModel {
     return $ret;
   }
 
-  public function threadById($id) {
+  public function threadById($id,$html=1) {
     
     $sql = "SELECT * FROM `threads` where id = $id;";
     $ret = $this->fetchArray($sql);
     $thread = $ret[0];
-    $thread["content"] = Markdown(stripslashes($thread["content"]));
+    if($html==1)
+      $thread["content"] = Markdown(stripslashes($thread["content"]));
+    else
+      $thread["content"] = stripslashes($thread["content"]);
     $thread["createtime"] = ToolModel::countTime($thread["createdate"]);
     $thread["updatetime"] = ToolModel::countTime($thread["updatedate"]);
     $thread["image"] = DiscuzModel::get_avatar($thread["createbyid"],"small");
