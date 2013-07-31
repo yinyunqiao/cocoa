@@ -146,7 +146,7 @@ class AppleController extends baseController
     $news["content"] = str_replace("\\n"," ",$news["content"]);
     $news["content"] = stripslashes($news["content"]);
     $news["content"] = $newscenter->removeTail($news["content"]);
-    
+    $this->setTitle($news["title"]);
     $this->_mainContent->assign("news",$news);
     $this->display();
   }

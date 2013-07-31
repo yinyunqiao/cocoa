@@ -14,9 +14,9 @@
   		  <img class="pic hidden-phone" src="{$item.image}"></a>
       {/if}
   		<div class="content">
-  			<h3><a href="/apple/n/{$item.id}/" target="_blank">{$item.title}</a></h3>
+  			<h3><a href="/apple/n/{$item.id}/" >{$item.title}</a></h3>
   			<div class="authinfo">
-          {$item.author} 发表于［<a href="{$item.url}" target="_blank">{$item.name}</a>］@ {$item.time}
+          {$item.author} 发表于［<a href="{$item.url}">{$item.name}</a>］@ {$item.time}
           <span class="timestamp">{$item.createtime}</span>
         </div>
   			<div style="overflow:hidden;margin-top:5px;">{$item.desc}</div>
