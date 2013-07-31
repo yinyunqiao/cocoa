@@ -146,6 +146,42 @@ class ThreadController extends baseController
     $this->setTitle($thread["title"]);
     $this->display();
   }
+  
+  public function editReplyAction() {
+    
+    $id = $this->intVal(3);
+    $threadModel = new ThreadModel();
+    $discuz = new DiscuzModel();
+    $userid = $discuz->checklogin();
+    $reply = $threadModel->replyByReplyId($id,0);
+    
+    if($userid==0)
+      header("location: /thread/show/$reply[threadid]/");
+    if($reply["userid"]!=$userid)
+      header("location: /thread/show/$reply[threadid]/");
+    
+    if($_POST &&
+      strlen($_POST["replyid"])>0 &&
+      strlen($_POST["content"])>0){
+      
+        $reply = $threadModel->replyByReplyId($_POST["replyid"],0);
+        if($reply["userid"]!=$userid) {
+          header("location: /thread/show/$reply[threadid]/");
+          die();
+        }
+        $data = array();
+        $data["id"] = $_POST["replyid"];
+        $data["updatedate"] = time();
+        $data["content"] = $_POST["content"];
+        $threadModel->updateReply($data);
+        header("location: /thread/show/$_POST[threadid]/");
+        die();
+    }
+    
+    $this->_mainContent->assign("reply",$reply);
+    $this->_mainContent->assign("userid",$userid);
+    $this->display();
+  }
 }
 
 

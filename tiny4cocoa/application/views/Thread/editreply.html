@@ -1,0 +1,50 @@
+<style>
+body {
+  background-color: 
+  #ccc;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#newform").validate();
+  
+});
+</script>
+<div class="row">
+  
+  <div class="span8">
+    <div class="content-unit">
+      <h4>修改回复</h4>
+      <div class="threadblock">
+        <form action="/thread/editreply/" 
+          method="post" accept-charset="utf-8" id="newform">
+          <input type="hidden" name="replyid" value="{$reply.id}" id="replyid">
+          <input type="hidden" name="threadid" value="{$reply.threadid}" id="threadid">
+          <label for="content">内容</label>
+      		<div id="wmd-editor" class="wmd-panel" style="width:90%;">
+      			<div id="wmd-button-bar"></div>
+      			<textarea id="wmd-input" name="content" minlength="5" required>{$reply.content}</textarea>
+      		</div>
+      		<div id="wmd-preview" class="wmd-panel" style="width:90%;">
+      		</div>
+          <div class="threadblock" style="text-align:center;">
+            <input type="submit" name="submit" value="保存" id="submit" class="btn btn-primary"> 
+            <input type="button" name="cancel" value="取消" id="cancel" class="btn">
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="span4">
+    <div class="siderbar-unit">
+      发帖说明
+      <div class="threadblock">
+        <ul>
+          <li>支持 Markdown 格式, **<strong>粗体</strong>**、~~<del>删除线</del>~~、`<code>单行代码</code>`</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+</div>

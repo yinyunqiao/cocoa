@@ -57,8 +57,20 @@ $(document).ready(function() {
             <div style="margin-left:54px;">
               <div class="muted">
                 <a href="/user/show/{$item.userid}/{$item.name}/" class="muted" target="_blank">{$item.name}</a> 回复于 {$item.createtime}
+               
+                {if $item.createtime<>$item.updatetime && $thread.updatedate<>0}
+                 ｜ 更新于 {$thread.updatetime}
+                {/if}
+              
               </div>
-              {$item.content}
+              <div style="padding:2px;">
+                {$item.content}
+              </div>
+              {if $userid==$item.userid}
+                <div style="text-align:right;">
+                  <a href="/thread/editreply/{$item.id}/">编辑</a>
+                </div>
+              {/if}
             </div>
           </div>
         {/foreach}

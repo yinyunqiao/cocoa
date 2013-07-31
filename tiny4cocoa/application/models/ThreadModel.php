@@ -102,6 +102,24 @@ class ThreadModel extends baseDbModel {
     return $ret;
   }
   
+  public function replyByReplyId($id,$html=1) {
+    
+    $sql = "SELECT * FROM `thread_replys` where id = $id;";
+    $result = $this->fetchArray($sql);
+    $item = $result[0];
+    if($html==1)
+      $item["content"] = Markdown(stripslashes($item["content"]));
+    else
+      $item["content"] = stripslashes($item["content"]);
+    $item["createtime"] = ToolModel::countTime($item["createdate"]);
+    $item["updatetime"] = ToolModel::countTime($item["updatedate"]);
+    return $item;
+  }
+  
+  public function updateReply($data) {
+    
+    $this->select("thread_replys")->where("id = $data[id]")->update($data);
+  }
   
   public function newThread($data) {
     
