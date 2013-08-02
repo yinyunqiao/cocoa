@@ -43,9 +43,10 @@ class StaticController extends tinyApp_Controller
     $bootstrap = $this->_pathinfo['base']."/public/bootstrap/css";
     include("$path/base.css");
     include("$path/thread.css");
+    include("$base/lib/wmd/wmd.css");
     include("$bootstrap/bootstrap.min.css");
     include("$bootstrap/bootstrap-responsive.min.css");
-    include("$base/lib/wmd/wmd.css");
+    include("$path/site.css");
   }
 }
 

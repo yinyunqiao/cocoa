@@ -15,35 +15,60 @@
 
 
 <div class="span6">
-  
-  <div style="text-align:right;">
-    <a href="/thread/new/" class="btn btn-success">发 布 新 帖</a>
-  </div>
-  <div style="padding: 10px;margin-bottom: 30px;">
-  <strong>讨论区</strong>
-  {foreach from=$threads item=item}
-  <div class="threadblock">
-    <span class="label label-info pull-right" style="margin-top:5px;">{$item.replys}</span>
-    {if $item.image}
-      <a href="/user/show/{$item.createbyid}/{$item.createby}/" class="muted" target="_blank">
-        <img src="{$item.image}" width="48" height="48" style="float:left;">
-      </a>
-    {/if}
-    <div style="margin-left:54px;">
-      <a href="/thread/show/{$item.id}/">{$item.title}</a>
-      <div class="muted">
-        {$item.createtime} by  
-        <a href="/user/show/{$item.createbyid}/{$item.createby}/" class="muted" target="_blank">{$item.createby}</a> 
-        {if $item.lastreplyid>0}
-          | 最后回复 {$item.updatetime} by <a href="/user/show/{$item.lastreplyid}/{$item.lastreply}/" class="muted" target="_blank">{$item.lastreply}</a> 
+  <div class="content-unit">
+    <div style="text-align:right;">
+      <a href="/thread/new/" class="btn btn-success">发 布 新 帖</a>
+    </div>
+    <div style="padding: 10px;margin-bottom: 30px;">
+      <strong>讨论区</strong>
+      {foreach from=$threads item=item}
+      <div class="threadblock">
+        <span class="label label-info pull-right" style="margin-top:5px;">{$item.replys}</span>
+        {if $item.image}
+          <a href="/user/show/{$item.createbyid}/{$item.createby}/" class="muted" target="_blank">
+            <img src="{$item.image}" width="48" height="48" style="float:left;">
+          </a>
         {/if}
+        <div style="margin-left:54px;">
+          <a href="/thread/show/{$item.id}/">{$item.title}</a>
+          <div class="muted">
+            {$item.createtime} by  
+            <a href="/user/show/{$item.createbyid}/{$item.createby}/" class="muted" target="_blank">{$item.createby}</a> 
+            {if $item.lastreplyid>0}
+              | 最后回复 {$item.updatetime} by <a href="/user/show/{$item.lastreplyid}/{$item.lastreply}/" class="muted" target="_blank">{$item.lastreply}</a> 
+            {/if}
+          </div>
+        </div>
       </div>
+      {/foreach}
+    </div>
+    <div style="text-align:center;">
+      {$pageControl}
     </div>
   </div>
-  {/foreach}
-  </div>
-  <div style="text-align:center;">
-    {$pageControl}
+</div>
+
+<div class="span3">
+  <div class="siderbar-unit">
+    <strong>苹果新闻</strong>
+    {foreach from=$applenews item=item}
+	  <div class="newsblock">
+      {if $item.image}
+        <img src="{$item.image}" width="40" style="float:left;">
+      {/if}
+      <div style="margin-left:50px;">
+      <a href="/apple/n/{$item.id}/">
+        {$item.title}
+      </a>
+      <div style="text-align:right;">
+        <small class="muted">
+          by {$item.name} 发布于{$item.time}
+        </small>
+      </div>
+    </div>
+    </div>
+    {/foreach}
+    <p class="threadfootnote"><a href="/apple/">查看更多</a></p>
   </div>
 </div>
 
@@ -74,29 +99,7 @@
   </div>
 </div>
 
-<div class="span3">
-  <div class="siderbar-unit">
-    <strong>苹果新闻</strong>
-    {foreach from=$applenews item=item}
-	  <div class="newsblock">
-      {if $item.image}
-        <img src="{$item.image}" width="40" style="float:left;">
-      {/if}
-      <div style="margin-left:50px;">
-      <a href="/apple/n/{$item.id}/">
-        {$item.title}
-      </a>
-      <div style="text-align:right;">
-        <small class="muted">
-          by {$item.name} 发布于{$item.time}
-        </small>
-      </div>
-    </div>
-    </div>
-    {/foreach}
-    <p class="threadfootnote"><a href="/apple/">查看更多</a></p>
-  </div>
-</div>
+
 
 
 </div>
