@@ -3,8 +3,8 @@
     <div class="content-unit">
       <meta itemprop="thumbnailUrl" content="http://tiny4cocoa.com/newsupload/{$news.filename}_s.{$news.ext}"/>
       <h1 class="title" itemprop="name">{$news.title}</h1>
-      <p class="desc">by <span itemprop="author">{$news.author}</span>
-      </p>
+      <hr/>
+      <p class="desc">by <span itemprop="author">{$news.author}</span></p>
       <div class="content">
         {$news.content}
         <p>原文地址：<a href="{$news.link}">{$news.link}</a></p>
@@ -27,6 +27,29 @@
   </div>
 
   <div class="span4">
+    
+    <div class="siderbar-unit">
+      <strong>苹果新闻</strong>
+      {foreach from=$applenews item=item}
+  	  <div class="newsblock">
+        {if $item.image}
+          <img src="{$item.image}" width="40" style="float:left;">
+        {/if}
+        <div style="margin-left:50px;">
+        <a href="/apple/n/{$item.id}/">
+          {$item.title}
+        </a>
+        <div style="text-align:right;">
+          <small class="muted">
+            by {$item.name} 发布于{$item.time}
+          </small>
+        </div>
+      </div>
+      </div>
+      {/foreach}
+      <p class="threadfootnote"><a href="/apple/">查看更多</a></p>
+    </div>
+    
     <div class="siderbar-unit">
       <div style="text-align:center;">
         <script type="text/javascript"><!--

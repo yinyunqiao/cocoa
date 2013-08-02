@@ -60,11 +60,11 @@
     </div>
   </div>
   <div class="span4">
-    <div class="siderbar-unit">
+    <!-- <div class="siderbar-unit">
       <h4>欢迎投稿</h4>
       <p>有什么跟苹果相关的资讯、评论和想法，欢迎投稿本站。</p>
       <p>联系方式： <a href="mailto:tinyfool@gmail.com">tinyfool@gmail.com</a></p>
-    </div>
+    </div> -->
     
     <div class="siderbar-unit">
       <h4>日期索引</h4>
@@ -81,37 +81,21 @@
     	{/foreach}
       </ul>
     </div>
-    <div style="text-align:center;" class="siderbar-unit">
-      <script type="text/javascript"><!--
-        google_ad_client = "ca-pub-7732761529337293";
-        /* tiny4cocoa正方形250&#42;250 */
-        google_ad_slot = "7613412479";
-        google_ad_width = 250;
-        google_ad_height = 250;
-        //-->
-      </script>
-      <script type="text/javascript"
-      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-      </script>
-    </div>
+    
     <div class="siderbar-unit">
-      <h3>论坛最新更新</h3>
-      <ul>
-        {foreach from=$threads item=thread}
-        <a href="/thread-{$thread.tid}-1-1.html" target="_blank">
-          <li>
-    		    {$thread.subject}
-            </li>
-          </a>
-          {/foreach}
-        </ul>
-    </div>
-    <div class="siderbar-unit">
-      <p>热门Tag: 
-        {foreach from=$tags item=tag}
-          <a href="/tag.php?name={$tag.tagname}" target="_blank">{$tag.tagname}</a>
-        {/foreach}
-      </p>
+      <div style="text-align:center;">
+        <script type="text/javascript"><!--
+          google_ad_client = "ca-pub-7732761529337293";
+          /* tiny4cocoa正方形250&#42;250 */
+          google_ad_slot = "7613412479";
+          google_ad_width = 250;
+          google_ad_height = 250;
+          //-->
+        </script>
+        <script type="text/javascript"
+        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+      </div>
     </div>
   </div>
 </div>

@@ -146,8 +146,21 @@ class AppleController extends baseController
     $news["content"] = str_replace("\\n"," ",$news["content"]);
     $news["content"] = stripslashes($news["content"]);
     $news["content"] = $newscenter->removeTail($news["content"]);
+    
+    $applenews = $newscenter->news(1,10,"apple");
+    $napplenews = array();
+    foreach($applenews as $item) {
+      
+      $item["time"] = ToolModel::countTime($item["pubdate"]);
+      $item["elink"] = urlencode($item["link"]);
+      
+      $napplenews[] = $item;
+    }
+    $applenews = $napplenews;
+    
     $this->setTitle($news["title"]);
     $this->_mainContent->assign("news",$news);
+    $this->_mainContent->assign("applenews",$applenews);
     $this->display();
   }
   
