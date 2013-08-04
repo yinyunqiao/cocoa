@@ -25,4 +25,27 @@ class UserModel extends baseDbModel {
     $result = $this->fetchArray($sql);
     return $result;
   }
+  
+  public function sendUnsubscribeMail($mail) {
+    
+    $mailModel = new MailModel();
+    $v = md5($mail."3.141592654");
+    $page = "<p>你好</p>
+    <p>如果你要退订Tiny4Cocoa社区的通知邮件，请点击下面的链接，如果你不想退订，或者不知道为什么会收到这封邮件，那么你可以忽略这封邮件。</p>
+    
+    <a href=http://tiny4cocoa.org/user/unsubscribe/?mail=$mail&v=$v>退订确定</a>
+    ";
+     $mailModel->generateMail(
+            $mail,
+             "admin@tiny4.org", 
+            "Tiny4Cocoa社区邮件退订确认信", 
+            $page);
+    
+  }
+  
+  public function addUnsubscribeMail($mail) {
+    
+    $sql = "INSERT INTO `nonews` (`email`)VALUES('$mail');";
+    $this->run($sql);
+  }
 }

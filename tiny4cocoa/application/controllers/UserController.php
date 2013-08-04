@@ -26,4 +26,30 @@ class UserController extends baseController
     $this->display();
   }
   
+  public function unsubscribeAction() {
+    
+    $userModel = new UserModel();
+    if(strlen($_POST["email"])>3) {
+
+      $userModel->sendUnsubscribeMail($_POST["email"]);
+      $this->viewFile="User/unsubscribe_mailsent.html";
+      $this->display();
+      die();
+    }
+    if(strlen($_GET["v"])>0) {
+      
+      $code = md5($_GET["mail"]."3.141592654");
+      if($code==$_GET["v"]) {
+        
+        $userModel->addUnsubscribeMail($_GET["mail"]);
+        $this->viewFile="User/unsubscribe_ok.html";
+        $this->display();
+        die();
+      }
+    }
+    
+    $email = $_GET["mail"];
+    $this->_mainContent->assign("email",$email);
+    $this->display();
+  }
 }

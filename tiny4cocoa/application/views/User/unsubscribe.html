@@ -1,0 +1,40 @@
+<style>
+body {
+  background-color: 
+  #ccc;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#unsubform").validate();
+});
+</script>
+<div class="row">
+  
+  <div class="span8">
+    <div class="content-unit">
+      <h3>邮件退订</h3>
+      <div class="threadblock" >
+        <form action="/user/unsubscribe/" 
+          method="post" accept-charset="utf-8" id="unsubform">
+          <div class="pull-left">
+            <div style="padding-top:20px;" class="pull-left">邮箱 ：<input type="text" name="email" value="{$email}" id="email" minlength="3" required></div>
+            <div class="clearfix"></div>
+            <div style="padding-left:100px;padding-top:50px;">
+              <input type="submit" name="submit" value="退订" id="submit" class="btn btn-primary"> 
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+    
+  </div>
+  
+  <div class="span4">
+    <div class="siderbar-unit" style="text-align:center;">
+    </div>
+  </div>
+  
+</div>
