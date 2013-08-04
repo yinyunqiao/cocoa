@@ -31,9 +31,10 @@ class UserModel extends baseDbModel {
     $mailModel = new MailModel();
     $v = md5($mail."3.141592654");
     $page = "<p>你好</p>
-    <p>如果你要退订Tiny4Cocoa社区的通知邮件，请点击下面的链接，如果你不想退订，或者不知道为什么会收到这封邮件，那么你可以忽略这封邮件。</p>
+    <p>如果你要退订Tiny4Cocoa社区的通知邮件，请点击下面的链接</p>
     
-    <a href=http://tiny4cocoa.com/user/unsubscribe/?mail=$mail&v=$v>退订确定</a>
+    <p><a href=http://tiny4cocoa.com/user/unsubscribe/?mail=$mail&v=$v>退订确定</a></p>
+     <p>如果你不想退订，或者不知道为什么会收到这封邮件，那么你可以忽略这封邮件。</p>
     ";
      $mailModel->generateMail(
             $mail,
