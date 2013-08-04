@@ -33,7 +33,7 @@ class UserModel extends baseDbModel {
     $page = "<p>你好</p>
     <p>如果你要退订Tiny4Cocoa社区的通知邮件，请点击下面的链接，如果你不想退订，或者不知道为什么会收到这封邮件，那么你可以忽略这封邮件。</p>
     
-    <a href=http://tiny4cocoa.org/user/unsubscribe/?mail=$mail&v=$v>退订确定</a>
+    <a href=http://tiny4cocoa.com/user/unsubscribe/?mail=$mail&v=$v>退订确定</a>
     ";
      $mailModel->generateMail(
             $mail,
