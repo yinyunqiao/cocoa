@@ -113,8 +113,10 @@ class baseDbModel extends dbConnModel {
 
 	}
 	
-	public function fetchArray($sql) {
+	public function fetchArray($sql,$debug=0) {
 		
+    if($debug==1)
+      var_dump($sql);
 		$result=mysql_query($sql);
 		if(!$result)
 			return null;

@@ -197,4 +197,62 @@ class ThreadModel extends baseDbModel {
     
     $this->select("threads")->where("id = $data[id]")->update($data);
   }
+  
+  
+  public function topThreadsFrom($n,$time){
+    
+    $sql =
+      "SELECT `thread_replys`.`threadid`,count(*) as `replyscount`,
+      `threads`.`title`,`threads`.`replys`
+      FROM `thread_replys`
+      LEFT JOIN `threads`
+      ON `threads`.`id` = `thread_replys`.`threadid`
+      WHERE `thread_replys`.`createdate` > $time
+      GROUP BY `thread_replys`.`threadid`
+      ORDER BY `replyscount` DESC
+      LIMIT 0,$n;
+      ";
+    $result = $this->fetchArray($sql);
+    return $result;
+  }
+  
+  
+  public function topBbsHero($n,$time){
+    
+    $sql =
+      "SELECT name,`thread_replys`.`userid`,count(*) as `replyscount`
+      FROM `thread_replys`
+      WHERE `thread_replys`.`createdate` > $time 
+      GROUP BY `thread_replys`.`userid` 
+      ORDER BY `replyscount` DESC
+      LIMIT 0,10;";
+    $result = $this->fetchArray($sql);
+    return $result;
+  }
+  
+  public function isWeekmailSent() {
+    
+    $now = time();
+    $day = date("Y-m-d", $now);
+    $sql = "SELECT * FROM `mailsent` WHERE `weekdate`='$day';";;
+    $result = $this->fetchArray($sql);
+    if(count($result)>0)
+      return 1;
+    else 
+      return 0;
+  }
+  
+  public function setWeekmailSent() {
+    
+    $now = time();
+    $day = date("Y-m-d", $now);
+    $sql = "INSERT INTO `mailsent`(`weekdate`) VALUES('$day');";;
+    $this->run($sql);
+  }
 }
+
+
+
+
+
+

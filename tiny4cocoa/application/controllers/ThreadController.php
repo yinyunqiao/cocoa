@@ -182,6 +182,7 @@ class ThreadController extends baseController
     $this->_mainContent->assign("userid",$userid);
     $this->display();
   }
+  
 }
 
 

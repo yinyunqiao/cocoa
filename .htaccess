@@ -13,6 +13,7 @@ RewriteRule ^os/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^thread/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^user/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^sendmail/(.*)$ tiny4cocoa/public/index.php
+RewriteRule ^crontab/(.*)$ tiny4cocoa/public/index.php
 
 
 RewriteRule ^static/(.*)/$ tiny4cocoa/public/index.php
