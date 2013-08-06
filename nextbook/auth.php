@@ -11,6 +11,9 @@ $users[] = $user;
 $user["developerID"] = "ETCBookInc";
 $user["developerKey"] = "34df4ccae5476528f4c97b82879c48ff";
 $users[] = $user;
+$user["developerID"] = "ruansu";
+$user["developerKey"] = "877e970ff0632567971b56149cc1b5c9";
+$users[] = $user;
 
 
 $data = file_get_contents('php://input');
