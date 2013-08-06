@@ -158,9 +158,15 @@ class AppleController extends baseController
     }
     $applenews = $napplenews;
     
+    $threadModel = new ThreadModel();
+    $threads = $threadModel->threads(1,10);
+    
+    
     $this->setTitle($news["title"]);
     $this->_mainContent->assign("news",$news);
     $this->_mainContent->assign("applenews",$applenews);
+    $this->_mainContent->assign("threads",$threads);
+  
     $this->display();
   }
   

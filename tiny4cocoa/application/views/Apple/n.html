@@ -29,6 +29,19 @@
   <div class="span4">
     
     <div class="siderbar-unit">
+      最新帖子
+      <div class="threadblock">
+        <ul>
+          {foreach from=$threads item=item}
+            <li>          
+              <a href="/thread/show/{$item.id}/">{$item.title}</a>
+            </li>
+          {/foreach}   
+        </ul>
+      </div> 
+    </div>
+    
+    <div class="siderbar-unit">
       <strong>苹果新闻</strong>
       {foreach from=$applenews item=item}
   	  <div class="newsblock">
