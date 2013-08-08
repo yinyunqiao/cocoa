@@ -9,19 +9,12 @@
         {$news.content}
         <p>原文地址：<a href="{$news.link}">{$news.link}</a></p>
       </div>
-       <div style="text-align:center;padding:10px;">
-         <!-- 广告位：tiny4cocoa贴后 -->
-         <script type="text/javascript"><!--
-         google_ad_client = "ca-pub-7732761529337293";
-         /* tiny4cocoa小幅移动定制 */
-         google_ad_slot = "2712960202";
-         google_ad_width = 234;
-         google_ad_height = 60;
-         //-->
-         </script>
-         <script type="text/javascript"
-         src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-         </script>
+      <div style="text-align:center;">
+        {if $iPhone}
+          <script type="text/javascript">BAIDU_CLB_fillSlot("745564");</script>  
+        {else}
+          <script type="text/javascript">BAIDU_CLB_fillSlot("745560");</script>
+        {/if}
       </div>
     </div>
   </div>

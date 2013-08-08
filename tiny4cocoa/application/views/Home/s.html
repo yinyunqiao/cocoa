@@ -88,10 +88,13 @@ style="background-color:#fff;"
     </div>
     <div style="clear:both;"></div>
   </div>
-   <div style="text-align:center;padding:10px;" class="hidden-phone">
-     <!-- 广告位：tiny4cocoa贴后 -->
-     <script type="text/javascript">BAIDU_CLB_fillSlot("498926");</script>
-   </div>
+  <div style="text-align:center;">
+    {if $iPhone}
+      <script type="text/javascript">BAIDU_CLB_fillSlot("745564");</script>  
+    {else}
+      <script type="text/javascript">BAIDU_CLB_fillSlot("745560");</script>
+    {/if}
+  </div>
   <div>
     {if $comments|@count == 0}
       <h4 class="commentscount">暂无评论（马上评论可以成为楼长）</h4>
