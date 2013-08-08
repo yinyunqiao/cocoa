@@ -48,49 +48,10 @@
 			$this->_mainContent->assign("retUrl",$_SERVER['REQUEST_URI']);
 			$this->_view->assign("retUrl",$_SERVER['REQUEST_URI']);
 			$this->_view->assign("navsel",$controller);
-						// 
-						// $userModel = new UserModel();
-						// 
-						// 
-						// // 用户基础信息
-						// $this->userinfo = array('username'=>$_SESSION['username'], 'uid'=>$_SESSION['id']);
-						// 
-						// if(strlen($_SESSION['username'])==0) {
-						// 	
-						//         // $debug = var_export($_COOKIE,TRUE);
-						//         // $this->_view->assign("debug",$debug);
-						//       	
-						// 	if($_COOKIE["iapp_username"] && $_COOKIE["iapp_sessionid"]) {
-						// 		          
-						//               // $debug = var_export($_COOKIE,TRUE);
-						//         $username = $_COOKIE["iapp_username"];
-						//         $password = base64_decode($_COOKIE["iapp_sessionid"]);
-						//               // $debug .= $password;
-						//         $dbret = $userModel->signinCheckByCookie($username,$password);
-						//         
-						// 		          	if($dbret){  	
-						//             $_SESSION['username'] = $username;
-						//             $_SESSION['id'] = $dbret[0]['id'];
-						//             $credit = $userModel->userCredit($_SESSION['id']);
-						//             $this->_view->assign("username",$_SESSION['username']);
-						//             $this->_view->assign("credit",$credit);
-						// 		        	}
-						//               // $this->_view->assign("debug",$debug);
-						// 	}
-						// } else {
-						// 	$credit = $userModel->userCredit($_SESSION['id']);
-						// 	$this->_view->assign("username",$_SESSION['username']);
-						//         $this->_view->assign("credit",$credit);
-						// }
-						// 
-						// $this->_view->assign("userid",$_SESSION['id']);
-						// $user_IP = ($_SERVER["HTTP_VIA"]) ? $_SERVER["HTTP_X_FORWARDED_FOR"] : $_SERVER["REMOTE_ADDR"]; 
-						//       $user_IP = ($user_IP) ? $user_IP : $_SERVER["REMOTE_ADDR"]; 
-						//       $this->_view->assign("user_IP",$user_IP);
-						//       
-						//       //判断iPhone/iPod还是其他
-						//       $iPhone = ToolModel::is_iPhone();
-						//       $this->_view->assign("iPhone",$iPhone);
+
+			$iPhone = ToolModel::is_iPhone();
+			$this->_view->assign("iPhone",$iPhone);
+			$this->_mainContent->assign("iPhone",$iPhone);
 		}
 		
 		public function display($viewfile="") 
