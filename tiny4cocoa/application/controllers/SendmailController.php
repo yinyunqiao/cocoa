@@ -3,7 +3,7 @@ class SendmailController {
   
     public function sendmailqueueAction(){
         $mailModel = new MailModel();
-        $queue = $mailModel->getMailQueue(20);
+        $queue = $mailModel->getMailQueue(100);
         if(count($queue)){
             foreach($queue as $item){
                 $mailModel->sendMailItem($item);
