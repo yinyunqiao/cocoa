@@ -17,13 +17,13 @@ class HomeController extends baseController
     $page = $this->intVal(3);
     if($page==0)
       $page=1;
-    $size = 20;
+    $size = 30;
     
     $newscenter = new NewscenterModel();
     $count = $newscenter->count("apple");
     $newscount = $newscenter->count("unmarked");
     $spamcount = $newsModel->spamCount();
-    $applenews = $newscenter->news(1,15,"apple");
+    $applenews = $newscenter->news(1,33,"apple");
     $napplenews = array();
     foreach($applenews as $item) {
       
@@ -35,7 +35,7 @@ class HomeController extends baseController
     
     $applenews = $napplenews;
     
-    $size = 5;
+    $size = 24;
     $count = $newsModel->newsCount();
     $news = $newsModel->news(1,$size);
 		$pageControl = ToolModel::pageControl($page,$count,$size,"<a href='/home/news/#page#/'>");
