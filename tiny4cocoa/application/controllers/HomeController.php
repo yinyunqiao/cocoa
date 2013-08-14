@@ -42,7 +42,7 @@ class HomeController extends baseController
     
     $thread = new ThreadModel();
     $threadCount = $thread->threadCount();
-    $threadPageSize = 20;
+    $threadPageSize = 40;
     $threads = $thread->threads(1,$threadPageSize);
 		$pageControl = ToolModel::pageControl(1,$threadCount,$threadPageSize,"<a href='/thread/index/#page#/'>");
     

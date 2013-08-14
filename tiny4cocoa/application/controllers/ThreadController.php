@@ -20,7 +20,7 @@ class ThreadController extends baseController
       $page=1;
     
     $thread = new ThreadModel();
-    $threadPageSize = 20;
+    $threadPageSize = 40;
     $threadCount = $thread->threadCount();
     $threads = $thread->threads($page,$threadPageSize);
 		$pageControl = ToolModel::pageControl($page,$threadCount,$threadPageSize,"<a href='/thread/index/#page#/'>");
