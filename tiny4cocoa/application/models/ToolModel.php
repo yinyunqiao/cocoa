@@ -178,8 +178,16 @@ class ToolModel {
   
   function youkuInsert($html) {
     
-    
-    $html = preg_replace("/<a href=\"http:\/\/v.youku.com\/v_show\/id_(.*)?.html\">(.*)?<\/a>/","\\0<p><iframe height=498 width=510 src=\"http://player.youku.com/embed/\\1\" frameborder=0 allowfullscreen></iframe></p>",$html);
+    if(ToolModel::is_iPhone()) {
+      $width="250";
+      $height="250";
+    }
+    else {
+      
+      $width="510";
+      $height="498";
+    }
+    $html = preg_replace("/<a href=\"http:\/\/v.youku.com\/v_show\/id_(.*)?.html\">(.*)?<\/a>/","\\0<div style=\"text-align:center;\"><iframe width=\"$width\" height=\"$height\" src=\"http://player.youku.com/embed/\\1\" frameborder=0 allowfullscreen></iframe></div>",$html);
     return $html;
   }
 }
