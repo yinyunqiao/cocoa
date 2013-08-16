@@ -9,6 +9,7 @@ class ThreadModel extends baseDbModel {
     return $result[0]["c"];
   }
   
+  
   public function threads($page,$pageSize) {
     
     $start = ($page-1)*$pageSize;
@@ -29,13 +30,21 @@ class ThreadModel extends baseDbModel {
     return $ret;
   }
 
+
+  public function parseContent($content) {
+    
+    $html = Markdown(stripslashes($content));
+    $html = ToolModel::youkuInsert($html);
+    return $html;
+  }
+
   public function threadById($id,$html=1) {
     
     $sql = "SELECT * FROM `threads` where id = $id;";
     $ret = $this->fetchArray($sql);
     $thread = $ret[0];
     if($html==1)
-      $thread["content"] = Markdown(stripslashes($thread["content"]));
+      $thread["content"] = $this->parseContent($thread["content"]);
     else
       $thread["content"] = stripslashes($thread["content"]);
     $thread["createtime"] = ToolModel::countTime($thread["createdate"]);
@@ -93,7 +102,7 @@ class ThreadModel extends baseDbModel {
       return $ret;
     foreach($result as $item) {
       
-      $item["content"] = Markdown(stripslashes($item["content"]));
+      $item["content"] = $this->parseContent($item["content"]);
       $item["createtime"] = ToolModel::countTime($item["createdate"]);
       $item["updatetime"] = ToolModel::countTime($item["updatedate"]);
       $item["image"] = DiscuzModel::get_avatar($item["userid"],"small");
@@ -108,7 +117,7 @@ class ThreadModel extends baseDbModel {
     $result = $this->fetchArray($sql);
     $item = $result[0];
     if($html==1)
-      $item["content"] = Markdown(stripslashes($item["content"]));
+      $item["content"] = $this->parseContent($item["content"]);
     else
       $item["content"] = stripslashes($item["content"]);
     $item["createtime"] = ToolModel::countTime($item["createdate"]);

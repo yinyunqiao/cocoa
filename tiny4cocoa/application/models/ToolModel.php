@@ -175,4 +175,11 @@ class ToolModel {
       return 0;
   }
   
+  
+  function youkuInsert($html) {
+    
+    
+    $html = preg_replace("/<a href=\"http:\/\/v.youku.com\/v_show\/id_(.*)?.html\">(.*)?<\/a>/","\\0<p><iframe height=498 width=510 src=\"http://player.youku.com/embed/\\1\" frameborder=0 allowfullscreen></iframe></p>",$html);
+    return $html;
+  }
 }
