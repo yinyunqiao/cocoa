@@ -49,6 +49,13 @@
 			$this->_view->assign("retUrl",$_SERVER['REQUEST_URI']);
 			$this->_view->assign("navsel",$controller);
 
+      $discuz = new DiscuzModel();
+      $userModel = new UserModel();
+      $userid = $discuz->checklogin();
+      $username = $userModel->username($userid);
+			$this->_view->assign("userid",$userid);
+			$this->_view->assign("username",$username);
+
 			$iPhone = ToolModel::is_iPhone();
 			$this->_view->assign("iPhone",$iPhone);
 			$this->_mainContent->assign("iPhone",$iPhone);

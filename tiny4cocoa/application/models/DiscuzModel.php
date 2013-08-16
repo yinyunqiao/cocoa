@@ -33,6 +33,13 @@ class DiscuzModel {
   }
   
   
+  function logout() {
+    setcookie("wwv_auth","",time()-3600*24,"/");
+    setcookie("wwv_cookietime","",time()-3600*24,"/");
+    setcookie("wwv_sid","",time()-3600*24,"/");
+    header("location:/");
+  }
+  
   function authcode($string, $operation = 'DECODE', $key = '', $expiry = 0) {
 
     $ckey_length = 4;

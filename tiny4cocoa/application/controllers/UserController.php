@@ -52,4 +52,9 @@ class UserController extends baseController
     $this->_mainContent->assign("email",$email);
     $this->display();
   }
+  
+  public function logoutAction() {
+    $discuz = new DiscuzModel();
+    $discuz->logout();
+  }
 }
