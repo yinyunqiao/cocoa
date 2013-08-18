@@ -20,14 +20,14 @@ class StaticController extends tinyApp_Controller
     $base = $this->_pathinfo['base'];
     $path = $base.'/public/js';
     $bootstrap = $this->_pathinfo['base']."/public/bootstrap/js/";
-    
+    $framework = $this->_pathinfo['tinyAppLib'];
     include("$path/jquery/jquery.min.js");
     include("$path/jquery/jquery.validate.min.js");
     include("$path/jquery/jquery.form.js");
     include("$path/upload/upload.js");
     include("$bootstrap/bootstrap.min.js");
-    readfile("$base/lib/wmd/wmd.js");
-    readfile("$base/lib/wmd/showdown.js");
+    readfile("$framework/wmd/wmd.js");
+    readfile("$framework/wmd/showdown.js");
   }
 	
   public function cssAction() {
@@ -41,9 +41,11 @@ class StaticController extends tinyApp_Controller
     $base = $this->_pathinfo['base'];
     $path = $base.'/public/css';
     $bootstrap = $this->_pathinfo['base']."/public/bootstrap/css";
+    $framework = $this->_pathinfo['tinyAppLib'];
+    
     include("$path/base.css");
     include("$path/thread.css");
-    include("$base/lib/wmd/wmd.css");
+    include("$framework/wmd/wmd.css");
     include("$bootstrap/bootstrap.min.css");
     include("$bootstrap/bootstrap-responsive.min.css");
     include("$path/site.css");

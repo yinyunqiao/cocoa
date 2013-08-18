@@ -2,3 +2,12 @@ body {
   background-color:#ccc;
 }
 
+.wmd-button
+{
+	background-image: url(/images/wmd-buttons.png);
+}
+#wmd-input 
+{
+	
+	height:200px;
+}
