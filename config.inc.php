@@ -43,7 +43,7 @@
 
 // [CH] 论坛安全设置, 调整以下设置，可以增强论坛的安全性能和防御性能
 
-	$adminemail = 'tinyfool@gmail.com';		// 系统管理员 Email
+	$adminemail = 'admin@tiny4cocoa.com';		// 系统管理员 Email
 
 	$forumfounders = '1';			// 论坛创始人 UID, 可以支持多个创始人，之间使用 “,” 分隔。[出于安全考虑，请务必设置一名管理员为创始人]
 						// 论坛创始人可对其他管理员进行设置。如果不设置论坛创始人，则论坛管理员之间权利平等。
