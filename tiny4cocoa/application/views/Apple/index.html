@@ -74,12 +74,35 @@
     </div>
     
     <div class="siderbar-unit">
+      <strong>置顶</strong>
+      {foreach from=$toplist item=link}
+  	  <div class="newsblock">
+        <a href="{$link.link}">
+          {$link.title}
+        </a>
+      </div>
+      {/foreach}
+    </div>
+    
+    <div class="siderbar-unit">
       <h4>本站新闻</h4>
       <ul>
     	{foreach from=$news item=item}
     			<li><a href="/home/s/{$item.id}/">{$item.title}</a></li>
     	{/foreach}
       </ul>
+    </div>
+    <div class="siderbar-unit">
+      最新帖子
+      <div class="threadblock">
+        <ul>
+          {foreach from=$threads item=item}
+            <li>          
+              <a href="/thread/show/{$item.id}/">{$item.title}</a>
+            </li>
+          {/foreach}   
+        </ul>
+      </div> 
     </div>
     
     <div class="siderbar-unit">

@@ -19,18 +19,28 @@ class ThreadController extends baseController
     if($page==0)
       $page=1;
     
-    $thread = new ThreadModel();
+    $threadModel = new ThreadModel();
     $threadPageSize = 40;
-    $threadCount = $thread->threadCount();
-    $threads = $thread->threads($page,$threadPageSize);
+    $threadCount = $threadModel->threadCount();
+    $threads = $threadModel->threads($page,$threadPageSize);
 		$pageControl = ToolModel::pageControl($page,$threadCount,$threadPageSize,"<a href='/thread/index/#page#/'>");
       
     $this->_mainContent->assign("threads",$threads);
     $this->_mainContent->assign("pageControl",$pageControl);
+    
+    
+    $newthreads = $threadModel->threads(1,20);
+    $this->_mainContent->assign("newthreads",$newthreads);
+    
+    $toplistModel = new ToplistModel();
+    $toplist = $toplistModel->toplist();
+    $this->_mainContent->assign("toplist",$toplist);
+    
     if($page==1)
       $this->setTitle("讨论区");
     else
       $this->setTitle("讨论区 第 $page 页");
+    
     $this->display();
   }
   
@@ -72,12 +82,16 @@ class ThreadController extends baseController
     $replys = $threadModel->replysById($id);
     
     $threads = $threadModel->threads(1,20);
+    $this->_mainContent->assign("threads",$threads);
     
     $this->_mainContent->assign("userid",$userid);
     $this->_mainContent->assign("thread",$thread);
     $this->_mainContent->assign("replysCount",$replysCount);
     $this->_mainContent->assign("replys",$replys);
-    $this->_mainContent->assign("threads",$threads);
+    
+    $toplistModel = new ToplistModel();
+    $toplist = $toplistModel->toplist();
+    $this->_mainContent->assign("toplist",$toplist);
     
     $this->setTitle($thread["title"]);
     $this->display();

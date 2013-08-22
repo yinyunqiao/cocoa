@@ -100,10 +100,12 @@ class baseDbModel extends dbConnModel {
 			return null;
 	}
 	
-	public function fetchAll($returnType="array") {
+	public function fetchAll($returnType="array",$debug=0) {
 		
 		$sql=$this->genSelectSQL();
-		$result=mysql_query($sql);
+    if($debug==1)
+      var_dump($sql);
+    $result=mysql_query($sql);
 		if(!$result)
 			return null;
 		while ($row = mysql_fetch_assoc($result)) {

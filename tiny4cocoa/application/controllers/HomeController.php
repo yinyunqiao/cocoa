@@ -23,7 +23,7 @@ class HomeController extends baseController
     $count = $newscenter->count("apple");
     $newscount = $newscenter->count("unmarked");
     $spamcount = $newsModel->spamCount();
-    $applenews = $newscenter->news(1,33,"apple");
+    $applenews = $newscenter->news(1,28,"apple");
     $napplenews = array();
     foreach($applenews as $item) {
       
@@ -46,6 +46,10 @@ class HomeController extends baseController
     $threads = $thread->threads(1,$threadPageSize);
 		$pageControl = ToolModel::pageControl(1,$threadCount,$threadPageSize,"<a href='/thread/index/#page#/'>");
     
+    $toplistModel = new ToplistModel();
+    $toplist = $toplistModel->toplist();
+    $this->_mainContent->assign("toplist",$toplist);
+    
     $this->_mainContent->assign("pageControl",$pageControl);
     $this->_mainContent->assign("threads",$threads);
     $this->_mainContent->assign("news",$news);
@@ -53,6 +57,7 @@ class HomeController extends baseController
     $this->_mainContent->assign("userid",$this->userid);
     $this->_mainContent->assign("spamcount",$spamcount);
     $this->_mainContent->assign("newscount",$newscount);
+    
     $this->viewFile="Home/index.html";
     if($page>1)
       $this->setTitle("本站新闻 第".$page."页");

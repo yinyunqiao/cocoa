@@ -117,6 +117,16 @@ class AppleController extends baseController
     $this->_mainContent->assign("spamcount",$spamcount);
     $this->_mainContent->assign("newscount",$newscount);
     $this->_mainContent->assign("tags",$tags);
+    
+    $threadModel = new ThreadModel();
+    $threads = $threadModel->threads(1,20);
+    $this->_mainContent->assign("threads",$threads);
+    
+    $toplistModel = new ToplistModel();
+    $toplist = $toplistModel->toplist();
+    $this->_mainContent->assign("toplist",$toplist);
+    
+    
     $this->display();
   }
   
@@ -161,6 +171,10 @@ class AppleController extends baseController
     $threadModel = new ThreadModel();
     $threads = $threadModel->threads(1,10);
     
+    
+    $toplistModel = new ToplistModel();
+    $toplist = $toplistModel->toplist();
+    $this->_mainContent->assign("toplist",$toplist);
     
     $this->setTitle($news["title"]);
     $this->_mainContent->assign("news",$news);
