@@ -457,7 +457,7 @@ while($news = $db->fetch_array($query)) {
   $cms_recentnews[] = $news;
 }
 //获取最新帖子列表
-$query = $db->query("SELECT `id`,`title` FROM `threads` ORDER BY `updatedate` DESC limit 0,20;");
+$query = $db->query("SELECT `id`,`title` FROM `threads` ORDER BY `updatedate` DESC limit 0,30;");
 $new_recentthreads = array();
 while($thread = $db->fetch_array($query)) {
   $new_recentthreads[] = $thread;
