@@ -19,7 +19,15 @@ $pluginhooks[global_footer]
 <div id="footer">
   <div class="wrap s_clear">
     <div style="text-align:left;width:230px;float:left;margin-left:10px;">
-      <h1>最新新闻</h1>
+      <h1>最新帖子</h1>
+      <ul>
+      <!--{loop $new_recentthreads $index $thread}-->
+        <li><a href="/thread/show/$thread[id]/">$thread["title"]</a></li>
+      <!--{/loop}-->
+      </ul>
+    </div>
+    <div style="text-align:left;width:230px;float:left;">
+      <h1>最新本站新闻</h1>
       <ul>
       <!--{loop $cms_recentnews $index $news}-->
         <li><a href="/home/s/$news[id]/">$news["title"]</a></li>
@@ -27,29 +35,21 @@ $pluginhooks[global_footer]
       </ul>
     </div>
     <div style="text-align:left;width:230px;float:left;">
-      <h1>最新新闻</h1>
+      <h1>最新苹果新闻</h1>
       <ul>
-      <!--{loop $cms_recentnews $index $news}-->
-        <li><a href="/home/s/$news[id]/">$news["title"]</a></li>
+      <!--{loop $new_applenews $index $news}-->
+        <li><a href="/apple/n/$news[id]/">$news["title"]</a></li>
       <!--{/loop}-->
       </ul>
     </div>
     <div style="text-align:left;width:230px;float:left;">
-      <h1>最新新闻</h1>
+      <h1>最新其他新闻</h1>
       <ul>
-      <!--{loop $cms_recentnews $index $news}-->
-        <li><a href="/home/s/$news[id]/">$news["title"]</a></li>
+      <!--{loop $new_noapplenews $index $news}-->
+        <li><a href="/apple/n/$news[id]/">$news["title"]</a></li>
       <!--{/loop}-->
       </ul>
-    </div>
-    <div style="text-align:left;width:230px;float:left;">
-      <h1>最新新闻</h1>
-      <ul>
-      <!--{loop $cms_recentnews $index $news}-->
-        <li><a href="/home/s/$news[id]/">$news["title"]</a></li>
-      <!--{/loop}-->
-      </ul>
-    </div>
+    </div> 
     <div style="clear"></div>
   </div>
 	<div class="wrap s_clear">
