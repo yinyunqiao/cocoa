@@ -450,17 +450,17 @@ if($discuz_uid && $newbietaskupdate && $lastactivity < $newbietaskupdate) {
 	task_newfunction_autoapply();
 }
 
-//获取最新文章列表
-$query = $db->query("SELECT `id`,`title` FROM `cocoacms_news` ORDER BY `id` DESC limit 0,20;");
-$cms_recentnews = array();
-while($news = $db->fetch_array($query)) {
-  $cms_recentnews[] = $news;
-}
 //获取最新帖子列表
 $query = $db->query("SELECT `id`,`title` FROM `threads` ORDER BY `updatedate` DESC limit 0,30;");
 $new_recentthreads = array();
 while($thread = $db->fetch_array($query)) {
   $new_recentthreads[] = $thread;
+}
+//获取最新文章列表
+$query = $db->query("SELECT `id`,`title` FROM `cocoacms_news` ORDER BY `id` DESC limit 0,20;");
+$cms_recentnews = array();
+while($news = $db->fetch_array($query)) {
+  $cms_recentnews[] = $news;
 }
 //获取最新苹果新闻列表
 $query = $db->query("SELECT `id`,`title` FROM `newscenter_items` WHERE apple=1 ORDER BY `pubdate` DESC limit 0,20;");
