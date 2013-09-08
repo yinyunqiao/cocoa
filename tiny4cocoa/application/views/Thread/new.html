@@ -7,6 +7,9 @@ body {
 <script type="text/javascript">
 $(document).ready(function() {
   $("#newform").validate();
+  $("#wmd-input").bind('keyup.ctrl_return', function(){
+    $("#submit").click();
+  });
 });
 </script>
 <div class="row">
@@ -26,7 +29,8 @@ $(document).ready(function() {
       		<div id="wmd-preview" class="wmd-panel" style="width:90%;">
       		</div>
           <div class="threadblock" style="text-align:center;">
-            <input type="submit" name="submit" value="保存" id="submit" class="btn btn-primary"> 
+            <p>使用Ctrl+回车键也可以发布新帖</p>
+            <input type="submit" name="submit" value="发布" id="submit" class="btn btn-primary"> 
             <input type="button" name="cancel" value="取消" id="cancel" class="btn">
         </form>
         </div>

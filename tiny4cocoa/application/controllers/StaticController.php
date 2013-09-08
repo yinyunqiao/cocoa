@@ -28,6 +28,7 @@ class StaticController extends tinyApp_Controller
     include("$bootstrap/bootstrap.min.js");
     readfile("$framework/wmd/wmd.js");
     readfile("$framework/wmd/showdown.js");
+    include("$framework/jquery.hotkeys/jquery.hotkeys.js");
   }
 	
   public function cssAction() {
