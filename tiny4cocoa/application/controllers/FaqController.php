@@ -47,16 +47,16 @@ class FaqController extends baseController
   public function showAction() {
     
     $id = $this->intVal(3);
-    $threadModel = new ThreadModel();
+    $faqModel = new FaqModel();
     $discuz = new DiscuzModel();
     $userid = $discuz->checklogin();
     
 
-    $thread = $threadModel->threadById($id);
-    $replysCount = $threadModel->replysCountById($id);
-    $replys = $threadModel->replysById($id);
+    $thread = $faqModel->threadById($id);
+    $replysCount = $faqModel->replysCountById($id);
+    $replys = $faqModel->replysById($id);
     
-    $threads = $threadModel->threads(1,20);
+    $threads = $faqModel->threads(1,20);
     $this->_mainContent->assign("threads",$threads);
     
     $this->_mainContent->assign("userid",$userid);

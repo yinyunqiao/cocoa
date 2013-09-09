@@ -36,16 +36,8 @@ function replyto(floor,name){
       <h4>{$thread.title}</h4>
       <small class="muted">
         由 <a href="/user/show/{$thread.createbyid}/{$thread.createby}/" class="muted" target="_blank">{$thread.createby}</a> 发布于 {$thread.createtime}
-        {if $thread.createtime<>$thread.modifydate && $thread.modifydate<>0}
-         ｜ 更新于 {$thread.updatetime}
-        {/if}
       </small>
       <div class="threadblock">{$thread.content}</div>
-      {if $userid==$thread.createbyid}
-        <div style="text-align:right;">
-          <a href="/thread/editthread/{$thread.id}/">编辑</a>
-        </div>
-      {/if}
       
       <div style="text-align:center;">
         {if $iPhone}
@@ -58,7 +50,7 @@ function replyto(floor,name){
     </div>
     {if $replysCount==0}
       <div style="text-align:center;padding-bottom:20px;">
-        暂无回复
+        没有任何回复
       </div>
     {else}
       <div class="content-unit">
@@ -66,7 +58,6 @@ function replyto(floor,name){
         {foreach from=$replys item=item name=comments}
           <div class="threadblock">
             <div class="floornumber">
-              <a href="javascript:replyto({$smarty.foreach.comments.index+1},'{$item.name}')">回复</a>
               <a name="floor{$smarty.foreach.comments.index+1}">
               {if $smarty.foreach.comments.index == 0}
                 楼长
@@ -83,20 +74,10 @@ function replyto(floor,name){
             <div style="margin-left:54px;">
               <div class="muted">
                 <a href="/user/show/{$item.userid}/{$item.name}/" class="muted" target="_blank">{$item.name}</a> 回复于 {$item.createtime}
-               
-                {if $item.createtime<>$item.updatetime && $thread.updatedate<>0}
-                 ｜ 更新于 {$thread.updatetime}
-                {/if}
-              
               </div>
               <div style="padding:2px;">
                 {$item.content}
               </div>
-              {if $userid==$item.userid}
-                <div style="text-align:right;">
-                  <a href="/thread/editreply/{$item.id}/">编辑</a>
-                </div>
-              {/if}
             </div>
           </div>
         {/foreach}
