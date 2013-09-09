@@ -190,4 +190,13 @@ class ToolModel {
     $html = preg_replace("/<a href=\"http:\/\/v.youku.com\/v_show\/id_(.*)?.html\">(.*)?<\/a>/","\\0<div style=\"text-align:center;\"><iframe width=\"$width\" height=\"$height\" src=\"http://player.youku.com/embed/\\1\" frameborder=0 allowfullscreen></iframe></div>",$html);
     return $html;
   }
+  
+  function autoDetect($html) {
+
+    //检测用户名提及
+    $html = preg_replace("/\@([^\\s\\n\\r<>\/\'\"@]*)/","@<a href='/user/name/\\1/' target='_blank'>\\1</a>",$html);
+    //检测楼层编号
+    $html = preg_replace("/([0-9]+)楼/","@<a href='#\\1'>\\0</a>",$html);
+    return $html;
+  }
 }

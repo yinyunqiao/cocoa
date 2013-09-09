@@ -36,6 +36,8 @@ class ThreadModel extends baseDbModel {
     
     $html = Markdown(stripslashes($content));
     $html = ToolModel::youkuInsert($html);
+    $html = ToolModel::autoDetect($html);
+    
     return $html;
   }
 

@@ -26,6 +26,16 @@ class UserModel extends baseDbModel {
     return $result;
   }
   
+  public function useridByName($name) {
+    
+    $user = $this->select("cocoabbs_members")
+      ->fields("uid")
+      ->where("username = '$name'")
+      ->fetchOne();
+    if(!$user)
+      return 0;
+    return $user["uid"];
+  }
   public function sendUnsubscribeMail($mail) {
     
     $mailModel = new MailModel();

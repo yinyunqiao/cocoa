@@ -12,9 +12,23 @@ class UserController extends baseController
     $this->display();
   }
   
+  public function nameAction() {
+    
+    $name = urldecode($this->strVal(3));
+    $userModel = new UserModel();
+    $userid = $userModel->useridByName($name);
+    header ('HTTP/1.1 301 Moved Permanently');
+    header("location:/user/show/$userid/$name/");
+  }
+  
+  
   public function showAction() {
     
     $id = $this->intVal(3);
+    if($id==0) {
+      header ('HTTP/1.1 301 Moved Permanently');
+      header("location:/user/show/0/");
+    }
     $userModel = new UserModel();
     $threadModel = new ThreadModel();
     $userinfo["id"] = $id;
