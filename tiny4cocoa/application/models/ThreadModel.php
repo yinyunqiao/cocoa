@@ -25,6 +25,7 @@ class ThreadModel extends baseDbModel {
       $item["createtime"] = ToolModel::countTime($item["createdate"]);
       $item["updatetime"] = ToolModel::countTime($item["updatedate"]);
       $item["image"] = DiscuzModel::get_avatar($item["createbyid"],"small");
+      $item["title"] = stripslashes($item["title"]);
       $ret[] = $item;
     } 
     return $ret;
