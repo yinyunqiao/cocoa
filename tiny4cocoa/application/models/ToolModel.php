@@ -115,10 +115,13 @@ class ToolModel {
       return $ip;
   }
   
-	public static function pageControl($page,$count,$pagesize,$link)
+	public static function pageControl($page,$count,$pagesize,$link,$large=1)
 	{
-		$out = "<div class=\"pagination pagination-large\"><ul>";
-		$linemax = 10;
+    if($large==1)
+      $out = "<div class=\"pagination pagination-large\"><ul>";
+		else
+      $out = "<div class=\"pagination\"><ul>";
+    $linemax = 10;
 		if($pagesize==0)
 			$pagesize = 1;
 		$totalpage = ceil($count/$pagesize);

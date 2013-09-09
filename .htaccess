@@ -12,6 +12,7 @@ RewriteRule ^os/(.*)$ tiny4cocoa/public/index.php
 
 RewriteRule ^thread/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^user/(.*)$ tiny4cocoa/public/index.php
+RewriteRule ^faq/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^sendmail/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^crontab/(.*)$ tiny4cocoa/public/index.php
 
@@ -30,7 +31,10 @@ RewriteRule ^post\.php$ http://tiny4cocoa.com/thread/new/
 #for discuz
 RewriteRule ^archiver/((fid|tid)-[\w\-]+\.html)$ archiver/index.php?$1
 RewriteRule ^forum-([0-9]+)-([0-9]+)\.html$ forumdisplay.php?fid=$1&page=$2
-RewriteRule ^thread-([0-9]+)-([0-9]+)-([0-9]+)\.html$ viewthread.php?tid=$1&extra=page\%3D$3&page=$2
+#RewriteRule ^thread-([0-9]+)-([0-9]+)-([0-9]+)\.html$ viewthread.php?tid=$1&extra=page\%3D$3&page=$2
+
+#新FAQ区
+RedirectMatch 301 ^/thread-([0-9]+)-([0-9]+)-([0-9]+)\.html$ /faq/show/$1/
 RewriteRule ^space-(username|uid)-(.+)\.html$ space.php?$1=$2
 RewriteRule ^tag-(.+)\.html$ tag.php?name=$1
 
