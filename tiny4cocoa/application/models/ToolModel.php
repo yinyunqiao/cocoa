@@ -196,7 +196,7 @@ class ToolModel {
     //检测用户名提及
     $html = preg_replace("/\@([^\\s\\n\\r<>\/\'\"@]*)/","@<a href='/user/name/\\1/' target='_blank'>\\1</a>",$html);
     //检测楼层编号
-    $html = preg_replace("/([0-9]+)楼/","@<a href='#\\1'>\\0</a>",$html);
+    $html = preg_replace("/([0-9]+)楼/","<a href='#\\1'>\\0</a>",$html);
     return $html;
   }
 }
