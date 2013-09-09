@@ -262,6 +262,14 @@ class ThreadModel extends baseDbModel {
     $sql = "INSERT INTO `mailsent`(`weekdate`) VALUES('$day');";;
     $this->run($sql);
   }
+  
+  public function attach($id) {
+    
+    $attach = $this->select("cocoabbs_attachments")
+        ->where("aid = $id")
+        ->fetchOne();
+    return $attach;
+  }
 }
 
 

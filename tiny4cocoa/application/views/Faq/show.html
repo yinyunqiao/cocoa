@@ -1,0 +1,141 @@
+<style>
+body {
+  background-color: 
+  #ccc;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#newreplyform").validate();
+  $("#wmd-input").bind('keyup.ctrl_return', function(){
+    $("#submit").click();
+  });
+  $(document).bind('keyup.esc',function(){
+    window.location.href = "/";
+  });
+});
+function replyto(floor,name){
+  var val = $("#wmd-input").val();
+  if(val.length>0)
+    $("#wmd-input").val(val+"\r\n\r\n");
+  $("#wmd-input").val($("#wmd-input").val()+floor+"楼 @"+name+" ");
+  $("#wmd-input").focus();
+  moveCaretToEnd(document.getElementById("wmd-input"));
+}
+
+</script>
+<div class="row">
+  
+  <div class="span8">
+    <div class="content-unit">
+      {if $thread.image}
+        <a href="/user/show/{$thread.createbyid}/{$thread.createby}/" target="_blank">
+          <img src="{$thread.image}" width="40" style="float:right;padding:5px;">
+        </a>
+      {/if}
+      <h4>{$thread.title}</h4>
+      <small class="muted">
+        由 <a href="/user/show/{$thread.createbyid}/{$thread.createby}/" class="muted" target="_blank">{$thread.createby}</a> 发布于 {$thread.createtime}
+      </small>
+      <div class="threadblock">{$thread.content}</div>
+      
+      <div style="text-align:center;">
+        {if $iPhone}
+          <script type="text/javascript">BAIDU_CLB_fillSlot("745564");</script>  
+        {else}
+          <script type="text/javascript">BAIDU_CLB_fillSlot("745560");</script>
+        {/if}
+      </div>
+      
+    </div>
+    {if $replysCount==0}
+      <div style="text-align:center;padding-bottom:20px;">
+        没有任何回复
+      </div>
+    {else}
+      <div class="content-unit">
+        共{$replysCount}条回复
+        {foreach from=$replys item=item name=comments}
+          <div class="threadblock">
+            <div class="floornumber">
+              <a name="floor{$smarty.foreach.comments.index+1}">
+              {if $smarty.foreach.comments.index == 0}
+                楼长
+              {else}
+                {$smarty.foreach.comments.index+1}楼
+              {/if}
+            </a>
+            </div>
+            {if $thread.image}
+              <a href="/user/show/{$item.userid}/{$item.name}/" target="_blank">
+                <img src="{$item.image}" width="48" style="float:left;padding:5px;">
+              </a>
+            {/if}
+            <div style="margin-left:54px;">
+              <div class="muted">
+                <a href="/user/show/{$item.userid}/{$item.name}/" class="muted" target="_blank">{$item.name}</a> 回复于 {$item.createtime}
+              </div>
+              <div style="padding:2px;">
+                {$item.content}
+              </div>
+            </div>
+          </div>
+        {/foreach}
+      </div>
+    {/if}
+    
+    <div class="content-unit">
+      <div style="text-align:center;padding-bottom:20px;">
+        FAQ区是Tiny4Cocoa史前时代的帖子的存档，全部帖子都不能回复和修改。想提问题，想讨论，请到<a href="/">新区</a>发帖。     
+           </div>
+    </div>
+  </div>
+  
+  <div class="span4">
+    <div class="siderbar-unit" style="text-align:center;">
+      <a href="/thread/new/" class="btn btn-success">发布新帖</a>
+    </div>
+    
+    <div class="siderbar-unit">
+      <strong>置顶</strong>
+      {foreach from=$toplist item=link}
+  	  <div class="newsblock">
+        <a href="{$link.link}">
+          {$link.title}
+        </a>
+      </div>
+      {/foreach}
+    </div>
+    
+    <div class="siderbar-unit">
+      最新帖子
+      <div class="threadblock">
+        <ul>
+          {foreach from=$threads item=item}
+            <li>          
+              <a href="/thread/show/{$item.id}/">{$item.title}</a>
+            </li>
+          {/foreach}   
+        </ul>
+      </div> 
+    </div>
+    
+    <div class="siderbar-unit">
+      <div style="text-align:center;">
+        <script type="text/javascript"><!--
+          google_ad_client = "ca-pub-7732761529337293";
+          /* tiny4cocoa正方形250&#42;250 */
+          google_ad_slot = "7613412479";
+          google_ad_width = 250;
+          google_ad_height = 250;
+          //-->
+        </script>
+        <script type="text/javascript"
+        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>

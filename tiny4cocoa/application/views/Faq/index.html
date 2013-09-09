@@ -1,0 +1,64 @@
+<style>
+body {
+  background-color: 
+  #ccc;
+}
+</style>
+<div class="row">
+  <div class="span6">
+    <div style="padding: 10px;margin-bottom: 30px;" class="content-unit">
+    <strong>FAQ存档区</strong>
+    {foreach from=$threads item=item}
+    <div class="threadblock">
+      <span class="label label-info pull-right" style="margin-top:5px;">{$item.replys}</span>
+      {if $item.image}
+        <a href="/user/show/{$item.createbyid}/{$item.createby}/" target="_blank">
+          <img src="{$item.image}" width="48" style="float:left;">
+        </a>
+      {/if}
+      <div style="margin-left:54px;">
+        <a href="/faq/show/{$item.id}/">{$item.title}</a>
+        <div class="muted">
+          {$item.createtime} by  
+          <a href="/user/show/{$item.createbyid}/{$item.createby}/" class="muted" target="_blank">{$item.createby}</a> 
+          {if $item.lastreply}
+            | 最后回复 {$item.updatetime} by {$item.lastreply}
+          {/if}
+        </div>
+      </div>
+    </div>
+    {/foreach}
+    <div style="text-align:center;">
+      {$pageControl}
+    </div>
+    </div>
+  </div>
+  <div class="span6">
+
+    
+    <div class="siderbar-unit">
+      <strong>置顶</strong>
+      {foreach from=$toplist item=link}
+  	  <div class="newsblock">
+        <a href="{$link.link}">
+          {$link.title}
+        </a>
+      </div>
+      {/foreach}
+    </div>
+    
+    <div class="siderbar-unit">
+      最新帖子
+      <div class="threadblock">
+        <ul>
+          {foreach from=$newthreads item=item}
+            <li>          
+              <a href="/thread/show/{$item.id}/">{$item.title}</a>
+            </li>
+          {/foreach}   
+        </ul>
+      </div> 
+    </div>
+    
+  </div>
+</div>
