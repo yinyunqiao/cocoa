@@ -10,6 +10,9 @@ $(document).ready(function() {
   $("#wmd-input").bind('keyup.ctrl_return', function(){
     $("#submit").click();
   });
+  $(document).bind('keyup.esc',function(){
+    window.location.href = "/";
+  });
 });
 </script>
 <div class="row">
