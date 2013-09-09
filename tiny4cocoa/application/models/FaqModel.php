@@ -40,10 +40,7 @@ class FaqModel extends baseDbModel {
 
   public function parseContent($content) {
     
-    $html = Markdown(stripslashes($content));
-    $html = ToolModel::youkuInsert($html);
-    $html = ToolModel::autoDetect($html);
-    
+    $html = DiscuzModel::discuzcode(stripslashes($content));
     return $html;
   }
 
