@@ -47,6 +47,7 @@ class ThreadModel extends baseDbModel {
       $thread["content"] = $this->parseContent($thread["content"]);
     else
       $thread["content"] = stripslashes($thread["content"]);
+    $thread["title"] = stripslashes($thread["title"]);
     $thread["createtime"] = ToolModel::countTime($thread["createdate"]);
     $thread["updatetime"] = ToolModel::countTime($thread["updatedate"]);
     $thread["image"] = DiscuzModel::get_avatar($thread["createbyid"],"small");
