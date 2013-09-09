@@ -67,8 +67,7 @@ function replyto(floor,name){
           <div class="threadblock">
             <div class="floornumber">
               <a href="javascript:replyto({$smarty.foreach.comments.index+1},'{$item.name}')">回复</a>
-              <a name="{$smarty.foreach.comments.index+1}">
-              
+              <a name="floor{$smarty.foreach.comments.index+1}">
               {if $smarty.foreach.comments.index == 0}
                 楼长
               {else}
