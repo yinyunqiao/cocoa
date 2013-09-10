@@ -25,23 +25,39 @@ class NewsModel extends baseDbModel {
     } 
     return $ret;
   }
-  function hotTags() {
+  function hotTags($size=20) {
     
-    $sql = "SELECT * FROM `cocoabbs_tags` ORDER BY `total` DESC LIMIT 0,20;";
+    $sql = "SELECT * FROM `cocoabbs_tags` ORDER BY `total` DESC LIMIT 0,$size;";
     $ret = $this->fetchArray($sql);
     return $ret;
   }
   
-  function tagThreads($tagname,$size) {
+  function tagThreads($tagname,$size=1000) {
     
-    $sql = "SELECT `cocoabbs_threadtags`.*,`cocoabbs_threads`.`subject` 
+    $sql = "SELECT *
       FROM `cocoabbs_threadtags`
       LEFT JOIN `cocoabbs_threads`
       ON `cocoabbs_threadtags`.`tid` = `cocoabbs_threads`.`tid`
       WHERE `tagname` = '$tagname' 
-      ORDER BY `dateline` DESC
+      ORDER BY `lastpost` DESC
       LIMIT 0,$size;";
-    $ret = $this->fetchArray($sql);
+    $result = $this->fetchArray($sql);
+    $ret = array();
+    if(count($result)==0)
+      return $ret;
+    foreach($result as $item) {
+      
+      $item["id"] = $item["tid"];
+      $item["createtime"] = ToolModel::countTime($item["dateline"]);
+      $item["updatetime"] = ToolModel::countTime($item["lastpost"]);
+      $item["image"] = DiscuzModel::get_avatar($item["authorid"],"small");
+      $item["title"] = stripslashes($item["subject"]);
+      $item["createby"] = $item["author"];
+      $item["createbyid"] = $item["authorid"];
+      $item["lastreply"] = $item["lastposter"];
+      $item["replys"] = $item["replies"];
+      $ret[] = $item;
+    } 
     return $ret;
   }
   

@@ -89,6 +89,16 @@ function replyto(floor,name){
         FAQ区是Tiny4Cocoa史前时代的帖子的存档，全部帖子都不能回复和修改。想提问题，想讨论，请到<a href="/">新区</a>发帖。     
            </div>
     </div>
+  
+    <div class="content-unit">
+      热门Tag
+      <div style="padding:10px" class="threadblock">
+        {foreach from=$tags item=tag}
+          <a href="/faq/tag/{$tag.tagname}/" target="_blank">{$tag.tagname}</a> 
+        {/foreach}
+      </div>
+    </div>
+    
   </div>
   
   <div class="span4">
