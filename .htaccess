@@ -13,6 +13,7 @@ RewriteRule ^os/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^thread/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^user/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^faq/(.*)$ tiny4cocoa/public/index.php
+RewriteRule ^sitemap/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^sendmail/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^crontab/(.*)$ tiny4cocoa/public/index.php
 
@@ -34,6 +35,7 @@ RewriteRule ^forum-([0-9]+)-([0-9]+)\.html$ forumdisplay.php?fid=$1&page=$2
 
 #新FAQ区
 RedirectMatch 301 ^/thread-([0-9]+)-([0-9]+)-([0-9]+)\.html$ /faq/show/$1/
+
 
 RewriteRule ^space-(username|uid)-(.+)\.html$ space.php?$1=$2
 RewriteRule ^tag-(.+)\.html$ tag.php?name=$1
