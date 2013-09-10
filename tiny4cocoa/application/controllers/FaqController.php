@@ -5,6 +5,19 @@ class FaqController extends baseController
 		
     parent::__construct($pathinfo,$controller);
     $this->_view->assign("active","faq");
+    
+    $toplistModel = new ToplistModel();
+    $toplist = $toplistModel->toplist();
+    $this->_mainContent->assign("toplist",$toplist);
+    
+    $threadModel = new ThreadModel();
+    $newthreads = $threadModel->threads(1,20);
+    $this->_mainContent->assign("newthreads",$newthreads);
+    
+    $newsModel = new NewsModel();
+    $tags = $newsModel->hotTags(500);
+    $this->_mainContent->assign("tags",$tags);
+    
   }
  
   public function indexAction() {
@@ -29,12 +42,7 @@ class FaqController extends baseController
     $this->_mainContent->assign("pageControl",$pageControl);
     
     
-    $newthreads = $faqModel->threads(1,20);
-    $this->_mainContent->assign("newthreads",$newthreads);
     
-    $toplistModel = new ToplistModel();
-    $toplist = $toplistModel->toplist();
-    $this->_mainContent->assign("toplist",$toplist);
     
     if($page==1)
       $this->setTitle("讨论区");
@@ -72,7 +80,16 @@ class FaqController extends baseController
     $this->display();
   }
  
+  function tagAction() {
+    
+    $tag = urldecode($this->strVal(3));       
+    $this->_mainContent->assign("tag",$tag);
 
+    $newsModel = new NewsModel();
+    $threads = $newsModel->tagThreads($tag);
+    $this->_mainContent->assign("threads",$threads);
+    $this->display();
+  }
 }
 
 

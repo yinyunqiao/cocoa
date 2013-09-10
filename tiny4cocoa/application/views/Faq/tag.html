@@ -7,7 +7,7 @@ body {
 <div class="row">
   <div class="span6">
     <div style="padding: 10px;margin-bottom: 30px;" class="content-unit">
-    <strong>FAQ存档区</strong>
+    <strong>tag为[{$tag}]的帖子</strong>
     {foreach from=$threads item=item}
     <div class="threadblock">
       <span class="label label-info pull-right" style="margin-top:5px;">{$item.replys}</span>
@@ -17,7 +17,7 @@ body {
         </a>
       {/if}
       <div style="margin-left:54px;">
-        <a href="/faq/show/{$item.id}/">{$item.title}</a>
+        <a href="/faq/show/{$item.tid}/">{$item.subject}</a>
         <div class="muted">
           {$item.createtime} by  
           <a href="/user/show/{$item.createbyid}/{$item.createby}/" class="muted" target="_blank">{$item.createby}</a> 
@@ -28,9 +28,6 @@ body {
       </div>
     </div>
     {/foreach}
-    <div style="text-align:center;">
-      {$pageControl}
-    </div>
     </div>
   </div>
   <div class="span6">
