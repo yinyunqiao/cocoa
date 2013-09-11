@@ -59,4 +59,24 @@ class UserModel extends baseDbModel {
     $sql = "INSERT INTO `nonews` (`email`)VALUES('$mail');";
     $this->run($sql);
   }
+  
+  public function users($page,$size) {
+    
+   $start = ($page-1)*$size;
+   return $this
+     ->select("cocoabbs_members")
+     ->orderby("posts DESC")
+     ->limit("$start,$size")
+     ->fetchAll(); 
+  }
+  
+  public function count() {
+    
+     $ret = $this
+     ->select("cocoabbs_members")
+     ->fields("count(*) as c")
+     ->fetchOne(); 
+     return $ret["c"];
+  }
+  
 }

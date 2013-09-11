@@ -1,6 +1,32 @@
 <style>
-body {
-  background-color: 
-  #ccc;
+ 
+.content-unit {
+  
+  height:120px;
+
 }
 </style>
+<div class="row">
+  
+  {foreach from=$users item=user}
+    <div class="span4">
+      <div class="content-unit">
+        <p>
+          <a 
+            href="/user/show/{$user.uid}/{$user.username}/" 
+            target="_blank"
+          >
+            {$user.username}
+          </a>
+        </p>
+        <hr/>
+        <p>发帖数：{$user.posts}</p>
+      </div>
+    </div>
+  {/foreach}
+  
+  <div style="text-align:center;">
+    {$pageControl}
+  </div>
+
+</div>
