@@ -9,6 +9,20 @@ class UserController extends baseController
  
   public function indexAction() {
     
+    
+    $page = $this->intVal(3);
+    if($page==0)
+      $page=1;
+    $size = 30;
+    
+    $userModel = new UserModel();
+    $count = $userModel->count();
+    $users = $userModel->users($page,$size);
+    $this->_mainContent->assign("users",$users);
+    
+		$pageControl = ToolModel::pageControl($page,$count,$size,"<a href='/user/index/#page#/'>",0);
+    $this->_mainContent->assign("pageControl",$pageControl);
+    
     $this->display();
   }
   
