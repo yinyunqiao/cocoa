@@ -1,0 +1,38 @@
+<div class="row">
+
+
+
+<div class="span6">
+  <div class="content-unit">
+    <strong>新闻池</strong>
+    {foreach from=$applenews item=item}
+	  <div class="newsblock">
+      {if $item.image}
+        <img src="{$item.image}" width="40" style="float:left;">
+      {/if}
+      <div style="margin-left:50px;">
+      <a href="/apple/n/{$item.id}/">
+        {$item.title}
+      </a>
+      <div style="text-align:right;">
+        <small class="muted">
+          by {$item.name} 发布于{$item.time}
+        </small>
+      </div>
+    </div>
+    </div>
+    {/foreach}
+    <div style="text-align:center;">
+      {$pageControl}
+    </div>
+    
+  </div>
+  
+</div>
+
+
+
+
+
+
+</div>
