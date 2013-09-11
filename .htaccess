@@ -14,6 +14,7 @@ RewriteRule ^thread/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^user/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^faq/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^sitemap/(.*)$ tiny4cocoa/public/index.php
+RewriteRule ^newspool/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^sendmail/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^crontab/(.*)$ tiny4cocoa/public/index.php
 
