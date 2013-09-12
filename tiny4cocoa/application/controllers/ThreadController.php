@@ -66,13 +66,15 @@ class ThreadController extends baseController
           $data["createdate"] = $time;
           $data["updatedate"] = $time;
           $replys = $threadModel->newReply($data);
-          $thread = array();
-          $thread["id"] = $id;
-          $thread["replys"] = $replys;
-          $thread["updatedate"] = $time;
-          $thread["lastreply"] = $data["name"];
-          $thread["lastreplyid"] = $data["userid"];
-          $threadModel->updateThread($thread);
+          if($replys) {
+            $thread = array();
+            $thread["id"] = $id;
+            $thread["replys"] = $replys;
+            $thread["updatedate"] = $time;
+            $thread["lastreply"] = $data["name"];
+            $thread["lastreplyid"] = $data["userid"];
+            $threadModel->updateThread($thread);
+          }
           header("location: /thread/show/$id/");
           die();
         }
@@ -121,6 +123,12 @@ class ThreadController extends baseController
         if(strlen($_POST["content"])>0) {
           $threadModel = new ThreadModel();
           $threadid = $threadModel->newThread($data);
+          if($threadid==-1) {
+            
+            $this->viewFile="Thread/duplicate.html";
+            $this->display();
+            die();
+          }
           header("location: /thread/show/$threadid/");
           die();
       }

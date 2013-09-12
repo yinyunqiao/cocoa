@@ -136,17 +136,51 @@ class ThreadModel extends baseDbModel {
   
   public function newThread($data) {
     
+    $isTitleExisted = $this->isTitleExisted($data["title"],$data["createbyid"]);
+    if($isTitleExisted==-1)
+      return -1;
+    else if($isTitleExisted!=0)
+      return $isTitleExisted;
     return $this->select("threads")->insert($data);
+  }
+  
+  public function isTitleExisted($title,$userid) {
+    
+    $sql = "SELECT `id`,`createbyid` FROM `threads` where title = '$title';";
+    $ret = $this->fetchArray($sql);
+    if($ret) {
+    
+      if($ret[0]["createbyid"]==$userid)
+        return $ret[0]["id"];
+      else 
+        return -1;
+    }
+    else
+      return 0;
   }
   
   public function newReply($data) {
     
+    
+    if($this->isReplyExist($data)==1)
+      return NULL;
     $this->select("thread_replys")->insert($data);
     $sql = "SELECT count(`id`) as c FROM `thread_replys` WHERE threadid = $data[threadid];";
     $result = $this->fetchArray($sql);
     $c = $result[0]["c"];
     $this->replyNotify($data);
     return $c;
+  }
+  
+  
+  public function isReplyExist($data) {
+    
+    $sql = "SELECT `id` FROM `thread_replys` WHERE `threadid` = $data[threadid] AND `content` = '$data[content]' AND `userid` = $data[userid];";
+    $result = $this->fetchArray($sql);
+    if(count($result)>0)
+      return 1;
+    else
+      return 0; 
   }
   
   public function replyNotify($data) {
@@ -245,7 +279,6 @@ class ThreadModel extends baseDbModel {
     if(count($result)==0)
       return $ret;
     foreach($result as $item) {
-      
       $item["image"] = DiscuzModel::get_avatar($item["userid"],"small");
       $ret[] = $item;
     } 
