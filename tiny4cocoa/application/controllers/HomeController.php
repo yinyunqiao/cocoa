@@ -35,7 +35,7 @@ class HomeController extends baseController
     
     $applenews = $napplenews;
     
-    $size = 24;
+    $size = 21;
     $count = $newsModel->newsCount();
     $news = $newsModel->news(1,$size);
 		$pageControl = ToolModel::pageControl($page,$count,$size,"<a href='/home/news/#page#/'>");
