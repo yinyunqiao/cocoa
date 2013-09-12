@@ -50,6 +50,10 @@ class HomeController extends baseController
     $toplist = $toplistModel->toplist();
     $this->_mainContent->assign("toplist",$toplist);
     
+    $threadModel = new ThreadModel();
+    $heros = $threadModel->topBbsHero(10,time()-60*60*24);
+    $this->_mainContent->assign("heros",$heros);
+    
     $this->_mainContent->assign("pageControl",$pageControl);
     $this->_mainContent->assign("threads",$threads);
     $this->_mainContent->assign("news",$news);

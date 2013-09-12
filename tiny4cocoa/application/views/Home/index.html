@@ -59,6 +59,15 @@
     </div>
     {/foreach}
   </div>
+  
+  <div class="siderbar-unit">
+    <strong>24小时水王</strong>
+    {foreach from=$heros item=hero}
+      <div class="newsblock">
+        <a href="/user/show/{$hero.userid}/{$hero.name}/" target="_blank">{$hero.name}</a> ({$hero.replyscount})
+      </div>
+    {/foreach}
+  </div>
   <div class="siderbar-unit">
     <strong>苹果新闻</strong>
     {foreach from=$applenews item=item}
