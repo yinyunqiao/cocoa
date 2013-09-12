@@ -1,3 +1,12 @@
+<style>
+   .heroicon {
+     
+     width:24px;
+     height:24px;
+     float:left;
+     
+   }
+</style>
 <div class="row">
   <div>
     {if $userid==2|| $userid==20949}
@@ -64,7 +73,8 @@
     <strong>24小时水王</strong>
     {foreach from=$heros item=hero}
       <div class="newsblock">
-        <a href="/user/show/{$hero.userid}/{$hero.name}/" target="_blank">{$hero.name}</a> ({$hero.replyscount})
+        <img src="{$hero.image}" class="heroicon"/>
+        <p style="margin-left:28px;"><a href="/user/show/{$hero.userid}/{$hero.name}/" target="_blank">{$hero.name}</a> ({$hero.replyscount})</p>
       </div>
     {/foreach}
   </div>

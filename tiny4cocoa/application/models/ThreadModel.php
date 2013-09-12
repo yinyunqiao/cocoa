@@ -240,7 +240,17 @@ class ThreadModel extends baseDbModel {
       ORDER BY `replyscount` DESC
       LIMIT 0,10;";
     $result = $this->fetchArray($sql);
-    return $result;
+    
+    $ret = array();
+    if(count($result)==0)
+      return $ret;
+    foreach($result as $item) {
+      
+      $item["image"] = DiscuzModel::get_avatar($item["userid"],"small");
+      $ret[] = $item;
+    } 
+    
+    return $ret;
   }
   
   public function isWeekmailSent() {
