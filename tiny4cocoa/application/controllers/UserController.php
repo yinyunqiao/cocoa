@@ -81,8 +81,25 @@ class UserController extends baseController
     $this->display();
   }
   
+  public function regAction() {
+    
+    $this->display();
+  }
+  
+  public function loginAction() {
+    
+    if($_POST){
+      
+      $userModel = new UserModel();
+      $uid = $userModel->login($_POST);
+      var_dump($uid);
+      die();
+    }
+    $this->display();
+  }
   public function logoutAction() {
     $discuz = new DiscuzModel();
     $discuz->logout();
   }
+  
 }
