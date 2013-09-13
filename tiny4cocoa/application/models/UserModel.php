@@ -79,4 +79,15 @@ class UserModel extends baseDbModel {
      return $ret["c"];
   }
   
+  public function login($data) {
+    
+    $username = $data["name"];
+    $passmd5 = md5($data["password"]);
+    $sql = "SELECT `uid` FROM `cocoabbs_uc_members` WHERE `username` = '$username' AND `password` = MD5(CONCAT('$passmd5',`salt`));";
+    $result = $this->fetchArray($sql);
+    if(!$result)
+      return 0;
+    else
+      return $result[0]["uid"];
+  }
 }
