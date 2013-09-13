@@ -56,8 +56,6 @@ class FaqController extends baseController
     
     $id = $this->intVal(3);
     $faqModel = new FaqModel();
-    $discuz = new DiscuzModel();
-    $userid = $discuz->checklogin();
     
 
     $thread = $faqModel->threadById($id);
@@ -67,7 +65,6 @@ class FaqController extends baseController
     $threads = $faqModel->threads(1,20);
     $this->_mainContent->assign("threads",$threads);
     
-    $this->_mainContent->assign("userid",$userid);
     $this->_mainContent->assign("thread",$thread);
     $this->_mainContent->assign("replysCount",$replysCount);
     $this->_mainContent->assign("replys",$replys);

@@ -83,11 +83,56 @@ class UserModel extends baseDbModel {
     
     $username = $data["name"];
     $passmd5 = md5($data["password"]);
-    $sql = "SELECT `uid` FROM `cocoabbs_uc_members` WHERE `username` = '$username' AND `password` = MD5(CONCAT('$passmd5',`salt`));";
+    $sql = "SELECT `uid`,`salt` FROM `cocoabbs_uc_members` WHERE `username` = '$username' AND `password` = MD5(CONCAT('$passmd5',`salt`));";
     $result = $this->fetchArray($sql);
     if(!$result)
       return 0;
-    else
+    else {
+      $data["userid"] = $result[0]["uid"];
+      $data["salt"] = $result[0]["salt"];
+      $this->setSessionAndCookie($data);
       return $result[0]["uid"];
+    }
   }
+  
+  public function checklogin() {
+    
+    
+    if($_SESSION["username"] && $_SESSION["userid"]) {
+      
+      return $_SESSION["userid"];
+    } else {
+      
+      $this->cookie2Session();
+    }
+    return $discuz_uid;
+  }
+
+  private function cookie2Session() {
+    
+    // $
+  }
+  
+  private function setSessionAndCookie($data) {
+    
+    $_SESSION["username"] = $data["name"];
+    $_SESSION["userid"] = $data["userid"];
+    $tiny4cocoa_session = md5($data["name"].$data["userid"].$data["salt"]);
+    $time = time()+3600*24*7*2;
+    setcookie("TINY4COCOA_USERID", $data["userid"] , $time);
+    setcookie("TINY4COCOA_SESSION", $tiny4cocoa_session , $time);
+  }
+  
+  function logout() {
+    
+    unset($_SESSION["username"]);
+    unset($_SESSION["userid"]);
+    setcookie("TINY4COCOA_USERID","",time()-3600*24,"/");
+    setcookie("TINY4COCOA_SESSION","",time()-3600*24,"/");
+    header("location:/");
+  }
+
 }
+
+
+

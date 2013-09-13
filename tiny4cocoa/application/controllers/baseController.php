@@ -7,7 +7,9 @@
 		protected $title;
 		protected $viewFile;
 		protected $userinfo;	// 用户基础信息
-		
+		protected $userid;
+    protected $username;
+    
 		public function __construct($pathinfo,$controller) {
 			
 			$this->sitename = "Tiny4Cocoa";
@@ -49,12 +51,11 @@
 			$this->_view->assign("retUrl",$_SERVER['REQUEST_URI']);
 			$this->_view->assign("navsel",$controller);
 
-      $discuz = new DiscuzModel();
       $userModel = new UserModel();
-      $userid = $discuz->checklogin();
-      $username = $userModel->username($userid);
-			$this->_view->assign("userid",$userid);
-			$this->_view->assign("username",$username);
+      $this->userid = $userModel->checklogin();
+      $this->username = $userModel->username($this->userid);
+			$this->_view->assign("userid",$this->userid);
+			$this->_view->assign("username",$this->username);
 
 			$iPhone = ToolModel::is_iPhone();
 			$this->_view->assign("iPhone",$iPhone);

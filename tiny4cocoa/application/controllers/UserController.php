@@ -91,15 +91,19 @@ class UserController extends baseController
     if($_POST){
       
       $userModel = new UserModel();
-      $uid = $userModel->login($_POST);
-      var_dump($uid);
+      $userid = $userModel->login($_POST);
+      if($userid>0)
+        header("location: /");
+      else
+        header("location: /user/login/");
       die();
     }
     $this->display();
   }
   public function logoutAction() {
-    $discuz = new DiscuzModel();
-    $discuz->logout();
+    
+    $userModel = new UserModel();
+    $userModel->logout();
   }
   
 }
