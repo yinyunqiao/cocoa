@@ -100,10 +100,20 @@ class UserController extends baseController
     }
     $this->display();
   }
+  
   public function logoutAction() {
     
     $userModel = new UserModel();
     $userModel->logout();
+  }
+  
+  public function avatarAction() {
+    
+    if($this->userid==0){
+      header("location: /");
+      die();
+    }
+    $this->display();
   }
   
 }
