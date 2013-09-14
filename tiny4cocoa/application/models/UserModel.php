@@ -158,6 +158,26 @@ class UserModel extends baseDbModel {
     header("location:/");
   }
 
+
+  public function isUserExisted($name) {
+    
+    $ret = $this->select("cocoabbs_uc_members")->where("username = '$name'")->fetchAll();
+    if(count($ret)>0)
+      return 1;
+    else
+      return 0;
+  }
+  
+  public function isEmailExisted($email) {
+    
+    $ret = $this->select("cocoabbs_uc_members")->where("email = '$email'")->fetchAll();
+    if(count($ret)>0)
+      return 1;
+    else
+      return 0;
+  }
+  
+  
 }
 
 

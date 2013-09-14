@@ -116,4 +116,25 @@ class UserController extends baseController
     $this->display();
   }
   
+  public function ajaxcheckAction(){
+    
+    $action = $this->strVal(3);
+    $userModel = new UserModel();
+    switch($action) {
+      
+      case "name":
+        if($userModel->isUserExisted($_GET["name"]))
+          echo "false";
+        else
+          echo "true";
+        break;
+      case "email":
+        if($userModel->isEmailExisted($_GET["email"]))
+          echo "false";
+        else
+          echo "true";
+        break;
+    }
+  }
+  
 }
