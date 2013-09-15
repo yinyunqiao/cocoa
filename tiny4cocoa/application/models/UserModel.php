@@ -65,7 +65,7 @@ class UserModel extends baseDbModel {
    $start = ($page-1)*$size;
    return $this
      ->select("cocoabbs_uc_members")
-     ->orderby("posts DESC")
+     ->orderby("regdate DESC")
      ->limit("$start,$size")
      ->fetchAll(); 
   }
