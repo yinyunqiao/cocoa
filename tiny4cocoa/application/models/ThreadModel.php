@@ -192,7 +192,7 @@ class ThreadModel extends baseDbModel {
     if(count($users)==0)
       return;
     $usersStr = join(",",$users);
-    $sql = "SELECT `username`,`email` FROM `cocoabbs_members` WHERE `uid` in ($usersStr);";
+    $sql = "SELECT `username`,`email` FROM `cocoabbs_uc_members` WHERE `uid` in ($usersStr);";
     $result = $this->fetchArray($sql);
     $thread = $this->threadById($data["threadid"]);
     foreach($result as $user) {

@@ -90,7 +90,7 @@ class SitemapController extends baseController
   public function users_indexAction() {
     
     $db = new SitemapModel();
-    $ret = $db->select("cocoabbs_members")->fields("count(*) as c")->fetchOne();
+    $ret = $db->select("cocoabbs_uc_members")->fields("count(*) as c")->fetchOne();
     $count = $ret["c"];
     $len = ceil($count/$this->size);
     echo '<?xml version="1.0" encoding="UTF-8"?>
@@ -112,7 +112,7 @@ class SitemapController extends baseController
     $start = ($page-1)*$size;
     
     $db = new SitemapModel();
-    $homenews = $db->select("cocoabbs_members")->limit("$start,$size")->fetchAll();
+    $homenews = $db->select("cocoabbs_uc_members")->limit("$start,$size")->fetchAll();
     if(count($homenews)>0)
     foreach($homenews as $news){
       

@@ -3,7 +3,7 @@ class UserModel extends baseDbModel {
   
   public function username($userid) {
     
-    $sql = "SELECT username FROM `cocoabbs_members` WHERE uid = $userid;";
+    $sql = "SELECT username FROM `cocoabbs_uc_members` WHERE uid = $userid;";
     $result = $this->fetchArray($sql);
     return $result[0]["username"];
   }
@@ -16,7 +16,7 @@ class UserModel extends baseDbModel {
     //5:禁止访问
     //6:禁止IP
     $sql="SELECT `username`,`email` 
-      FROM `cocoabbs_members`
+      FROM `cocoabbs_uc_members`
       WHERE `groupid` <> 4 
 	    AND `groupid` <> 5 
 	    AND `groupid` <> 6 
@@ -28,7 +28,7 @@ class UserModel extends baseDbModel {
   
   public function useridByName($name) {
     
-    $user = $this->select("cocoabbs_members")
+    $user = $this->select("cocoabbs_uc_members")
       ->fields("uid")
       ->where("username = '$name'")
       ->fetchOne();
@@ -64,7 +64,7 @@ class UserModel extends baseDbModel {
     
    $start = ($page-1)*$size;
    return $this
-     ->select("cocoabbs_members")
+     ->select("cocoabbs_uc_members")
      ->orderby("posts DESC")
      ->limit("$start,$size")
      ->fetchAll(); 
@@ -73,7 +73,7 @@ class UserModel extends baseDbModel {
   public function count() {
     
      $ret = $this
-     ->select("cocoabbs_members")
+     ->select("cocoabbs_uc_members")
      ->fields("count(*) as c")
      ->fetchOne(); 
      return $ret["c"];
@@ -177,7 +177,18 @@ class UserModel extends baseDbModel {
       return 0;
   }
   
-  
+  public function reg($data) {
+    
+    $user["username"] = $data["name"];
+    $user["salt"] = rand(100000,999999);
+    $user["password"] = md5(md5($data["password"]).$user["salt"]);
+    $user["email"] = $data["email"];
+    $user["regip"] = ToolModel::getRealIpAddr();
+    $user["regdate"] = time();
+    $user["validated"] = 0;
+    $userid = $this->select("cocoabbs_uc_members")->insert($user);
+    return $userid;
+  }
 }
 
 

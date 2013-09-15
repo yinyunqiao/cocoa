@@ -83,6 +83,19 @@ class UserController extends baseController
   
   public function regAction() {
     
+    if($_POST) {
+      
+      if(!$_POST["name"] || !$_POST["password"] || !$_POST["email"]) {
+        
+        header("location: /");
+        die();
+      }
+      $userModel = new UserModel();
+      $userid = $userModel->reg($_POST);
+      $this->viewFile="User/regok.html";
+      $this->display();
+      die();
+    }
     $this->display();
   }
   

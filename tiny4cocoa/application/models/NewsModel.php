@@ -238,7 +238,7 @@ SELECT count(*) FROM `cocoacms_comments` WHERE `newsid` = $newsid) WHERE `id` = 
   
   public function usernameById($id) {
     
-    $user = $this->fetchArray("SELECT `username` FROM `cocoabbs_members` WHERE `uid`=$id");
+    $user = $this->fetchArray("SELECT `username` FROM `cocoabbs_uc_members` WHERE `uid`=$id");
     return $user[0]["username"];
   } 
   
