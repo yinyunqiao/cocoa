@@ -182,8 +182,8 @@ class ToolModel {
   function youkuInsert($html) {
     
     if(ToolModel::is_iPhone()) {
-      $width="250";
-      $height="250";
+      $width="200";
+      $height="200";
     }
     else {
       
