@@ -54,8 +54,10 @@
       $userModel = new UserModel();
       $this->userid = $userModel->checklogin();
       $this->username = $userModel->username($this->userid);
+      $this->isEmailValidated = $userModel->isEmailValidated($this->userid);
 			$this->_view->assign("userid",$this->userid);
 			$this->_view->assign("username",$this->username);
+			$this->_view->assign("isEmailValidated",$this->isEmailValidated);
 
 			$iPhone = ToolModel::is_iPhone();
 			$this->_view->assign("iPhone",$iPhone);

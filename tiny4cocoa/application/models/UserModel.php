@@ -149,6 +149,7 @@ class UserModel extends baseDbModel {
     setcookie("TINY4COCOA_USERID", $userid , $time,"/");
     setcookie("TINY4COCOA_SESSION", $session , $time,"/");    
   }
+  
   public function logout() {
     
     unset($_SESSION["username"]);
@@ -188,6 +189,15 @@ class UserModel extends baseDbModel {
     $user["validated"] = 0;
     $userid = $this->select("cocoabbs_uc_members")->insert($user);
     return $userid;
+  }
+
+  public function isEmailValidated($userid) {
+    
+    $ret = $this->select("cocoabbs_uc_members")
+      ->fields("validated")
+        ->where("`uid` = $userid")
+          ->fetchOne();
+    return $ret["validated"];
   }
 }
 
