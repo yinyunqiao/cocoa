@@ -60,7 +60,7 @@ window.google_analytics_uacct = "UA-53077-22";
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">你好,
                  {$username}<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="/memcp.php?action=profile&typeid=3">修改头像</a></li>
+                <li><a href="/user/avatar/">修改头像</a></li>
                 <li class="divider"></li>
                 <li><a href="/user/logout/">退出</a></li>
                </ul>
@@ -69,7 +69,10 @@ window.google_analytics_uacct = "UA-53077-22";
           {else}
           <ul class="nav pull-right">
             <li>
-              <a href="/logging.php?action=login">登录</a>
+              <a href="/user/login/">登录</a>
+            </li>
+            <li>
+              <a href="/user/reg/">注册</a>
             </li>
           </ul>
           {/if}
@@ -79,6 +82,13 @@ window.google_analytics_uacct = "UA-53077-22";
     </div>
   </div>
   <div class="container">
+    {if !$isEmailValidated && $userid}
+    <div class="alert alert-warning">
+     您的注册邮箱还没有通过验证，不能发帖和回帖。
+     请检查您的注册邮箱里面是否有注册验证邮件。
+     如果找不到可以看看邮箱的Spam目录。
+    </div>
+    {/if}
     <div class="alert alert-success">
       9月18日周三晚上tiny4cocoa上海小聚会倒计时，详情参见<a href="http://tiny4cocoa.com/thread/show/315/">此链接</a>。
     </div>

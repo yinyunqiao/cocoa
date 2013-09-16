@@ -12,8 +12,6 @@ class HomeController extends baseController
     
     $allModel = new AllModel();
     $newsModel = new NewsModel();
-    $discuz = new DiscuzModel();
-    $this->userid = $discuz->checklogin();
     $page = $this->intVal(3);
     if($page==0)
       $page=1;
@@ -135,7 +133,6 @@ class HomeController extends baseController
       header("location: /home/s/$index/");
     }
     
-    $discuz = new DiscuzModel();
     $allModel = new AllModel();
     $newsModel = new NewsModel();
     $tongji = new TongjiModel();
@@ -145,8 +142,6 @@ class HomeController extends baseController
     $hotnews = $tongji->hotnews(10);
       
     $threads = $allModel->allThreads(1,10);
-    $userid = $discuz->checklogin();
-    $username = $newsModel->usernameById($userid);
     $news = $newsModel->oneNews($index);
     $comments = $newsModel->commentsByNewsId($index);
     
@@ -160,8 +155,8 @@ class HomeController extends baseController
     $this->_mainContent->assign("threads",$threads);
     $this->_mainContent->assign("news",$news);
     $this->_mainContent->assign("comments",$comments);
-    $this->_mainContent->assign("userid",$userid);
-    $this->_mainContent->assign("username",$username);
+    $this->_mainContent->assign("userid",$this->userid);
+    $this->_mainContent->assign("username",$this->username);
     $this->_mainContent->assign("nonamename",$nonamename);
     $this->_mainContent->assign("pageview",$dataall[$index]);
     $this->_mainContent->assign("hotnews",$hotnews);

@@ -12,9 +12,7 @@ class AppleController extends baseController
     $allModel = new AllModel();
     $newsModel = new NewsModel();
     $newscenter = new NewscenterModel();
-    $discuz = new DiscuzModel();
     
-    $this->userid = $discuz->checklogin();
     $threads = $allModel->allThreads(1,10);
     
     $str = $this->strVal(3);

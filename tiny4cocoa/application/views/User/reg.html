@@ -1,0 +1,61 @@
+<script type="text/javascript">
+
+$(document).ready(function() {
+  $("#regform").validate({
+    rules: { 
+      email: { 
+        required: true, 
+        email: true, 
+        minlength: 6, 
+        remote: "/user/ajaxcheck/email/",
+      },
+      name:{
+        required:true,
+        minlength:3,
+        remote:"/user/ajaxcheck/name/",
+      },
+      password: {
+        required:true,
+        minlength:6,
+      },
+      password1: {
+        required:true,
+        minlength:6,
+        equalTo: "#password",
+      }
+    }, 
+    messages:{
+      
+      name:{
+        remote:"用户名已经存在，请换一个"
+      },
+      email: {
+        remote:"该邮箱已经被使用，请换一个"
+      },
+    },
+    onkeyup: false,
+    onblur: true
+  });
+});
+
+</script>
+<div class="row">
+  <div class="span4">
+  </div>
+  <div class="span4">
+    <div class="content-unit">
+      <h4>注册</h4>
+      <div class="threadblock" style="padding-left:20px;">
+        <form action="/user/reg/" method="post" accept-charset="utf-8" id="regform">
+          <label for="name">用户名</label><input type="text" name="name" value="" id="name">
+          <label for="email">邮箱</label><input type="text" name="email" value="" id="email">
+          <label for="password">密码</label><input type="password" name="password" value="" id="password">
+          <label for="password1">密码验证</label><input type="password" name="password1" value="" id="password1">
+          <p><input type="submit" name="submit" value="注册" id="submit" class="btn btn-primary"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="span4">
+  </div>
+</div>

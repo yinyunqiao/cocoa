@@ -81,8 +81,86 @@ class UserController extends baseController
     $this->display();
   }
   
-  public function logoutAction() {
-    $discuz = new DiscuzModel();
-    $discuz->logout();
+  public function regAction() {
+    
+    if($_POST) {
+      
+      if(!$_POST["name"] || !$_POST["password"] || !$_POST["email"]) {
+        
+        header("location: /");
+        die();
+      }
+      $userModel = new UserModel();
+      $userid = $userModel->reg($_POST);
+      $userModel->sendValidateMail($userid);
+      $this->viewFile="User/regok.html";
+      $this->display();
+      die();
+    }
+    $this->display();
   }
+  
+  
+  public function validateAction() {
+    
+    $userModel = new UserModel();
+    $ret = $userModel->validateMail($_GET["user"],$_GET["v"]);
+    if($ret==1)
+      $this->viewFile="User/validateok.html";
+    else
+      $this->viewFile="User/validateerror.html";
+    $this->display();
+  }
+  
+  public function loginAction() {
+    
+    if($_POST){
+      
+      $userModel = new UserModel();
+      $userid = $userModel->login($_POST);
+      if($userid>0)
+        header("location: /");
+      else
+        header("location: /user/login/");
+      die();
+    }
+    $this->display();
+  }
+  
+  public function logoutAction() {
+    
+    $userModel = new UserModel();
+    $userModel->logout();
+  }
+  
+  public function avatarAction() {
+    
+    if($this->userid==0){
+      header("location: /");
+      die();
+    }
+    $this->display();
+  }
+  
+  public function ajaxcheckAction(){
+    
+    $action = $this->strVal(3);
+    $userModel = new UserModel();
+    switch($action) {
+      
+      case "name":
+        if($userModel->isUserExisted($_GET["name"]))
+          echo "false";
+        else
+          echo "true";
+        break;
+      case "email":
+        if($userModel->isEmailExisted($_GET["email"]))
+          echo "false";
+        else
+          echo "true";
+        break;
+    }
+  }
+  
 }

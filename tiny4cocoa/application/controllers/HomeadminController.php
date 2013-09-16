@@ -5,8 +5,6 @@ class HomeadminController extends baseController
   public function __construct($pathinfo,$controller) {
 		
     parent::__construct($pathinfo,$controller);
-    $discuz = new DiscuzModel();
-    $this->userid = $discuz->checklogin();
     if($this->userid!=2 && $this->userid!=46 && $this->userid!=20949) {
       header ('HTTP/1.1 301 Moved Permanently');
       header('location: /home/');

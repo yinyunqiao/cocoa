@@ -16,6 +16,9 @@ $(document).ready(function() {
     <div class="content-unit">
       <h4>修改帖子</h4>
       <div class="threadblock">
+        {if !$isEmailValidated}
+           您的注册邮箱还没有通过验证，不能发帖和回帖。 请检查您的注册邮箱里面是否有注册验证邮件。 如果找不到可以看看邮箱的Spam目录。 
+        {else}
         <form action="/thread/editthread/" 
           method="post" accept-charset="utf-8" id="newform">
           <input type="hidden" name="threadid" value="{$thread.id}" id="threadid">
@@ -30,8 +33,9 @@ $(document).ready(function() {
           <div class="threadblock" style="text-align:center;">
             <input type="submit" name="submit" value="保存" id="submit" class="btn btn-primary"> 
             <input type="button" name="cancel" value="取消" id="cancel" class="btn">
+          </div>
         </form>
-        </div>
+        </if>
       </div>
     </div>
   </div>

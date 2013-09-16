@@ -48,20 +48,18 @@ class ThreadController extends baseController
     
     $id = $this->intVal(3);
     $threadModel = new ThreadModel();
-    $discuz = new DiscuzModel();
-    $userid = $discuz->checklogin();
     
     if($_POST){
       
       $userModel = new UserModel();
-      if($userid>0)
+      if($this->userid>0)
         if(strlen($_POST["content"])>0) {
         
           $data = array();
           $time = time();
           $data["threadid"] = $id;
-          $data["name"] = $userModel->username($userid);
-          $data["userid"] = $userid;
+          $data["name"] = $this->username;
+          $data["userid"] = $this->userid;
           $data["content"] = $_POST["content"];
           $data["createdate"] = $time;
           $data["updatedate"] = $time;
@@ -86,7 +84,7 @@ class ThreadController extends baseController
     $threads = $threadModel->threads(1,20);
     $this->_mainContent->assign("threads",$threads);
     
-    $this->_mainContent->assign("userid",$userid);
+    $this->_mainContent->assign("userid",$this->userid);
     $this->_mainContent->assign("thread",$thread);
     $this->_mainContent->assign("replysCount",$replysCount);
     $this->_mainContent->assign("replys",$replys);
@@ -95,18 +93,17 @@ class ThreadController extends baseController
     $toplist = $toplistModel->toplist();
     $this->_mainContent->assign("toplist",$toplist);
     
+    $this->_mainContent->assign("isEmailValidated",$this->isEmailValidated);
+    
     $this->setTitle($thread["title"]);
     $this->display();
   }
  
   public function newAction() {
     
-    $discuz = new DiscuzModel();
     $userModel = new UserModel();
-    $userid = $discuz->checklogin();
-    $username = $userModel->username($userid);
-    if($userid==0) {
-      header("location: /logging.php?action=login");
+    if($this->userid==0) {
+      header("location: /user/login/");
       die();
     }
     if($_POST){
@@ -115,8 +112,8 @@ class ThreadController extends baseController
       $time = time();
       $data["title"] = $_POST["title"];
       $data["content"] = $_POST["content"];
-      $data["createby"] = $username;
-      $data["createbyid"] = $userid;
+      $data["createby"] = $this->username;
+      $data["createbyid"] = $this->userid;
       $data["createdate"] = $time;
       $data["updatedate"] = $time;
       if(strlen($_POST["title"])>0)
@@ -133,6 +130,7 @@ class ThreadController extends baseController
           die();
       }
     }
+    $this->_mainContent->assign("isEmailValidated",$this->isEmailValidated);
     $this->display();
   }
 
@@ -140,10 +138,8 @@ class ThreadController extends baseController
     
     $id = $this->intVal(3);
     $threadModel = new ThreadModel();
-    $discuz = new DiscuzModel();
-    $userid = $discuz->checklogin();
     
-    if($userid==0)
+    if($this->userid==0)
       header("location: /thread/show/$id/");
     if($_POST &&
       strlen($_POST["threadid"])>0 &&
@@ -161,11 +157,12 @@ class ThreadController extends baseController
     }
     
     $thread = $threadModel->threadById($id,0);
-    if($thread["createbyid"]!=$userid)
+    if($thread["createbyid"]!=$this->userid)
       header("location: /thread/show/$id/");
-    $this->_mainContent->assign("userid",$userid);
+    $this->_mainContent->assign("userid",$this->userid);
     $this->_mainContent->assign("thread",$thread);
     $this->setTitle($thread["title"]);
+    $this->_mainContent->assign("isEmailValidated",$this->isEmailValidated);
     $this->display();
   }
   
@@ -173,13 +170,11 @@ class ThreadController extends baseController
     
     $id = $this->intVal(3);
     $threadModel = new ThreadModel();
-    $discuz = new DiscuzModel();
-    $userid = $discuz->checklogin();
     $reply = $threadModel->replyByReplyId($id,0);
     
-    if($userid==0)
+    if($this->userid==0)
       header("location: /thread/show/$reply[threadid]/");
-    if($reply["userid"]!=$userid)
+    if($reply["userid"]!=$this->userid)
       header("location: /thread/show/$reply[threadid]/");
     
     if($_POST &&
@@ -187,7 +182,7 @@ class ThreadController extends baseController
       strlen($_POST["content"])>0){
       
         $reply = $threadModel->replyByReplyId($_POST["replyid"],0);
-        if($reply["userid"]!=$userid) {
+        if($reply["userid"]!=$this->userid) {
           header("location: /thread/show/$reply[threadid]/");
           die();
         }
@@ -201,7 +196,8 @@ class ThreadController extends baseController
     }
     
     $this->_mainContent->assign("reply",$reply);
-    $this->_mainContent->assign("userid",$userid);
+    $this->_mainContent->assign("userid",$this->userid);
+    $this->_mainContent->assign("isEmailValidated",$this->isEmailValidated);
     $this->display();
   }
   
