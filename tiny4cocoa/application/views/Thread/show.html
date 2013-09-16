@@ -109,6 +109,9 @@ function replyto(floor,name){
       </div>
     {else}
       <div class="content-unit">
+        {if !$isEmailValidated}
+           您的注册邮箱还没有通过验证，不能发帖和回帖。 请检查您的注册邮箱里面是否有注册验证邮件。 如果找不到可以看看邮箱的Spam目录。 
+        {else}
         <form action="/thread/show/{$thread.id}/" 
           method="post" accept-charset="utf-8" id="newreplyform">
           <label for="content">内容</label>
@@ -123,6 +126,7 @@ function replyto(floor,name){
             <input type="submit" name="submit" value="提交回复" id="submit" class="btn btn-primary"> 
           </div>
         </form>
+        {/if}
       </div>
     {/if}
   </div>

@@ -93,6 +93,8 @@ class ThreadController extends baseController
     $toplist = $toplistModel->toplist();
     $this->_mainContent->assign("toplist",$toplist);
     
+    $this->_mainContent->assign("isEmailValidated",$this->isEmailValidated);
+    
     $this->setTitle($thread["title"]);
     $this->display();
   }
@@ -128,6 +130,7 @@ class ThreadController extends baseController
           die();
       }
     }
+    $this->_mainContent->assign("isEmailValidated",$this->isEmailValidated);
     $this->display();
   }
 
@@ -159,6 +162,7 @@ class ThreadController extends baseController
     $this->_mainContent->assign("userid",$this->userid);
     $this->_mainContent->assign("thread",$thread);
     $this->setTitle($thread["title"]);
+    $this->_mainContent->assign("isEmailValidated",$this->isEmailValidated);
     $this->display();
   }
   
@@ -193,6 +197,7 @@ class ThreadController extends baseController
     
     $this->_mainContent->assign("reply",$reply);
     $this->_mainContent->assign("userid",$this->userid);
+    $this->_mainContent->assign("isEmailValidated",$this->isEmailValidated);
     $this->display();
   }
   
