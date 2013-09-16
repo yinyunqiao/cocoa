@@ -92,10 +92,23 @@ class UserController extends baseController
       }
       $userModel = new UserModel();
       $userid = $userModel->reg($_POST);
+      $userModel->sendValidateMail($userid);
       $this->viewFile="User/regok.html";
       $this->display();
       die();
     }
+    $this->display();
+  }
+  
+  
+  public function validateAction() {
+    
+    $userModel = new UserModel();
+    $ret = $userModel->validateMail($_GET["user"],$_GET["v"]);
+    if($ret==1)
+      $this->viewFile="User/validateok.html";
+    else
+      $this->viewFile="User/validateerror.html";
     $this->display();
   }
   

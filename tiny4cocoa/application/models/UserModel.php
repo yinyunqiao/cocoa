@@ -36,6 +36,49 @@ class UserModel extends baseDbModel {
       return 0;
     return $user["uid"];
   }
+  
+  public function validateMail($userid,$v) {
+    
+    $user = $this->select("cocoabbs_uc_members")
+      ->where("uid = $userid")
+      ->fetchOne();
+    if(!$user)
+      return 0;
+    $v1 = md5($user["username"].$user["salt"].$user["email"]);
+    if($v==$v) {
+      
+      $sql = "UPDATE `cocoabbs_uc_members` set `validated` = 1 WHERE `uid` = $userid;";
+      $this->run($sql);
+      return 1;
+    }
+    return 0;
+  }
+  public function sendValidateMail($userid) {
+    
+    $user = $this->select("cocoabbs_uc_members")
+      ->where("uid = $userid")
+      ->fetchOne();
+
+    if(!$user)
+      return;
+    
+    $mail = $user["email"];
+    $mailModel = new MailModel();
+    $v = md5($user["username"].$user["salt"].$user["email"]);
+    $page = "<p>你好，</p>
+    <p>您收到这封邮件的原因是，有人使用这个邮箱地址注册了tiny4cocoa社区 http://tiny4cocoa.com 。如果您确定这不是您自己的行为，请删除这封邮件。</p>
+    
+    <p>如果您可以确认是您自己的注册，请点击链接完成验证 <a href=http://tiny4cocoa.com/user/validate/?user=$user[uid]&v=$v>邮件验证</a></p>
+    ";
+     $mailModel->generateMail(
+            $mail,
+             "admin@tiny4.org", 
+            "Tiny4Cocoa社区注册确认信", 
+            $page);
+    
+  }
+  
+  
   public function sendUnsubscribeMail($mail) {
     
     $mailModel = new MailModel();
