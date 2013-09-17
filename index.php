@@ -1,0 +1,1 @@
+head("location: /home/");
