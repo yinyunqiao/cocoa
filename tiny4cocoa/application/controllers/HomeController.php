@@ -21,7 +21,7 @@ class HomeController extends baseController
     $count = $newscenter->count("apple");
     $newscount = $newscenter->count("unmarked");
     $spamcount = $newsModel->spamCount();
-    $applenews = $newscenter->news(1,23,"apple");
+    $applenews = $newscenter->news(1,22,"apple");
     $napplenews = array();
     foreach($applenews as $item) {
       
