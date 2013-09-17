@@ -109,6 +109,7 @@ class UserModel extends baseDbModel {
    return $this
      ->select("cocoabbs_uc_members")
      ->orderby("regdate DESC")
+     ->where("validated == 1")
      ->limit("$start,$size")
      ->fetchAll(); 
   }
