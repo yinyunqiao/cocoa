@@ -1,1 +1,2 @@
+<?php 
 head("location: /home/");
