@@ -28,7 +28,7 @@ class CrontabController extends baseController {
     
     $mail = new MailModel();
     $userModel = new UserModel();
-    $users = $userModel->normalUsers();
+    $users = $userModel->weeklyNewsUser();
     
     foreach($users as $user) {
       

@@ -8,20 +8,11 @@ class UserModel extends baseDbModel {
     return $result[0]["username"];
   }
   
-  public function normalUsers() {
+  public function weeklyNewsUser() {
     
-    //groupid
-    //8:等待验证
-    //4:禁止发言
-    //5:禁止访问
-    //6:禁止IP
     $sql="SELECT `username`,`email` 
       FROM `cocoabbs_uc_members`
-      WHERE `groupid` <> 4 
-	    AND `groupid` <> 5 
-	    AND `groupid` <> 6 
-	    AND `groupid` <> 8
-      AND `email` not in (SELECT `email` FROM `nonews`);";
+      WHERE `validated` = 1 AND `emailweeklynotification` = 1;";
     $result = $this->fetchArray($sql);
     return $result;
   }
@@ -99,7 +90,7 @@ class UserModel extends baseDbModel {
   
   public function addUnsubscribeMail($mail) {
     
-    $sql = "INSERT INTO `nonews` (`email`)VALUES('$mail');";
+    $sql = "UPDATE `cocoabbs_uc_members` set `emailweeklynotification` = 0 WHERE email='$mail';";
     $this->run($sql);
   }
   
