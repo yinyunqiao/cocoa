@@ -141,6 +141,7 @@ class ThreadModel extends baseDbModel {
       return -1;
     else if($isTitleExisted!=0)
       return $isTitleExisted;
+    $this->atNotify(1,$data);
     return $this->select("threads")->insert($data);
   }
   
@@ -161,14 +162,13 @@ class ThreadModel extends baseDbModel {
   
   public function newReply($data) {
     
-    
     if($this->isReplyExist($data)==1)
       return NULL;
     $this->select("thread_replys")->insert($data);
     $sql = "SELECT count(`id`) as c FROM `thread_replys` WHERE threadid = $data[threadid];";
     $result = $this->fetchArray($sql);
     $c = $result[0]["c"];
-    $this->replyNotify($data);
+    $this->atNotify(0,$data);
     return $c;
   }
   
@@ -181,43 +181,7 @@ class ThreadModel extends baseDbModel {
       return 1;
     else
       return 0; 
-  }
-  
-  public function replyNotify($data) {
-    
-    $users = $this->getThreadUsers($data["threadid"]);
-    if(($key = array_search($data["userid"], $users)) !== false) {
-        unset($users[$key]);
-    }
-    if(count($users)==0)
-      return;
-    $usersStr = join(",",$users);
-    $sql = "SELECT `username`,`email` FROM `cocoabbs_uc_members` WHERE `uid` in ($usersStr);";
-    $result = $this->fetchArray($sql);
-    $thread = $this->threadById($data["threadid"]);
-    foreach($result as $user) {
-      
-      $this->replyNotifyMail($user["username"], $user["email"], $data["name"], $data["content"],$thread["title"],$data["threadid"]);
-    }
-  }
-  
-  private function replyNotifyMail($username, $email, $replyuser, $content, $threadname, $threadid) {
-    
-    
-    $subject = "您参与的帖子《".$threadname."》有了新回复";
-    $mailContent = "您参与的帖子《".$threadname."》有了新回复<br/>";
-    $mailContent .= "<p><a href=http://tiny4cocoa.com/thread/show/$threadid/>http://tiny4cocoa.com/thread/show/$threadid/</a></p>";
-    $mailContent .= "<p> $replyuser 刚刚回复说:</p>";
-    $mailContent .= Markdown(stripslashes($content));
-    $mailContent .= "<p><a href=http://tiny4cocoa.com/thread/show/$threadid/>http://tiny4cocoa.com/thread/show/$threadid/</a></p>";
-    $mail = new MailModel();
-    $mail->generateMail(
-            $email,
-             "admin@tiny4.org", 
-            $subject, 
-            $mailContent);
-  }
-  
+  }  
   
   public function getThreadUsers($threadid){
     
@@ -313,6 +277,99 @@ class ThreadModel extends baseDbModel {
         ->fetchOne();
     return $attach;
   }
+  
+  public function atNotify($isThread,$data) {
+    
+    $content = $data["content"];
+    $users = ToolModel::detectAtUsers($content);
+    if($isThread==1) {
+      $thread = $data;
+      $actionUser = $data["createby"];
+    }
+    else {
+      $thread = $this->threadById($data["threadid"]);
+      $actionUser = $data["name"];
+    }
+    
+    $userModel = new UserModel();
+    foreach($users as $user) {
+      
+      $userid = $userModel->useridByName($user);
+      $userInfo = $userModel->userInfo($userid);
+      if($userInfo) {
+        
+        if($userInfo["emailatnotification"]==1)
+          $this->atNotifyMail(
+              $isThread,
+              $user,
+              $userInfo["email"],
+              $thread,
+              $content,
+              $actionUser);
+      }
+    }
+  }
+  
+  private function atNotifyMail($isThread,$user,$email,$thread,$content,$actionUser) {
+    
+    if($isThread==1) {
+      
+      $subject = "$actionUser 在帖子《$thread[title]》里提到了你";
+      $mailContent = "$actionUser 在帖子《$thread[title]》里提到了你<br/>";
+      $mailContent .= "<p><a href=http://tiny4cocoa.com/thread/show/$thread[threadid]/>http://tiny4cocoa.com/thread/show/$thread[threadid]/</a></p>";
+      $mailContent .= "<p> $actionUser 说到:</p>";
+      $mailContent .= Markdown(stripslashes($content));
+    }
+    else {
+      $subject = "$actionUser 在回复帖子《$thread[title]》时提到了你";
+      $mailContent = "$actionUser 在回复帖子《$thread[title]》时提到了你<br/>";
+      $mailContent .= "<p><a href=http://tiny4cocoa.com/thread/show/$thread[threadid]/>http://tiny4cocoa.com/thread/show/$thread[threadid]/</a></p>";
+      $mailContent .= "<p> $actionUser 回复说:</p>";
+      $mailContent .= Markdown(stripslashes($content));
+    }
+    $mail = new MailModel();
+    $mail->generateMail(
+            $email,
+             "admin@tiny4.org", 
+            $subject, 
+            $mailContent);
+  }
+  //------------------------暂时废弃
+  public function replyNotify($data) {
+    
+    $users = $this->getThreadUsers($data["threadid"]);
+    if(($key = array_search($data["userid"], $users)) !== false) {
+        unset($users[$key]);
+    }
+    if(count($users)==0)
+      return;
+    $usersStr = join(",",$users);
+    $sql = "SELECT `username`,`email` FROM `cocoabbs_uc_members` WHERE `uid` in ($usersStr);";
+    $result = $this->fetchArray($sql);
+    $thread = $this->threadById($data["threadid"]);
+    foreach($result as $user) {
+      
+      $this->replyNotifyMail($user["username"], $user["email"], $data["name"], $data["content"],$thread["title"],$data["threadid"]);
+    }
+  }
+  
+  private function replyNotifyMail($username, $email, $replyuser, $content, $threadname, $threadid) {
+    
+    
+    $subject = "您参与的帖子《".$threadname."》有了新回复";
+    $mailContent = "您参与的帖子《".$threadname."》有了新回复<br/>";
+    $mailContent .= "<p><a href=http://tiny4cocoa.com/thread/show/$threadid/>http://tiny4cocoa.com/thread/show/$threadid/</a></p>";
+    $mailContent .= "<p> $replyuser 刚刚回复说:</p>";
+    $mailContent .= Markdown(stripslashes($content));
+    $mail = new MailModel();
+    $mail->generateMail(
+            $email,
+             "admin@tiny4.org", 
+            $subject, 
+            $mailContent);
+  }
+  //------------------------暂时废弃
+  
 }
 
 

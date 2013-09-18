@@ -202,4 +202,17 @@ class ToolModel {
     $html = preg_replace("/([0-9]+)楼/","<a href='#floor\\1'>\\0</a>",$html);
     return $html;
   }
+  
+  public function detectAtUsers($content) {
+    
+    preg_match_all("/\@([^\\s\\n\\r<>\/\'\"@]*)/",$content,$match);
+    $user = array();
+    if(!$match || count($match)==0)
+      return $user;
+    foreach($match[1] as $m) {
+      
+      $user[] = $m;
+    }
+    return array_unique($user);
+  }
 }

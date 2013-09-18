@@ -8,6 +8,12 @@ class UserModel extends baseDbModel {
     return $result[0]["username"];
   }
   
+  public function userInfo($userid) {
+    
+    $sql = "SELECT * FROM `cocoabbs_uc_members` WHERE uid = $userid;";
+    $result = $this->fetchArray($sql);
+    return $result[0];
+  }
   public function weeklyNewsUser() {
     
     $sql="SELECT `username`,`email` 
