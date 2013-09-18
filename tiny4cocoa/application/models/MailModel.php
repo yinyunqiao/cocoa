@@ -60,14 +60,21 @@ class MailModel extends baseDbModel {
 
     public function sendMailItem($queueItem){
         $fromMail = "noreply@tiny4.org";
+        $from = "noreply";
         if($queueItem['frommail'] != ""){
             $fromMail = $queueItem['frommail'];
+            $from = $queueItem['frommail'];
         }
-        // $queueItem['content'] = str_replace(array("\\r\\n", "\\r", "\\n", "\r\n", "\n", "\r"), "<br />", $queueItem['content']);
+        if(preg_match('/(.*)?<(.*)?>/im',$fromMail,$match)) {
+          
+          $fromMail = $match[2];
+          $from = $match[1];
+        }
         $mailItem = array(
             "toMail" => $queueItem['email'],
             "to" => $queueItem['email'],
             "fromMail" => $fromMail,
+            "from" => $from,
             "msgHTML" => $queueItem['content'],
             "altBody" => $queueItem['content'],
             "subject" => $queueItem['subject']

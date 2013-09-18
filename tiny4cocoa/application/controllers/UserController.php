@@ -142,6 +142,12 @@ class UserController extends baseController
     $this->display();
   }
   
+  public function emailsettingAction() {
+    
+    
+  }
+  
+  
   public function ajaxcheckAction(){
     
     $action = $this->strVal(3);

@@ -1,0 +1,98 @@
+﻿<table border="0" cellspacing="0" cellpadding="0" width="552" style="margin:0 auto;"><tbody><tr><td align="center" style="padding:5px;">
+  <div style="text-align:left;color:#999;text-decoration:none;border:none;outline:none">{$user.username}，您好：
+  </div>
+  
+</td></tr></tbody>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" width="552" style="border:1px solid #dedede;border-bottom:2px solid #dedede;margin:0 auto;background-color:#ffffff"><tbody><tr><td align="center" style="padding:30px 25px 30px">
+                <div style="font-size:13px">
+                    <a style="float:left;color:#999;text-decoration:none;border:none;outline:none" href="http://tiny4cocoa.com" target="_blank">Tiny4Cocoa</a>                  
+                    <span style="float:right;color:#999"></span>
+                    <div style="font-size:25px;text-indent:3px">Tiny4Cocoa每日精选</div>
+                </div>
+            </td>
+        </tr><tr><td style="padding:0 25px 25px">
+          
+          
+          
+          <div style="padding-bottom:10px">
+              <span style="color:#555;font-size:15px">昨日新帖</span>
+          </div>
+          <div style="margin-bottom:50px;padding-top:0px;border-top:1px dotted #eee">
+              <div style="margin-bottom:6px">
+                  <ul style="list-style-type:none;margin-left:-20px;">
+                  {foreach from=$newThread item=item key=key}
+                  <li>
+                    <a class="yshortcuts" style="font-size:14px;line-height:22px;font-weight:bold;text-decoration:none;color:#259;border:none;outline:none" href="http://tiny4cocoa.com/thread/show/{$item.threadid}/" target="_blank">
+                      {$item.title}
+                    </a>
+                  </li>                                             
+                  {/foreach}
+                  </ul>
+              </div>
+          </div>
+          
+                <div style="padding-bottom:10px">
+                    <span style="color:#555;font-size:15px">昨日10大热门帖子</span>
+                </div>
+                <div style="margin-bottom:50px;padding-top:0px;border-top:1px dotted #eee">
+                    <div style="margin-bottom:6px">
+                        <ul style="list-style-type:none;margin-left:-20px;">
+                        {foreach from=$topThread item=item key=key}
+                        <li>
+                          <a class="yshortcuts" style="font-size:14px;line-height:22px;font-weight:bold;text-decoration:none;color:#259;border:none;outline:none" href="http://tiny4cocoa.com/thread/show/{$item.threadid}/" target="_blank">
+                            {$item.title}
+                          </a>
+                        </li>                                             
+                        {/foreach}
+                        </ul>
+                    </div>
+                </div>
+                             
+                             
+                             
+                <div style="padding-bottom:10px">
+                    <span style="color:#555;font-size:15px">昨日10大新闻</span>
+                </div>
+                <div style="margin-bottom:50px;padding-top:0px;border-top:1px dotted #eee">
+                    <div style="margin-bottom:6px">
+                        <ul style="list-style-type:none;margin-left:-20px;">
+                        {foreach from=$news item=item key=key}
+                        <li>
+                          <a class="yshortcuts" style="font-size:14px;line-height:22px;font-weight:bold;text-decoration:none;color:#259;border:none;outline:none" href="http://tiny4cocoa.com/apple/n/{$item.id}/" target="_blank">
+                            {$item.title}
+                          </a>
+                        </li>                                             
+                        {/foreach}
+                        </ul>
+                    </div>
+                </div>
+                                                          
+                <div style="padding-bottom:10px">
+                    <span style="color:#555;font-size:15px">昨日10大社区英雄</span>
+                </div>
+                <div style="margin-bottom:50px;padding-top:0px;border-top:1px dotted #eee">
+                    <div style="margin-bottom:6px">
+                        <ul style="list-style-type:none;margin-left:-20px;">
+                        {foreach from=$bbsHero item=item key=key}
+                        <li>
+                          <a class="yshortcuts" style="font-size:14px;line-height:22px;font-weight:bold;text-decoration:none;color:#259;border:none;outline:none" href="http://tiny4cocoa.com/user/show/{$item.userid}/{$item.name}/" target="_blank">
+                            {$item.name}
+                          </a>
+                        </li>                                             
+                        {/foreach}
+                        </ul>
+                    </div>
+                </div>
+
+            </td>
+        </tr></tbody></table>
+        
+        <table border="0" cellspacing="0" cellpadding="0" width="552" style="margin:0 auto;"><tbody><tr><td align="center" style="padding:30px 25px 30px">
+          <div style="text-align:right;color:#999;text-decoration:none;border:none;outline:none">
+            <a href="http://tiny4cocoa.com/user/unsubscribe/?mail={$user.email}" target="_blank">退订</a>
+          </div>
+          
+        </td></tr></tbody>
+        </table>
