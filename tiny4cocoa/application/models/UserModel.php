@@ -250,6 +250,20 @@ class UserModel extends baseDbModel {
           ->fetchOne();
     return $ret["validated"];
   }
+  
+  public function updateEmailSetting($userid,
+        $emailatnotification,
+        $emaildailynotification,
+        $emailweeklynotification) {
+          
+    $sql="UPDATE `cocoabbs_uc_members` set 
+           emailatnotification=$emailatnotification,
+           emaildailynotification=$emaildailynotification,
+           emailweeklynotification=$emailweeklynotification
+           WHERE uid = $userid
+           ;";
+    $this->run($sql);      
+  }
 }
 
 

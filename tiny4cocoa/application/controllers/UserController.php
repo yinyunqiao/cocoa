@@ -144,7 +144,44 @@ class UserController extends baseController
   
   public function emailsettingAction() {
     
+    if($this->userid==0) {
+      header("location: /user/login/");
+      die();
+    }
+    $userModel = new UserModel();
     
+    if($_POST) {
+      
+      if($_POST["atnotify"]==1)
+        $emailatnotification = 1;
+      else
+        $emailatnotification = 0;
+      
+      if($_POST["dailynews"]==1)
+        $emaildailynotification = 1;
+      else
+        $emaildailynotification = 0;
+      
+      if($_POST["weeklynews"]==1)
+        $emailweeklynotification = 1;
+      else
+        $emailweeklynotification = 0;
+      $userModel->updateEmailSetting(
+        $this->userid,
+        $emailatnotification,
+        $emaildailynotification,
+        $emailweeklynotification);
+      $this->_mainContent->assign("warnning","设置成功更新");
+    }
+    $userInfo = $userModel->userInfo($this->userid);
+    $this->_mainContent->
+      assign("emailatnotification",$userInfo["emailatnotification"]);
+    $this->_mainContent->
+      assign("emaildailynotification",$userInfo["emaildailynotification"]);
+    $this->_mainContent->
+      assign("emailweeklynotification",$userInfo["emailweeklynotification"]);
+
+    $this->display();
   }
   
   

@@ -26,12 +26,23 @@ class StaticController extends tinyApp_Controller
     include("$path/jquery/jquery.form.js");
     include("$path/upload/upload.js");
     include("$bootstrap/bootstrap.min.js");
-    readfile("$framework/wmd/wmd.js");
-    readfile("$framework/wmd/showdown.js");
     include("$framework/jquery.hotkeys/jquery.hotkeys.js");
     include("$path/base.js");
   }
 	
+  public function wmdjsAction() {
+		
+    header ("content-type: application/x-javascript; charset: utf-8");
+    header('Pragma: ');
+    header ("cache-control: max-age=600");
+    ob_start();
+    $offset = 60 * 60 * 24;
+    $expire = "expires: " . gmdate ("D, d M Y H:i:s", time() + $offset) . " GMT";
+    header ($expire);
+    $framework = $this->_pathinfo['tinyAppLib'];
+    readfile("$framework/wmd/wmd.js");
+    readfile("$framework/wmd/showdown.js");
+  }
   public function cssAction() {
 		
     header ("content-type: text/css; charset: utf-8");
