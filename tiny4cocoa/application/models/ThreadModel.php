@@ -227,6 +227,17 @@ class ThreadModel extends baseDbModel {
     return $result;
   }
   
+  public function newThreadsFrom($time){
+    
+    $sql =
+      "SELECT `id`,`title`
+      FROM `threads`
+      WHERE `createdate` > $time
+      ORDER BY `createdate` DESC;";
+    $result = $this->fetchArray($sql);
+    return $result;
+  }
+  
   
   public function topBbsHero($n,$time){
     
@@ -316,21 +327,21 @@ class ThreadModel extends baseDbModel {
       
       $subject = "$actionUser 在帖子《$thread[title]》里提到了你";
       $mailContent = "$actionUser 在帖子《$thread[title]》里提到了你<br/>";
-      $mailContent .= "<p><a href=http://tiny4cocoa.com/thread/show/$thread[threadid]/>http://tiny4cocoa.com/thread/show/$thread[threadid]/</a></p>";
+      $mailContent .= "<p><a href=http://tiny4cocoa.com/thread/show/$thread[id]/>http://tiny4cocoa.com/thread/show/$thread[id]/</a></p>";
       $mailContent .= "<p> $actionUser 说到:</p>";
       $mailContent .= Markdown(stripslashes($content));
     }
     else {
       $subject = "$actionUser 在回复帖子《$thread[title]》时提到了你";
       $mailContent = "$actionUser 在回复帖子《$thread[title]》时提到了你<br/>";
-      $mailContent .= "<p><a href=http://tiny4cocoa.com/thread/show/$thread[threadid]/>http://tiny4cocoa.com/thread/show/$thread[threadid]/</a></p>";
+      $mailContent .= "<p><a href=http://tiny4cocoa.com/thread/show/$thread[id]/>http://tiny4cocoa.com/thread/show/$thread[id]/</a></p>";
       $mailContent .= "<p> $actionUser 回复说:</p>";
       $mailContent .= Markdown(stripslashes($content));
     }
     $mail = new MailModel();
     $mail->generateMail(
             $email,
-             "admin@tiny4.org", 
+             "Tiny4Cocoa论坛 <tiny4cocoa@tiny4.org>", 
             $subject, 
             $mailContent);
   }
@@ -364,7 +375,7 @@ class ThreadModel extends baseDbModel {
     $mail = new MailModel();
     $mail->generateMail(
             $email,
-             "admin@tiny4.org", 
+             "Tiny4Cocoa论坛 <tiny4cocoa@tiny4.org>", 
             $subject, 
             $mailContent);
   }

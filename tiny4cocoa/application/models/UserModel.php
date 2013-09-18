@@ -14,11 +14,21 @@ class UserModel extends baseDbModel {
     $result = $this->fetchArray($sql);
     return $result[0];
   }
+  
   public function weeklyNewsUser() {
     
     $sql="SELECT `username`,`email` 
       FROM `cocoabbs_uc_members`
       WHERE `validated` = 1 AND `emailweeklynotification` = 1;";
+    $result = $this->fetchArray($sql);
+    return $result;
+  }
+  
+  public function dailyNewsUser() {
+    
+    $sql="SELECT `username`,`email` 
+      FROM `cocoabbs_uc_members`
+      WHERE `validated` = 1 AND `emaildailynotification` = 1;";
     $result = $this->fetchArray($sql);
     return $result;
   }
@@ -69,7 +79,7 @@ class UserModel extends baseDbModel {
     ";
      $mailModel->generateMail(
             $mail,
-             "admin@tiny4.org", 
+             "Tiny4Cocoa论坛 <tiny4cocoa@tiny4.org>", 
             "Tiny4Cocoa社区注册确认信", 
             $page);
     
@@ -88,7 +98,7 @@ class UserModel extends baseDbModel {
     ";
      $mailModel->generateMail(
             $mail,
-             "admin@tiny4.org", 
+             "Tiny4Cocoa论坛 <tiny4cocoa@tiny4.org>", 
             "Tiny4Cocoa社区邮件退订确认信", 
             $page);
     
