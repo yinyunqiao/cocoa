@@ -26,6 +26,25 @@ class UserController extends baseController
     $this->display();
   }
   
+  public function recentAction() {
+    
+    
+    $page = $this->intVal(3);
+    if($page==0)
+      $page=1;
+    $size = 30;
+    
+    $userModel = new UserModel();
+    $count = $userModel->count();
+    $users = $userModel->users($page,$size,"date");
+    $this->_mainContent->assign("users",$users);
+    
+		$pageControl = ToolModel::pageControl($page,$count,$size,"<a href='/user/recent/#page#/'>",0);
+    $this->_mainContent->assign("pageControl",$pageControl);
+    
+    $this->display();
+  }
+  
   public function nameAction() {
     
     $name = urldecode($this->strVal(3));

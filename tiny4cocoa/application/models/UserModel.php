@@ -110,15 +110,34 @@ class UserModel extends baseDbModel {
     $this->run($sql);
   }
   
-  public function users($page,$size) {
+  public function users($page,$size,$order="shui") {
     
    $start = ($page-1)*$size;
-   return $this
-     ->select("cocoabbs_uc_members")
-     ->orderby("regdate DESC")
-     ->where("`validated` = 1")
-     ->limit("$start,$size")
-     ->fetchAll(); 
+   $users = $this
+     ->select("cocoabbs_uc_members");
+   if($order=="date") {
+     
+     $this->orderby("regdate DESC");
+     
+   }else {
+     
+     $this->fields("*,(posts*5+replys) as shui")->orderby("shui DESC");
+   }
+   $this->where("`validated` = 1")->limit("$start,$size");
+   $users = $this->fetchAll();
+   $ret = array();
+   if(count($users)==0)
+     return $ret;
+   foreach($users as $item) {
+     $item["regdate"] = ToolModel::countTime($item["regdate"]);
+     if($item["lastlogintime"]!=0)
+       $item["lastlogintime"] = ToolModel::countTime($item["lastlogintime"]);
+     else
+       $item["lastlogintime"] = "没有记录";
+     $item["image"] = DiscuzModel::get_avatar($item["uid"],"small");
+     $ret[] = $item;
+   } 
+   return $ret;
   }
   
   public function count() {
@@ -263,6 +282,23 @@ class UserModel extends baseDbModel {
            WHERE uid = $userid
            ;";
     $this->run($sql);      
+  }
+  
+  public function updateUserStats() {
+    
+    $sql = "UPDATE `cocoabbs_uc_members`
+        INNER JOIN 
+          (SELECT count(*)   `c`,`createbyid` FROM `threads` GROUP BY `createbyid`) `tempt`
+        ON `tempt`.`createbyid` = `cocoabbs_uc_members`.`uid` 
+        SET `posts`=`c`;";
+    $this->run($sql);
+    
+    $sql = "UPDATE `cocoabbs_uc_members`
+            INNER JOIN 
+              (SELECT count(*)   `c`,`userid` FROM `thread_replys` GROUP BY `userid`) `tempt`
+            ON `tempt`.`userid` = `cocoabbs_uc_members`.`uid` 
+            SET `replys`=`c`;";
+    $this->run($sql);
   }
 }
 
