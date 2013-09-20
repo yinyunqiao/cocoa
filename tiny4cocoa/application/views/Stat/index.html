@@ -1,10 +1,88 @@
+<script type="text/javascript">
+$(document).ready(function() {
+  
+  var recentuser = [{$regUsersTrend.jsdata}];
+  var recentuserall = [{$recentRegUsersTrendAll.jsdata}];
+  var threadTrend = [{$threadTrend.jsdata}];
+  var recentreply = [{$replyTrend.jsdata}];
+  
+  $.plot("#recentuser",
+    [{
+      data:recentuser,label:"通过验证"
+    },
+    {
+      data:recentuserall,label:"全部注册"
+    }],
+     {
+			series: {
+				bars: {
+					show: true,
+					barWidth: 0.8,
+					align: "center"
+				}
+			},
+			grid: {
+				hoverable: true,
+				clickable: true
+			},
+			xaxis: {
+				mode: "categories",
+				tickLength: 0
+			}
+    });
+    
+    $.plot("#recentthread",
+      [{
+        data:threadTrend,label:"发帖数"
+      }],
+       {
+  			series: {
+  				bars: {
+  					show: true,
+  					barWidth: 0.8,
+  					align: "center"
+  				}
+  			},
+  			grid: {
+  				hoverable: true,
+  				clickable: true
+  			},
+  			xaxis: {
+  				mode: "categories",
+  				tickLength: 0
+  			}
+      });
+  
+      $.plot("#recentreply",
+        [{
+          data:recentreply,label:"回帖数"
+        }],
+         {
+    			series: {
+    				bars: {
+    					show: true,
+    					barWidth: 0.8,
+    					align: "center"
+    				}
+    			},
+    			grid: {
+    				hoverable: true,
+    				clickable: true
+    			},
+    			xaxis: {
+    				mode: "categories",
+    				tickLength: 0
+    			}
+        });
+});
+</script>
 <div class="row">
   <p>服务状态</p>
     <div class="span6">
       <div class="content-unit">
         注册人数
         <div class="threadblock">
-          <img src="http://chart.apis.google.com/chart?chs=400x200&cht=bvg&chxt=y&chco=3072F3&chd=t:{$regUsersTrend.data}&chm=N,000000,0,-1,10" />
+          <div id="recentuser" style="width:100%;height:200px;"></div>
         </div>
       </div>
     </div>
@@ -13,7 +91,7 @@
       <div class="content-unit">
         发帖数
         <div class="threadblock">
-          <img src="http://chart.apis.google.com/chart?chs=400x200&cht=bvg&chxt=y&chco=3072F3&chd=t:{$threadTrend.data}&chm=N,000000,0,-1,10" />
+          <div id="recentthread" style="width:100%;height:200px;"></div>
         </div>
       </div>
     </div>
@@ -22,7 +100,7 @@
       <div class="content-unit">
         回帖数
         <div class="threadblock">
-          <img src="http://chart.apis.google.com/chart?chs=400x200&cht=bvg&chxt=y&chco=3072F3&chd=t:{$replyTrend.data}&chm=N,000000,0,-1,10" />
+          <div id="recentreply" style="width:100%;height:200px;"></div>
         </div>
       </div>
     </div>

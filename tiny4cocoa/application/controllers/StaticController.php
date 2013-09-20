@@ -21,12 +21,15 @@ class StaticController extends tinyApp_Controller
     $path = $base.'/public/js';
     $bootstrap = $this->_pathinfo['base']."/public/bootstrap/js/";
     $framework = $this->_pathinfo['tinyAppLib'];
-    include("$path/jquery/jquery.min.js");
+    //include("$path/jquery/jquery.min.js");
+    include("$framework/jquery/jquery-1.10.2.min.js");
     include("$path/jquery/jquery.validate.min.js");
     include("$path/jquery/jquery.form.js");
     include("$path/upload/upload.js");
     include("$bootstrap/bootstrap.min.js");
     include("$framework/jquery.hotkeys/jquery.hotkeys.js");
+    include("$framework/flot/jquery.flot.js");
+    include("$framework/flot/jquery.flot.categories.js");
     include("$path/base.js");
   }
 	
