@@ -27,4 +27,84 @@ class StatModel extends baseDbModel {
     }
     return $data;
   }
+  
+  
+  
+  
+  
+  
+  public function recentRegUsersTrend()
+  {
+    $sql =
+      "SELECT DATE_FORMAT(FROM_UNIXTIME(regdate),'%Y-%m-%d') as `regd`,
+      count(`uid`) as `c`
+      FROM `cocoabbs_uc_members` 
+      WHERE `regdate`>unix_timestamp(SUBDATE(now(), INTERVAL 20 DAY))
+      GROUP BY `regd`";
+    $ret = $this->fetchArray($sql);
+    if(count($ret)==0)
+      return "";
+    $indexs = array();
+    $days = array();
+    $counts = array();
+    $i = 0;
+    foreach($ret as $record) {
+      $indexs[] = $i;
+      $days[] = $record["regd"];
+      $counts[] = $record["c"];
+      $i++;
+    }
+    $retArray["data"] =  join(",",$counts);
+    return $retArray; 
+  }
+  
+  public function recentThreadTrend()
+  {
+    $sql =
+      "SELECT DATE_FORMAT(FROM_UNIXTIME(createdate),'%Y-%m-%d') as `regd`,
+      count(`id`) as `c`
+      FROM `threads` 
+      WHERE `createdate`>unix_timestamp(SUBDATE(now(), INTERVAL 20 DAY))
+      GROUP BY `regd`";
+    $ret = $this->fetchArray($sql);
+    if(count($ret)==0)
+      return "";
+    $indexs = array();
+    $days = array();
+    $counts = array();
+    $i = 0;
+    foreach($ret as $record) {
+      $indexs[] = $i;
+      $days[] = $record["regd"];
+      $counts[] = $record["c"];
+      $i++;
+    }
+    $retArray["data"] =  join(",",$counts);
+    return $retArray; 
+  }
+  
+  public function recentReplysTrend()
+  {
+    $sql =
+      "      SELECT DATE_FORMAT(FROM_UNIXTIME(createdate),'%Y-%m-%d') as `regd`,
+      count(`id`) as `c`
+      FROM `thread_replys` 
+      WHERE `createdate`>unix_timestamp(SUBDATE(now(), INTERVAL 20 DAY))
+      GROUP BY `regd`";
+    $ret = $this->fetchArray($sql);
+    if(count($ret)==0)
+      return "";
+    $indexs = array();
+    $days = array();
+    $counts = array();
+    $i = 0;
+    foreach($ret as $record) {
+      $indexs[] = $i;
+      $days[] = $record["regd"];
+      $counts[] = $record["c"];
+      $i++;
+    }
+    $retArray["data"] =  join(",",$counts);
+    return $retArray; 
+  }
 }
