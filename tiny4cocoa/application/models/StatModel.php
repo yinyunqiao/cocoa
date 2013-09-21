@@ -132,7 +132,7 @@ class StatModel extends baseDbModel {
       $indexs[] = $i;
       $days[] = $record["regd"];
       $counts[] = $record["c"];
-      $jsdata[] = '["' . $record["hour"] . '点",' . $record["c"] . ']';
+      $jsdata[] = '["' . $record["hour"] . '",' . $record["c"] . ']';
       $i++;
     }
     $retArray["data"] =  join(",",$counts);
@@ -184,7 +184,7 @@ class StatModel extends baseDbModel {
       $indexs[] = $i;
       $days[] = $record["regd"];
       $counts[] = $record["c"];
-      $jsdata[] = '["' . $record["hour"] . '点",' . $record["c"] . ']';
+      $jsdata[] = '["' . $record["hour"] . '",' . $record["c"] . ']';
       $i++;
     }
     $retArray["data"] =  join(",",$counts);
@@ -206,6 +206,16 @@ class StatModel extends baseDbModel {
     $sql = "SELECT count(*) as c FROM `thread_replys`;";
     $ret = $this->fetchArray($sql);
     $data["replys"] = $ret[0]["c"];
+    
+    $sql = "SELECT DISTINCT(userid) FROM 
+            (
+            SELECT createbyid as userid FROM `threads` WHERE `createdate`>unix_timestamp(SUBDATE(now(), INTERVAL 7 DAY)) 
+            UNION
+            SELECT userid FROM `thread_replys`  WHERE `createdate`>unix_timestamp(SUBDATE(now(), INTERVAL 7 DAY)) 
+) as user;";
+  $ret = $this->fetchArray($sql);
+  $data["auser"] = count($ret);
+    
     return $data;
   }
 }

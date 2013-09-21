@@ -7,15 +7,7 @@ $(document).ready(function() {
   var recentreply = [{$replyTrend.jsdata}];
   var threadTimer = [{$TrendTimer.jsdata}];
   var replyTimer = [{$replyTimer.jsdata}];
-  
-  $.plot("#recentuser",
-    [{
-      data:recentuser,label:"通过验证"
-    },
-    {
-      data:recentuserall,label:"全部注册"
-    }],
-     {
+  var opt = {
 			series: {
 				bars: {
 					show: true,
@@ -30,103 +22,41 @@ $(document).ready(function() {
 			xaxis: {
 				mode: "categories",
 				tickLength: 0
-			}
-    });
-    
-    $.plot("#recentthread",
-      [{
-        data:threadTrend,label:"发帖数"
-      }],
-       {
-  			series: {
-  				bars: {
-  					show: true,
-  					barWidth: 0.8,
-  					align: "center"
-  				}
-  			},
-  			grid: {
-  				hoverable: true,
-  				clickable: true
-  			},
-  			xaxis: {
-  				mode: "categories",
-  				tickLength: 0
-  			}
-      });
+			}};
   
-      $.plot("#recentreply",
-        [{
-          data:recentreply,label:"回帖数"
-        }],
-         {
-    			series: {
-    				bars: {
-    					show: true,
-    					barWidth: 0.8,
-    					align: "center"
-    				}
-    			},
-    			grid: {
-    				hoverable: true,
-    				clickable: true
-    			},
-    			xaxis: {
-    				mode: "categories",
-    				tickLength: 0
-    			}
-        });
+  $.plot("#recentuser",[{
+      data:recentuser,
+      label:"通过验证"
+    },{
+      data:recentuserall,
+      label:"全部注册"
+    }],opt);
+    
+  $.plot("#recentthread",[{
+    data:threadTrend,
+    label:"发帖数"
+    }],opt);
+  
+  $.plot("#recentreply",[{
+    data:recentreply,
+    label:"回帖数"
+    }],opt);
         
-        $.plot("#threadTimer",
-          [{
-            data:threadTimer,label:"发帖时间"
-          }],
-           {
-      			series: {
-      				bars: {
-      					show: true,
-      					barWidth: 0.8,
-      					align: "center"
-      				}
-      			},
-      			grid: {
-      				hoverable: true,
-      				clickable: true
-      			},
-      			xaxis: {
-      				mode: "categories",
-      				tickLength: 0
-      			}
-          });
+  $.plot("#threadTimer",[{
+    data:threadTimer,
+    label:"发帖时间"
+    }],opt);
           
-          
-          $.plot("#replyTimer",
-            [{
-              data:replyTimer,label:"回帖时间"
-            }],
-             {
-        			series: {
-        				bars: {
-        					show: true,
-        					barWidth: 0.8,
-        					align: "center"
-        				}
-        			},
-        			grid: {
-        				hoverable: true,
-        				clickable: true
-        			},
-        			xaxis: {
-        				mode: "categories",
-        				tickLength: 0
-        			}
-            });
+  $.plot("#replyTimer",[{
+    data:replyTimer,
+    label:"回帖时间"
+    }],opt);
           
         
 });
 </script>
 <div class="row">
-  <p class="pull-right">注册用户{$stats.users}名，发帖{$stats.threads}条，回复{$stats.replys}条。</p>
+  <p class="pull-right">注册用户{$stats.users}名，7日活动用户{$stats.auser}名，发帖{$stats.threads}条，回复{$stats.replys}条。</p>
   <h3>服务状态</h3>
     <div class="span6">
       <div class="content-unit">
