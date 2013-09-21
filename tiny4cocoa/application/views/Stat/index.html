@@ -5,6 +5,8 @@ $(document).ready(function() {
   var recentuserall = [{$recentRegUsersTrendAll.jsdata}];
   var threadTrend = [{$threadTrend.jsdata}];
   var recentreply = [{$replyTrend.jsdata}];
+  var threadTimer = [{$TrendTimer.jsdata}];
+  var replyTimer = [{$replyTimer.jsdata}];
   
   $.plot("#recentuser",
     [{
@@ -74,11 +76,58 @@ $(document).ready(function() {
     				tickLength: 0
     			}
         });
+        
+        $.plot("#threadTimer",
+          [{
+            data:threadTimer,label:"发帖时间"
+          }],
+           {
+      			series: {
+      				bars: {
+      					show: true,
+      					barWidth: 0.8,
+      					align: "center"
+      				}
+      			},
+      			grid: {
+      				hoverable: true,
+      				clickable: true
+      			},
+      			xaxis: {
+      				mode: "categories",
+      				tickLength: 0
+      			}
+          });
+          
+          
+          $.plot("#replyTimer",
+            [{
+              data:replyTimer,label:"回帖时间"
+            }],
+             {
+        			series: {
+        				bars: {
+        					show: true,
+        					barWidth: 0.8,
+        					align: "center"
+        				}
+        			},
+        			grid: {
+        				hoverable: true,
+        				clickable: true
+        			},
+        			xaxis: {
+        				mode: "categories",
+        				tickLength: 0
+        			}
+            });
+          
+        
 });
 </script>
 <div class="row">
-  <p>服务状态</p>
-
+  <p class="pull-right">注册用户{$stats.users}名，发帖{$stats.threads}条，回复{$stats.replys}条。</p>
+  <h3>服务状态</h3>
     <div class="span6">
       <div class="content-unit">
         发帖数
@@ -96,6 +145,24 @@ $(document).ready(function() {
         </div>
       </div>
     </div>
+    <div class="span6">
+      <div class="content-unit">
+        发帖时间
+        <div class="threadblock">
+          <div id="threadTimer" style="width:100%;height:200px;"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="span6">
+      <div class="content-unit">
+        回帖时间
+        <div class="threadblock">
+          <div id="replyTimer" style="width:100%;height:200px;"></div>
+        </div>
+      </div>
+    </div>
+    
     <div class="span6">
       <div class="content-unit">
         注册人数

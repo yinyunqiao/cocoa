@@ -26,6 +26,15 @@ class StatController extends baseController
     $this->_mainContent->assign("replyTrend",$replyTrend);
     
     
+    $TrendTimer = $statModel->threadTimerTrend($day);
+    $this->_mainContent->assign("TrendTimer",$TrendTimer);
+    
+    $replyTimer = $statModel->replysTimerTrend($day);
+    $this->_mainContent->assign("replyTimer",$replyTimer);
+    
+    $stats = $statModel->stats();
+    $this->_mainContent->assign("stats",$stats);
+    
     $this->display();
   }
   
