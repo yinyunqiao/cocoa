@@ -7,20 +7,24 @@ $(document).ready(function() {
         required: true, 
         email: true, 
         minlength: 6, 
+        maxlength:50,
         remote: "/user/ajaxcheck/email/",
       },
       name:{
         required:true,
         minlength:3,
+        maxlength:25,
         remote:"/user/ajaxcheck/name/",
       },
       password: {
         required:true,
         minlength:6,
+        maxlength:30,
       },
       password1: {
         required:true,
         minlength:6,
+        maxlength:30,
         equalTo: "#password",
       }
     }, 
