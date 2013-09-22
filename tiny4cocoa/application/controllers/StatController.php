@@ -19,6 +19,9 @@ class StatController extends baseController
     $recentRegUsersTrendAll = $statModel->recentRegUsersTrendAll($day);
     $this->_mainContent->assign("recentRegUsersTrendAll",$recentRegUsersTrendAll);
     
+    $activeUsersTrend = $statModel->activeUsersTrend($day);
+    $this->_mainContent->assign("activeUsersTrend",$activeUsersTrend);
+    
     $threadTrend = $statModel->recentThreadTrend($day);
     $this->_mainContent->assign("threadTrend",$threadTrend);
     

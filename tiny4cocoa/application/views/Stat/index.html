@@ -3,10 +3,12 @@ $(document).ready(function() {
   
   var recentuser = [{$regUsersTrend.jsdata}];
   var recentuserall = [{$recentRegUsersTrendAll.jsdata}];
+  var activeuser = [{$activeUsersTrend.jsdata}];
   var threadTrend = [{$threadTrend.jsdata}];
   var recentreply = [{$replyTrend.jsdata}];
   var threadTimer = [{$TrendTimer.jsdata}];
   var replyTimer = [{$replyTimer.jsdata}];
+  
   var opt = {
 			series: {
 				bars: {
@@ -31,6 +33,11 @@ $(document).ready(function() {
       data:recentuserall,
       label:"全部注册"
     }],opt);
+   
+  $.plot("#activeuser",[{
+        data:activeuser,
+        label:"活跃用户"
+      }],opt); 
     
   $.plot("#recentthread",[{
     data:threadTrend,
@@ -56,8 +63,27 @@ $(document).ready(function() {
 });
 </script>
 <div class="row">
-  <p class="pull-right">注册用户{$stats.users}名，7日活动用户{$stats.auser}名，发帖{$stats.threads}条，回复{$stats.replys}条。</p>
+  <p class="pull-right">注册用户{$stats.users}名，7日活动用户{$stats.auser}名，发帖{$stats.threads}条，回复{$stats.replys}条。<br/>提及通知用户{$stats.atnotify}名，每日邮件通知用户{$stats.daynotify}名，每周邮件通知用户{$stats.weeknotify}名。
+  </p>
   <h3>服务状态</h3>
+  
+  <div class="span6">
+    <div class="content-unit">
+      注册人数
+      <div class="threadblock">
+        <div id="recentuser" style="width:100%;height:200px;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="span6">
+    <div class="content-unit">
+      注册人数
+      <div class="threadblock">
+        <div id="activeuser" style="width:100%;height:200px;"></div>
+      </div>
+    </div>
+  </div>
+  
     <div class="span6">
       <div class="content-unit">
         发帖数
@@ -93,13 +119,5 @@ $(document).ready(function() {
       </div>
     </div>
     
-    <div class="span6">
-      <div class="content-unit">
-        注册人数
-        <div class="threadblock">
-          <div id="recentuser" style="width:100%;height:200px;"></div>
-        </div>
-      </div>
-    </div>
 
 </div>

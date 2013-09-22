@@ -56,6 +56,29 @@ class StatModel extends baseDbModel {
     return $retArray; 
   }
   
+  public function activeUsersTrend($day) {
+    
+    $sql =
+      "
+SELECT count(DISTINCT(`userid`)) as `c`,`adate` FROM 
+            (
+SELECT createbyid as userid,DATE_FORMAT(FROM_UNIXTIME(createdate),'%Y-%m-%d') as `adate` FROM `threads` WHERE `createdate`>unix_timestamp(SUBDATE(now(), INTERVAL $day DAY)) 
+            UNION
+            SELECT userid,DATE_FORMAT(FROM_UNIXTIME(createdate),'%Y-%m-%d') as `adate` FROM `thread_replys`  WHERE `createdate`>unix_timestamp(SUBDATE(now(), INTERVAL $day DAY)) 
+)as `users`
+GROUP BY `adate`;";
+  
+    $ret = $this->fetchArray($sql);
+    if(count($ret)==0)
+      return "";
+    $jsdata = array();
+    foreach($ret as $record) {
+      $jsdata[] = '["' . substr($record["adate"],-2) . '",' . $record["c"] . ']';
+    }
+    $retArray["jsdata"] =  join(",",$jsdata);
+    return $retArray;
+  }
+  
   public function recentRegUsersTrend($day) {
     $sql =
       "SELECT DATE_FORMAT(FROM_UNIXTIME(regdate),'%Y-%m-%d') as `regd`,
@@ -111,8 +134,7 @@ class StatModel extends baseDbModel {
     $retArray["jsdata"] =  join(",",$jsdata);
     return $retArray; 
   }
-  
-  
+    
   public function threadTimerTrend() {
     
     $sql =
@@ -139,6 +161,7 @@ class StatModel extends baseDbModel {
     $retArray["jsdata"] =  join(",",$jsdata);
     return $retArray; 
   }
+  
   public function recentReplysTrend($day)  {
     $sql =
       "      SELECT DATE_FORMAT(FROM_UNIXTIME(createdate),'%Y-%m-%d') as `regd`,
@@ -165,6 +188,7 @@ class StatModel extends baseDbModel {
     $retArray["jsdata"] =  join(",",$jsdata);
     return $retArray; 
   }
+  
   public function replysTimerTrend() {
     
     $sql =
@@ -191,6 +215,7 @@ class StatModel extends baseDbModel {
     $retArray["jsdata"] =  join(",",$jsdata);
     return $retArray; 
   }
+  
   public function stats() {
     
     $data = array();
@@ -213,8 +238,23 @@ class StatModel extends baseDbModel {
             UNION
             SELECT userid FROM `thread_replys`  WHERE `createdate`>unix_timestamp(SUBDATE(now(), INTERVAL 7 DAY)) 
 ) as user;";
-  $ret = $this->fetchArray($sql);
-  $data["auser"] = count($ret);
+    $ret = $this->fetchArray($sql);
+    $data["auser"] = count($ret);
+    
+    $sql = "SELECT count(*) as c FROM `cocoabbs_uc_members` 
+WHERE `validated` = 1 AND `emailatnotification` = 1;";
+    $ret = $this->fetchArray($sql);
+    $data["atnotify"] = $ret[0]["c"];
+    
+    $sql = "SELECT count(*) as c FROM `cocoabbs_uc_members` 
+WHERE `validated` = 1 AND `emaildailynotification` = 1;";
+    $ret = $this->fetchArray($sql);
+    $data["daynotify"] = $ret[0]["c"];
+    
+    $sql = "SELECT count(*) as c FROM `cocoabbs_uc_members` 
+WHERE `validated` = 1 AND `emailweeklynotification` = 1;;";
+    $ret = $this->fetchArray($sql);
+    $data["weeknotify"] = $ret[0]["c"];
     
     return $data;
   }
