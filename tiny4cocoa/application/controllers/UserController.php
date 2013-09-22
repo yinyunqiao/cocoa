@@ -225,4 +225,53 @@ class UserController extends baseController
     }
   }
   
+  public function weiboAction() {
+    
+    session_start();
+
+
+    $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
+    $code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
+    echo "<a href=$code_url>登录</a>";
+  }
+  
+  public function weibocallbackAction() {
+    
+    session_start();
+    $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
+
+    if (isset($_REQUEST['code'])) {
+    	$keys = array();
+    	$keys['code'] = $_REQUEST['code'];
+    	$keys['redirect_uri'] = WB_CALLBACK_URL;
+    	try {
+    		$token = $o->getAccessToken( 'code', $keys ) ;
+    	} catch (OAuthException $e) {
+    	}
+    }
+
+    if ($token) {
+    	$_SESSION['token'] = $token;
+    	setcookie( 'weibojs_'.$o->client_id, http_build_query($token) );
+      echo '授权完成,<a href="/user/list/">进入你的微博列表页面</a><br />';
+    }else {      
+      echo '失败！';
+    }
+  }
+  
+  public function listAction() {
+    
+    session_start();
+    // var_dump($_SESSION['token']);
+    $c = new SaeTClientV2( WB_AKEY , WB_SKEY , $_SESSION['token']['access_token'] );
+    $ms  = $c->home_timeline(); // done
+    $uid_get = $c->get_uid();
+    $uid = $uid_get['uid'];
+    $user_message = $c->show_user_by_id( $uid);//根据ID获取用户等基本信息
+    //var_dump($ms);
+    $ret = $c->update("这是一条测试");
+    var_dump($ret);
+    // var_dump($uid_get);
+    // var_dump($user_message);
+  }
 }
