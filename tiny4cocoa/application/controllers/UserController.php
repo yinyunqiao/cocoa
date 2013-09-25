@@ -225,4 +225,60 @@ class UserController extends baseController
     }
   }
   
+  public function weiboAction() {
+    
+    if($this->userid==0) {
+      header("location: /user/login/");
+      die();
+    }
+    
+    $weiboModel = new WeiboModel();
+    $token = $weiboModel->token($this->userid);
+    if($token)
+      $this->_mainContent->assign("hastoken",1);
+    else {
+      $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
+      $code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
+      $this->_mainContent->assign("url",$code_url);
+    }
+    $this->display();
+  }
+    
+  public function weibocallbackAction() {
+    
+    $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
+
+    if (isset($_REQUEST['code'])) {
+    	$keys = array();
+    	$keys['code'] = $_REQUEST['code'];
+    	$keys['redirect_uri'] = WB_CALLBACK_URL;
+    	try {
+    		$token = $o->getAccessToken( 'code', $keys ) ;
+    	} catch (OAuthException $e) {
+    	}
+    }
+    var_dump($token);
+    if ($token) {
+      
+      $weiboModel = new WeiboModel();
+      $weiboModel->setToken($token["access_token"]);
+    }else {      
+      echo '绑定失败！<a hrer="/user/weibo/">请重试</a>';
+    }
+  }
+  
+  public function sendweiboAction() {
+    
+    if(!$_POST)
+      die();
+    $weiboModel = new WeiboModel();
+    $token = $weiboModel->token($this->userid);
+    if(!$token)
+      die("notoken");
+    $c = new SaeTClientV2( WB_AKEY , WB_SKEY , $token);
+    $ret = $c->update($_POST["weibocontent"]);
+    if($ret)
+      return "ok";
+  }
+  
 }

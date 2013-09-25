@@ -22,6 +22,11 @@
 	require_once $TA_PathInfo['tinyAppLib'] . "/PHPMailer/class.phpmailer.php";
 	require_once $TA_PathInfo['tinyAppLib'] . "/Akismet/Akismet.php";
 	require_once $TA_PathInfo['tinyAppLib'] . "/markdown/markdown.php";
+  include_once( $TA_PathInfo['tinyAppLib'] . '/libweibo/saetv2.ex.class.php' );
+  
+  define( "WB_AKEY" , '453615702' );
+  define( "WB_SKEY" , '16349e40f21569d2c0bc9ed777fd2dfb' );
+  define( "WB_CALLBACK_URL" , 'http://tiny4cocoa.com/user/weibocallback/');
   
   define('MAGPIE_CACHE_AGE',60*33);
   define('MAGPIE_CACHE_DIR',"../rsscache");
