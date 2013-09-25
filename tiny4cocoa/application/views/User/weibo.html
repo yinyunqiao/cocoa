@@ -1,0 +1,40 @@
+<style>
+.labelforcheckbox {
+  
+  display:inline-block;
+  padding-top:10px;
+  line-height: normal; 
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+  
+  $("#submitbtn").click(function(){
+    
+    $("#warnningofupdate").hide();
+  });
+});
+</script>
+<div class="row">
+  <div class="span4">
+  </div>
+  <div class="span4">
+    {if $warnning}
+    <div class="alert alert-success" id="warnningofupdate">
+      {$warnning}
+    </div>
+    {/if}
+    <div class="content-unit">
+      <h4>绑定新浪微博</h4>
+      <div class="threadblock" style="padding-left:20px;">
+        {if $hastoken}
+          解绑请前往新浪微博
+        {else}
+          <a href="{$url}">绑定新浪微博</a>
+        {/if}
+      </div>
+    </div>
+  </div>
+  <div class="span4">
+  </div>
+</div>

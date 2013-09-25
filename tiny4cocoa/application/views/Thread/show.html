@@ -6,6 +6,9 @@ body {
 }
 </style>
 <script type="text/javascript">
+
+var threadtitle = "{$thread.title}";
+
 $(document).ready(function() {
   $("#newreplyform").validate();
   $("#wmd-input").bind('keyup.ctrl_return', function(){
@@ -15,6 +18,7 @@ $(document).ready(function() {
     window.location.href = "/";
   });
 });
+
 function replyto(floor,name){
   var val = $("#wmd-input").val();
   if(val.length>0)
@@ -24,6 +28,37 @@ function replyto(floor,name){
   moveCaretToEnd(document.getElementById("wmd-input"));
 }
 
+function weiboShare(owner) {
+  
+  var href = window.location.href.split('#')[0];
+  var weibotext;
+  if(owner==1)
+    weibotext = "我在 #tiny4cocoa 发布了一个帖子《";
+  else
+    weibotext = "我在 #tiny4cocoa 发现了一个帖子《";   
+  weibotext += threadtitle + "》 " + href;
+  $("#weibocontent").val(weibotext);
+  $('#weiboshareDialog').modal();
+}
+
+function closeWeiboShare() {
+  
+  $('#weiboshareDialog').modal("hide");
+}
+
+function sendweibo() {
+  
+  var weibocontent = $("#weibocontent").val();
+  $.post( "/user/sendweibo/",
+          {
+            weibocontent:weibocontent
+          },
+          function( data ) {
+            if(data=="notoken")
+              alert("请先到右上角用户菜单绑定新浪微博");
+          });
+  $('#weiboshareDialog').modal("hide");  
+}
 </script>
 <div class="row">
   
@@ -42,11 +77,19 @@ function replyto(floor,name){
         {/if}
       </small>
       <div class="threadblock">{$thread.content}</div>
-      {if $userid==$thread.createbyid}
         <div style="text-align:right;">
-          <a href="/thread/editthread/{$thread.id}/">编辑</a>
+          {if $userid}
+            {if $userid==$thread.createbyid}
+              <a href="javascript:weiboShare(1);">微博</a>
+            {else}
+              <a href="javascript:weiboShare(0);">微博</a>
+            {/if}
+          {/if}
+          
+          {if $userid==$thread.createbyid}
+            <a href="/thread/editthread/{$thread.id}/">编辑</a>
+          {/if}
         </div>
-      {/if}
       
       <div style="text-align:center;">
         {if $iPhone}
@@ -188,5 +231,21 @@ function replyto(floor,name){
     </div>
     
   </div>
-  
+</div>
+
+
+
+<div class="modal hide fade" id="weiboshareDialog">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>分享到新浪微博</h3>
+  </div>
+  <div class="modal-body">
+    <p>内容：</p>
+    <textarea id="weibocontent" style="width:90%;height:80px;"></textarea>
+  </div>
+  <div class="modal-footer">
+    <a href="javascript:closeWeiboShare();" class="btn">取消</a>
+    <a id="sendbutton" href="javascript:sendweibo();" class="btn btn-primary">发送</a>
+  </div>
 </div>
