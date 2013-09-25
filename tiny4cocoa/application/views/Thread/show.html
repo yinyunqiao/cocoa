@@ -33,9 +33,9 @@ function weiboShare(owner) {
   var href = window.location.href.split('#')[0];
   var weibotext;
   if(owner==1)
-    weibotext = "我在 #tiny4cocoa 发布了一个帖子《";
+    weibotext = "我在 #tiny4cocoa# 发布了一个帖子《";
   else
-    weibotext = "我在 #tiny4cocoa 发现了一个帖子《";   
+    weibotext = "我在 #tiny4cocoa# 发现了一个帖子《";   
   weibotext += threadtitle + "》 " + href;
   $("#weibocontent").val(weibotext);
   $('#weiboshareDialog').modal();
