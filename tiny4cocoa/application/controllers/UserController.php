@@ -257,9 +257,7 @@ class UserController extends baseController
     	} catch (OAuthException $e) {
     	}
     }
-    var_dump($token);
     if ($token) {
-      
       $weiboModel = new WeiboModel();
       $weiboModel->setToken($token["access_token"]);
       header("location:/user/weibo/");
