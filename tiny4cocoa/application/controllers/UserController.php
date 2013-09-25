@@ -262,6 +262,7 @@ class UserController extends baseController
       
       $weiboModel = new WeiboModel();
       $weiboModel->setToken($token["access_token"]);
+      header("location:/user/weibo/");
     }else {      
       echo '绑定失败！<a hrer="/user/weibo/">请重试</a>';
     }
