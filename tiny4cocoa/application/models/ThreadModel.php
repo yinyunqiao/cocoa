@@ -10,13 +10,13 @@ class ThreadModel extends baseDbModel {
   }
   
   
-  public function threads($page,$pageSize) {
+  public function threads($page,$pageSize,$order = "`updatedate` DESC") {
     
     $start = ($page-1)*$pageSize;
     $sql = 
-    "SELECT * FROM `threads`
-    ORDER BY `updatedate` DESC 
-    limit $start,$pageSize;";
+      "SELECT * FROM `threads`
+      ORDER BY $order 
+      limit $start,$pageSize;";
     $result =  $this->fetchArray($sql);
     $ret = array();
     if(count($result)==0)

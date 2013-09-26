@@ -7,7 +7,10 @@ body {
 <div class="row">
   <div class="span8">
     <div style="padding: 10px;margin-bottom: 30px;" class="content-unit">
-    <strong>讨论区</strong>
+    <p class="pull-right">
+      <a href="/thread/">最新</a> | <a href="/thread/hot/">最热</a> | <a href="/thread/cold/">最冷</a>
+    </p>
+    <strong>讨论区 {$threadtitle}</strong>
     {foreach from=$threads item=item}
     <div class="threadblock">
       <span class="label label-info pull-right" style="margin-top:5px;">{$item.replys}</span>

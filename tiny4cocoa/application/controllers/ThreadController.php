@@ -9,6 +9,20 @@ class ThreadController extends baseController
  
   public function indexAction() {
     
+    $this->baseThreadIndex("index","`updatedate` DESC");
+  }
+  
+  public function hotAction() {
+    
+    $this->baseThreadIndex("hot","`replys` DESC","最热帖");
+  }
+  
+  public function coldAction() {
+    
+    $this->baseThreadIndex("cold","`replys`,id DESC","最冷贴");
+  }
+  function baseThreadIndex($action,$order,$title="") {
+    
     $page = $this->intVal(3);
     if($page==1) {
       
@@ -22,8 +36,8 @@ class ThreadController extends baseController
     $threadModel = new ThreadModel();
     $threadPageSize = 40;
     $threadCount = $threadModel->threadCount();
-    $threads = $threadModel->threads($page,$threadPageSize);
-		$pageControl = ToolModel::pageControl($page,$threadCount,$threadPageSize,"<a href='/thread/index/#page#/'>");
+    $threads = $threadModel->threads($page,$threadPageSize,$order);
+		$pageControl = ToolModel::pageControl($page,$threadCount,$threadPageSize,"<a href='/thread/$action/#page#/'>");
       
     $this->_mainContent->assign("threads",$threads);
     $this->_mainContent->assign("pageControl",$pageControl);
@@ -36,14 +50,16 @@ class ThreadController extends baseController
     $toplist = $toplistModel->toplist();
     $this->_mainContent->assign("toplist",$toplist);
     
-    if($page==1)
-      $this->setTitle("讨论区");
-    else
-      $this->setTitle("讨论区 第 $page 页");
+    $this->_mainContent->assign("threadtitle",$title);
     
+    if($page==1)
+      $this->setTitle("讨论区 $title");
+    else
+      $this->setTitle("讨论区 $title 第 $page 页");
+    
+    $this->viewFile="Thread/index.html";
     $this->display();
   }
-  
   public function showAction() {
     
     $id = $this->intVal(3);
