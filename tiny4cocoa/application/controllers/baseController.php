@@ -67,8 +67,12 @@
 		public function display($viewfile="") 
 		{
 			$this->endtime = microtime(true);
-			$this->_view->assign("pagetime",round(($this->endtime-$this->begintime)*1000.0,3));
-			
+      $time = round(($this->endtime-$this->begintime)*1000.0);
+			$this->_view->assign("pagetime",$time);
+      if($time>300) {
+        $logModel = new LogModel();
+        $logModel->slowRequest($time);
+      }
 			if (!empty($viewfile)) {
 				$this->_mainContent->assign("retUrl",$_SERVER['REQUEST_URI']);
 				$this->_view->assign("retUrl",$_SERVER['REQUEST_URI']);
