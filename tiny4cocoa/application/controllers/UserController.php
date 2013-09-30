@@ -119,6 +119,13 @@ class UserController extends baseController
     $this->display();
   }
   
+  public function resendvalidateemailAction() {
+    
+    $userModel = new UserModel();
+    $userid = $userModel->checklogin();
+    $userModel->sendValidateMail($userid);
+    $this->display();
+  }
   
   public function validateAction() {
     

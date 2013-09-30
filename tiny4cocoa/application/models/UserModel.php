@@ -73,7 +73,7 @@ class UserModel extends baseDbModel {
     $mailModel = new MailModel();
     $v = md5($user["username"].$user["salt"].$user["email"]);
     $page = "<p>你好，</p>
-    <p>您收到这封邮件的原因是，有人使用这个邮箱地址注册了tiny4cocoa社区 http://tiny4cocoa.com 。如果您确定这不是您自己的行为，请删除这封邮件。</p>
+    <p>您收到这封邮件的原因是，有人使用这个邮箱地址注册了tiny4cocoa社区 http://tiny4cocoa.com ,id为 $user[username]。如果您确定这不是您自己的行为，请删除这封邮件。</p>
     
     <p>如果您可以确认是您自己的注册，请点击链接完成验证 <a href=http://tiny4cocoa.com/user/validate/?user=$user[uid]&v=$v>邮件验证</a></p>
     ";
