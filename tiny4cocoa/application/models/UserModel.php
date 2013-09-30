@@ -161,6 +161,7 @@ class UserModel extends baseDbModel {
       $data["userid"] = $result[0]["uid"];
       $data["salt"] = $result[0]["salt"];
       $this->setSessionAndCookie($data);
+      $this->updateLoginToDb($_SESSION["userid"]);
       return $result[0]["uid"];
     }
   }
@@ -175,11 +176,21 @@ class UserModel extends baseDbModel {
     } else {
       
       $this->cookie2Session();
-      if($_SESSION["userid"])
+      if($_SESSION["userid"]){
+        
+        $this->updateLoginToDb($_SESSION["userid"]);
         return $_SESSION["userid"];
+      }
     }
   }
 
+  private function updateLoginToDb($userid) {
+    
+    $time = time();
+    $ip = ToolModel::getRealIpAddr();
+    $sql = "UPDATE `cocoabbs_uc_members` SET `lastloginip`='$ip', `lastlogintime`=$time WHERE `uid` = $userid;";
+    $this->run($sql);
+  }
   private function cookie2Session() {
     
     if(!$_COOKIE["TINY4COCOA_USERID"])
