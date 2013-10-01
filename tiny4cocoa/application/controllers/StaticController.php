@@ -30,6 +30,7 @@ class StaticController extends tinyApp_Controller
     include("$framework/jquery.hotkeys/jquery.hotkeys.js");
     include("$framework/flot/jquery.flot.js");
     include("$framework/flot/jquery.flot.categories.js");
+    include("$framework/Jcrop/js/jquery.Jcrop.min.js");
     include("$path/base.js");
   }
 	
@@ -64,6 +65,7 @@ class StaticController extends tinyApp_Controller
     include("$framework/wmd/wmd.css");
     include("$bootstrap/bootstrap.min.css");
     include("$bootstrap/bootstrap-responsive.min.css");
+    include("$framework/Jcrop/css/jquery.Jcrop.min.css");
     include("$path/site.css");
   }
 }

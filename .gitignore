@@ -10,3 +10,4 @@ uc_server/data
 newsupload/*
 rsscache/*
 tiny4cocoa/rsscache/*
+uploadtemp/*

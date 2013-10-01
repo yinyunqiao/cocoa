@@ -161,11 +161,31 @@ class UserController extends baseController
   
   public function avatarAction() {
     
-    if($this->userid==0){
-      header("location: /");
+    // if($this->userid==0){
+    // 
+    //   header("location: /");
+    //   die();
+    // }
+    
+    if(isset($_FILES['ImageFile'])) {
+    
+      $this->uploadFile();
       die();
     }
+    $avatar = DiscuzModel::get_avatar($this->userid,"small");
+    $this->_mainContent->assign("avatar",$avatar);
     $this->display();
+  }
+  
+  private function uploadFile() {
+    
+  	if(!isset($_FILES['ImageFile']) || !is_uploaded_file($_FILES['ImageFile']['tmp_name']))
+      die("ERROR");
+    $discuzPath = dirname(dirname(dirname(dirname(__FILE__))));
+    $savepath = "$discuzPath/uploadtemp/";
+    $uploaderModel = new UploaderModel();
+    $filename = $uploaderModel->savetoTempDir("ImageFile",$savepath);
+    echo $filename;
   }
   
   public function emailsettingAction() {
