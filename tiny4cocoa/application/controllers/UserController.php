@@ -161,11 +161,11 @@ class UserController extends baseController
   
   public function avatarAction() {
     
-    // if($this->userid==0){
-    // 
-    //   header("location: /");
-    //   die();
-    // }
+    if($this->userid==0){
+    
+      header("location: /");
+      die();
+    }
     
     if(isset($_FILES['ImageFile'])) {
     
