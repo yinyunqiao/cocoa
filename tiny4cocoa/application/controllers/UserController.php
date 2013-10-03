@@ -172,11 +172,62 @@ class UserController extends baseController
       $this->uploadFile();
       die();
     }
+    
+    if($_POST) {
+      
+      $this->saveAvatar();          
+      die();
+    }
     $avatar = DiscuzModel::get_avatar($this->userid,"small");
     $this->_mainContent->assign("avatar",$avatar);
     $this->display();
   }
   
+  private function saveAvatar() {
+    
+    $discuzPath = dirname(dirname(dirname(dirname(__FILE__))));
+    $uploaderModel = new UploaderModel();
+    $filename =  $discuzPath.$_POST["fileurl"];
+    $image = ToolModel::createImageFromFile($filename);
+    unlink($filename);
+    $imagex = imagesx($image);
+    $imagey = imagesy($image);
+    $cx = $_POST["cx"]*$imagex/$_POST["iw"];
+    $cy = $_POST["cy"]*$imagey/$_POST["ih"];
+    $cw = $_POST["cw"]*$imagex/$_POST["iw"];
+    $ch = $_POST["ch"]*$imagey/$_POST["ih"];
+    
+    $image1 = $uploaderModel->crop($image,
+                      $cx,
+                      $cy,
+                      $cw,
+                      $ch,
+                      180,
+                      180);
+    $image2 = $uploaderModel->crop($image,
+                      $cx,
+                      $cy,
+                      $cw,
+                      $ch,
+                      80,
+                      80);
+    $image3 = $uploaderModel->crop($image,
+                      $cx,
+                      $cy,
+                      $cw,
+                      $ch,
+                      48,
+                      48);
+                      
+    $userModel = new UserModel();    
+    $userid =  $userModel->checklogin();
+    $avpath = DiscuzModel::get_avatar_path($userid,"big");
+    imagejpeg($image1,$avpath,85);                  
+    $avpath = DiscuzModel::get_avatar_path($userid,"middle");
+    imagejpeg($image2,$avpath,85);                  
+    $avpath = DiscuzModel::get_avatar_path($userid,"small");
+    imagejpeg($image3,$avpath,85);                  
+  }
   private function uploadFile() {
     
   	if(!isset($_FILES['ImageFile']) || !is_uploaded_file($_FILES['ImageFile']['tmp_name']))

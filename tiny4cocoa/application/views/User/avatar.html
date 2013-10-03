@@ -1,87 +1,139 @@
 <script type="text/javascript">
-
-var jcrop_api,
-    boundx,
-    boundy;
-    
 $(document).ready(function() { 
-  $('#UploadForm').on('submit', function(e) {
-    e.preventDefault();
-    $('#SubmitButton').attr('disabled', '');
-    $("#output_ret").html('<div style="padding:10px"><span>上传中...</span></div>');
-    $(this).ajaxSubmit({
-    });
+  
+  var jcrop_api,
+      boundx,
+      boundy,
+
+      $preview = $('#preview-pane'),
+      $pcnt = $('#preview-pane .preview-container'),
+      $pimg = $('#preview-pane .preview-container img'),
+      
+      xsize = $pcnt.width(),
+      ysize = $pcnt.height(),
+      
+      fileurl,cx,cy,cw,ch
+      ;
+  
+  $('#SubmitButton').click(function(){
+    
+    var imgVal = $('#ImageFile').val();
+    if(imgVal=="") {
+      alert("请先选择文件");
+      return;
+    }
+      
+      $('#SubmitButton').hide();
+      $('#ImageFile').hide();
+      $("#output_ret").html('<div style="padding:10px"><span>上传中...</span></div>');
+      $("#UploadForm").ajaxSubmit(function(responseText, statusText, xhr, $form){
+
+        if(responseText=="ERROR") {
+          $("#output_ret").html('<div style="padding:10px"><span>上传失败，请重试。(请不要使用太大的文件)</span></div>');
+          return;
+        }
+
+        fileurl = "/uploadtemp/"+responseText;
+        $("#output_ret").html('<img id="selectimage" src="' + fileurl + '">');
+        $("#preimage").attr("src",fileurl);
+        $('#SaveAvatarButton').show();
+        $("#selectimage").Jcrop({
+          onChange: updatePreview,
+          onSelect: updatePreview,
+          setSelect: [ 0, 0, 50, 50 ],
+          aspectRatio: 1
+        },function(){
+            var bounds = this.getBounds();
+            boundx = bounds[0];
+            boundy = bounds[1];
+            jcrop_api = this;
+            $preview.appendTo(jcrop_api.ui.holder);
+          });
+      
+      });
+  });
+  
+  function updatePreview(c){
+  
+    
+    if (parseInt(c.w) > 0)
+    {
+      var rx = xsize / c.w;
+      var ry = ysize / c.h;
+
+      $pimg.css({
+        width: Math.round(rx * boundx) + 'px',
+        height: Math.round(ry * boundy) + 'px',
+        marginLeft: '-' + Math.round(rx * c.x) + 'px',
+        marginTop: '-' + Math.round(ry * c.y) + 'px'
+      });
+      cx = c.x;
+      cy = c.y;
+      cw = c.w;
+      ch = c.h;
+    }
+  }
+
+  $('#SaveAvatarButton').bind("click",function() {
+    
+    $.post("/user/avatar/",{
+      fileurl:fileurl,
+      cx:cx,
+      cy:cy,
+      cw:cw,
+      ch:ch,
+      iw:$("#selectimage").width(),
+      ih:$("#selectimage").height()
+      },
+      function(){
+            alert("头像更新成功，缓存原因，可能暂时你还不能看到变化，强制刷新页面即可。");
+        window.location = "/";
+      }
+    );
+    
   });
 }); 
-
-function afterSuccess(responseText, statusText, xhr, $form)  {
-  
-  $('#UploadForm').resetForm();
-  $('#SubmitButton').removeAttr('disabled');
-  if(responseText=="ERROR") {
-    $("#output_ret").html('<div style="padding:10px"><span>上传失败，请重试。(请不要使用太大的文件)</span></div>');
-    return;
-  }
-  $("#output_ret").html('<img id="selectimage" src="/uploadtemp/' + responseText + '">');
-  $("#previewimg").css("background-image",
-    "url(/uploadtemp/"+responseText+")");
-  $("#selectimage").Jcrop({
-    onSelect: showCoords,
-    onChange: showCoords,
-    setSelect: [ 0, 0, 50, 50 ],
-    aspectRatio: 1
-  },function(){
-      // Use the API to get the real image size
-      var bounds = this.getBounds();
-      boundx = bounds[0];
-      boundy = bounds[1];
-      // Store the API in the jcrop_api variable
-      jcrop_api = this;
-
-      // Move the preview into the jcrop container for css positioning
-      $preview.appendTo(jcrop_api.ui.holder);
-    });
-} 
-
-function showCoords(c){
-  
-  w = boundx*48/c.w;
-  h = boundy*48/c.h;
-  x = -c.x*48/boundx;
-  y = -c.y*48/boundy;
-  
-  $("#previewimg").css('background-position',x+"px "+y+"px");
-  $("#previewimg").css('background-size',w+"px "+h+"px");
-  $("#debug").html(c.x+","+c.y+";"+c.w+","+c.h);
-}
-
-function updatePre(c){
-  
-  
-}
 </script>
 <style>
-#previewimg {
-  float:right;
-  width:48px;
-  height:48px;
-  background-image:url('{$avatar}');
-  border:solid 5px white;
-  background-repeat:no-repeat;
+.jcrop-holder #preview-pane {
+  padding: 6px;
+  border: 1px rgba(0,0,0,.4) solid;
+  background-color: white;
+
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+
+  -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+#preview-pane .preview-container {
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
 }
 </style>
 <div class="row">
   <div class="span3"></div>
   <div class="span6">
     <div class="content-unit">
-      <div id="preview-pane">
+      <div id="preview-pane" style="float:right;">
         <div class="preview-container">
-          <img src="demo_files/sago.jpg" class="jcrop-preview" alt="Preview" />
+          <img src="{$avatar}" class="jcrop-preview" alt="Preview" id="preimage"/>
         </div>
       </div>
       <h4>头像修改</h4>
       <div class="threadblock">
-        敬请等待，尚未完成此功能
+        <form action="/user/avatar/" method="post" enctype="multipart/form-data" id="UploadForm">
+          <input name="ImageFile" type="file" id="ImageFile" required/>
+          <input type="button"  id="SubmitButton" value="上传"/>
+        </form>
+        <div id="output_ret"></div>
+        <p>
+        <input type="button" id="SaveAvatarButton" value="保存头像" style="display:none;"/>
+      </p>
       </div>
     </div>
   </div>

@@ -215,4 +215,26 @@ class ToolModel {
     }
     return array_unique($user);
   }
+  
+  
+  public function createImageFromFile($filename) {
+    
+    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    switch($ext) {
+      
+      case 'png':
+        $image =  imagecreatefrompng($filename);
+        break;
+      case 'gif':
+        $image =  imagecreatefromgif($filename);
+        break;      
+      case 'jpeg':
+      case 'jpg':
+        $image = imagecreatefromjpeg($filename);
+        break;
+      default:
+        $image = imagecreatefromjpeg($filename);
+    }
+    return $image;
+  }
 }
