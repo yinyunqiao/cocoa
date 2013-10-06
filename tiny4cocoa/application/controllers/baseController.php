@@ -153,5 +153,14 @@
       
       $this->_view->assign("title","$title - $this->sitename");
     }
+    
+    
+    public function message($title,$message) {
+      
+      $this->viewFile="Message/message.html";
+      $this->_mainContent->assign("title",$title);
+      $this->_mainContent->assign("message",$message);
+      $this->display();
+    }
 	}
 	

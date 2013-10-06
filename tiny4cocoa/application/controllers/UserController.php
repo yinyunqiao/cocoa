@@ -8,8 +8,7 @@ class UserController extends baseController
   }
  
   public function indexAction() {
-    
-    
+
     $page = $this->intVal(3);
     if($page==0)
       $page=1;
@@ -27,7 +26,6 @@ class UserController extends baseController
   }
   
   public function recentAction() {
-    
     
     $page = $this->intVal(3);
     if($page==0)
@@ -358,4 +356,22 @@ class UserController extends baseController
       return "ok";
   }
   
+  public function passwordAction() {
+    
+    if($_POST){
+      
+      $passwordmd5 = md5($_POST["oldpassword"]);
+      $userModel = new UserModel();
+      if(!$userModel->passwordMatch($this->userid,$passwordmd5)){
+        
+        $this->message("密码修改失败","老密码不对<p><a href='/user/password/'>返回修改</a></p>");
+        die();
+      }
+      $userModel = new UserModel();
+      $userModel->changePassword($this->userid,$_POST["newpassword"]);
+      $this->message("密码修改成功","密码修改成功");
+      die();
+    }
+    $this->display();
+  }
 }
