@@ -149,6 +149,27 @@ class UserModel extends baseDbModel {
      return $ret["c"];
   }
   
+  public function passwordMatch($userid,$passwordmd5) {
+    
+    $sql = "SELECT `uid` FROM `cocoabbs_uc_members` WHERE `uid` = '$userid' AND `password` = MD5(CONCAT('$passwordmd5',`salt`));";
+    $result = $this->fetchArray($sql);
+    if($result)
+      return 1;
+    else
+      return 0;
+  }
+  
+  public function changePassword($userid,$password) {
+    
+    $salt = rand(100000,999999);
+    $passindb = md5(md5($password).$salt);
+    $sql = 
+      "UPDATE `cocoabbs_uc_members` 
+      SET `salt` = '$salt',`password` = '$passindb' 
+      WHERE `uid` = $userid
+      ";
+    $this->run($sql);
+  }
   public function login($data) {
     
     $username = $data["name"];
