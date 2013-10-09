@@ -168,8 +168,34 @@ class UserModel extends baseDbModel {
       SET `salt` = '$salt',`password` = '$passindb' 
       WHERE `uid` = $userid
       ";
+      
     $this->run($sql);
   }
+  
+  public function resetPassword($username) {
+    
+    $data["userid"] = $this->useridByName($username);
+    if($data["userid"]==0)
+      return 0;
+    
+    $ticketModel = new TicketModel();
+    $data = $ticketModel->newTicket($data["userid"]);
+    $userinfo = $this->userInfo($data["userid"]);
+    
+    $mail = $userinfo["email"];
+    $mailModel = new MailModel();
+    $page = "<p>你好，</p>
+    <p>您收到这封邮件的原因是，有人请求重置 $username 在 tiny4cocoa社区的密码。如果您确定这不是您自己的行为，请删除这封邮件。</p>
+    
+    <p>如果您可以确认是您自己的行为，请点击链接重置密码 <a href=http://tiny4cocoa.com/user/resetpassword/?ticket=$data[ticket]>重置密码</a></p>";
+     $mailModel->generateMail(
+            $mail,
+             "Tiny4Cocoa论坛 <tiny4cocoa@tiny4.org>", 
+            "Tiny4Cocoa社区－重置密码邮件", 
+            $page);
+    return 1;
+  }
+  
   public function login($data) {
     
     $username = $data["name"];

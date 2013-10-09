@@ -1,4 +1,6 @@
 <?php
+require_once  dirname(dirname(dirname(__FILE__))) . '/lib/recaptcha/recaptchalib.php';
+
 class UserController extends baseController
 {
   public function __construct($pathinfo,$controller) {
@@ -372,6 +374,79 @@ class UserController extends baseController
       $this->message("密码修改成功","密码修改成功");
       die();
     }
+    $this->display();
+  }
+  
+  public function resetpasswordAction() {
+    
+    if($_POST) {
+      
+      $ticket = $_POST["ticket"];
+      $ticketModel = new TicketModel();
+      $data = $ticketModel->isTicketExistedAndVaild($ticket);
+      if(!$data){
+      
+        $this->message("请求过期","你的重置密码请求已经过期，请重新申请。");
+        die();
+      }
+      $this->message("修改成功","你的密码已经修改成功了。");
+      $userModel = new UserModel();
+      $userModel->changePassword($data["userid"],$_POST["password"]);
+      $ticketModel->removeTicket($ticket);
+      die();
+    }
+    $ticket = $_GET["ticket"];
+    if($ticket=="") {
+      $this->message("这里一片荒芜","你走到了无人之地");
+      die();
+    }
+    $ticketModel = new TicketModel();
+    $data = $ticketModel->isTicketExistedAndVaild($ticket);
+    if(!$data){
+      
+      $this->message("请求过期","你的重置密码请求已经过期，请重新申请。");
+      die();
+    }
+    $this->_mainContent->assign("ticket",$ticket);
+    $this->display();
+  }
+  public function forgotpasswordAction() {
+    if($_POST) {
+      
+      $privatekey = "6LcGEuMSAAAAAAohpDLjBTKW9WhcoIdrnopcBzgY";
+      if ($_POST["recaptcha_response_field"]) {
+          
+        $resp = recaptcha_check_answer ($privatekey,
+                                        $_SERVER["REMOTE_ADDR"],
+                                        $_POST["recaptcha_challenge_field"],
+                                        $_POST["recaptcha_response_field"]);
+        if ($resp->is_valid) {
+          $userModel = new UserModel();
+          $userid = $userModel->resetPassword($_POST["name"]);
+          if($userid==0)
+            echo "user_not_found";
+          else
+            echo "ok";
+        } else {
+          $error = $resp->error;
+          echo $error;
+        }
+      }
+      else
+        echo "error";
+      die();
+    }
+    
+    
+    $flag = $this->strVal(3);
+    if($flag=="ok"){
+      
+      $this->message(
+            "成功",
+            "重置密码的邮件已经发送到你的注册邮箱，请耐心等待，然后按照邮件提示进行。");
+      die();
+    }
+
     $this->display();
   }
 }
