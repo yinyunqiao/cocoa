@@ -28,6 +28,7 @@ $(document).ready(function() {
       <h4>邮件通知选项</h4>
       <div class="threadblock" style="padding-left:20px;">
         <form id="updateform" action="/user/emailsetting/" method="post" accept-charset="utf-8">
+          <input type="hidden" name="fillinempty" value="3721"/>
         <p>
         <input type="checkbox" name="atnotify" value="1" id="atnotify"
         {if $emailatnotification}checked="checked"{/if}
