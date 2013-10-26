@@ -194,6 +194,13 @@ class ToolModel {
     return $html;
   }
   
+  function makeDeepDir($path) {
+    
+    if(file_exists($path))
+      return;
+    system("mkdir -p $path");
+  }
+  
   function autoDetect($html) {
 
     //检测用户名提及

@@ -222,11 +222,13 @@ class UserController extends baseController
     $userModel = new UserModel();    
     $userid =  $userModel->checklogin();
     $avpath = DiscuzModel::get_avatar_path($userid,"big");
+    $path = dirname($avpath);
+    ToolModel::makeDeepDir($path);
     imagejpeg($image1,$avpath,85);                  
     $avpath = DiscuzModel::get_avatar_path($userid,"middle");
     imagejpeg($image2,$avpath,85);                  
     $avpath = DiscuzModel::get_avatar_path($userid,"small");
-    imagejpeg($image3,$avpath,85);                  
+    imagejpeg($image3,$avpath,85);
   }
   private function uploadFile() {
     
