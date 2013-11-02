@@ -62,6 +62,23 @@
 
 <div class="span3">
   <div class="siderbar-unit">
+  
+  <form action="http://www.google.com" id="cse-search-box">
+    <div>
+      <input type="hidden" name="cx" value="partner-pub-7732761529337293:5381403806" />
+      <input type="hidden" name="ie" value="UTF-8" />
+      <input type="text" name="q" size="55" />
+      <input type="submit" name="sa" value="&#x641c;&#x7d22;" />
+    </div>
+  </form>
+
+  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=zh-Hans"></script>
+  <script type="text/javascript" src="http://www.google.com/cse/query_renderer.js"></script>
+  <div id="queries"></div>
+  <script src="http://www.google.com/cse/api/partner-pub-7732761529337293/cse/5381403806/queries/js?oe=UTF-8&amp;callback=(new+PopularQueryRenderer(document.getElementById(%22queries%22))).render"></script>
+  
+</div>
+  <div class="siderbar-unit">
     <strong>置顶</strong>
     {foreach from=$toplist item=link}
 	  <div class="newsblock">
