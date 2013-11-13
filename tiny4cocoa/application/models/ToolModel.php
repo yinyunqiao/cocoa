@@ -244,4 +244,29 @@ class ToolModel {
     }
     return $image;
   }
+  
+  public function addInCententAd($content) {
+    
+    $parts = preg_split("/<\/p>/",$content);
+    if(count($parts)<7)
+      return $content;
+    $ad = <<<EOD
+      <div style="float:left;padding:2px;">
+        <script type="text/javascript"><!--
+          google_ad_client = "ca-pub-7732761529337293";
+          /* tiny4cocoa正方形250&#42;250 */
+          google_ad_slot = "7613412479";
+          google_ad_width = 250;
+          google_ad_height = 250;
+          //-->
+        </script>
+        <script type="text/javascript"
+        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+      </div>
+EOD;
+    $parts[3].= $ad;
+    $content = join("</p>",$parts);
+    return $content;
+  }
 }

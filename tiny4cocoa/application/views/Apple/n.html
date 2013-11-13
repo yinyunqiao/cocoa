@@ -4,41 +4,17 @@
       <meta itemprop="thumbnailUrl" content="http://tiny4cocoa.com/newsupload/{$news.filename}_s.{$news.ext}"/>
       <h1 class="title" itemprop="name">{$news.title}</h1>
       <hr/>
-      <p class="desc">by <span itemprop="author">{$news.author}</span></p>
-      <div class="content">
-        {if $iPhone}
-        {else}
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- 横向链接 -->
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:468px;height:15px"
-             data-ad-client="ca-pub-7732761529337293"
-             data-ad-slot="1141177408"></ins>
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        {/if}
-        {$news.content}
-        <p>原文地址：<a href="{$news.link}">{$news.link}</a></p>
-        {if $iPhone}
-        {else}
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- 横向链接 -->
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:468px;height:15px"
-             data-ad-client="ca-pub-7732761529337293"
-             data-ad-slot="1141177408"></ins>
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        {/if}
-      </div>
       <div style="text-align:center;">
         {if $iPhone}
           <script type="text/javascript">BAIDU_CLB_fillSlot("745564");</script> 
         {else}
           <script type="text/javascript">BAIDU_CLB_fillSlot("745560");</script>
         {/if}
+      </div>  
+      <p class="desc">by <span itemprop="author">{$news.author}</span></p>
+      <div class="content">
+        {$news.content}
+        <p>原文地址：<a href="{$news.link}">{$news.link}</a></p>
       </div>
     </div>
   </div>
