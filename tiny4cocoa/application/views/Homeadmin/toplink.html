@@ -1,0 +1,32 @@
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#toplinkform").validate();
+});
+</script>
+<h3>管理界面－顶栏广告</h3>
+<div class="row">
+  <div class="span7">
+    <ol>
+      {foreach from=$links item=link}
+      <li>
+      {if $smarty.now>$link.expiretime && $link.expiretime!=-1}<del style="color:red;">{/if}
+      <a href="{$link.link}" target="_blank">{$link.title}</a> 过期时间：
+      {if $link.expiretime == -1}
+        无限
+      {else}
+          {$link.expiretime|date_format:"%D %R"}
+      {/if}
+      {if $smarty.now>$link.expiretime && $link.expiretime!=-1}</del>{/if}
+      </li>
+    {/foreach}
+    </ol>
+  </div>
+  <div class="span5">
+    <form id="toplinkform" action="/homeadmin/toplink/" method="post" accept-charset="utf-8">
+        <label for="title">title</label><input type="text" name="title" value="" id="title" required minlength="5">
+        <label for="link">link</label><input type="text" name="link" value="" id="link" required minlength="5">
+        <label for="expire">expire</label><input type="text" name="expire" value="" id="expire" required>小时
+      <p><input type="submit" value="Add &rarr;"></p>
+    </form>
+  </div>
+</div>

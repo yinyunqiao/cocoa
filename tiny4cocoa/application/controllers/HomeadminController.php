@@ -326,4 +326,18 @@ class HomeadminController extends baseController
     $this->_mainContent->assign("days",$days);
     $this->display();
   }
+  
+  public function toplinkAction() {
+    
+    $toplinkadsModel = new ToplinkadsModel();
+    if($_POST) {
+      
+      $toplinkadsModel->add($_POST);
+      header("location:/homeadmin/toplink/");
+      die();
+    }
+    $links = $toplinkadsModel->links();
+    $this->_mainContent->assign("links",$links);  
+    $this->display();
+  }
 }

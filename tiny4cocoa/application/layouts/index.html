@@ -65,6 +65,10 @@ window.google_analytics_uacct = "UA-53077-22";
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">你好,
                  {$username}<b class="caret"></b></a>
               <ul class="dropdown-menu">
+                {if $userid==2}
+                  <li><a href="/homeadmin/toplink/">Toplink Ads</a></li>
+                  <li class="divider"></li>
+                {/if}
                 <li><a href="/user/password/">修改密码</a></li>
                 <li><a href="/user/avatar/">修改头像</a></li>
                 <li><a href="/user/emailsetting/">邮件通知选项</a></li>
@@ -98,9 +102,11 @@ window.google_analytics_uacct = "UA-53077-22";
      <a href="/user/resendvalidateemail/">点击重新发送验证邮件</a>（点击前，请确定已检查过您的邮箱）。
     </div>
     {/if}
-    <div class="alert alert-info">
-      <a href="/thread/show/1392/">推荐下《MacTalk·人生元编程》</a>
-    </div>
+    {if $toplink}
+      <div class="alert {$toplink.alert}">
+        <a href="{$toplink.link}">{$toplink.title}</a>
+      </div>
+    {/if}
   	{$mainContent}
   </div>
   <footer class="footer">

@@ -55,6 +55,18 @@
       $this->userid = $userModel->checklogin();
       $this->username = $userModel->username($this->userid);
       $this->isEmailValidated = $userModel->isEmailValidated($this->userid);
+      
+      $toplinkadsModel = new ToplinkadsModel();
+      $toplink = $toplinkadsModel->toplink();
+      if($toplink) {
+        
+        $alerttype = array();
+        $alerttype[] = "alert-info";
+        $alerttype[] = "alert-success";
+        $alerttype[] = "";
+			  $toplink["alert"] = $alerttype[rand(0,2)];
+      }
+      $this->_view->assign("toplink",$toplink);
 			$this->_view->assign("userid",$this->userid);
 			$this->_view->assign("username",$this->username);
 			$this->_view->assign("isEmailValidated",$this->isEmailValidated);
