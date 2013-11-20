@@ -68,7 +68,7 @@ class UserController extends baseController
     $userinfo["name"] = $userModel->username($id);
     $userinfo["image"] = DiscuzModel::get_avatar($id,"middle");
     $userinfo["threadscreate"] = $threadModel->threadsByUserid($id);
-    // $userinfo["threadsreply"] = $threadModel->threadsReplyByUserid($id);
+    $userinfo["threadsreply"] = $threadModel->threadsReplyByUserid($id);
     $this->_mainContent->assign("user",$userinfo);
     $this->display();
   }
