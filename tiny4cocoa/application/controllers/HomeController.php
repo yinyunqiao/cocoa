@@ -211,12 +211,6 @@ class HomeController extends baseController
     fclose($fp);
   }
   
-  public function testFeedAction() {
-    
-    $newsCenter = new NewscenterModel();
-    $newsCenter->testfeed();
-  }
-  
   public function updateFeedsAction() {
   	echo "<html>
   			<head>

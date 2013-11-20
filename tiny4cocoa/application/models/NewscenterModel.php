@@ -173,7 +173,7 @@ class NewscenterModel extends baseDbModel {
       "$host/api/amend/?id=$id&isTarget=$apple");
   }
   
-  public function rssItem2Data($rss) {
+  public function rssItem2Data($rss,$sid) {
     
     $data = array();
     $data["title"] = $rss["title"];
@@ -212,17 +212,6 @@ class NewscenterModel extends baseDbModel {
     return $data;
   }
   
-  public function testfeed() {
-    
-    $result = fetch_rss("http://techcrunch.cn/feed/");
-		foreach($result->items as $rss) {
-      
-      var_dump($rss);
-      $data = $this->rssItem2Data($rss);
-      var_dump($data);
-      die();
-    }
-  }
   public function update() {
     
     $sql = "SELECT `id`,`rss`,`url`,`name` FROM `newscenter_sources`;";
@@ -234,7 +223,7 @@ class NewscenterModel extends baseDbModel {
       $result = fetch_rss($site["rss"]);
   		foreach($result->items as $rss) {
         
-        $data = $this->rssItem2Data($rss);
+        $data = $this->rssItem2Data($rss,$site["id"]);
         $this->select("newscenter_items")->insert($data);
       }
     }
