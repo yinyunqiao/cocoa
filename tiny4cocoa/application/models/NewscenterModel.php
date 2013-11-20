@@ -215,6 +215,7 @@ class NewscenterModel extends baseDbModel {
     $result = fetch_rss("http://techcrunch.cn/feed/");
 		foreach($result->items as $rss) {
       
+      var_dump($rss);
       $data = $this->rssItem2Data($rss);
       var_dump($data);
       die();
