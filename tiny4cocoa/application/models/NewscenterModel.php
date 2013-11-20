@@ -175,18 +175,21 @@ class NewscenterModel extends baseDbModel {
   
   public function rssItem2Data($rss) {
     
-    
     $data = array();
     $data["title"] = $rss["title"];
     $data["link"] = $rss["link"];
     
     $data["content"] = $rss["atom_content"];
     if($data["content"] == "") {
-      if(is_array($rss["content"]))
+      if(is_array($rss["content"])) {
         $data["content"] = $rss["content"]["encoded"];
+      }
     }
-    if($data["content"] == "")
+    if($data["content"] == "") {
       $data["content"] = $rss["description"];
+      var_dump($rss["description"]);
+      //die();
+    }
     $imgRegx="/<img[^<>]*?src=\"(.*?)\"/";
     if(preg_match($imgRegx,$data["content"],$match)) {
       
