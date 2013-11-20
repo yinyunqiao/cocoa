@@ -187,8 +187,6 @@ class NewscenterModel extends baseDbModel {
     }
     if($data["content"] == "") {
       $data["content"] = $rss["description"];
-      var_dump($rss["description"]);
-      //die();
     }
     $imgRegx="/<img[^<>]*?src=\"(.*?)\"/";
     if(preg_match($imgRegx,$data["content"],$match)) {
@@ -212,6 +210,16 @@ class NewscenterModel extends baseDbModel {
     return $data;
   }
   
+  public function testfeed() {
+    
+    $result = fetch_rss("http://techcrunch.cn/feed/");
+		foreach($result->items as $rss) {
+      
+      $data = $this->rssItem2Data($rss);
+      var_dump($data);
+      die();
+    }
+  }
   public function update() {
     
     $sql = "SELECT `id`,`rss`,`url`,`name` FROM `newscenter_sources`;";
