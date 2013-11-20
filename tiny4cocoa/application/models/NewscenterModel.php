@@ -172,6 +172,43 @@ class NewscenterModel extends baseDbModel {
     ToolModel::getUrl(
       "$host/api/amend/?id=$id&isTarget=$apple");
   }
+  
+  public function rssItem2Data($rss) {
+    
+    
+    $data = array();
+    $data["title"] = $rss["title"];
+    $data["link"] = $rss["link"];
+    
+    $data["content"] = $rss["atom_content"];
+    if($data["content"] == "") {
+      if(is_array($rss["content"]))
+        $data["content"] = $rss["content"]["encoded"];
+    }
+    if($data["content"] == "")
+      $data["content"] = $rss["description"];
+    $imgRegx="/<img[^<>]*?src=\"(.*?)\"/";
+    if(preg_match($imgRegx,$data["content"],$match)) {
+      
+      $data["image"] = $match["1"];
+    }
+    $data["content"] = mysql_escape_string($data["content"]);
+    
+    $data["author"] = $rss["dc"]["creator"];
+    if($data["author"]=="")
+      $data["author"] = $rss["author"];
+    if($data["author"]=="")
+      $data["author"] = $site["name"];
+    
+		$pubdate = $rss["pubdate"];
+		if($pubdate == "")
+			$pubdate = $rss["updated"];
+		$data["pubdate"] = strtotime($pubdate);
+    $data["sid"] = $site["id"];
+    $data["urlmd5"] = md5($data["link"]);
+    return $data;
+  }
+  
   public function update() {
     
     $sql = "SELECT `id`,`rss`,`url`,`name` FROM `newscenter_sources`;";
@@ -182,34 +219,8 @@ class NewscenterModel extends baseDbModel {
       echo "<br/>".$site["name"];
       $result = fetch_rss($site["rss"]);
   		foreach($result->items as $rss) {
-        $data = array();
-        $data["title"] = $rss["title"];
-        $data["link"] = $rss["link"];
         
-        $data["content"] = $rss["atom_content"];
-        if($data["content"] == "")
-          $data["content"] = $rss["content"]["encoded"];
-        if($data["content"] == "")
-          $data["content"] = $rss["description"];
-        $imgRegx="/<img[^<>]*?src=\"(.*?)\"/";
-        if(preg_match($imgRegx,$data["content"],$match)) {
-          
-          $data["image"] = $match["1"];
-        }
-        $data["content"] = mysql_escape_string($data["content"]);
-        
-        $data["author"] = $rss["dc"]["creator"];
-        if($data["author"]=="")
-          $data["author"] = $rss["author"];
-        if($data["author"]=="")
-          $data["author"] = $site["name"];
-        
-  			$pubdate = $rss["pubdate"];
-  			if($pubdate == "")
-  				$pubdate = $rss["updated"];
-  			$data["pubdate"] = strtotime($pubdate);
-        $data["sid"] = $site["id"];
-        $data["urlmd5"] = md5($data["link"]);
+        $data = $this->rssItem2Data($rss);
         $this->select("newscenter_items")->insert($data);
       }
     }
