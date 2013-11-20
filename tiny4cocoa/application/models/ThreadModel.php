@@ -75,7 +75,8 @@ class ThreadModel extends baseDbModel {
   
   public function threadsReplyByUserid($userid) {
     
-    $sql = "SELECT * FROM `threads` where `createbyid` <> $userid AND `id` in (SELECT `threadid` FROM `thread_replys` WHERE `userid` = $userid GROUP BY `threadid`);";
+    $sql = "SELECT * FROM `threads` where `createbyid` <> $userid AND `id` in (SELECT `threadid` FROM `thread_replys` WHERE `userid` = $userid GROUP BY `threadid`) LIMIT 0,10;
+;";
     $result = $this->fetchArray($sql);
     $ret = array();
     if(count($result)==0)
