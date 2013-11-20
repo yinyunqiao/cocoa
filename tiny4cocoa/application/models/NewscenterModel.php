@@ -180,6 +180,8 @@ class NewscenterModel extends baseDbModel {
     $data["link"] = $rss["link"];
     
     $data["content"] = $rss["atom_content"];
+    if(strlen($data["content"]<10)
+      $data["content"] = "";
     if($data["content"] == "") {
       if(is_array($rss["content"])) {
         $data["content"] = $rss["content"]["encoded"];
