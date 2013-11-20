@@ -59,7 +59,9 @@ class ThreadModel extends baseDbModel {
   
   public function threadsByUserid($userid) {
     
-    $sql = "SELECT * FROM `threads` where `createbyid` = $userid;";
+    $sql = "SELECT `id`,`title`,`replys` FROM `threads` where `createbyid` = $userid 
+      ORDER BY `updatedate` DESC
+      LIMIT 0,20;";
     $result = $this->fetchArray($sql);
     $ret = array();
     if(count($result)==0)
@@ -75,7 +77,9 @@ class ThreadModel extends baseDbModel {
   
   public function threadsReplyByUserid($userid) {
     
-    $sql = "SELECT * FROM `threads` where `createbyid` <> $userid AND `id` in (SELECT `threadid` FROM `thread_replys` WHERE `userid` = $userid GROUP BY `threadid`) LIMIT 0,10;
+    $sql = "SELECT `id`,`title`,`replys` FROM `threads` where `createbyid` <> $userid AND `id` in (SELECT `threadid` FROM `thread_replys` WHERE `userid` = $userid GROUP BY `threadid`) 
+      ORDER BY `updatedate` DESC
+      LIMIT 0,20;
 ;";
     $result = $this->fetchArray($sql);
     $ret = array();
