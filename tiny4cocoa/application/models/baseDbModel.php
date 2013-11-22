@@ -129,7 +129,7 @@ class baseDbModel extends dbConnModel {
 	}
 	
 	//插入一个记录
-	public function insert($data) {
+	public function insert($data,$debug=0) {
 		
 		$table=$this->_table;
 		if($table=="")
@@ -145,7 +145,8 @@ class baseDbModel extends dbConnModel {
 		}
 		$vals=join(',',$v);
 		$sql="INSERT INTO $table ($keys)VALUES($vals);";
-		
+		if($debug==1)
+      var_dump($sql);
 		$result = mysql_query($sql);
 		if(!$result)
 		  return mysql_error();
