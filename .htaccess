@@ -11,6 +11,7 @@ RewriteRule ^os$ tiny4cocoa/public/index.php
 RewriteRule ^os/(.*)$ tiny4cocoa/public/index.php
 
 RewriteRule ^backend(.*)$ tiny4cocoa/public/index.php
+RewriteRule ^jobs(.*)$ tiny4cocoa/public/index.php
 
 RewriteRule ^thread/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^user(.*)$ tiny4cocoa/public/index.php

@@ -18,12 +18,31 @@ class JobsModel extends baseDbModel {
     }
   }
   
+  function newJobs() {
+    
+    $sql = "SELECT `id`,`department`,`salary`,`position`,`city` 
+        FROM `jobs`
+        ORDER BY `id` DESC 
+        LIMIT 0,10;";
+    $jobs = $this->fetchArray($sql);
+    return $jobs;
+  }
+  
+  function jobById($id) {
+    
+    $sql = "SELECT * FROM `jobs` WHERE `id` = $id";
+    $result = $this->fetchArray($sql);
+    return $result[0];
+  }
+  
   function lagou2job($lagou) {
     
     $job = $lagou;
     $job["createdate"] = time();
     $job["fromid"] = $job["id"];
     $job["from"] = "拉手网";
+    if($job["position"]=="iOS")
+      $job["position"] = "iOS开发工程师";
     unset($job["id"]);
     return $job;
   }
