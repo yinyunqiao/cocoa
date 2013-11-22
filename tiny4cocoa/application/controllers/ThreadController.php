@@ -109,13 +109,6 @@ class ThreadController extends baseController
     $toplistModel = new ToplistModel();
     $toplist = $toplistModel->toplist();
 
-    $touzi = rand(0,10);
-    if($touzi>3)
-      $showjob = 0;
-    else
-      $showjob = 1;
-    
-    $this->_mainContent->assign("showjob",$showjob);
     $this->_mainContent->assign("toplist",$toplist);
     $this->_mainContent->assign("isEmailValidated",$this->isEmailValidated);
     

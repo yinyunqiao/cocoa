@@ -103,9 +103,6 @@ function sendweibo() {
     {if $iPhone}
     {else}
     <div style="text-align:center;margin-bottom: 30px;">
-      {if $showjob==1}
-        <script type="text/javascript" src="/jobs/js/ad728/"></script>
-      {else}
       <script type="text/javascript"><!--
       google_ad_client = "ca-pub-7732761529337293";
       /* 728x90, 创建于 09-6-2 */
@@ -117,7 +114,6 @@ function sendweibo() {
       <script type="text/javascript"
       src="//pagead2.googlesyndication.com/pagead/show_ads.js">
       </script>
-      {/if}
     </div>
     {/if}
     
@@ -166,6 +162,13 @@ function sendweibo() {
           </div>
         {/foreach}
       </div>
+      
+      {if $iPhone}
+      {else}
+      <div style="text-align:center;margin-bottom: 30px;">
+          <script type="text/javascript" src="/jobs/js/ad728/"></script>
+      </div>
+      {/if}
     {/if}
     
     {if $userid==0}
