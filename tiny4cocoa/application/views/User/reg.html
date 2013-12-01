@@ -1,6 +1,16 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
+  
+  $.validator.addMethod(
+          "username_regex",
+          function(value, element, regexp) {
+              var re = new RegExp(regexp);
+              return this.optional(element) || re.test(value);
+          },
+          "用户名只能包含字母、数字、减号、下划线以及汉字"
+  );
+  
   $("#regform").validate({
     rules: { 
       email: { 
@@ -14,6 +24,7 @@ $(document).ready(function() {
         required:true,
         minlength:3,
         maxlength:25,
+        username_regex:/^[_\-a-zA-Z0-9\u4E00-\u9FFF]+$/,
         remote:"/user/ajaxcheck/name/",
       },
       password: {
