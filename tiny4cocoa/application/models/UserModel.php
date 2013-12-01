@@ -287,7 +287,34 @@ class UserModel extends baseDbModel {
     header("location:/");
   }
 
+  public function username_valid($name) {
+    
+    preg_match("/^[_\-a-zA-Z0-9\x{4E00}-\x{9FFF}]+$/u",$name,$matches);
+    if(count($matches)==0)
+      return FALSE;
+    if($this->isUserExisted($name))
+      return FALSE;
+    return TRUE;
+  }
 
+  public function email_valid($email) {
+    
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+      return FALSE; 
+    if(!preg_match('/@.+\./', $email))
+      return FALSE;
+    if($this->isEmailExisted($email))
+      return FALSE;
+    return TRUE;
+  }
+
+  public function password_valid($password) {
+    
+    if(strlen($password)<3 || strlen($password)>32)
+      return FALSE; 
+    return TRUE;
+  }
+  
   public function isUserExisted($name) {
     
     $ret = $this->select("cocoabbs_uc_members")->where("username = '$name'")->fetchAll();
@@ -306,12 +333,12 @@ class UserModel extends baseDbModel {
       return 0;
   }
   
-  public function reg($data) {
+  public function reg($username,$email,$password) {
     
-    $user["username"] = $data["name"];
+    $user["username"] = $username;
     $user["salt"] = rand(100000,999999);
-    $user["password"] = md5(md5($data["password"]).$user["salt"]);
-    $user["email"] = $data["email"];
+    $user["password"] = md5(md5($password).$user["salt"]);
+    $user["email"] = $email;
     $user["regip"] = ToolModel::getRealIpAddr();
     $user["regdate"] = time();
     $user["validated"] = 0;

@@ -104,13 +104,19 @@ class UserController extends baseController
     
     if($_POST) {
       
-      if(!$_POST["name"] || !$_POST["password"] || !$_POST["email"]) {
+      $userModel = new UserModel();
+      $username = trim($_POST["name"]);
+      $password = trim($_POST["password"]);
+      $email = trim($_POST["email"]);
+      
+      if( !$userModel->username_valid($username) ||
+          !$userModel->email_valid($email) || 
+          !$userModel->password_valid($password) ) {
         
         header("location: /");
         die();
       }
-      $userModel = new UserModel();
-      $userid = $userModel->reg($_POST);
+      $userid = $userModel->reg($username,$email,$password);
       $userModel->sendValidateMail($userid);
       $this->viewFile="User/regok.html";
       $this->display();
