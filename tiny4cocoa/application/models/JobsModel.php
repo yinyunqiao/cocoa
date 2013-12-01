@@ -22,7 +22,8 @@ class JobsModel extends baseDbModel {
     
     $sql = "SELECT `id`,`department`,`salary`,`position`,`city` 
         FROM `jobs`
-        ORDER BY `id` DESC 
+        WHERE `ban` == 0 
+        ORDER BY `id` DESC
         LIMIT 0,10;";
     $jobs = $this->fetchArray($sql);
     return $jobs;
