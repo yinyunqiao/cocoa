@@ -31,6 +31,7 @@ class StaticController extends tinyApp_Controller
     include("$framework/flot/jquery.flot.js");
     include("$framework/flot/jquery.flot.categories.js");
     include("$framework/Jcrop/js/jquery.Jcrop.min.js");
+    include("$framework/jsvote/src/jquery.jsvote.js");
     include("$path/base.js");
   }
 	
@@ -47,6 +48,7 @@ class StaticController extends tinyApp_Controller
     readfile("$framework/wmd/wmd.js");
     readfile("$framework/wmd/showdown.js");
   }
+  
   public function cssAction() {
 		
     header ("content-type: text/css; charset: utf-8");
@@ -66,6 +68,7 @@ class StaticController extends tinyApp_Controller
     include("$bootstrap/bootstrap.min.css");
     include("$bootstrap/bootstrap-responsive.min.css");
     include("$framework/Jcrop/css/jquery.Jcrop.min.css");
+    include("$framework/jsvote/src/jsvote.css");
     include("$path/site.css");
   }
 }

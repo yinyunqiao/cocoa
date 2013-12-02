@@ -16,3 +16,24 @@ body {
 .jcrop-hline {
   background: #ffffff url("/images/Jcrop.gif");
 }
+
+
+
+.jsvote_up {
+	background:url("/img/vote.png") scroll no-repeat -23px 0;
+}
+.jsvote_upover {
+	background:url("/img/vote.png") scroll no-repeat 0 0;
+}
+.jsvote_uppressed {
+  background:url("/img/vote.png") scroll no-repeat 0 0;
+}
+.jsvote_down{
+	background:url("/img/vote.png") scroll no-repeat -23px -22px;
+}
+.jsvote_downover  {
+	background:url("/img/vote.png") scroll no-repeat 0px -22px;
+}
+.jsvote_downpressed {
+	background:url("/img/vote.png") scroll no-repeat 0px -22px;
+}
