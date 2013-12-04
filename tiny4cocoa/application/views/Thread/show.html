@@ -6,10 +6,42 @@ body {
 }
 </style>
 <script type="text/javascript">
-
 var threadtitle = "{$thread.title}";
-
 $(document).ready(function() {
+  
+  $(".jsvote").jsvote()
+    .bind("votechange",function(vote,stat){
+      var voteObj = $(vote.target);
+      var threadid = voteObj.attr("threadid");
+			$.post('/thread/vote/',
+      { threadid:threadid,
+        vote:stat },
+				function(data) {
+          
+          var html;
+          if(!data.likeusers || data.likeusers.length==0) {
+            
+            var html = "无人欣赏。";
+          }else {
+            
+            var users = new Array();
+            for (var i=0;i<data.likeusers.length;i++) {
+              
+              users[i] = "<a href='/user/show/" + data.likeusers[i].userid + "/' class='muted' target='_blank'>" + data.likeusers[i].username + "</a>";
+            }
+            var usersStr = users.join("、");
+            var html = usersStr + "等"+data.likecount+"人欣赏。";
+            
+          }
+          $("#voteinfo").html(html);
+          if(data.dislikecount==0)
+            html = "";
+          else
+            html = data.dislikecount + "人反对。";
+          $("#dislikeinfo").html(html);
+          
+				},"json");
+	});
   $("#newreplyform").validate();
   $("#wmd-input").bind('keyup.ctrl_return', function(){
     $("#submit").click();
@@ -71,33 +103,53 @@ function sendweibo() {
           <img src="{$thread.image}" width="40" style="float:right;padding:5px;">
         </a>
       {/if}
-      <h4>{$thread.title}</h4>
-      <small class="muted">
-        由 <a href="/user/show/{$thread.createbyid}/{$thread.createby}/" class="muted" target="_blank">{$thread.createby}</a> 发布于 {$thread.createtime}
-        {if $thread.createtime<>$thread.modifydate && $thread.modifydate<>0}
-         ｜ 更新于 {$thread.updatetime}
-        {/if}
-      </small>
-      <div class="threadblock">{$thread.content}</div>
-        <div style="text-align:right;">
-          {if $userid}
-            {if $userid==$thread.createbyid}
-              <a href="javascript:weiboShare(1);">微博</a>
+      <div class="jsvote" style="float:left;margin-top:10px;" threadid="{$thread.id}" vote="{$userVote}"></div>
+      <div style="margin-left:30px;">
+        <h4>{$thread.title}</h4>
+        <small class="muted">
+          <span>由 <a href="/user/show/{$thread.createbyid}/{$thread.createby}/" class="muted" target="_blank">{$thread.createby}</a> 发布于 {$thread.createtime}
+          {if $thread.createtime<>$thread.modifydate && $thread.modifydate<>0}
+           ｜ 更新于 {$thread.updatetime}
+          {/if}</span><br/>
+          <span id="voteinfo">
+            {if $voteInfo.likeusers}
+              {foreach from=$voteInfo.likeusers item=item}
+                <a href="/user/show/{$item.userid}/" class="muted" target="_blank">{$item.username}</a> 
+                {/foreach} 等{$voteInfo.likecount}人欣赏。
             {else}
-              <a href="javascript:weiboShare(0);">微博</a>
+              无人欣赏。
             {/if}
-          {/if}
+          </span>
+          <span id="dislikeinfo">
+            {if $voteInfo.dislikecount>0}
+             {$voteInfo.dislikecount}人反对。
+            {/if}
+          </span>
+        </small>
+        <div class="threadblock">{$thread.content}</div>
+          <div style="text-align:right;">
+            {if $userid}
+              {if $userid==$thread.createbyid}
+                <a href="javascript:weiboShare(1);">微博</a>
+              {else}
+                <a href="javascript:weiboShare(0);">微博</a>
+              {/if}
+            {/if}
           
-          {if $userid==$thread.createbyid}
-            <a href="/thread/editthread/{$thread.id}/">编辑</a>
+            {if $userid==$thread.createbyid}
+              <a href="/thread/editthread/{$thread.id}/">编辑</a>
+            {/if}
+          </div>
+      
+        <div style="text-align:center;">
+          {if $iPhone}
+            <script type="text/javascript">BAIDU_CLB_fillSlot("745564");</script>  
           {/if}
         </div>
-      
-      <div style="text-align:center;">
-        {if $iPhone}
-          <script type="text/javascript">BAIDU_CLB_fillSlot("745564");</script>  
-        {/if}
       </div>
+      
+      
+      
       
     </div>
     {if $iPhone}

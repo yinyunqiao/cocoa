@@ -21,6 +21,7 @@ class ThreadController extends baseController
     
     $this->baseThreadIndex("cold","`replys`,id DESC","最冷贴");
   }
+  
   function baseThreadIndex($action,$order,$title="") {
     
     $page = $this->intVal(3);
@@ -97,14 +98,20 @@ class ThreadController extends baseController
     $thread = $threadModel->threadById($id);
     $replysCount = $threadModel->replysCountById($id);
     $replys = $threadModel->replysById($id);
-    
     $threads = $threadModel->threads(1,20);
+    $voteInfo = $threadModel->voteInfo($id);
+    $userVote = $threadModel->userVote($id,$this->userid);
+      
     $this->_mainContent->assign("threads",$threads);
     
     $this->_mainContent->assign("userid",$this->userid);
     $this->_mainContent->assign("thread",$thread);
     $this->_mainContent->assign("replysCount",$replysCount);
     $this->_mainContent->assign("replys",$replys);
+    
+    $this->_mainContent->assign("voteInfo",$voteInfo);
+    $this->_mainContent->assign("userVote",$userVote);
+    
     
     $toplistModel = new ToplistModel();
     $toplist = $toplistModel->toplist();
@@ -218,6 +225,16 @@ class ThreadController extends baseController
     $this->display();
   }
   
+  public function voteAction() {
+    
+    if($this->userid==0)
+      die("no_login");
+    $threadid = $_POST["threadid"];
+    $vote = $_POST["vote"]; 
+    $threadModel = new ThreadModel();
+    $result = $threadModel->vote($threadid, $this->userid,$vote);
+    echo json_encode($result);
+  }
 }
 
 

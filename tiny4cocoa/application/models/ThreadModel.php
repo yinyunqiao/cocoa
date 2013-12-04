@@ -350,6 +350,79 @@ class ThreadModel extends baseDbModel {
             $subject, 
             $mailContent);
   }
+  
+  private function updateVoteInfo($threadid) {
+    
+    $sql = "SELECT count(`userid`) as `c` FROM `bbs_thread_vote` WHERE threadid = $threadid AND `vote` = 0;";
+    $result = $this->fetchArray($sql);
+    $likecount = $result[0]["c"];
+    
+    $sql = "SELECT count(`userid`) as `c` FROM `bbs_thread_vote` WHERE threadid = $threadid AND `vote` = 1;";
+    $result = $this->fetchArray($sql);
+    $dislikecount = $result[0]["c"];
+    
+    $sql = "UPDATE `threads` set `likecount` = $likecount,`dislikecount` = $dislikecount WHERE `id` = $threadid";
+    $this->run($sql);
+    
+    return $this->voteInfo($threadid);
+  }
+  
+  public function userVote($threadid,$userid) {
+    
+    if($userid==0)
+      return "";
+    $sql = "SELECT `vote` FROM `bbs_thread_vote` 
+      WHERE threadid=$threadid AND userid = $userid;";
+    $result = $this->fetchArray($sql);
+    if(!$result)
+      return "";
+    
+    if($result[0]["vote"]==1)
+      return "down";
+    else
+      return "up";
+  }
+  
+  public function voteInfo($threadid) {
+    
+    $sql = "SELECT `likecount`,`dislikecount` FROM `threads` WHERE `id` = $threadid;";
+    $result = $this->fetchArray($sql);
+    $data = $result[0];
+    
+    $sql = "SELECT `userid`,`username` FROM `bbs_thread_vote`
+            LEFT JOIN `cocoabbs_uc_members`
+            ON `bbs_thread_vote`.`userid` = `cocoabbs_uc_members`.`uid`
+            WHERE `threadid` = $threadid AND `vote` = 0
+            LIMIT 0,3;";
+    $result = $this->fetchArray($sql);
+    $data["likeusers"] = $result;
+    return $data;
+  }
+  
+  public function vote($threadid, $userid, $vote) {
+    
+		$this->removeVote($threadid, $userid);
+    if($vote=="")
+      return $this->updateVoteInfo($threadid);
+    
+    if($vote=="up")
+      $votenum = 0;
+    else
+      $votenum = 1;
+    $sql = "INSERT INTO `bbs_thread_vote` 
+            (`threadid`,`userid`,`vote`,`updatetime`)
+            VALUES
+            ($threadid,$userid,$votenum,UNIX_TIMESTAMP(CURRENT_TIMESTAMP));";
+    $this->run($sql);
+    return $this->updateVoteInfo($threadid);
+  }
+  
+  private function removeVote($threadid, $userid) {
+    
+		$sql = "DELETE FROM `bbs_thread_vote` WHERE `threadid` = $threadid AND `userid` = $userid";
+		$this->run($sql);
+  }
+  
   //------------------------暂时废弃
   public function replyNotify($data) {
     
