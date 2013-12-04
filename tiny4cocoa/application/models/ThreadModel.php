@@ -401,6 +401,18 @@ class ThreadModel extends baseDbModel {
   
   public function vote($threadid, $userid, $vote) {
     
+    if($userid==0)
+      return $this->updateVoteInfo($threadid);
+    
+    $userModel = new UserModel();
+    $isEmailValidated = $userModel->isEmailValidated($userid);
+    if(!$isEmailValidated)
+      return $this->updateVoteInfo($threadid);
+    
+    $thread = $this->threadById($threadid);
+    if($userid==$thread["createbyid"])
+      return $this->updateVoteInfo($threadid);
+    
 		$this->removeVote($threadid, $userid);
     if($vote=="")
       return $this->updateVoteInfo($threadid);

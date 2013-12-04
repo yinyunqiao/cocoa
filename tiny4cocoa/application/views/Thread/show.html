@@ -8,6 +8,7 @@ body {
 <script type="text/javascript">
 var threadtitle = "{$thread.title}";
 var userid = {$userid};
+var threaduserid = {$thread.createbyid};
 var isEmailValidated;
 {if $isEmailValidated}
   isEmailValidated = 1;
@@ -26,6 +27,11 @@ $(document).ready(function() {
       if(isEmailValidated==0) {
         
         alert("只有邮箱已经验证的用户方可投票");
+        return;
+      }
+      if(userid == threaduserid) {
+        
+        alert("不能给自己的帖子投票");
         return;
       }
       var voteObj = $(vote.target);
