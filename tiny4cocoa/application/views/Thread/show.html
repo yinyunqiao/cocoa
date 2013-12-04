@@ -7,10 +7,27 @@ body {
 </style>
 <script type="text/javascript">
 var threadtitle = "{$thread.title}";
+var userid = {$userid};
+var isEmailValidated;
+{if $isEmailValidated}
+  isEmailValidated = 1;
+{else}
+  isEmailValidated = 0;
+{/if}
 $(document).ready(function() {
   
   $(".jsvote").jsvote()
-    .bind("votechange",function(vote,stat){
+    .bind("votechange",function(vote,stat,oldStat){
+      
+      if(userid==0) {
+        alert("注册用户方可投票");
+        return;
+      }
+      if(isEmailValidated==0) {
+        
+        alert("只有邮箱已经验证的用户方可投票");
+        return;
+      }
       var voteObj = $(vote.target);
       var threadid = voteObj.attr("threadid");
 			$.post('/thread/vote/',
@@ -41,6 +58,7 @@ $(document).ready(function() {
           $("#dislikeinfo").html(html);
           
 				},"json");
+        return true;
 	});
   $("#newreplyform").validate();
   $("#wmd-input").bind('keyup.ctrl_return', function(){

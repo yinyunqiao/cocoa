@@ -104,7 +104,10 @@ class ThreadController extends baseController
       
     $this->_mainContent->assign("threads",$threads);
     
-    $this->_mainContent->assign("userid",$this->userid);
+    if(!$this->userid)
+      $this->_mainContent->assign("userid",0);
+    else
+      $this->_mainContent->assign("userid",$this->userid);
     $this->_mainContent->assign("thread",$thread);
     $this->_mainContent->assign("replysCount",$replysCount);
     $this->_mainContent->assign("replys",$replys);
