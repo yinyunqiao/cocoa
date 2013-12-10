@@ -421,6 +421,36 @@ class UserModel extends baseDbModel {
             WHERE `uid` = $userid;";
     $this->run($sql);
   }
+  
+  public function reputation_records($userid) {
+    
+    $records = $this->select("reputation")->where("userid = $userid")->orderby("`updatetime` DESC")->fetchAll();
+    if(!$records)
+       return array();
+    $newRecords = array();
+    foreach($records as $reputation) {
+      
+      $reputation["time"] = ToolModel::countTime($reputation["updatetime"]);
+      $newRecords[] = $reputation;
+    }
+    return $newRecords;
+  }
+  
+  public function money_records($userid) {
+    
+    $records = $this->select("money")->where("userid = $userid")->orderby("`updatetime` DESC")->fetchAll();
+    
+    if(!$records)
+       return array();
+    $newRecords = array();
+    foreach($records as $money) {
+      
+      $money["time"] = ToolModel::countTime($money["updatetime"]);
+      $newRecords[] = $money;
+    }
+    return $newRecords;
+  }
+  
 }
 
 

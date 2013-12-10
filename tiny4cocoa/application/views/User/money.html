@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="span2">
+  </div>
+  <div class="span8">
+    <div class="content-unit">
+      <h3>声望获取记录</h3>
+      {foreach from=$records item=money}
+        <div class="threadblock">
+          <div style="float:right;">{$money.time}</div>
+          <h4>获取{$money.amount}个声望</h4>
+          <p>{$money.message}</p>
+        </div>
+      {/foreach}  
+    </div>
+  </div>
+</div>

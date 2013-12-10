@@ -53,12 +53,15 @@ window.google_analytics_uacct = "UA-53077-22";
           <ul class="nav pull-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                 {$username}：{$userinfo.reputation}<img style="margin-top:-5px;" src="/img/reputation.png"> {$userinfo.money}<img style="margin-top:-4px;" src="/img/coin.png"><b class="caret"></b></a>
+                 {$username}：{$userinfo.reputation}<img style="margin-top:-5px;" src="/img/reputation.png">  {$userinfo.money}<img style="margin-top:-4px;" src="/img/coin.png"><b class="caret"></b></a>
               <ul class="dropdown-menu">
                 {if $userid==2}
                   <li><a href="/homeadmin/toplink/">Toplink Ads</a></li>
                   <li class="divider"></li>
                 {/if}
+                <li><a href="/user/reputation/">声望：{$userinfo.reputation}<img style="margin-top:-5px;" src="/img/reputation.png"></a></li>
+                <li><a href="/user/money/">金币：{$userinfo.money}<img style="margin-top:-4px;" src="/img/coin.png"></a></li>
+                <li class="divider"></li>
                 <li><a href="/user/password/">修改密码</a></li>
                 <li><a href="/user/avatar/">修改头像</a></li>
                 <li><a href="/user/emailsetting/">邮件通知选项</a></li>

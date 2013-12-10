@@ -73,6 +73,29 @@ class UserController extends baseController
     $this->display();
   }
   
+  public function reputationAction() {
+    
+    if($this->userid==0) {
+      header("location: /user/login/");
+      die();
+    }
+    $userModel = new UserModel();
+    $records = $userModel->reputation_records($this->userid);
+    $this->_mainContent->assign("records",$records);
+    $this->display();
+  }
+  
+  public function moneyAction() {
+    
+    if($this->userid==0) {
+      header("location: /user/login/");
+      die();
+    }
+    $userModel = new UserModel();
+    $records = $userModel->money_records($this->userid);
+    $this->_mainContent->assign("records",$records);
+    $this->display();
+  }
   public function unsubscribeAction() {
     
     $userModel = new UserModel();
