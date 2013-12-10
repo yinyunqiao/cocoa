@@ -53,9 +53,12 @@
 
       $userModel = new UserModel();
       $this->userid = $userModel->checklogin();
-      $this->username = $userModel->username($this->userid);
-      $this->isEmailValidated = $userModel->isEmailValidated($this->userid);
-      
+      if($this->userid) {
+        
+        $this->username = $userModel->username($this->userid);
+        $this->isEmailValidated = $userModel->isEmailValidated($this->userid);
+        $userinfo = $userModel->userInfo($this->userid);
+      }
       $toplinkadsModel = new ToplinkadsModel();
       $toplink = $toplinkadsModel->toplink();
       if($toplink) {
@@ -70,6 +73,7 @@
 			$this->_view->assign("userid",$this->userid);
 			$this->_view->assign("username",$this->username);
 			$this->_view->assign("isEmailValidated",$this->isEmailValidated);
+			$this->_view->assign("userinfo",$userinfo);
 
 			$iPhone = ToolModel::is_iPhone();
 			$this->_view->assign("iPhone",$iPhone);
