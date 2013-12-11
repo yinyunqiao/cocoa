@@ -10,7 +10,7 @@ class ThreadModel extends baseDbModel {
   }
   
   
-  public function threads($page,$pageSize,$order = "`updatedate` DESC") {
+  public function threads($page,$pageSize,$order = "`updatedate`+`additiontime` DESC") {
     
     $start = ($page-1)*$pageSize;
     $sql = 
