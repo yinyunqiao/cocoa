@@ -23,7 +23,7 @@
 </div>
 
 
-<div class="span6">
+<div class="span7">
   <div class="content-unit">
     <div style="text-align:right;">
       <a href="/thread/new/" class="btn btn-success">发 布 新 帖</a>
@@ -35,10 +35,17 @@
       <strong>讨论区</strong>
       {foreach from=$threads item=item}
       <div class="threadblock">
-        <span class="label label-info pull-right" style="margin-top:5px;">{$item.replys}</span>
+        <div class="pull-left" style="width:48px;height:48px;background-color:#d9edf7;margin-right:5px;">
+          <div style="text-align:center;color:green;font-weight:bold;margin-top:4px;">{$item.likecount-$item.dislikecount}<br/>赞成</div>
+        </div>
+        
+        <div class="pull-left" style="width:48px;height:48px;background-color:#3a87ad;margin-right:5px;">
+          <div style="text-align:center;color:white;font-weight:bold;margin-top:4px;">{$item.replys}<br/>回复</div>
+        </div>
+        
         {if $item.image}
           <a href="/user/show/{$item.createbyid}/{$item.createby}/" class="muted" target="_blank">
-            <img src="{$item.image}" width="48" height="48" style="float:left;">
+            <img src="{$item.image}" width="24" height="24" style="float:right;">
           </a>
         {/if}
         <div style="margin-left:54px;">
@@ -60,45 +67,7 @@
   </div>
 </div>
 
-<div class="span3">
-  <div class="siderbar-unit">
-  
-  <form action="http://www.google.com" id="cse-search-box">
-    <div>
-      <input type="hidden" name="cx" value="partner-pub-7732761529337293:5381403806" />
-      <input type="hidden" name="ie" value="UTF-8" />
-      <input type="text" name="q" size="55" />
-      <input type="submit" name="sa" value="&#x641c;&#x7d22;" />
-    </div>
-  </form>
-
-  <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=zh-Hans"></script>
-  <script type="text/javascript" src="http://www.google.com/cse/query_renderer.js"></script>
-  <div id="queries"></div>
-  <script src="http://www.google.com/cse/api/partner-pub-7732761529337293/cse/5381403806/queries/js?oe=UTF-8&amp;callback=(new+PopularQueryRenderer(document.getElementById(%22queries%22))).render"></script>
-  
-</div>
-  <div class="siderbar-unit">
-    <strong>置顶</strong>
-    {foreach from=$toplist item=link}
-	  <div class="newsblock">
-      <a href="{$link.link}">
-        {$link.title}
-      </a>
-    </div>
-    {/foreach}
-  </div>
-  
-  <div class="siderbar-unit">
-    <strong>24小时水王榜</strong>
-    {foreach from=$heros item=hero}
-      <div class="newsblock">
-        <img src="{$hero.image}" class="heroicon"/>
-        <p style="margin-left:28px;"><a href="/user/show/{$hero.userid}/{$hero.name}/" target="_blank">{$hero.name}</a> ({$hero.replyscount})</p>
-      </div>
-    {/foreach}
-    <p><a href="/user/">累计水王榜</a></p>
-  </div>
+<div class="span5">
   <div class="siderbar-unit">
     <strong>苹果新闻</strong>
     {foreach from=$applenews item=item}
@@ -121,71 +90,5 @@
     <p class="threadfootnote"><a href="/apple/">查看更多</a></p>
   </div>
 </div>
-
-<div class="span3">
-  
-  <div class="siderbar-unit">
-    <strong>本站新闻</strong>
-	  {foreach from=$news item=item name=sitenews}
-  	  <div class="newsblock">
-  		  <img width="40" style="float:left;" src="/newsupload/{$item.filename}_s.{$item.ext}">
-  		  <div style="margin-left:50px;">
-  			  <a href="/home/s/{$item.id}/">{$item.title}</a>
-  			  <div style="text-align:right;">
-            <small class="muted">
-              {$item.poster} 发表于 
-              <span class="timestamp">{$item.createtime}</span>
-              {if $item.commentscount>0}
-              {$item.commentscount}个评论
-              {else}
-              <a href="/home/s/{$item.id}/">暂无评论</a>
-              {/if}
-          </small>
-        </div>
-  		</div>
-  		<div style="clear:both"></div>
-  	  </div>
-	  {/foreach}
-  </div>
-  
-  <div class="siderbar-unit">
-    <strong>本站受益于</strong>
-    <div class="newsblock">
-      <p>网站空间</p>
-      <a href="http://www.linode.com/?r=3bf6736bf622b5102aff3fe0d39f02a10407b64b" target="_blank">
-        <img src="https://www.linode.com/images/linode_logo_gray.png" title="linode" alt="linode">
-      </a>
-      <p></p>
-      <p>《新杂志》云存储</p>
-      <a href="http://www.qiniu.com" target="_blank">
-        <img src="http://tiny4cocoa.org/img/qiniu.png" title="七牛云存储" alt="七牛云存储">
-      </a>
-      <p></p>
-      <p>CSS框架</p>
-      <a href="http://getbootstrap.com" target="_blank">
-        <img src="http://tiny4cocoa.org/img/boostrap.png" title="boostrap" alt="boostrap">
-      </a>
-      <p></p>
-      <p>代码托管</p>
-      <a href="https://github.com/" target="_blank">
-        <img src="http://tiny4cocoa.org/img/github.png" title="github" alt="github">
-      </a>
-      <p></p>
-      <p>文件协同</p>
-      <a href="http://db.tt/Sd4jN2Mr" target="_blank">
-        <img src="https://www.dropbox.com/static/images/new_logo_2x.png" title="dropbox" alt="dropbox">
-      </a>
-      <p></p>
-      <p>推荐</p>
-      <a href="https://www.upyun.com/" target="_blank">
-        <img src="https://www.upyun.com/images/logo.gif" title="upyun" alt="upyun">
-      </a>
-    </div>
-  </div>
-  
-</div>
-
-
-
 
 </div>
