@@ -421,6 +421,7 @@ class ThreadModel extends baseDbModel {
     if($vote=="")
       return $this->updateVoteInfo($threadid);
     
+    $time = time();
     if($vote=="up") {
       
       $votenum = 0;
