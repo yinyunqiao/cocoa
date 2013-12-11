@@ -7,8 +7,25 @@
       {foreach from=$records item=reputation}
         <div class="threadblock">
           <div style="float:right;">{$reputation.time}</div>
-          <h4>获取{$reputation.amount}个声望</h4>
+          {math equation="abs(x)" x=$reputation.amount assign="absamount"}
+          <h4 {if $reputation.amount>0}
+              style="color:green;"
+              {else}
+              style="color:red;"
+              {/if}
+          >
+              {if $reputation.amount>0}
+              获取
+              {else}
+              失去
+              {/if}
+              {$absamount} 
+              个声望
+          </h4>
           <p>{$reputation.message}</p>
+          {if $reputation.sourcename == "thread"}
+          <a href="/thread/show/{$reputation.sourceid}/" target="_blank">链接</a>
+          {/if}
         </div>
       {/foreach}  
     </div>
