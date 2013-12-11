@@ -414,18 +414,35 @@ class ThreadModel extends baseDbModel {
       return $this->updateVoteInfo($threadid);
     
 		$this->removeVote($threadid, $userid);
+    $threadUserid = $thread["createbyid"];
+    $userModel->removeRepution($threadUserid,"thread",$threadid,$userid);
+    $userModel->removeMoney($threadUserid,"thread",$threadid,$userid);
+    
     if($vote=="")
       return $this->updateVoteInfo($threadid);
     
-    if($vote=="up")
+    if($vote=="up") {
+      
       $votenum = 0;
-    else
+      $userModel->add_reputation($threadUserid,5,"你发的帖子被欣赏",$time,
+                            "thread",$threadid,$userid);
+      $userModel->add_money($threadUserid,5,"你发的帖子被欣赏",$time,
+                            "thread",$threadid,$userid);
+    }
+    else {
       $votenum = 1;
+      $userModel->add_reputation($threadUserid,-2,"你发的帖子被反对",$time,
+                        "thread",$threadid,$userid);
+      $userModel->add_money($threadUserid,-2,"你发的帖子被反对",$time,
+                        "thread",$threadid,$userid);
+    }
+    $userModel->update_reputationAndMoney($threadUserid);
     $sql = "INSERT INTO `bbs_thread_vote` 
             (`threadid`,`userid`,`vote`,`updatetime`)
             VALUES
             ($threadid,$userid,$votenum,UNIX_TIMESTAMP(CURRENT_TIMESTAMP));";
     $this->run($sql);
+    
     return $this->updateVoteInfo($threadid);
   }
   

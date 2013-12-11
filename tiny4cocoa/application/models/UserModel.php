@@ -394,21 +394,33 @@ class UserModel extends baseDbModel {
     $this->run($sql);
   }
   
-  public function add_reputation($userid,$amount,$message,$time) {
+  public function add_reputation(
+                        $userid,$amount,$message,$time,
+                        $sourcename="",$sourceid=0,$sourceuserid=0) {
     
     $data["userid"] = $userid;
     $data["amount"] = $amount;
     $data["message"] = $message;
     $data["updatetime"] = $time;
+    $data["sourcename"] = $sourcename;
+    $data["sourceid"] = $sourceid;
+    $data["sourceuserid"] = $sourceuserid;
+    
     $this->select("reputation")->insert($data);
   }
   
-  public function add_money($userid,$amount,$message,$time) {
+  public function add_money(
+                      $userid,$amount,$message,$time,
+                      $sourcename="",$sourceid=0,$sourceuserid=0) {
     
     $data["userid"] = $userid;
     $data["amount"] = $amount;
     $data["message"] = $message;
     $data["updatetime"] = $time;
+    $data["sourcename"] = $sourcename;
+    $data["sourceid"] = $sourceid;
+    $data["sourceuserid"] = $sourceuserid;
+    
     $this->select("money")->insert($data);
   }
   
@@ -449,6 +461,29 @@ class UserModel extends baseDbModel {
       $newRecords[] = $money;
     }
     return $newRecords;
+  }
+  
+  public function removeRepution($userid,$sourcename,$sourceid,$sourceUserid) {
+    
+    $sql = "DELETE FROM `reputation` 
+                WHERE `userid` = $userid AND 
+                      `sourcename` = '$sourcename' AND
+                      `sourceid` = $sourceid AND
+                      `sourceuserid` = $sourceUserid;
+                      ";
+    $this->run($sql);
+    //var_dump($sql);
+  }
+  
+  public function removeMoney($userid,$sourcename,$sourceid,$sourceUserid) {
+    
+    $sql = "DELETE FROM `money` 
+                WHERE `userid` = $userid AND 
+                      `sourcename` = '$sourcename' AND
+                      `sourceid` = $sourceid AND
+                      `sourceuserid` = $sourceUserid;
+                      ";  
+    $this->run($sql);
   }
   
 }
