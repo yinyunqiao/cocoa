@@ -120,8 +120,8 @@ function sendweibo() {
   
   <div class="span9">
     
-    
     <div class="content-unit">
+      <a name="top_floor">
       {if $thread.image}
         <a href="/user/show/{$thread.createbyid}/{$thread.createby}/" target="_blank">
           <img src="{$thread.image}" width="40" style="float:right;padding:5px;">
@@ -171,10 +171,7 @@ function sendweibo() {
           {/if}
         </div>
       </div>
-      
-      
-      
-      
+
     </div>
     {if $iPhone}
     {else}
@@ -361,5 +358,15 @@ function sendweibo() {
   <div class="modal-footer">
     <a href="javascript:closeWeiboShare();" class="btn">取消</a>
     <a id="sendbutton" href="javascript:sendweibo();" class="btn btn-primary">发送</a>
+  </div>
+</div>
+<div id="thread_elevator">
+  <div style="float:right;width: 60px;background:#ccc;
+    background-color: #fcf8e3;
+    border: 1px solid #ccc;padding:5px;text-align:center;font-weight:bold">
+    <a href="#top_floor">[顶 楼]</a><br/>
+    |<br/>
+    |<br/>
+    <a href="#floor{$replysCount}">[底 楼]</a>
   </div>
 </div>
