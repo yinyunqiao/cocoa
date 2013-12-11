@@ -360,6 +360,7 @@ function sendweibo() {
     <a id="sendbutton" href="javascript:sendweibo();" class="btn btn-primary">发送</a>
   </div>
 </div>
+{if $replysCount>10}
 <div id="thread_elevator">
   <div style="float:right;width: 60px;background:#ccc;
     background-color: #fcf8e3;
@@ -370,3 +371,4 @@ function sendweibo() {
     <a href="#floor{$replysCount}">[底 楼]</a>
   </div>
 </div>
+{/if}
