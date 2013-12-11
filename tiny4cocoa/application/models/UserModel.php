@@ -51,15 +51,23 @@ class UserModel extends baseDbModel {
       ->fetchOne();
     if(!$user)
       return 0;
+    if($user["validated"]==1)
+      return 1;
     $v1 = md5($user["username"].$user["salt"].$user["email"]);
     if($v==$v) {
       
       $sql = "UPDATE `cocoabbs_uc_members` set `validated` = 1 WHERE `uid` = $userid;";
       $this->run($sql);
+      
+      $time = time();
+      $this->add_reputation($userid,10,"邮件验证成功",$time);
+      $this->add_money($userid,10,"邮件验证成功",$time);
+      $this->update_reputationAndMoney($userid);
       return 1;
     }
     return 0;
   }
+  
   public function sendValidateMail($userid) {
     
     $user = $this->select("cocoabbs_uc_members")
@@ -385,6 +393,99 @@ class UserModel extends baseDbModel {
             SET `replys`=`c`;";
     $this->run($sql);
   }
+  
+  public function add_reputation(
+                        $userid,$amount,$message,$time,
+                        $sourcename="",$sourceid=0,$sourceuserid=0) {
+    
+    $data["userid"] = $userid;
+    $data["amount"] = $amount;
+    $data["message"] = $message;
+    $data["updatetime"] = $time;
+    $data["sourcename"] = $sourcename;
+    $data["sourceid"] = $sourceid;
+    $data["sourceuserid"] = $sourceuserid;
+    
+    $this->select("reputation")->insert($data);
+  }
+  
+  public function add_money(
+                      $userid,$amount,$message,$time,
+                      $sourcename="",$sourceid=0,$sourceuserid=0) {
+    
+    $data["userid"] = $userid;
+    $data["amount"] = $amount;
+    $data["message"] = $message;
+    $data["updatetime"] = $time;
+    $data["sourcename"] = $sourcename;
+    $data["sourceid"] = $sourceid;
+    $data["sourceuserid"] = $sourceuserid;
+    
+    $this->select("money")->insert($data);
+  }
+  
+  public function update_reputationAndMoney($userid) {
+    
+    $sql = "UPDATE `cocoabbs_uc_members` 
+            SET 
+              `reputation` = (SELECT SUM(`amount`) FROM `reputation` WHERE `userid` = $userid),
+              `money` = (SELECT SUM(`amount`) FROM `money` WHERE `userid` = $userid)
+            WHERE `uid` = $userid;";
+    $this->run($sql);
+  }
+  
+  public function reputation_records($userid) {
+    
+    $records = $this->select("reputation")->where("userid = $userid")->orderby("`updatetime` DESC")->fetchAll();
+    if(!$records)
+       return array();
+    $newRecords = array();
+    foreach($records as $reputation) {
+      
+      $reputation["time"] = ToolModel::countTime($reputation["updatetime"]);
+      $newRecords[] = $reputation;
+    }
+    return $newRecords;
+  }
+  
+  public function money_records($userid) {
+    
+    $records = $this->select("money")->where("userid = $userid")->orderby("`updatetime` DESC")->fetchAll();
+    
+    if(!$records)
+       return array();
+    $newRecords = array();
+    foreach($records as $money) {
+      
+      $money["time"] = ToolModel::countTime($money["updatetime"]);
+      $newRecords[] = $money;
+    }
+    return $newRecords;
+  }
+  
+  public function removeRepution($userid,$sourcename,$sourceid,$sourceUserid) {
+    
+    $sql = "DELETE FROM `reputation` 
+                WHERE `userid` = $userid AND 
+                      `sourcename` = '$sourcename' AND
+                      `sourceid` = $sourceid AND
+                      `sourceuserid` = $sourceUserid;
+                      ";
+    $this->run($sql);
+    //var_dump($sql);
+  }
+  
+  public function removeMoney($userid,$sourcename,$sourceid,$sourceUserid) {
+    
+    $sql = "DELETE FROM `money` 
+                WHERE `userid` = $userid AND 
+                      `sourcename` = '$sourcename' AND
+                      `sourceid` = $sourceid AND
+                      `sourceuserid` = $sourceUserid;
+                      ";  
+    $this->run($sql);
+  }
+  
 }
 
 

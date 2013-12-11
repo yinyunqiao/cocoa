@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="span2">
+  </div>
+  <div class="span8">
+    <div class="content-unit">
+      <h3>金币获取记录</h3>
+      {foreach from=$records item=money}
+        <div class="threadblock">
+          <div style="float:right;">{$money.time}</div>
+          {math equation="abs(x)" x=$money.amount assign="absamount"}
+          <h4 {if $money.amount>0}
+              style="color:green;"
+              {else}
+              style="color:red;"
+              {/if}
+          >
+              {if $money.amount>0}
+              获取
+              {else}
+              失去
+              {/if}
+              {$absamount} 
+              个金币
+          </h4>
+          <p>{$money.message}</p>
+          {if $money.sourcename == "thread"}
+          <a href="/thread/show/{$money.sourceid}/" target="_blank">链接</a>
+          {/if}
+          
+        </div>
+      {/foreach}  
+    </div>
+  </div>
+</div>
