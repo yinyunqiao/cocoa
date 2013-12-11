@@ -361,7 +361,17 @@ class ThreadModel extends baseDbModel {
     $result = $this->fetchArray($sql);
     $dislikecount = $result[0]["c"];
     
-    $sql = "UPDATE `threads` set `likecount` = $likecount,`dislikecount` = $dislikecount WHERE `id` = $threadid";
+    $voteS = $likecount-$dislikecount/3;
+    if($voteS>0)
+      $additiontime = log(1+$voteS,10)*12*60*60;
+    else if($voteS==0){
+      
+      $additiontime = 0;
+    }else {
+      
+      $additiontime = - log(1-$voteS,10)*12*60*60;
+    }
+    $sql = "UPDATE `threads` set `likecount` = $likecount,`dislikecount` = $dislikecount,additiontime = $additiontime WHERE `id` = $threadid";
     $this->run($sql);
     
     return $this->voteInfo($threadid);
