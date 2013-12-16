@@ -9,7 +9,7 @@ class ThreadController extends baseController
  
   public function indexAction() {
     
-    $this->baseThreadIndex("index","`updatedate`+`additiontime` DESC");
+    $this->baseThreadIndex("index","`score` DESC");
   }
   
   public function hotAction() {
