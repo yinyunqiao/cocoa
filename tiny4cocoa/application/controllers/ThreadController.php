@@ -143,6 +143,7 @@ class ThreadController extends baseController
       $data["createbyid"] = $this->userid;
       $data["createdate"] = $time;
       $data["updatedate"] = $time;
+      $data["score"] = $time;
       if(strlen($_POST["title"])>0)
         if(strlen($_POST["content"])>0) {
           $threadModel = new ThreadModel();

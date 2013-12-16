@@ -212,8 +212,14 @@ class ThreadModel extends baseDbModel {
   public function updateThread($data) {
     
     $this->select("threads")->where("id = $data[id]")->update($data);
+    $this->updateThreadScore($data["id"]);
   }
   
+  public function updateThreadScore($threadid) {
+    
+    $sql = "UPDATE `threads` SET `score` = `updatedate` + `additiontime` WHERE `id` = $threadid;";
+    $this->run($sql);
+  }
   
   public function topThreadsFrom($n,$time){
     
@@ -376,6 +382,7 @@ class ThreadModel extends baseDbModel {
     $additiontime = round($additiontime);
     $sql = "UPDATE `threads` set `likecount` = $likecount,`dislikecount` = $dislikecount,additiontime = $additiontime WHERE `id` = $threadid";
     $this->run($sql);
+    $this->updateThreadScore($threadid);
     return $this->voteInfo($threadid);
   }
   
