@@ -14,4 +14,4 @@
 }
 }
 
-#thread_elevator { left: 0px; right: 0px; top: 50%; position: fixed; }
+#thread_elevator { left: 0px; right: 0px; top: 50%; position: fixed; z-index:-100;}
