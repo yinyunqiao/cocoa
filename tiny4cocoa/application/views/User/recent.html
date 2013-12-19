@@ -1,13 +1,18 @@
 <style>
- 
 .content-unit {
   
-  height:120px;
-
+  height:180px;
+}
+.field-label {
+  
+  width:70px;
+  text-align:right;
+  display:inline-block;
+  font-weight:bold;
 }
 </style>
 <div class="row">
-  <p style="float:right;"><a href="/user/">水王榜</a></p>
+  <p style="float:right;"><a href="/user/">声望榜</a></p>
   <p>最新注册</p>
   {foreach from=$users item=user}
     <div class="span4">
@@ -18,11 +23,12 @@
           </a>
         <div class="threadblock">
           <img src="{$user.image}" width="48" height="48" style="float:right;">
-          <p>注册时间：{$user.regdate}<br/>
-          上次登录：{$user.lastlogintime}<br/>
-          发帖数：{$user.posts}<br/>
-          回帖数：{$user.replys}
-          </p>
+          <span class="field-label">注册时间</span>：{$user.regdate}<br/>
+          <span class="field-label">上次登录</span>：{$user.lastlogintime}<br/>
+          <span class="field-label">声望</span>：{$user.reputation} <img style="margin-top:-5px;" src="/img/reputation.png"><br/>
+          <span class="field-label">金币</span>：{$user.money} <img style="margin-top:-4px;" src="/img/coin.png"><br/>
+          <span class="field-label">发帖数</span>：{$user.posts}<br/>
+          <span class="field-label">回帖数</span>：{$user.replys}
         </div>
       </div>
     </div>

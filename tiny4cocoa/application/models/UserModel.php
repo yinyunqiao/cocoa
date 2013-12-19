@@ -118,19 +118,28 @@ class UserModel extends baseDbModel {
     $this->run($sql);
   }
   
-  public function users($page,$size,$order="shui") {
+  public function users($page,$size,$order="reputation") {
     
    $start = ($page-1)*$size;
    $users = $this
      ->select("cocoabbs_uc_members");
+   
    if($order=="date") {
      
      $this->orderby("regdate DESC");
      
-   }else {
+   }else if($order == "money")
+   {
+     $this->orderby("money DESC");
+   }else if($order == "shui") {
      
      $this->fields("*,(posts*5+replys) as shui")->orderby("shui DESC");
    }
+   else
+   {
+     $this->orderby("reputation DESC");
+   }
+   
    $this->where("`validated` = 1")->limit("$start,$size");
    $users = $this->fetchAll();
    $ret = array();
