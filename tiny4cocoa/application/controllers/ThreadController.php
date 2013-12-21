@@ -108,13 +108,22 @@ class ThreadController extends baseController
       $this->_mainContent->assign("userid",0);
     else
       $this->_mainContent->assign("userid",$this->userid);
+    
+    if($this->userid) {
+      
+      $userModel = new UserModel();
+      $userInfo = $userModel->userInfo($this->userid);
+      $reputation = $userInfo["reputation"];
+    }else 
+      $reputation = 0;
+    $this->_mainContent->assign("reputation",$reputation);
+    
     $this->_mainContent->assign("thread",$thread);
     $this->_mainContent->assign("replysCount",$replysCount);
     $this->_mainContent->assign("replys",$replys);
     
     $this->_mainContent->assign("voteInfo",$voteInfo);
     $this->_mainContent->assign("userVote",$userVote);
-    
     
     $toplistModel = new ToplistModel();
     $toplist = $toplistModel->toplist();
@@ -233,6 +242,13 @@ class ThreadController extends baseController
     
     if($this->userid==0)
       die("no_login");
+    
+    $userModel = new UserModel();
+    $userInfo = $userModel->userInfo($this->userid);
+    $reputation = $userInfo["reputation"];
+    if($reputation<20)
+      die("reputation_too_low");
+    
     $threadid = $_POST["threadid"];
     $vote = $_POST["vote"]; 
     $threadModel = new ThreadModel();
