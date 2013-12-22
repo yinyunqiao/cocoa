@@ -7,7 +7,7 @@ class JobsController extends baseController
     //728*90
     $this->_layout = "empty";
     $jobsModel = new JobsModel();
-    $city = LocationModel::city("58.252.0.17");
+    $city = LocationModel::city(ToolModel::getRealIpAddr());
     if($city){
       
       if(mb_substr($city,-1)=="市")
@@ -49,12 +49,6 @@ class JobsController extends baseController
     $this->display();
   }
   
-  public function testAction() {
-    
-    //LocationModel::city(ToolModel::getRealIpAddr());
-    $city = LocationModel::city("58.252.0.17");
-    var_dump($city);
-  }
 }
 
 
