@@ -7,7 +7,25 @@ class JobsController extends baseController
     //728*90
     $this->_layout = "empty";
     $jobsModel = new JobsModel();
-    $jobs = $jobsModel->newJobs();
+    $city = LocationModel::city("58.252.0.17");
+    if($city){
+      
+      if(mb_substr($city,-1)=="市")
+        $city = mb_substr($city,0,-1);
+      $jobs = $jobsModel->newJobsFromCity($city);
+      if(!$jobs)
+        $jobs = $jobsModel->newJobs();
+      else if(count($jobs)==1){
+        
+        $addJobs = $jobsModel->newJobs();
+        shuffle($addJobs);
+        $jobs = array_merge($jobs,$addJobs);
+        $jobs = array_slice($jobs,0,2);
+      }
+    }
+    else
+      $jobs = $jobsModel->newJobs();
+    
     shuffle($jobs);
     $this->_mainContent->assign("job1",$jobs[0]);
     $this->_mainContent->assign("job2",$jobs[1]);
@@ -29,6 +47,13 @@ class JobsController extends baseController
     $this->_mainContent->assign("ad",$ad);
     $this->_layout = "empty";
     $this->display();
+  }
+  
+  public function testAction() {
+    
+    //LocationModel::city(ToolModel::getRealIpAddr());
+    $city = LocationModel::city("58.252.0.17");
+    var_dump($city);
   }
 }
 
