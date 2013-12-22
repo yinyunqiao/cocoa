@@ -18,6 +18,17 @@ class JobsModel extends baseDbModel {
     }
   }
   
+  function newJobsFromCity($city) {
+    
+    $sql = "SELECT `id`,`department`,`salary`,`position`,`city` 
+        FROM `jobs`
+        WHERE `ban` = 0 AND `city` = '$city'
+        ORDER BY `id` DESC
+        LIMIT 0,10;";
+    $jobs = $this->fetchArray($sql);
+    return $jobs;
+  }
+  
   function newJobs() {
     
     $sql = "SELECT `id`,`department`,`salary`,`position`,`city` 
