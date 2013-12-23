@@ -37,7 +37,11 @@ class JobsController extends baseController
     $id = $this->intVal(3);
     $jobsModel = new JobsModel();
     $job = $jobsModel->jobById($id);
-    $this->_mainContent->assign("job",$job);
+    $this->_mainContent->assign("job",$job);  
+    $this->_mainContent->assign("userid",$this->userid);     
+    $this->_mainContent->assign(
+      "isEmailValidated",
+      $this->isEmailValidated);
     $this->display();
   }
   

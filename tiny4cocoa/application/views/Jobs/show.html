@@ -3,29 +3,37 @@
   <div class="span9">
     
     <div class="content-unit">
-      {if $thread.image}
-        <a href="/user/show/{$thread.createbyid}/{$thread.createby}/" target="_blank">
-          <img src="{$thread.image}" width="40" style="float:right;padding:5px;">
-        </a>
-      {/if}
-      <h4>［{$job.city}］［{$job.department}］招聘 {$job.position}</h4>
-      <small class="muted">
-        发布自拉勾网
-      </small>
-      <div class="threadblock">
-        <p>公司：{$job.department}</p>
-        <p>薪水：<span style="color:red;">{$job.salary}</span></p>
-        {$job.content}
-        <div style="text-align:center;">
-          <a href="{$job.posiitonDetailUrl}" class="btn btn-primary btn-large" target="_blank">应 聘</a> 
-        </div>
-      </div>
-      <div style="text-align:center;">
-        {if $iPhone}
-          <script type="text/javascript">BAIDU_CLB_fillSlot("745564");</script>  
+      {if $userid==0}
+        <h2>招聘信息仅注册用户可见</h2>
+        <p>请点击右上角登录按钮</p>
+      {else}
+        {if !$isEmailValidated}
+          <h2>你的邮箱还没验证</h2>
+        {else}
+        {if $thread.image}
+          <a href="/user/show/{$thread.createbyid}/{$thread.createby}/" target="_blank">
+            <img src="{$thread.image}" width="40" style="float:right;padding:5px;">
+          </a>
         {/if}
-      </div>
-      
+        <h4>［{$job.city}］［{$job.department}］招聘 {$job.position}</h4>
+        <small class="muted">
+          发布自拉勾网
+        </small>
+        <div class="threadblock">
+          <p>公司：{$job.department}</p>
+          <p>薪水：<span style="color:red;">{$job.salary}</span></p>
+          {$job.content}
+          <div style="text-align:center;">
+            <a href="{$job.posiitonDetailUrl}" class="btn btn-primary btn-large" target="_blank">应 聘</a> 
+          </div>
+        </div>
+        <div style="text-align:center;">
+          {if $iPhone}
+            <script type="text/javascript">BAIDU_CLB_fillSlot("745564");</script>  
+          {/if}
+        </div>
+        {/if}
+      {/if}
     </div>
     {if $iPhone}
     {else}
@@ -43,7 +51,6 @@
       </script>
     </div>
     {/if}
-
   </div>
   
   <div class="span3">
