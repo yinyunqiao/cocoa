@@ -17,9 +17,11 @@ $(document).ready(function() {
       <div class="threadblock" >
         <img src="{$user.image}" class="pull-right">
         <div class="pull-left">
-          <div style="width:100px;text-align:right;" class="pull-left">编号 ：</div><div style="width:100px;" class="pull-left">{$user.id}</div><div class="clearfix"></div>
+          <span class="field-label">编号</span>：{$user.uid}<br/>
+          <span class="field-label">用户名</span>：{$user.username}<br/>
+          <span class="field-label">声望</span>：{$user.reputation} <img style="margin-top:-5px;" src="/img/reputation.png"> （<a href="/help/reputation/">什么是声望？</a>）<br/>
+          <span class="field-label">金币</span>：{$user.money} <img style="margin-top:-4px;" src="/img/coin.png"><br/>
           
-          <div style="width:100px;text-align:right;" class="pull-left">用户名 ：</div><div style="width:100px;" class="pull-left">{$user.name}</div><div class="clearfix"></div>
         </div>
       </div>
       <div class="clearfix"></div>
