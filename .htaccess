@@ -25,6 +25,9 @@ RewriteRule ^crontab/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^stat(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^stat/(.*)$ tiny4cocoa/public/index.php
 
+RewriteRule ^help(.*)$ tiny4cocoa/public/index.php
+RewriteRule ^help/(.*)$ tiny4cocoa/public/index.php
+
 RewriteRule ^static/(.*)/$ tiny4cocoa/public/index.php
 RewriteRule ^static/(.*)$ tiny4cocoa/public/index.php
 RewriteRule ^homeadmin/(.*) tiny4cocoa/public/index.php
