@@ -340,4 +340,20 @@ class HomeadminController extends baseController
     $this->_mainContent->assign("links",$links);  
     $this->display();
   }
+  
+  public function banuserAction() {
+    
+    $id = $this->intVal(3);
+    if($id==0 || $id==2 || $this->userid!=2) {
+      header ('HTTP/1.1 301 Moved Permanently');
+      header("location:/home/");
+    }
+    $userModel = new UserModel();
+    $threadModel = new ThreadModel();
+    $userinfo = $userModel->userInfo($id);
+    $userinfo["image"] = DiscuzModel::get_avatar($id,"middle");
+    $userinfo["threadscreate"] = $threadModel->threadsByUserid($id,5);
+    $this->_mainContent->assign("user",$userinfo);
+    $this->display();
+  }
 }

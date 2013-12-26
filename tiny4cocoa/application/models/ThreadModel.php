@@ -57,11 +57,11 @@ class ThreadModel extends baseDbModel {
     return $thread;
   }
   
-  public function threadsByUserid($userid) {
+  public function threadsByUserid($userid,$size=20) {
     
     $sql = "SELECT `id`,`title`,`replys` FROM `threads` where `createbyid` = $userid 
       ORDER BY `updatedate` DESC
-      LIMIT 0,20;";
+      LIMIT 0,$size;";
     $result = $this->fetchArray($sql);
     $ret = array();
     if(count($result)==0)
