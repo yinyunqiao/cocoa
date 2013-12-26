@@ -52,3 +52,7 @@ RewriteRule ^doc/$ tiny4wiki/index.php
 RewriteRule ^doc$ tiny4wiki/index.php
 RewriteRule ^doc/(.+)/$ tiny4wiki/index.php?act=show&wiki=$1
 RewriteRule ^doc/(.+)$ tiny4wiki/index.php?act=show&wiki=$1
+
+deny from 112.67.185.219
+deny from 139.189.42.29
+
