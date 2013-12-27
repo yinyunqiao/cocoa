@@ -15,6 +15,15 @@ class UserModel extends baseDbModel {
     return $result[0];
   }
   
+  public function reputation($userid) {
+    
+    $sql = "SELECT `reputation` FROM `cocoabbs_uc_members` WHERE uid = $userid;";
+    $result = $this->fetchArray($sql);
+    if(!$result)
+      return -1000;
+    return $result[0]["reputation"];
+  }
+  
   public function weeklyNewsUser() {
     
     $sql="SELECT `username`,`email` 
