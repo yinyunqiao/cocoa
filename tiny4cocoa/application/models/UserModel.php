@@ -495,6 +495,13 @@ class UserModel extends baseDbModel {
     $this->run($sql);
   }
   
+  public function banUser($userid) {
+    
+    $time = time();
+    $this->add_reputation($userid,-200,"异常行为惩罚",$time);
+    $this->add_money($userid,-1000,"异常行为惩罚",$time);
+    $this->update_reputationAndMoney($userid);
+  }
 }
 
 

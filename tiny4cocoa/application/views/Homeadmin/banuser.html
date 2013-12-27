@@ -1,4 +1,27 @@
-<form action="/homeadmin/banuser/" method="POST">
+<script>
+// var x;
+// var r=confirm("Press a button!");
+// if (r==true)
+$(document).ready(function() {
+  
+  $("#banform").submit(function(e){
+    
+    var result = confirm("是否Ban掉此用户");
+    if (result == true){
+      
+      
+    } else {
+      
+      e.preventDefault();
+      
+    }
+    
+  });
+  
+});
+
+</script>
+<form action="/homeadmin/banuser/" method="POST" id="banform">
 <div class="row">
   <div class="span4"></div>
   <div class="span4">
@@ -30,6 +53,7 @@
       </div>
       
       <div style="text-align:center;">
+        <input type="hidden" name="userid" value="{$user.uid}" id="userid">
         <input type="submit" name="submit" value="Ban" id="submit" class="btn btn-danger">
       </div>
     </div>

@@ -506,7 +506,20 @@ class ThreadModel extends baseDbModel {
             $subject, 
             $mailContent);
   }
-  //------------------------暂时废弃
+  
+  public function delUserAllThread($userid) {
+    
+    $data = array();
+    $data["del"] = 1;
+    $this->select("threads")->where("`createbyid` = $userid")->update($data);
+  }
+  
+  public function delUserAllReply($userid) {
+    
+    $data = array();
+    $data["del"] = 1;
+    $this->select("thread_replys")->where("`userid` = $userid")->update($data);
+  }
   
 }
 

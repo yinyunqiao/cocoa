@@ -343,13 +343,31 @@ class HomeadminController extends baseController
   
   public function banuserAction() {
     
+    $userModel = new UserModel();
+    $threadModel = new ThreadModel();
+    
+    if($_POST) {
+      
+      $userid = $_POST["userid"];
+      if($userid<=0 || $userid==2) {
+        header ('HTTP/1.1 301 Moved Permanently');
+        header("location:/home/");
+        die();
+      }
+      $userModel->banUser($userid);
+      if($_POST["delallthread"])
+        $threadModel->delUserAllThread($userid);
+      if($_POST["delallreply"])
+        $threadModel->delUserAllReply($userid);
+      header ('HTTP/1.1 301 Moved Permanently');
+      header("location:/user/show/$userid/");
+      die();
+    }
     $id = $this->intVal(3);
     if($id==0 || $id==2 || $this->userid!=2) {
       header ('HTTP/1.1 301 Moved Permanently');
       header("location:/home/");
     }
-    $userModel = new UserModel();
-    $threadModel = new ThreadModel();
     $userinfo = $userModel->userInfo($id);
     $userinfo["image"] = DiscuzModel::get_avatar($id,"middle");
     $userinfo["threadscreate"] = $threadModel->threadsByUserid($id,5);
