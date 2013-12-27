@@ -1,0 +1,63 @@
+<script>
+// var x;
+// var r=confirm("Press a button!");
+// if (r==true)
+$(document).ready(function() {
+  
+  $("#banform").submit(function(e){
+    
+    var result = confirm("是否Ban掉此用户");
+    if (result == true){
+      
+      
+    } else {
+      
+      e.preventDefault();
+      
+    }
+    
+  });
+  
+});
+
+</script>
+<form action="/homeadmin/banuser/" method="POST" id="banform">
+<div class="row">
+  <div class="span4"></div>
+  <div class="span4">
+    <div class="content-unit">
+      <h3>Ban掉用户{$user.username}？</h3>
+      <div class="threadblock" >
+        <img src="{$user.image}" class="pull-right">
+        <div class="pull-left">
+          <span class="field-label">编号</span>：{$user.uid}<br/>
+          <span class="field-label">用户名</span>：{$user.username}<br/>
+          <span class="field-label">声望</span>：{$user.reputation} <img style="margin-top:-5px;" src="/img/reputation.png"> （<a href="/help/reputation/">什么是声望？</a>）<br/>
+          <span class="field-label">金币</span>：{$user.money} <img style="margin-top:-4px;" src="/img/coin.png"><br/>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      
+      <strong>发过的帖子(最近5条)</strong>
+      <div class="threadblock">
+        <ul>
+        {foreach from=$user.threadscreate item=item}
+          <li><a href="/thread/show/{$item.id}/">{$item.title} ( {$item.replys} )</a></li>
+        {/foreach}
+        </ul>
+      </div>
+      
+      <div class="threadblock">
+        <label for="delallthread">删除其全部帖子</label><input type="checkbox" name="delallthread" value="delallthread" id="delallthread" checked>
+        <label for="delallreply">删除其全部回复</label><input type="checkbox" name="delallreply" value="delallreply" id="delallreply" checked>
+      </div>
+      
+      <div style="text-align:center;">
+        <input type="hidden" name="userid" value="{$user.uid}" id="userid">
+        <input type="submit" name="submit" value="Ban" id="submit" class="btn btn-danger">
+      </div>
+    </div>
+  </div>
+  <div class="span4"></div>
+</div>
+</form>

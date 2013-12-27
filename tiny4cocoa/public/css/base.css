@@ -158,3 +158,13 @@ border-bottom: 1px dashed
 		
 	}
 }
+
+
+
+.field-label {
+  
+  width:80px;
+  text-align:right;
+  display:inline-block;
+  font-weight:bold;
+}

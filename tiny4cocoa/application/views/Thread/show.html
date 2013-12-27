@@ -215,6 +215,11 @@ function sendweibo() {
               {/if}
             </a>
             </div>
+            
+            {if $item.del == 1}
+              <div class="clearfix"></div>
+              <div style="text-align:center;color:red;">本楼内容已经被删除</div>
+            {else}
             {if $thread.image}
               <a href="/user/show/{$item.userid}/{$item.name}/" target="_blank">
                 <img src="{$item.image}" width="48" style="float:left;padding:5px;">
@@ -238,6 +243,7 @@ function sendweibo() {
                 </div>
               {/if}
             </div>
+            {/if}
           </div>
         {/foreach}
       </div>
@@ -261,6 +267,9 @@ function sendweibo() {
         {if !$isEmailValidated}
            您的注册邮箱还没有通过验证，不能发帖和回帖。 请检查您的注册邮箱里面是否有注册验证邮件。 如果找不到可以看看邮箱的Spam目录。 
         {else}
+        {if $reputation  < 0 }
+          你的声望小于0，没有资格回帖。 
+        {else}
         <form action="/thread/show/{$thread.id}/" 
           method="post" accept-charset="utf-8" id="newreplyform">
           <label for="content">内容</label>
@@ -277,6 +286,7 @@ function sendweibo() {
           <hr/>
           <a href="/">返回首页</a> | <a href="/thread/">讨论区</a>
         </form>
+        {/if}
         {/if}
       </div>
     {/if}

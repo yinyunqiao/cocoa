@@ -77,6 +77,7 @@
 
 			$iPhone = ToolModel::is_iPhone();
 			$this->_view->assign("iPhone",$iPhone);
+			$this->_mainContent->assign("userid",$this->userid);
 			$this->_mainContent->assign("iPhone",$iPhone);
 		}
 		

@@ -66,10 +66,21 @@ class ThreadController extends baseController
     
     $id = $this->intVal(3);
     $threadModel = new ThreadModel();
+    $userModel = new UserModel();
+    $reputation = $userModel->reputation($this->userid);
     
     if($_POST){
       
-      $userModel = new UserModel();
+      
+      if(!$this->isEmailValidated) {
+        header("location: /home/");
+        die();
+      }
+      if($reputation) {
+        header("location: /home/");
+        die();
+      }
+      
       if($this->userid>0)
         if(strlen($_POST["content"])>0) {
         
@@ -95,7 +106,14 @@ class ThreadController extends baseController
           die();
         }
     }
+    
     $thread = $threadModel->threadById($id);
+    if($thread["del"]==1){
+      
+      header("HTTP/1.1 301 Moved Permanently");
+      header("location: /home/");
+      die();
+    }
     $replysCount = $threadModel->replysCountById($id);
     $replys = $threadModel->replysById($id);
     $threads = $threadModel->threads(1,20);
@@ -130,7 +148,8 @@ class ThreadController extends baseController
 
     $this->_mainContent->assign("toplist",$toplist);
     $this->_mainContent->assign("isEmailValidated",$this->isEmailValidated);
-    
+    $this->_mainContent->assign("reputation",$reputation);
+  
     $this->setTitle($thread["title"]);
     $this->display();
   }
@@ -138,12 +157,21 @@ class ThreadController extends baseController
   public function newAction() {
     
     $userModel = new UserModel();
+    $reputation = $userModel->reputation($this->userid);
     if($this->userid==0) {
       header("location: /user/login/");
       die();
     }
     if($_POST){
       
+      if(!$this->isEmailValidated) {
+        header("location: /home/");
+        die();
+      }
+      if($reputation<0) {
+        header("location: /home/");
+        die();
+      }
       $data = array();
       $time = time();
       $data["title"] = $_POST["title"];
@@ -167,6 +195,7 @@ class ThreadController extends baseController
           die();
       }
     }
+    $this->_mainContent->assign("reputation",$reputation);
     $this->_mainContent->assign("isEmailValidated",$this->isEmailValidated);
     $this->display();
   }

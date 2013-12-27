@@ -22,6 +22,9 @@ $(document).ready(function() {
         {if !$isEmailValidated}
            您的注册邮箱还没有通过验证，不能发帖和回帖。 请检查您的注册邮箱里面是否有注册验证邮件。 如果找不到可以看看邮箱的Spam目录。 
         {else}
+        {if $reputation < 0 }
+          你的声望小于0，没有资格发帖。 
+        {else}
         <form action="/thread/new/" 
           method="post" accept-charset="utf-8" id="newform">
           <label for="title">标题</label><input type="text" name="title" value="" id="title" style="width:90%;" required>
@@ -38,6 +41,7 @@ $(document).ready(function() {
             <input type="button" name="cancel" value="取消" id="cancel" class="btn">
           </div>
         </form>
+        {/if}
         {/if}
       </div>
     </div>

@@ -15,6 +15,15 @@ class UserModel extends baseDbModel {
     return $result[0];
   }
   
+  public function reputation($userid) {
+    
+    $sql = "SELECT `reputation` FROM `cocoabbs_uc_members` WHERE uid = $userid;";
+    $result = $this->fetchArray($sql);
+    if(!$result)
+      return -1000;
+    return $result[0]["reputation"];
+  }
+  
   public function weeklyNewsUser() {
     
     $sql="SELECT `username`,`email` 
@@ -495,6 +504,13 @@ class UserModel extends baseDbModel {
     $this->run($sql);
   }
   
+  public function banUser($userid) {
+    
+    $time = time();
+    $this->add_reputation($userid,-200,"异常行为惩罚",$time);
+    $this->add_money($userid,-1000,"异常行为惩罚",$time);
+    $this->update_reputationAndMoney($userid);
+  }
 }
 
 
