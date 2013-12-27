@@ -4,7 +4,7 @@ class ThreadModel extends baseDbModel {
   public function threadCount() {
     
     $sql = 
-    "SELECT count(*) as `c` FROM `threads`;";
+    "SELECT count(*) as `c` FROM `threads` WHERE `del` = 0;";
     $result =  $this->fetchArray($sql);
     return $result[0]["c"];
   }
@@ -15,6 +15,7 @@ class ThreadModel extends baseDbModel {
     $start = ($page-1)*$pageSize;
     $sql = 
       "SELECT * FROM `threads`
+      WHERE `del` = 0 
       ORDER BY $order 
       limit $start,$pageSize;";
     $result =  $this->fetchArray($sql);
@@ -59,7 +60,7 @@ class ThreadModel extends baseDbModel {
   
   public function threadsByUserid($userid,$size=20) {
     
-    $sql = "SELECT `id`,`title`,`replys` FROM `threads` where `createbyid` = $userid 
+    $sql = "SELECT `id`,`title`,`replys` FROM `threads` where `createbyid` = $userid AND `del` = 0 
       ORDER BY `updatedate` DESC
       LIMIT 0,$size;";
     $result = $this->fetchArray($sql);
@@ -77,7 +78,7 @@ class ThreadModel extends baseDbModel {
   
   public function threadsReplyByUserid($userid) {
     
-    $sql = "SELECT `id`,`title`,`replys` FROM `threads` where `createbyid` <> $userid AND `id` in (SELECT `threadid` FROM `thread_replys` WHERE `userid` = $userid GROUP BY `threadid`) 
+    $sql = "SELECT `id`,`title`,`replys` FROM `threads` where `createbyid` <> $userid AND `id`in (SELECT `threadid` FROM `thread_replys` WHERE `userid` = $userid and `del` = 0 GROUP BY `threadid`)  AND `del` = 0 
       ORDER BY `updatedate` DESC
       LIMIT 0,20;
 ;";
