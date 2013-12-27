@@ -76,7 +76,7 @@ class ThreadController extends baseController
         header("location: /home/");
         die();
       }
-      if($reputation) {
+      if($reputation<0) {
         header("location: /home/");
         die();
       }
