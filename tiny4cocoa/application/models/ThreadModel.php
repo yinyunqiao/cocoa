@@ -46,6 +46,8 @@ class ThreadModel extends baseDbModel {
     
     $sql = "SELECT * FROM `threads` where id = $id;";
     $ret = $this->fetchArray($sql);
+    if(!$ret)
+      return NULL;
     $thread = $ret[0];
     if($html==1)
       $thread["content"] = $this->parseContent($thread["content"]);

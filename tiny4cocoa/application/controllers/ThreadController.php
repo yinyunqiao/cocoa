@@ -108,7 +108,7 @@ class ThreadController extends baseController
     }
     
     $thread = $threadModel->threadById($id);
-    if($thread["del"]==1){
+    if(!$thread || $thread["del"]==1){
       
       header("HTTP/1.1 301 Moved Permanently");
       header("location: /home/");
