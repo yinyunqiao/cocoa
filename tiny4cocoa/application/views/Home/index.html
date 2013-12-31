@@ -68,6 +68,20 @@
 </div>
 
 <div class="span5">
+  
+  <div class="siderbar-unit">
+    <strong>十大社区英雄</strong>
+	  <div class="newsblock">
+      {foreach from=$users item=user}
+          <div style="float:left;text-align:center;width:80px;height:76px;">
+            <a href="/user/show/{$user.uid}/{$user.username}/" target="_blank">
+              <img src="http://tiny4cocoa.org/img/48mask.png" width="48" height="48" style="margin-top:8px;background-image:url({$user.image});" title="{$user.username}">
+            </a>
+          </div>
+      {/foreach}
+      <div class="clearfix"></div>
+    </div>
+  </div>
   <div class="siderbar-unit">
     <strong>苹果新闻</strong>
     {foreach from=$applenews item=item}

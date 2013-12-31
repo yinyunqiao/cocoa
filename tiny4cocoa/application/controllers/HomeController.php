@@ -21,7 +21,7 @@ class HomeController extends baseController
     $count = $newscenter->count("apple");
     $newscount = $newscenter->count("unmarked");
     $spamcount = $newsModel->spamCount();
-    $applenews = $newscenter->news(1,40,"apple");
+    $applenews = $newscenter->news(1,36,"apple");
     $napplenews = array();
     foreach($applenews as $item) {
       
@@ -49,8 +49,9 @@ class HomeController extends baseController
     $this->_mainContent->assign("toplist",$toplist);
     
     $threadModel = new ThreadModel();
-    $heros = $threadModel->topBbsHero(10,time()-60*60*24);
-    $this->_mainContent->assign("heros",$heros);
+    $userModel = new UserModel();
+    $users = $userModel->users(1,10);
+    $this->_mainContent->assign("users",$users);
     
     $this->_mainContent->assign("pageControl",$pageControl);
     $this->_mainContent->assign("threads",$threads);
@@ -65,11 +66,13 @@ class HomeController extends baseController
       $this->setTitle("本站新闻 第".$page."页");
     $this->display();
   }
+  
   public function linkAction() {
     
     $this->_view->assign("active","link");
     $this->display();
   }
+  
   public function newsAction() {
     
     $page = $this->intVal(3);
