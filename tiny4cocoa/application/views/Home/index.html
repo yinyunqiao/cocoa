@@ -75,7 +75,9 @@
       {foreach from=$users item=user}
           <div style="float:left;text-align:center;width:80px;height:76px;">
             <a href="/user/show/{$user.uid}/{$user.username}/" target="_blank">
-              <img src="http://tiny4cocoa.org/img/48mask.png" width="48" height="48" style="margin-top:8px;background-image:url({$user.image});" title="{$user.username}">
+              <img src="{$user.image}" width="60" height="60" title="{$user.username}"
+               style="margin-top:8px;border-radius: 30px;
+"/>
             </a>
           </div>
       {/foreach}
