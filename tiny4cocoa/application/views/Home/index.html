@@ -29,10 +29,10 @@
       <a href="/thread/new/" class="btn btn-success">发 布 新 帖</a>
     </div>
     <div style="padding: 10px;margin-bottom: 30px;">
-      <p class="pull-right">
+      <div class="pull-right">
         <a href="/thread/">最新</a> | <a href="/thread/hot/">最热</a> | <a href="/thread/cold/">最冷</a>
-      </p>
-      <strong>提问区</strong>
+      </div>
+      <h2>提问区</h2>
       {foreach from=$threads item=item}
       <div class="threadblock">
         <div class="pull-left" style="width:48px;height:48px;background-color:#d9edf7;margin-right:5px;border-radius:5px;">
@@ -93,7 +93,7 @@
       <p class="pull-right">
         <a href="/thread/">最新</a> | <a href="/thread/hot/">最热</a> | <a href="/thread/cold/">最冷</a>
       </p>
-      <strong>灌水区</strong>
+      <h2>灌水区</h2>
       {foreach from=$threads item=item}
       <div class="threadblock">
         <div class="pull-right">

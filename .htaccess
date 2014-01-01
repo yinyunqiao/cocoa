@@ -34,6 +34,9 @@ RewriteRule ^homeadmin/(.*) tiny4cocoa/public/index.php
 RewriteRule ^playground$ tiny4cocoa/public/index.php
 RewriteRule ^playground/(.*)$ tiny4cocoa/public/index.php
 
+RewriteRule ^question$ tiny4cocoa/public/index.php
+RewriteRule ^question/(.*)$ tiny4cocoa/public/index.php
+
 #transfer form discuz!
 RewriteCond %{QUERY_STRING} action=nav
 RewriteRule ^misc\.php$ http://tiny4cocoa.com/thread/new/

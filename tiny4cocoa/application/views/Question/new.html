@@ -1,0 +1,61 @@
+<script src="/static/wmdjs/20130919/" type="text/javascript"></script>
+<style>
+body {
+  background-color: 
+  #ccc;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#newform").validate();
+  $("#wmd-input").bind('keyup.ctrl_return', function(){
+    $("#submit").click();
+  });
+});
+</script>
+<div class="row">
+  
+  <div class="span8">
+    <div class="content-unit">
+      <h4>新建帖子</h4>
+      <div class="threadblock">
+        {if !$isEmailValidated}
+           您的注册邮箱还没有通过验证，不能发帖和回帖。 请检查您的注册邮箱里面是否有注册验证邮件。 如果找不到可以看看邮箱的Spam目录。 
+        {else}
+        {if $reputation < 0 }
+          你的声望小于0，没有资格发帖。 
+        {else}
+        <form action="/thread/new/" 
+          method="post" accept-charset="utf-8" id="newform">
+          <label for="title">标题</label><input type="text" name="title" value="" id="title" style="width:90%;" required>
+          <label for="content">内容</label>
+      		<div id="wmd-editor" class="wmd-panel" style="width:90%;">
+      			<div id="wmd-button-bar"></div>
+      			<textarea id="wmd-input" name="content" minlength="5" required></textarea>
+      		</div>
+      		<div id="wmd-preview" class="wmd-panel" style="width:90%;">
+      		</div>
+          <div class="threadblock" style="text-align:center;">
+            <p>使用Ctrl+回车键也可以发布新帖</p>
+            <input type="submit" name="submit" value="发布" id="submit" class="btn btn-primary"> 
+            <input type="button" name="cancel" value="取消" id="cancel" class="btn">
+          </div>
+        </form>
+        {/if}
+        {/if}
+      </div>
+    </div>
+  </div>
+  
+  <div class="span4">
+    <div class="siderbar-unit">
+      发帖说明
+      <div class="threadblock">
+        <ul>
+          <li>支持 Markdown 格式, **<strong>粗体</strong>**、~~<del>删除线</del>~~、`<code>单行代码</code>`</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+</div>
