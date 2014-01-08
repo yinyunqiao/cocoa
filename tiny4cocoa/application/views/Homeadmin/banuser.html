@@ -1,19 +1,11 @@
 <script>
-// var x;
-// var r=confirm("Press a button!");
-// if (r==true)
 $(document).ready(function() {
   
   $("#banform").submit(function(e){
     
     var result = confirm("是否Ban掉此用户");
-    if (result == true){
-      
-      
-    } else {
-      
+    if (result != true){
       e.preventDefault();
-      
     }
     
   });
