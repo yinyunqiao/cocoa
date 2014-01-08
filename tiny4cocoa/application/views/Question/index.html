@@ -12,7 +12,7 @@ body {
     </p>
     <div class="clearfix"></div>
 
-    {foreach from=$threads item=item}
+    {foreach from=$questions item=item}
     <div class="threadblock">
       <div class="pull-left" style="width:48px;height:48px;background-color:#d9edf7;margin-right:5px;border-radius:5px;">
         <div style="text-align:center;color:green;font-weight:bold;margin-top:4px;">{$item.likecount-$item.dislikecount}<br/>赞成</div>
@@ -28,7 +28,7 @@ body {
         </a>
       {/if}
       <div style="margin-left:54px;">
-        <a href="/thread/show/{$item.id}/">{$item.title}</a>
+        <a href="/question/show/{$item.id}/">{$item.title}</a>
         <div class="muted">
           {$item.createtime} by  
           <a href="/user/show/{$item.createbyid}/{$item.createby}/" class="muted" target="_blank">{$item.createby}</a> 
@@ -67,7 +67,7 @@ body {
         <ul>
           {foreach from=$newthreads item=item}
             <li>          
-              <a href="/thread/show/{$item.id}/">{$item.title}</a>
+              <a href="/question/show/{$item.id}/">{$item.title}</a>
             </li>
           {/foreach}   
         </ul>

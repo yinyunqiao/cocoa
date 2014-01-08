@@ -126,7 +126,7 @@ function sendweibo() {
   
   <div class="span9">
     
-    <div class="content-unit">
+    <div class="content-unit water-area">
       <a name="top_floor">
       {if $thread.image}
         <a href="/user/show/{$thread.createbyid}/{$thread.createby}/" target="_blank">
@@ -201,7 +201,7 @@ function sendweibo() {
         暂无回复
       </div>
     {else}
-      <div class="content-unit">
+      <div class="content-unit water-area">
         共{$replysCount}条回复
         {foreach from=$replys item=item name=comments}
           <div class="threadblock">
@@ -259,11 +259,11 @@ function sendweibo() {
     {/if}
     
     {if $userid==0}
-      <div class="content-unit" style="text-align:center;">
+      <div class="content-unit  water-area" style="text-align:center;">
         请 <a href="/user/login/" class="btn btn-primary">登录</a> 或者 <a href="/user/reg/" class="btn btn-danger">注册</a>。
       </div>
     {else}
-      <div class="content-unit">
+      <div class="content-unit  water-area">
         {if !$isEmailValidated}
            您的注册邮箱还没有通过验证，不能发帖和回帖。 请检查您的注册邮箱里面是否有注册验证邮件。 如果找不到可以看看邮箱的Spam目录。 
         {else}

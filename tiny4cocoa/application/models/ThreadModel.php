@@ -1,21 +1,31 @@
 <?php
 class ThreadModel extends baseDbModel {
   
-  public function threadCount() {
+  private function threadCount($area = 0) {
     
     $sql = 
-    "SELECT count(*) as `c` FROM `threads` WHERE `del` = 0;";
+    "SELECT count(*) as `c` FROM `threads` WHERE `del` = 0 AND `area` = $area;";
     $result =  $this->fetchArray($sql);
     return $result[0]["c"];
   }
   
+  public function waterCount() {
+    
+    return $this->threadCount();
+  }
   
-  public function threads($page,$pageSize,$order = "`score` DESC") {
+  public function questionCount() {
+    
+    return $this->threadCount(1);
+  }
+  
+  
+  private function threads($page,$pageSize,$order = "`score` DESC",$area = 0) {
     
     $start = ($page-1)*$pageSize;
     $sql = 
       "SELECT * FROM `threads`
-      WHERE `del` = 0 
+      WHERE `del` = 0 AND `area` = $area
       ORDER BY $order 
       limit $start,$pageSize;";
     $result =  $this->fetchArray($sql);
@@ -32,6 +42,15 @@ class ThreadModel extends baseDbModel {
     return $ret;
   }
 
+  public function waters($page,$pageSize,$order = "`score` DESC") {
+    
+    return $this->threads($page,$pageSize,$order,0);
+  }
+  
+  public function questions($page,$pageSize,$order = "`score` DESC") {
+    
+    return $this->threads($page,$pageSize,$order,1);
+  }
 
   public function parseContent($content) {
     

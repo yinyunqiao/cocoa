@@ -10,60 +10,37 @@ class HomeController extends baseController
   
   public function indexAction() {
     
-    $allModel = new AllModel();
-    $newsModel = new NewsModel();
-    $page = $this->intVal(3);
-    if($page==0)
-      $page=1;
-    $size = 30;
-    
     $newscenter = new NewscenterModel();
-    $count = $newscenter->count("apple");
+    $newsModel = new NewsModel();
+    
     $newscount = $newscenter->count("unmarked");
     $spamcount = $newsModel->spamCount();
-    $applenews = $newscenter->news(1,36,"apple");
-    $napplenews = array();
-    foreach($applenews as $item) {
-      
-      $item["time"] = ToolModel::countTime($item["pubdate"]);
-      $item["elink"] = urlencode($item["link"]);
-      
-      $napplenews[] = $item;
-    }
-    
-    $applenews = $napplenews;
-    
-    $size = 21;
-    $count = $newsModel->newsCount();
-    $news = $newsModel->news(1,$size);
-		$pageControl = ToolModel::pageControl($page,$count,$size,"<a href='/home/news/#page#/'>");
-    
-    $thread = new ThreadModel();
-    $threadCount = $thread->threadCount();
-    $threadPageSize = 40;
-    $threads = $thread->threads(1,$threadPageSize);
-		$pageControl = ToolModel::pageControl(1,$threadCount,$threadPageSize,"<a href='/thread/index/#page#/'>",0);
-    
-    $toplistModel = new ToplistModel();
-    $toplist = $toplistModel->toplist();
-    $this->_mainContent->assign("toplist",$toplist);
-    
-    $threadModel = new ThreadModel();
-    $userModel = new UserModel();
-    $users = $userModel->users(1,10);
-    $this->_mainContent->assign("users",$users);
-    
-    $this->_mainContent->assign("pageControl",$pageControl);
-    $this->_mainContent->assign("threads",$threads);
-    $this->_mainContent->assign("news",$news);
-    $this->_mainContent->assign("applenews",$applenews);
-    $this->_mainContent->assign("userid",$this->userid);
     $this->_mainContent->assign("spamcount",$spamcount);
     $this->_mainContent->assign("newscount",$newscount);
+
+    $threadModel = new ThreadModel();
     
-    $this->viewFile="Home/index.html";
-    if($page>1)
-      $this->setTitle("本站新闻 第".$page."页");
+    $waterCount = $threadModel->waterCount();
+    $waterPageSize = 34;
+    $waters = $threadModel->waters(1,$waterPageSize);
+		$waterPageControl = ToolModel::pageControl(1,$waterCount,$waterPageSize,"<a href='/thread/index/#page#/'>",0);
+    $this->_mainContent->assign("waters",$waters);
+    $this->_mainContent->assign("waterPageControl",$waterPageControl);
+    
+    $questionCount = $threadModel->questionCount();
+    $questionPageSize = 40;
+    $questions = $threadModel->questions(1,$questionPageSize);
+		$questionPageControl = ToolModel::pageControl(1,$questionCount,$questionPageSize,"<a href='/question/index/#page#/'>",0);
+    $this->_mainContent->assign("questions",$questions);
+    $this->_mainContent->assign("questionPageControl",$questionPageControl);
+    
+
+    $userModel = new UserModel();
+    
+    $users = $userModel->users(1,10);
+    $this->_mainContent->assign("users",$users);
+    $this->_mainContent->assign("userid",$this->userid);
+    
     $this->display();
   }
   

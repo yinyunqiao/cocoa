@@ -28,23 +28,22 @@ class QuestionController extends baseController
     if($page==1) {
       
       header("HTTP/1.1 301 Moved Permanently");
-      header("location: /thread/");
+      header("location: /question/");
       die();
     }
     if($page==0)
       $page=1;
     
     $threadModel = new ThreadModel();
-    $threadPageSize = 40;
-    $threadCount = $threadModel->threadCount();
-    $threads = $threadModel->threads($page,$threadPageSize,$order);
-		$pageControl = ToolModel::pageControl($page,$threadCount,$threadPageSize,"<a href='/thread/$action/#page#/'>");
+    $quesitonPageSize = 40;
+    $questionCount = $threadModel->questionCount();
+    $questions = $threadModel->questions($page,$quesitonPageSize,$order);
+		$pageControl = ToolModel::pageControl($page,$questionCount,$quesitonPageSize,"<a href='/question/$action/#page#/'>");
       
-    $this->_mainContent->assign("threads",$threads);
+    $this->_mainContent->assign("questions",$questions);
     $this->_mainContent->assign("pageControl",$pageControl);
     
-    
-    $newthreads = $threadModel->threads(1,20);
+    $newthreads = $threadModel->questions(1,20);
     $this->_mainContent->assign("newthreads",$newthreads);
     
     $toplistModel = new ToplistModel();
@@ -54,9 +53,9 @@ class QuestionController extends baseController
     $this->_mainContent->assign("threadtitle",$title);
     
     if($page==1)
-      $this->setTitle("讨论区 $title");
+      $this->setTitle("提问区 $title");
     else
-      $this->setTitle("讨论区 $title 第 $page 页");
+      $this->setTitle("提问区 $title 第 $page 页");
     
     $this->viewFile="Question/index.html";
     $this->display();
@@ -116,8 +115,7 @@ class QuestionController extends baseController
     }
     $replysCount = $threadModel->replysCountById($id);
     $replys = $threadModel->replysById($id);
-    $threads = $threadModel->threads(1,20);
-    $voteInfo = $threadModel->voteInfo($id);
+    $threads = $threadModel->questions(1,20);
     $userVote = $threadModel->userVote($id,$this->userid);
       
     $this->_mainContent->assign("threads",$threads);
