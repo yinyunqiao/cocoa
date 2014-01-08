@@ -204,11 +204,11 @@ function sendweibo() {
     
     {if $replysCount==0}
       <div style="text-align:center;padding-bottom:20px;">
-        暂无回复
+        暂无回答
       </div>
     {else}
       <div class="content-unit">
-        共{$replysCount}条回复
+        共{$replysCount}个回答
         {foreach from=$replys item=item name=comments}
           <div class="threadblock">
             <div class="floornumber">
@@ -276,7 +276,7 @@ function sendweibo() {
         {if $reputation  < 0 }
           你的声望小于0，没有资格回帖。 
         {else}
-        <form action="/thread/show/{$thread.id}/" 
+        <form action="/question/show/{$thread.id}/" 
           method="post" accept-charset="utf-8" id="newreplyform">
           <label for="content">内容</label>
       		<div id="wmd-editor" class="wmd-panel" style="width:90%;">
@@ -286,8 +286,8 @@ function sendweibo() {
       		<div id="wmd-preview" class="wmd-panel" style="width:90%;">
       		</div>
           <div class="threadblock" style="text-align:center;">
-            <p>使用Ctrl+回车键也可以提交回复</p>
-            <input type="submit" name="submit" value="提交回复" id="submit" class="btn btn-primary"> 
+            <p>使用Ctrl+回车键也可以提交回答</p>
+            <input type="submit" name="submit" value="提交回答" id="submit" class="btn btn-primary"> 
           </div>
           <hr/>
           <a href="/">返回首页</a> | <a href="/thread/">讨论区</a>

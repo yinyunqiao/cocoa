@@ -101,7 +101,7 @@ class QuestionController extends baseController
             $thread["lastreplyid"] = $data["userid"];
             $threadModel->updateThread($thread);
           }
-          header("location: /thread/show/$id/");
+          header("location: /question/show/$id/");
           die();
         }
     }
