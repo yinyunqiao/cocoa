@@ -287,13 +287,38 @@ class ThreadController extends baseController
   
   public function transformAction() {
     
-    $id = $this->intVal(3);
     $threadModel = new ThreadModel();
+    
+    if($_POST && $_POST["threadid"]) {
+     
+       $threadModel->transform($_POST["threadid"],$_POST["targetArea"]);
+       if($_POST["removeReputation"]) {
+
+         $time = time();
+         $userid = $_POST["userid"];
+         $userModel = new UserModel();
+         $userModel->add_reputation($userid,-2,"发帖选择错误的分区",$time);
+         $userModel->add_money($userid,-20,"发帖选择错误的分区",$time);
+         $userModel->update_reputationAndMoney($userid);
+       }
+       if($_POST["targetArea"]==0)
+         header("location: /thread/");
+       else
+         header("location: /question/");
+       die();
+    }    
+    $id = $this->intVal(3);
     $thread = $threadModel->threadById($id);
-    if($thread["area"]==0)
+    if($thread["area"]==0) {
+      
+      $thread["targetArea"] = 1;
       $this->_mainContent->assign("targetArea","提问区");
-    else
+    }
+    else {
+      
+      $thread["targetArea"] = 0;
       $this->_mainContent->assign("targetArea","灌水区");
+    }
     $this->_mainContent->assign("thread",$thread);
     $this->display();
   }

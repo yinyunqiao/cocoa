@@ -543,6 +543,15 @@ class ThreadModel extends baseDbModel {
     $this->select("thread_replys")->where("`userid` = $userid")->update($data);
   }
   
+  public function transform($threadid,$targetArea) {
+    
+    $data = array();
+    $data["area"] = $targetArea;
+    $this
+      ->select("threads")
+        ->where("`id` = $threadid")
+          ->update($data);
+  }
 }
 
 
