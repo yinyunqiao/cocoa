@@ -1,0 +1,40 @@
+<script>
+$(document).ready(function() {
+  
+  $("#banform").submit(function(e){
+    
+    var result = confirm("是否将帖子转到［{$targetArea}］？");
+    if (result != true){
+      e.preventDefault();
+    }
+  });
+});
+
+</script>
+<form action="/thread/transform/" method="POST" id="banform">
+<div class="row">
+  <div class="span3"></div>
+  <div class="span6">
+    <div class="content-unit">
+      <h3>转移帖子《{$thread.title}》到［{$targetArea}］？</h3>
+      <div class="threadblock" >
+        <img src="{$user.image}" class="pull-right">
+        <div class="pull-left">
+          <span class="field-label">发帖者</span>：{$thread.createby}<br/>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      
+      <div class="threadblock">
+        <label for="removeReputation">扣除2个声望</label><input type="checkbox" name="removeReputation" value="removeReputation" id="removeReputation" checked>
+      </div>
+      
+      <div style="text-align:center;">
+        <input type="hidden" name="userid" value="{$thread.createbyid}" id="userid">
+        <input type="submit" name="submit" value="转区" id="submit" class="btn btn-danger">
+      </div>
+    </div>
+  </div>
+  <div class="span3"></div>
+</div>
+</form>

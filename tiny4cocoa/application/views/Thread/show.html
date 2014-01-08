@@ -169,6 +169,10 @@ function sendweibo() {
             {if $userid==$thread.createbyid}
               <a href="/thread/editthread/{$thread.id}/">编辑</a>
             {/if}
+            
+            {if $userid==2}
+              <a href="/thread/transform/{$thread.id}/">转区</a>
+            {/if}
           </div>
       
         <div style="text-align:center;">

@@ -284,6 +284,20 @@ class ThreadController extends baseController
     $result = $threadModel->vote($threadid, $this->userid,$vote);
     echo json_encode($result);
   }
+  
+  public function transformAction() {
+    
+    $id = $this->intVal(3);
+    $threadModel = new ThreadModel();
+    $thread = $threadModel->threadById($id);
+    if($thread["area"]==0)
+      $this->_mainContent->assign("targetArea","提问区");
+    else
+      $this->_mainContent->assign("targetArea","灌水区");
+    $this->_mainContent->assign("thread",$thread);
+    $this->display();
+  }
+
 }
 
 
