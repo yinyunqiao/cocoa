@@ -552,6 +552,15 @@ class ThreadModel extends baseDbModel {
         ->where("`id` = $threadid")
           ->update($data);
   }
+  
+  public function alreayAnswerThisQuestion($questionid,$userid) {
+    
+    $data = $this->select("thread_replys")->where("`threadid` = $questionid AND `del` = 0 and `userid` = $userid")->fetchAll();
+    if(count($data)>0)
+      return 1;
+    else
+      return 0;
+  }
 }
 
 

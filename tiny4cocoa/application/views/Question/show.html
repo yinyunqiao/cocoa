@@ -211,20 +211,9 @@ function sendweibo() {
         共{$replysCount}个回答
         {foreach from=$replys item=item name=comments}
           <div class="threadblock">
-            <div class="floornumber">
-              <a href="javascript:replyto({$smarty.foreach.comments.index+1},'{$item.name}')">回复</a>
-              <a name="floor{$smarty.foreach.comments.index+1}">
-              {if $smarty.foreach.comments.index == 0}
-                楼长
-              {else}
-                {$smarty.foreach.comments.index+1}楼
-              {/if}
-            </a>
-            </div>
-            
             {if $item.del == 1}
               <div class="clearfix"></div>
-              <div style="text-align:center;color:red;">本楼内容已经被删除</div>
+              <div style="text-align:center;color:red;">本回答内容已经被删除</div>
             {else}
             {if $thread.image}
               <a href="/user/show/{$item.userid}/{$item.name}/" target="_blank">
@@ -271,10 +260,11 @@ function sendweibo() {
     {else}
       <div class="content-unit">
         {if !$isEmailValidated}
-           您的注册邮箱还没有通过验证，不能发帖和回帖。 请检查您的注册邮箱里面是否有注册验证邮件。 如果找不到可以看看邮箱的Spam目录。 
-        {else}
-        {if $reputation  < 0 }
-          你的声望小于0，没有资格回帖。 
+          您的注册邮箱还没有通过验证，不能发帖和回帖。 请检查您的注册邮箱里面是否有注册验证邮件。 如果找不到可以看看邮箱的Spam目录。 
+        {elseif $reputation  < 0 }
+          你的声望小于0，没有资格回帖。
+        {elseif $alreayAnswer}
+          一个问题一个人只能回答一次，但是你可以修改你的答案完善它。 
         {else}
         <form action="/question/show/{$thread.id}/" 
           method="post" accept-charset="utf-8" id="newreplyform">
@@ -292,7 +282,6 @@ function sendweibo() {
           <hr/>
           <a href="/">返回首页</a> | <a href="/thread/">讨论区</a>
         </form>
-        {/if}
         {/if}
       </div>
     {/if}

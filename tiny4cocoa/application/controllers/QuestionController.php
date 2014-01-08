@@ -113,8 +113,15 @@ class QuestionController extends baseController
       header("location: /home/");
       die();
     }
+    
     $replysCount = $threadModel->replysCountById($id);
     $replys = $threadModel->replysById($id);
+    $alreayAnswer = $threadModel->alreayAnswerThisQuestion($id,$this->userid);
+    $this->_mainContent->assign("thread",$thread);
+    $this->_mainContent->assign("replysCount",$replysCount);
+    $this->_mainContent->assign("replys",$replys);
+    $this->_mainContent->assign("alreayAnswer",$alreayAnswer);
+    
     $threads = $threadModel->questions(1,20);
     $userVote = $threadModel->userVote($id,$this->userid);
       
@@ -132,11 +139,9 @@ class QuestionController extends baseController
       $reputation = $userInfo["reputation"];
     }else 
       $reputation = 0;
+    
     $this->_mainContent->assign("reputation",$reputation);
     
-    $this->_mainContent->assign("thread",$thread);
-    $this->_mainContent->assign("replysCount",$replysCount);
-    $this->_mainContent->assign("replys",$replys);
     
     $this->_mainContent->assign("voteInfo",$voteInfo);
     $this->_mainContent->assign("userVote",$userVote);
